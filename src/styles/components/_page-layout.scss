@@ -1,0 +1,44 @@
+.page-layout {
+  &__header {
+    background-color: var(--bs-primary);
+    color: var(--bs-light);
+    padding: 4rem 0;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+
+    &--with-bg {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  &__description {
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  &__content {
+    padding: 2rem 0;
+  }
+} 

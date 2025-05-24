@@ -1,0 +1,125 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-index-navbar;
+  background: $white;
+  box-shadow: $box-shadow;
+  height: $navbar-height;
+  padding: ($spacer * 0.5) 0;
+
+  &-brand {
+    img {
+      max-height: 60px;
+      width: auto;
+    }
+  }
+
+  &-nav {
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: $dark !important;
+      font-weight: 500;
+      padding: ($spacer * 0.5) $spacer !important;
+      font-size: $font-size-sm;
+      @include transition;
+
+      &:hover,
+      &:focus {
+        color: $primary !important;
+      }
+
+      &.dropdown-toggle {
+        &::after {
+          vertical-align: middle;
+          margin-left: 0.5em;
+        }
+      }
+    }
+  }
+
+  .dropdown {
+    &-menu {
+      border: none;
+      box-shadow: $box-shadow;
+      padding: $spacer 0;
+      min-width: 220px;
+      margin-top: 0;
+    }
+
+    &-item {
+      padding: ($spacer * 0.5) ($spacer * 1.5);
+      color: $dark;
+      font-size: $font-size-sm;
+      @include transition;
+
+      &:hover,
+      &:focus {
+        background-color: $light;
+        color: $primary;
+      }
+    }
+  }
+
+  .form-select {
+    border-color: $border-color;
+    font-size: $font-size-sm;
+    padding: ($spacer * 0.375) ($spacer * 2) ($spacer * 0.375) ($spacer * 0.75);
+    cursor: pointer;
+    @include transition;
+
+    &:hover,
+    &:focus {
+      border-color: $primary;
+    }
+  }
+
+  .btn-link {
+    color: $dark;
+    text-decoration: none;
+    padding: $spacer * 0.5;
+    @include transition;
+
+    &:hover {
+      color: $primary;
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Mobile styles
+@include media-breakpoint-down(lg) {
+  .navbar {
+    &-collapse {
+      background: $white;
+      position: absolute;
+      top: $navbar-height;
+      left: 0;
+      right: 0;
+      padding: $spacer;
+      box-shadow: $box-shadow;
+    }
+
+    .dropdown {
+      &-menu {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+      }
+
+      &-item {
+        padding: ($spacer * 0.75) ($spacer * 2);
+      }
+    }
+
+    .form-select {
+      font-size: $font-size-sm;
+      padding: ($spacer * 0.25) ($spacer * 1.5) ($spacer * 0.25) ($spacer * 0.5);
+    }
+  }
+} 

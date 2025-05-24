@@ -1,0 +1,22 @@
+// Abstracts
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+// Base
+@import 'base/reset';
+@import 'base/typography';
+
+// Components
+@import 'components/footer';
+@import 'components/navbar';
+@import 'components/page-layout';
+@import 'components/carousel';
+
+// Layout
+@import 'layout/about';
+@import 'layout/events';
+@import 'layout/news';
+@import 'layout/resources';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap'; 
