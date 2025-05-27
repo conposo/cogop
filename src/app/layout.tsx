@@ -7,13 +7,9 @@ import Footer from "@/components/Footer";
 import { ContentProvider } from "@/contexts/ContentContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminProvider } from "@/contexts/AdminContext";
+import { I18nProvider } from "@/contexts/I18nContext";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Church of God of Prophecy",
-  description: "A global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people.",
-};
 
 export default function RootLayout({
   children,
@@ -23,18 +19,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ContentProvider>
-          <AuthProvider>
-            <AdminProvider>
-              <Navigation />
-              <main className="mt-5 pt-4">
-                {children}
-              </main>
-              <Footer />
-            </AdminProvider>
-          </AuthProvider>
-        </ContentProvider>
-        
+        <I18nProvider>
+          <ContentProvider>
+            <AuthProvider>
+              <AdminProvider>
+                <Navigation />
+                <main className="mt-5 pt-4">
+                  {children}
+                </main>
+                <Footer />
+              </AdminProvider>
+            </AuthProvider>
+          </ContentProvider>
+        </I18nProvider>
         {/* Bootstrap JavaScript */}
         <script 
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

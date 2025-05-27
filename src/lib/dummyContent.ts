@@ -1,4 +1,4 @@
-import { collection, getDocs, query, orderBy, Timestamp, doc, getDoc, addDoc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, where, Timestamp, doc, getDoc, addDoc, setDoc } from 'firebase/firestore';
 import { db } from './firebase'; // Assuming firebase.ts is in the same lib folder
 
 export interface Article {
@@ -157,7 +157,12 @@ export const saveStaticArticlesToFirebase = async (): Promise<void> => {
 // New function to fetch articles from Firestore
 export const fetchArticlesFromFirestore = async (): Promise<Article[]> => {
   try {
-    const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'));
+    const q = query(
+      collection(db, 'news'), 
+      where('type', '!=', 'event'),
+      orderBy('type'),
+      orderBy('createdAt', 'desc')
+    );
     const querySnapshot = await getDocs(q);
     const articlesData = querySnapshot.docs.map(docSnap => {
       const data = docSnap.data();
@@ -171,7 +176,7 @@ export const fetchArticlesFromFirestore = async (): Promise<Article[]> => {
       return {
         id: docSnap.id,
         title: data.title || 'No Title',
-        slug: data.slug || docSnap.id,
+        slug: docSnap.id || data.slug,
         summary: data.excerpt || '',
         imageUrl: data.imageUrl,
         category: data.category || 'General',

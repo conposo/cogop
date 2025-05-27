@@ -6,6 +6,8 @@ import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import AuthModal from '@/components/Auth/AuthModal'
 import UserMenu from '@/components/Auth/UserMenu'
+import { setLocale, t } from '@/lib/i18n'
+import { useI18n } from '@/contexts/I18nContext'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,6 +17,7 @@ const Navigation = () => {
   const navRef = useRef<HTMLElement>(null)
   const togglerRef = useRef<HTMLButtonElement>(null)
   const { user, loading } = useAuth()
+  const { language, setLanguage } = useI18n()
 
   // Add Bootstrap JS on client side
   useEffect(() => {
@@ -121,87 +124,98 @@ const Navigation = () => {
     setShowAuthModal(true)
   }
 
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = e.target.value;
+    setLanguage(newLocale);
+    setLocale(newLocale);
+  };
+
+  // Force re-render when language changes
+  useEffect(() => {
+    // This effect will trigger when language changes, causing the component to re-render
+  }, [language]);
+
   const mainMenu = [
     {
-      title: 'Get Connected',
+      title: t('get_connected', { defaultValue: 'Get Connected' }),
       items: [
-        { title: 'Calendar', href: '/get-connected/calendar' },
-        { title: 'Contact', href: '/get-connected/contact' },
-        { title: 'FAQ', href: '/get-connected/faq' },
-        { title: 'Employment', href: '/get-connected/employment' },
-        { title: 'Schedule a Tour', href: '/get-connected/schedule-tour' },
+        { title: t('calendar', { defaultValue: 'Calendar' }), href: '/get-connected/calendar' },
+        { title: t('contact', { defaultValue: 'Contact' }), href: '/get-connected/contact' },
+        { title: t('faq', { defaultValue: 'FAQ' }), href: '/get-connected/faq' },
+        { title: t('employment', { defaultValue: 'Employment' }), href: '/get-connected/employment' },
+        { title: t('schedule_tour', { defaultValue: 'Schedule a Tour' }), href: '/get-connected/schedule-tour' },
       ]
     },
     {
-      title: 'About',
+      title: t('about', { defaultValue: 'About' }),
       items: [
-        { title: 'Who We Are', href: '/about/who-we-are' },
-        { title: 'What We Believe', href: '/about/what-we-believe' },
-        { title: 'Our Leadership', href: '/about/leadership' },
-        { title: 'Our History', href: '/about/history' },
-        { title: 'Membership', href: '/about/membership' },
+        { title: t('who_we_are', { defaultValue: 'Who We Are' }), href: '/about/who-we-are' },
+        { title: t('what_we_believe', { defaultValue: 'What We Believe' }), href: '/about/what-we-believe' },
+        { title: t('our_leadership', { defaultValue: 'Our Leadership' }), href: '/about/leadership' },
+        { title: t('our_history', { defaultValue: 'Our History' }), href: '/about/history' },
+        { title: t('membership', { defaultValue: 'Membership' }), href: '/about/membership' },
       ]
     },
     {
-      title: 'Ministries',
+      title: t('ministries', { defaultValue: 'Ministries' }),
       items: [
-        { title: 'Administration & Finance', href: '/ministries/admin-finance' },
-        { title: 'Global Missions', href: '/ministries/global-missions' },
-        { title: 'Harvest Partners', href: '/ministries/harvest-partners' },
-        { title: 'Helping Hands', href: '/ministries/helping-hands' },
-        { title: 'One Child Fund', href: '/ministries/one-child-fund' },
-        { title: 'Heritage', href: '/ministries/heritage' },
-        { title: 'Fields of the Wood', href: '/ministries/fields-of-the-wood' },
-        { title: 'Stewardship', href: '/ministries/stewardship' },
-        { title: 'Bookstore', href: '/ministries/bookstore' },
-        { title: 'Global Communications', href: '/ministries/global-communications' },
-        { title: 'White Wing Messenger', href: '/ministries/white-wing-messenger' },
-        { title: 'Prayer', href: '/ministries/prayer' },
-        { title: 'International Assembly', href: '/ministries/international-assembly' },
-        { title: 'Leadership Development', href: '/ministries/leadership-development' },
-        { title: 'Accredited Ministries', href: '/ministries/accredited-ministries' },
-        { title: 'Center for Biblical Leadership', href: '/ministries/center-biblical-leadership' },
-        { title: 'Spirit & Life Seminary', href: '/ministries/spirit-life-seminary' },
-        { title: "Children's", href: '/ministries/childrens' },
-        { title: 'Youth', href: '/ministries/youth' },
+        { title: t('admin_finance_title', { defaultValue: 'Administration & Finance' }), href: '/ministries/admin-finance' },
+        { title: t('global_missions_title', { defaultValue: 'Global Missions' }), href: '/ministries/global-missions' },
+        { title: t('harvest_partners_title', { defaultValue: 'Harvest Partners' }), href: '/ministries/harvest-partners' },
+        { title: t('helping_hands_title', { defaultValue: 'Helping Hands' }), href: '/ministries/helping-hands' },
+        { title: t('one_child_fund_title', { defaultValue: 'One Child Fund' }), href: '/ministries/one-child-fund' },
+        { title: t('heritage_title', { defaultValue: 'Heritage' }), href: '/ministries/heritage' },
+        { title: t('fields_of_wood_title', { defaultValue: 'Fields of the Wood' }), href: '/ministries/fields-of-the-wood' },
+        { title: t('stewardship_title', { defaultValue: 'Stewardship' }), href: '/ministries/stewardship' },
+        { title: t('bookstore_title', { defaultValue: 'Bookstore' }), href: '/ministries/bookstore' },
+        { title: t('global_communications_title', { defaultValue: 'Global Communications' }), href: '/ministries/global-communications' },
+        { title: t('white_wing_messenger_title', { defaultValue: 'White Wing Messenger' }), href: '/ministries/white-wing-messenger' },
+        { title: t('prayer_title', { defaultValue: 'Prayer' }), href: '/ministries/prayer' },
+        { title: t('international_assembly_title', { defaultValue: 'International Assembly' }), href: '/ministries/international-assembly' },
+        { title: t('leadership_development_title', { defaultValue: 'Leadership Development' }), href: '/ministries/leadership-development' },
+        { title: t('accredited_ministries_title', { defaultValue: 'Accredited Ministries' }), href: '/ministries/accredited-ministries' },
+        { title: t('center_biblical_leadership_title', { defaultValue: 'Center for Biblical Leadership' }), href: '/ministries/center-biblical-leadership' },
+        { title: t('spirit_life_seminary_title', { defaultValue: 'Spirit & Life Seminary' }), href: '/ministries/spirit-life-seminary' },
+        { title: t('childrens_title', { defaultValue: "Children's" }), href: '/ministries/childrens' },
+        { title: t('youth_title', { defaultValue: 'Youth' }), href: '/ministries/youth' },
       ]
     },
     {
-      title: 'Where We Serve',
+      title: t('where_we_serve', { defaultValue: 'Where We Serve' }),
       items: [
-        { title: 'Presiding Bishop', href: '/where-we-serve/presiding-bishop' },
-        { title: 'Africa', href: '/where-we-serve/africa' },
-        { title: 'Asia, Australia & Oceania', href: '/where-we-serve/asia-australia-oceania' },
-        { title: 'Caribbean & Atlantic', href: '/where-we-serve/caribbean-atlantic' },
-        { title: 'Central America', href: '/where-we-serve/central-america' },
-        { title: 'North America', href: '/where-we-serve/north-america' },
-        { title: 'South America', href: '/where-we-serve/south-america' },
-        { title: 'Europe & Middle East', href: '/where-we-serve/europe-middle-east' },
+        { title: t('presiding_bishop', { defaultValue: 'Presiding Bishop' }), href: '/where-we-serve/presiding-bishop' },
+        { title: t('africa', { defaultValue: 'Africa' }), href: '/where-we-serve/africa' },
+        { title: t('asia_australia_oceania', { defaultValue: 'Asia, Australia & Oceania' }), href: '/where-we-serve/asia-australia-oceania' },
+        { title: t('caribbean_atlantic', { defaultValue: 'Caribbean & Atlantic' }), href: '/where-we-serve/caribbean-atlantic' },
+        { title: t('central_america', { defaultValue: 'Central America' }), href: '/where-we-serve/central-america' },
+        { title: t('north_america', { defaultValue: 'North America' }), href: '/where-we-serve/north-america' },
+        { title: t('south_america', { defaultValue: 'South America' }), href: '/where-we-serve/south-america' },
+        { title: t('europe_middle_east', { defaultValue: 'Europe & Middle East' }), href: '/where-we-serve/europe-middle-east' },
       ]
     },
     {
-      title: 'Resources',
+      title: t('resources', { defaultValue: 'Resources' }),
       items: [
-        { title: 'Get Started', href: '/resources/get-started' },
-        { title: 'How to Know God', href: '/resources/how-to-know-god' },
-        { title: 'Membership', href: '/resources/membership' },
-        { title: 'Media', href: '/resources/media' },
-        { title: 'Podcasts', href: '/resources/podcasts' },
-        { title: 'YouTube', href: '/resources/youtube' },
-        { title: 'Library', href: '/resources/library' },
-        { title: 'Assembly Documents', href: '/resources/assembly-documents' },
-        { title: 'Policies & Guidelines', href: '/resources/policies-guidelines' },
-        { title: 'Public Statements', href: '/resources/public-statements' },
-        { title: 'Assembly Minutes', href: '/resources/assembly-minutes' },
-        { title: 'Church Resources', href: '/resources/church-resources' },
-        { title: 'Church Locator', href: '/resources/church-locator' },
-        { title: 'Church Logos', href: '/resources/church-logos' },
-        { title: "Treasurer's Report", href: '/resources/treasurers-report' },
-        { title: 'Directory', href: '/resources/directory' },
+        { title: t('get_started_title', { defaultValue: 'Get Started' }), href: '/resources/get-started' },
+        { title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }), href: '/resources/how-to-know-god' },
+        { title: t('membership', { defaultValue: 'Membership' }), href: '/resources/membership' },
+        { title: t('media_title', { defaultValue: 'Media' }), href: '/resources/media' },
+        { title: t('podcasts_title', { defaultValue: 'Podcasts' }), href: '/resources/podcasts' },
+        { title: t('youtube_title', { defaultValue: 'YouTube' }), href: '/resources/youtube' },
+        { title: t('library_title', { defaultValue: 'Library' }), href: '/resources/library' },
+        { title: t('assembly_documents_title', { defaultValue: 'Assembly Documents' }), href: '/resources/assembly-documents' },
+        { title: t('policies_guidelines_title', { defaultValue: 'Policies & Guidelines' }), href: '/resources/policies-guidelines' },
+        { title: t('public_statements_title', { defaultValue: 'Public Statements' }), href: '/resources/public-statements' },
+        { title: t('assembly_minutes_title', { defaultValue: 'Assembly Minutes' }), href: '/resources/assembly-minutes' },
+        { title: t('church_resources_title', { defaultValue: 'Church Resources' }), href: '/resources/church-resources' },
+        { title: t('church_locator_title', { defaultValue: 'Church Locator' }), href: '/resources/church-locator' },
+        { title: t('church_logos_title', { defaultValue: 'Church Logos' }), href: '/resources/church-logos' },
+        { title: t('treasurers_report_title', { defaultValue: "Treasurer's Report" }), href: '/resources/treasurers-report' },
+        { title: t('directory_title', { defaultValue: 'Directory' }), href: '/resources/directory' },
       ]
     },
     {
-      title: 'Give',
+      title: t('give', { defaultValue: 'Give' }),
       href: '/give'
     }
   ]
@@ -233,7 +247,7 @@ const Navigation = () => {
             data-bs-target="#navbarContent"
             aria-controls="navbarContent" 
             aria-expanded={isOpen ? 'true' : 'false'}
-            aria-label="Toggle navigation"
+            aria-label={t('toggle_navigation', { defaultValue: 'Toggle navigation' })}
             onClick={handleToggle}
           >
             <span className="navbar-toggler-icon"></span>
@@ -284,14 +298,17 @@ const Navigation = () => {
             </ul>
 
             <div className="d-flex align-items-center gap-3">
-              <select className="form-select form-select-sm" aria-label="Select language">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="pt">Português</option>
-                <option value="ru">Русский</option>
+              <select
+                className="form-select form-select-sm me-2"
+                value={language}
+                onChange={handleLanguageChange}
+                aria-label={t('select_language', { defaultValue: 'Select language' })}
+                style={{ width: 100 }}
+              >
+                <option value="en">{t('english', { defaultValue: 'English' })}</option>
+                <option value="bg">{t('bulgarian', { defaultValue: 'Български' })}</option>
               </select>
-              <button className="btn btn-link" aria-label="Search">
+              <button className="btn btn-link" aria-label={t('search', { defaultValue: 'Search' })}>
                 <i className="bi bi-search fs-5"></i>
               </button>
               
@@ -306,13 +323,13 @@ const Navigation = () => {
                         className="btn btn-outline-primary btn-sm"
                         onClick={() => handleAuthModal('login')}
                       >
-                        Sign In
+                        {t('sign_in', { defaultValue: 'Sign In' })}
                       </button>
                       <button 
                         className="btn btn-primary btn-sm"
                         onClick={() => handleAuthModal('signup')}
                       >
-                        Sign Up
+                        {t('sign_up', { defaultValue: 'Sign Up' })}
                       </button>
                     </div>
                   )}

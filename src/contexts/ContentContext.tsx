@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext } from 'react';
+import { t } from '@/lib/i18n';
 
 export interface PageContent {
   title: string;
@@ -49,39 +50,39 @@ interface ContentContextType {
   }>;
 }
 
-const contentData: ContentContextType = {
+const getContentData = (): ContentContextType => ({
   // Global statistics
   stats: [
-    { label: 'Countries', value: '135' },
-    { label: 'Churches and Missions', value: '12k' },
-    { label: 'Members Around the World', value: '1.5m' },
-    { label: 'Languages', value: '130' },
+    { label: t('countries', { defaultValue: 'Countries' }), value: '135' },
+    { label: t('churches_and_missions', { defaultValue: 'Churches and Missions' }), value: '12k' },
+    { label: t('members_around_world', { defaultValue: 'Members Around the World' }), value: '1.5m' },
+    { label: t('languages', { defaultValue: 'Languages' }), value: '130' },
   ],
 
   // Carousel slides for hero section
   carousel: [
     {
       id: 1,
-      title: 'We are the Church of God of Prophecy',
-      description: 'This 24-page booklet is a guide for anyone interested in understanding who we are, what we believe, and how we live out our mission together.',
+      title: t('hero_title_1', { defaultValue: 'We are the Church of God of Prophecy' }),
+      description: t('hero_desc_1', { defaultValue: 'This 24-page booklet is a guide for anyone interested in understanding who we are, what we believe, and how we live out our mission together.' }),
       image: 'https://cogop.org/wp-content/uploads/2025/03/slider-01.webp',
-      buttonText: 'Order Now',
+      buttonText: t('hero_btn_1', { defaultValue: 'Order Now' }),
       buttonLink: '/resources/booklet'
     },
     {
       id: 2,
-      title: 'Global Community of Faith',
-      description: 'Join us as we serve Christ in 135 countries with over 12,000 churches and missions worldwide.',
+      title: t('hero_title_2', { defaultValue: 'Global Community of Faith' }),
+      description: t('hero_desc_2', { defaultValue: 'Join us as we serve Christ in 135 countries with over 12,000 churches and missions worldwide.' }),
       image: 'https://cogop.org/wp-content/uploads/2025/03/slider-01.webp',
-      buttonText: 'Learn More',
+      buttonText: t('hero_btn_2', { defaultValue: 'Learn More' }),
       buttonLink: '/about/who-we-are'
     },
     {
       id: 3,
-      title: 'Spirit-Led Ministry',
-      description: 'Discover how we are fulfilling the Great Commission through the power of the Holy Spirit.',
+      title: t('hero_title_3', { defaultValue: 'Spirit-Led Ministry' }),
+      description: t('hero_desc_3', { defaultValue: 'Discover how we are fulfilling the Great Commission through the power of the Holy Spirit.' }),
       image: 'https://cogop.org/wp-content/uploads/2025/03/slider-01.webp',
-      buttonText: 'Our Mission',
+      buttonText: t('hero_btn_3', { defaultValue: 'Our Mission' }),
       buttonLink: '/about'
     }
   ],
@@ -89,37 +90,37 @@ const contentData: ContentContextType = {
   // Articles and news
   articles: [
     {
-      category: 'Spirit and Life Seminary',
-      title: 'Spirit and Life Seminary Celebrates Fourth Commencement Ceremony',
-      excerpt: 'Celebrating the achievements of our newest ministry graduates.',
+      category: t('spirit_life_seminary', { defaultValue: 'Spirit and Life Seminary' }),
+      title: t('seminary_commencement_title', { defaultValue: 'Spirit and Life Seminary Celebrates Fourth Commencement Ceremony' }),
+      excerpt: t('seminary_commencement_excerpt', { defaultValue: 'Celebrating the achievements of our newest ministry graduates.' }),
       date: 'December 15, 2023',
       image: '/images/seminary.jpg'
     },
     {
-      category: 'Digital Evangelism',
-      title: 'Sharing and Growing in Online Communities',
-      excerpt: 'How our digital ministry is reaching new audiences.',
+      category: t('digital_evangelism', { defaultValue: 'Digital Evangelism' }),
+      title: t('digital_communities_title', { defaultValue: 'Sharing and Growing in Online Communities' }),
+      excerpt: t('digital_communities_excerpt', { defaultValue: 'How our digital ministry is reaching new audiences.' }),
       date: 'December 10, 2023',
       image: '/images/digital.jpg'
     },
     {
-      category: 'Featured Article',
-      title: 'Therefore, Login and Upload the Gospel into All the World',
-      excerpt: 'Exploring the intersection of technology and ministry.',
+      category: t('featured_article', { defaultValue: 'Featured Article' }),
+      title: t('digital_gospel_title', { defaultValue: 'Therefore, Login and Upload the Gospel into All the World' }),
+      excerpt: t('digital_gospel_excerpt', { defaultValue: 'Exploring the intersection of technology and ministry.' }),
       date: 'December 5, 2023',
       image: '/images/gospel.jpg'
     },
     {
-      category: 'Global Missions',
-      title: 'Sharing the Gospel Across the World',
-      excerpt: 'Learn about our mission work across 135 countries.',
+      category: t('global_missions', { defaultValue: 'Global Missions' }),
+      title: t('sharing_gospel_title', { defaultValue: 'Sharing the Gospel Across the World' }),
+      excerpt: t('sharing_gospel_excerpt', { defaultValue: 'Learn about our mission work across 135 countries.' }),
       date: 'December 1, 2023',
       image: '/images/missions.jpg'
     },
     {
-      category: 'Youth Ministry',
-      title: 'ICM Youth Conference: Empowering the Next Generation',
-      excerpt: 'Young people from around the world gather for spiritual growth.',
+      category: t('youth_ministry', { defaultValue: 'Youth Ministry' }),
+      title: t('icm_youth_title', { defaultValue: 'ICM Youth Conference: Empowering the Next Generation' }),
+      excerpt: t('icm_youth_excerpt', { defaultValue: 'Young people from around the world gather for spiritual growth.' }),
       date: 'November 28, 2023',
       image: '/images/youth.jpg'
     }
@@ -128,47 +129,47 @@ const contentData: ContentContextType = {
   // Podcasts
   podcasts: [
     {
-      series: 'Sound Doctrine',
+      series: t('sound_doctrine_series', { defaultValue: 'Sound Doctrine' }),
       host: 'Rev. Elva Howard',
-      title: "Time? New Testament O'Clock (1981)",
-      description: 'Step back to the 2000 International Assembly as Bishop Tedroy Powell opens the gathering with a stirring message rooted in Matthew 5:3.'
+      title: t('sound_doctrine_title', { defaultValue: "Time? New Testament O'Clock (1981)" }),
+      description: t('sound_doctrine_desc', { defaultValue: 'Step back to the 2000 International Assembly as Bishop Tedroy Powell opens the gathering with a stirring message rooted in Matthew 5:3.' })
     },
     {
-      series: 'White Wing Messenger Podcast',
+      series: t('white_wing_podcast_series', { defaultValue: 'White Wing Messenger Podcast' }),
       host: 'Marsha Robinson',
-      title: 'The Call: To Send and Support',
-      description: "Join podcast host Managing Editor Marsha Robinson as we end the month of April with a roundtable discussion of this month's White Wing Messenger."
+      title: t('white_wing_podcast_title', { defaultValue: 'The Call: To Send and Support' }),
+      description: t('white_wing_podcast_desc', { defaultValue: "Join podcast host Managing Editor Marsha Robinson as we end the month of April with a roundtable discussion of this month's White Wing Messenger." })
     }
   ],
 
   // Events
   events: [
     {
-      title: 'ICM: Testify',
-      location: 'North Carolina, near Asheville',
+      title: t('icm_testify_title', { defaultValue: 'ICM: Testify' }),
+      location: t('north_carolina_asheville', { defaultValue: 'North Carolina, near Asheville' }),
       date: 'November 6-9, 2024',
-      venue: 'Ridgecrest Conference Center',
-      address: 'North Carolina, near Asheville',
-      description: 'Join young adults from around the world for a transformative conference experience.',
-      category: 'Youth Conference'
+      venue: t('ridgecrest_center', { defaultValue: 'Ridgecrest Conference Center' }),
+      address: t('north_carolina_asheville', { defaultValue: 'North Carolina, near Asheville' }),
+      description: t('icm_testify_desc', { defaultValue: 'Join young adults from around the world for a transformative conference experience.' }),
+      category: t('youth_conference', { defaultValue: 'Youth Conference' })
     },
     {
-      title: 'StewardShift Conference',
+      title: t('stewardshift_title', { defaultValue: 'StewardShift Conference' }),
       location: 'Cleveland, TN',
       date: 'November 14-15, 2024',
-      venue: 'Peerless Church',
+      venue: t('peerless_church', { defaultValue: 'Peerless Church' }),
       address: 'Cleveland, TN',
-      description: 'Learn about biblical stewardship and financial responsibility.',
-      category: 'Stewardship'
+      description: t('stewardshift_desc', { defaultValue: 'Learn about biblical stewardship and financial responsibility.' }),
+      category: t('stewardship', { defaultValue: 'Stewardship' })
     },
     {
-      title: 'International Assembly',
+      title: t('international_assembly_title', { defaultValue: 'International Assembly' }),
       location: 'Orlando, FL',
       date: 'July 15-19, 2026',
-      venue: 'Rosen Shingle Creek',
+      venue: t('rosen_shingle_creek', { defaultValue: 'Rosen Shingle Creek' }),
       address: 'Orlando, FL',
-      description: 'Our global church gathering bringing together believers from 135 countries.',
-      category: 'Global Assembly'
+      description: t('international_assembly_desc', { defaultValue: 'Our global church gathering bringing together believers from 135 countries.' }),
+      category: t('global_assembly', { defaultValue: 'Global Assembly' })
     }
   ],
 
@@ -176,43 +177,43 @@ const contentData: ContentContextType = {
   pages: {
     // Get Connected Section
     'get-connected': {
-      title: 'Get Connected',
-      description: 'Connect with the Church of God of Prophecy community and discover ways to get involved.',
+      title: t('get_connected_title', { defaultValue: 'Get Connected' }),
+      description: t('get_connected_description', { defaultValue: 'Connect with the Church of God of Prophecy community and discover ways to get involved.' }),
       content: `
         <div class="row">
           <div class="col-md-6 mb-4">
             <div class="card h-100">
               <div class="card-body">
-                <h3 class="card-title">Calendar</h3>
-                <p class="card-text">Stay updated with upcoming events, services, and important dates.</p>
-                <a href="/get-connected/calendar" class="btn btn-primary">View Calendar</a>
+                <h3 class="card-title">${t('calendar', { defaultValue: 'Calendar' })}</h3>
+                <p class="card-text">${t('stay_updated', { defaultValue: 'Stay updated with upcoming events, services, and important dates.' })}</p>
+                <a href="/get-connected/calendar" class="btn btn-primary">${t('view_calendar', { defaultValue: 'View Calendar' })}</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 mb-4">
             <div class="card h-100">
               <div class="card-body">
-                <h3 class="card-title">Contact Us</h3>
-                <p class="card-text">Reach out with questions, prayer requests, or to learn more.</p>
-                <a href="/get-connected/contact" class="btn btn-primary">Contact Us</a>
+                <h3 class="card-title">${t('contact_us', { defaultValue: 'Contact Us' })}</h3>
+                <p class="card-text">${t('reach_out', { defaultValue: 'Reach out with questions, prayer requests, or to learn more.' })}</p>
+                <a href="/get-connected/contact" class="btn btn-primary">${t('contact_us', { defaultValue: 'Contact Us' })}</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 mb-4">
             <div class="card h-100">
               <div class="card-body">
-                <h3 class="card-title">Employment</h3>
-                <p class="card-text">Explore career opportunities within our organization.</p>
-                <a href="/get-connected/employment" class="btn btn-primary">View Opportunities</a>
+                <h3 class="card-title">${t('employment', { defaultValue: 'Employment' })}</h3>
+                <p class="card-text">${t('explore_career', { defaultValue: 'Explore career opportunities within our organization.' })}</p>
+                <a href="/get-connected/employment" class="btn btn-primary">${t('view_opportunities', { defaultValue: 'View Opportunities' })}</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 mb-4">
             <div class="card h-100">
               <div class="card-body">
-                <h3 class="card-title">Schedule a Tour</h3>
-                <p class="card-text">Visit our facilities and learn about our community.</p>
-                <a href="/get-connected/schedule-tour" class="btn btn-primary">Schedule Tour</a>
+                <h3 class="card-title">${t('schedule_tour', { defaultValue: 'Schedule a Tour' })}</h3>
+                <p class="card-text">${t('visit_facilities', { defaultValue: 'Visit our facilities and learn about our community.' })}</p>
+                <a href="/get-connected/schedule-tour" class="btn btn-primary">${t('schedule_tour', { defaultValue: 'Schedule Tour' })}</a>
               </div>
             </div>
           </div>
@@ -220,27 +221,27 @@ const contentData: ContentContextType = {
       `
     },
     'get-connected/calendar': {
-      title: 'Calendar',
-      description: 'Stay updated with upcoming events, services, and important dates in our church calendar.',
-      content: '<p>Calendar content coming soon...</p>'
+      title: t('calendar_title', { defaultValue: 'Calendar' }),
+      description: t('calendar_description', { defaultValue: 'Stay updated with upcoming events, services, and important dates in our church calendar.' }),
+      content: `<p>${t('calendar_content_coming_soon', { defaultValue: 'Calendar content coming soon...' })}</p>`
     },
     'get-connected/contact': {
-      title: 'Contact Us',
-      description: 'Reach out to us with your questions, prayer requests, or to learn more about our church.',
+      title: t('contact_us_title', { defaultValue: 'Contact Us' }),
+      description: t('contact_us_description', { defaultValue: 'Reach out to us with your questions, prayer requests, or to learn more about our church.' }),
       content: `
         <div class="row">
           <div class="col-md-6">
-            <h3>Physical Address</h3>
-            <p>3720 Keith Street NW<br>Cleveland, TN 37312<br>Phone: (423) 559-5100</p>
+            <h3>${t('physical_address', { defaultValue: 'Physical Address' })}</h3>
+            <p>3720 Keith Street NW<br>Cleveland, TN 37312<br>${t('phone', { defaultValue: 'Phone' })}: (423) 559-5100</p>
             
-            <h3>Mailing Address</h3>
+            <h3>${t('mailing_address', { defaultValue: 'Mailing Address' })}</h3>
             <p>PO Box 2910<br>Cleveland, TN 37320</p>
           </div>
           <div class="col-md-6">
-            <h3>Contact Form</h3>
+            <h3>${t('contact_form', { defaultValue: 'Contact Form' })}</h3>
             <form>
               <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">${t('name', { defaultValue: 'Name' })}</label>
                 <input type="text" class="form-control" id="name" required>
               </div>
               <div class="mb-3">
@@ -258,8 +259,8 @@ const contentData: ContentContextType = {
       `
     },
     'get-connected/faq': {
-      title: 'Frequently Asked Questions',
-      description: 'Find answers to common questions about our church, beliefs, and services.',
+      title: t('faq_title', { defaultValue: 'Frequently Asked Questions' }),
+      description: t('faq_description', { defaultValue: 'Find answers to common questions about our church, beliefs, and services.' }),
       content: `
         <div class="faq-container">
           <div class="row">
@@ -401,28 +402,28 @@ const contentData: ContentContextType = {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingTen">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                      Do you have programs for children and youth?
+                      ${t('faq_children_programs', { defaultValue: 'Do you have programs for children and youth?' })}
                     </button>
                   </h2>
                   <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                      Yes! We have age-appropriate programs including Sunday School, children's church, youth groups, Vacation Bible School, camps, and special events. Our goal is to help young people develop a strong relationship with Jesus Christ.
+                      ${t('faq_children_answer', { defaultValue: 'Yes! We have age-appropriate programs including Sunday School, children\'s church, youth groups, Vacation Bible School, camps, and special events. Our goal is to help young people develop a strong relationship with Jesus Christ.' })}
                     </div>
                   </div>
                 </div>
 
                 <!-- Membership and Getting Involved -->
-                <h3 class="mb-3 mt-5">Membership and Getting Involved</h3>
+                <h3 class="mb-3 mt-5">${t('faq_membership_involvement', { defaultValue: 'Membership and Getting Involved' })}</h3>
 
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingEleven">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-                      How do I become a member?
+                      ${t('faq_become_member', { defaultValue: 'How do I become a member?' })}
                     </button>
                   </h2>
                   <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                      Membership is open to all who have accepted Jesus Christ as their personal Savior. The steps include: accepting Christ, being baptized by immersion, committing to spiritual growth through Bible study and fellowship, and using your gifts to serve others.
+                      ${t('faq_member_answer', { defaultValue: 'Membership is open to all who have accepted Jesus Christ as their personal Savior. The steps include: accepting Christ, being baptized by immersion, committing to spiritual growth through Bible study and fellowship, and using your gifts to serve others.' })}
                     </div>
                   </div>
                 </div>
@@ -430,12 +431,12 @@ const contentData: ContentContextType = {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingTwelve">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
-                      Do I need to be baptized to attend church?
+                      ${t('faq_baptism_required', { defaultValue: 'Do I need to be baptized to attend church?' })}
                     </button>
                   </h2>
                   <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                      No, you don't need to be baptized to attend church. Everyone is welcome to join us for worship and fellowship. Baptism is required for membership and represents your public declaration of faith in Jesus Christ.
+                      ${t('faq_baptism_answer', { defaultValue: 'No, you don\'t need to be baptized to attend church. Everyone is welcome to join us for worship and fellowship. Baptism is required for membership and represents your public declaration of faith in Jesus Christ.' })}
                     </div>
                   </div>
                 </div>
@@ -443,12 +444,12 @@ const contentData: ContentContextType = {
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThirteen">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
-                      How can I get involved in ministry?
+                      ${t('faq_get_involved_ministry', { defaultValue: 'How can I get involved in ministry?' })}
                     </button>
                   </h2>
                   <div id="collapseThirteen" class="accordion-collapse collapse" aria-labelledby="headingThirteen" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
-                      There are many ways to get involved! You can serve in worship teams, children's ministry, youth programs, missions, community outreach, administrative roles, and more. Contact your local church leadership to discover opportunities that match your gifts and interests.
+                      ${t('faq_ministry_answer', { defaultValue: 'There are many ways to get involved! You can serve in worship teams, children\'s ministry, youth programs, missions, community outreach, administrative roles, and more. Contact your local church leadership to discover opportunities that match your gifts and interests.' })}
                     </div>
                   </div>
                 </div>
@@ -615,97 +616,97 @@ const contentData: ContentContextType = {
       `
     },
     'get-connected/employment': {
-      title: 'Employment Opportunities',
-      description: 'Explore career opportunities and ways to serve within the Church of God of Prophecy.',
-      content: '<p>Employment opportunities coming soon...</p>'
+      title: t('employment_title', { defaultValue: 'Employment' }),
+      description: t('employment_description', { defaultValue: 'Explore career opportunities within our organization.' }),
+      content: `<p>${t('employment_opportunities_coming_soon', { defaultValue: 'Employment opportunities coming soon...' })}</p>`
     },
     'get-connected/schedule-tour': {
-      title: 'Schedule a Tour',
-      description: 'Visit our facilities and learn more about our church community in person.',
-      content: '<p>Tour scheduling coming soon...</p>'
+      title: t('schedule_tour_title', { defaultValue: 'Schedule a Tour' }),
+      description: t('schedule_tour_description', { defaultValue: 'Visit our facilities and learn about our community.' }),
+      content: `<p>${t('tour_scheduling_coming_soon', { defaultValue: 'Tour scheduling coming soon...' })}</p>`
     },
 
     // About Section
     'about': {
-      title: 'About Us',
-      description: 'Learn about the Church of God of Prophecy, our mission, values, and commitment to Christ.',
+      title: t('about_title', { defaultValue: 'About Us' }),
+      description: t('about_description', { defaultValue: 'Learn about the Church of God of Prophecy, our mission, values, and commitment to Christ.' }),
       content: `
-        <h2>Our Mission</h2>
-        <p>The Church of God of Prophecy is a global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people, and dedicated to reconciling the world to Christ through the power of the Holy Spirit.</p>
+        <h2>${t('our_mission', { defaultValue: 'Our Mission' })}</h2>
+        <p>${t('our_mission_text', { defaultValue: 'The Church of God of Prophecy is a global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people, and dedicated to reconciling the world to Christ through the power of the Holy Spirit.' })}</p>
         
-        <h2>Our Vision</h2>
-        <p>To be a Spirit-led global community of believers committed to reaching every person in every nation with the Gospel of Jesus Christ.</p>
+        <h2>${t('our_vision', { defaultValue: 'Our Vision' })}</h2>
+        <p>${t('our_vision_text', { defaultValue: 'To be a Spirit-led global community of believers committed to reaching every person in every nation with the Gospel of Jesus Christ.' })}</p>
         
-        <h2>Our Values</h2>
+        <h2>${t('our_values', { defaultValue: 'Our Values' })}</h2>
         <ul>
-          <li><strong>Biblical Authority:</strong> We believe the Bible is the inspired Word of God</li>
-          <li><strong>Global Unity:</strong> We are one church with many expressions</li>
-          <li><strong>Spirit-Led Living:</strong> We depend on the Holy Spirit for guidance</li>
-          <li><strong>Holistic Ministry:</strong> We minister to the whole person</li>
-          <li><strong>Cultural Sensitivity:</strong> We respect and embrace diversity</li>
+          <li><strong>${t('biblical_authority', { defaultValue: 'Biblical Authority' })}:</strong> ${t('biblical_authority_desc', { defaultValue: 'We believe the Bible is the inspired Word of God' })}</li>
+          <li><strong>${t('global_unity', { defaultValue: 'Global Unity' })}:</strong> ${t('global_unity_desc', { defaultValue: 'We are one church with many expressions' })}</li>
+          <li><strong>${t('spirit_led_living', { defaultValue: 'Spirit-Led Living' })}:</strong> ${t('spirit_led_living_desc', { defaultValue: 'We depend on the Holy Spirit for guidance' })}</li>
+          <li><strong>${t('holistic_ministry', { defaultValue: 'Holistic Ministry' })}:</strong> ${t('holistic_ministry_desc', { defaultValue: 'We minister to the whole person' })}</li>
+          <li><strong>${t('cultural_sensitivity', { defaultValue: 'Cultural Sensitivity' })}:</strong> ${t('cultural_sensitivity_desc', { defaultValue: 'We respect and embrace diversity' })}</li>
         </ul>
       `
     },
     'about/who-we-are': {
-      title: 'Who We Are',
-      description: 'Discover our identity as a Christ-centered, Spirit-led global movement.',
+      title: t('who_we_are_title', { defaultValue: 'Who We Are' }),
+      description: t('who_we_are_description', { defaultValue: 'Discover our identity as a Christ-centered, Spirit-led global movement.' }),
       content: `
-        <h2>A Global Movement</h2>
-        <p>The Church of God of Prophecy is a vibrant, global Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.</p>
+        <h2>${t('global_movement', { defaultValue: 'A Global Movement' })}</h2>
+        <p>${t('global_movement_text', { defaultValue: 'The Church of God of Prophecy is a vibrant, global Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.' })}</p>
         
-        <h2>Our Identity</h2>
-        <p>We are:</p>
+        <h2>${t('our_identity', { defaultValue: 'Our Identity' })}</h2>
+        <p>${t('we_are', { defaultValue: 'We are:' })}</p>
         <ul>
-          <li>Christ-centered in our worship and witness</li>
-          <li>Spirit-led in our ministry and mission</li>
-          <li>Scripture-based in our beliefs and practices</li>
-          <li>Global in our reach and impact</li>
-          <li>Unified in our diversity</li>
+          <li>${t('christ_centered', { defaultValue: 'Christ-centered in our worship and witness' })}</li>
+          <li>${t('spirit_led', { defaultValue: 'Spirit-led in our ministry and mission' })}</li>
+          <li>${t('scripture_based', { defaultValue: 'Scripture-based in our beliefs and practices' })}</li>
+          <li>${t('global_reach', { defaultValue: 'Global in our reach and impact' })}</li>
+          <li>${t('unified_diversity', { defaultValue: 'Unified in our diversity' })}</li>
         </ul>
         
-        <h2>Our Story</h2>
-        <p>Founded in the early 20th century, we have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God's kingdom on earth.</p>
+        <h2>${t('our_story', { defaultValue: 'Our Story' })}</h2>
+        <p>${t('our_story_text', { defaultValue: 'Founded in the early 20th century, we have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God\'s kingdom on earth.' })}</p>
       `
     },
     'about/what-we-believe': {
-      title: 'What We Believe',
-      description: 'Explore our core beliefs, doctrine, and theological foundations.',
+      title: t('what_we_believe_title', { defaultValue: 'What We Believe' }),
+      description: t('what_we_believe_description', { defaultValue: 'Explore our core beliefs, doctrine, and theological foundations.' }),
       content: `
-        <h2>Statement of Faith</h2>
-        <p>We believe in:</p>
+        <h2>${t('statement_of_faith', { defaultValue: 'Statement of Faith' })}</h2>
+        <p>${t('we_believe_in', { defaultValue: 'We believe in:' })}</p>
         
-        <h3>The Trinity</h3>
-        <p>One God eternally existing in three persons: Father, Son, and Holy Spirit.</p>
+        <h3>${t('the_trinity', { defaultValue: 'The Trinity' })}</h3>
+        <p>${t('trinity_desc', { defaultValue: 'One God eternally existing in three persons: Father, Son, and Holy Spirit.' })}</p>
         
-        <h3>Jesus Christ</h3>
-        <p>The deity of Jesus Christ, His virgin birth, sinless life, atoning death, bodily resurrection, and glorious return.</p>
+        <h3>${t('jesus_christ', { defaultValue: 'Jesus Christ' })}</h3>
+        <p>${t('jesus_desc', { defaultValue: 'The deity of Jesus Christ, His virgin birth, sinless life, atoning death, bodily resurrection, and glorious return.' })}</p>
         
-        <h3>Salvation</h3>
-        <p>Salvation by grace through faith in Jesus Christ, not by works.</p>
+        <h3>${t('salvation', { defaultValue: 'Salvation' })}</h3>
+        <p>${t('salvation_desc', { defaultValue: 'Salvation by grace through faith in Jesus Christ, not by works.' })}</p>
         
-        <h3>The Holy Spirit</h3>
-        <p>The baptism of the Holy Spirit as a distinct experience available to all believers.</p>
+        <h3>${t('holy_spirit', { defaultValue: 'The Holy Spirit' })}</h3>
+        <p>${t('holy_spirit_desc', { defaultValue: 'The baptism of the Holy Spirit as a distinct experience available to all believers.' })}</p>
         
-        <h3>The Church</h3>
-        <p>The church as the body of Christ, called to unity and holiness.</p>
+        <h3>${t('the_church', { defaultValue: 'The Church' })}</h3>
+        <p>${t('church_desc', { defaultValue: 'The church as the body of Christ, called to unity and holiness.' })}</p>
         
-        <h3>Scripture</h3>
-        <p>The Bible as the inspired, inerrant Word of God and our final authority for faith and practice.</p>
+        <h3>${t('scripture', { defaultValue: 'Scripture' })}</h3>
+        <p>${t('scripture_desc', { defaultValue: 'The Bible as the inspired, inerrant Word of God and our final authority for faith and practice.' })}</p>
       `
     },
     'about/leadership': {
-      title: 'Our Leadership',
-      description: 'Meet the leaders who guide and serve our global church community.',
-      content: '<p>Leadership information coming soon...</p>'
+      title: t('our_leadership_title', { defaultValue: 'Our Leadership' }),
+      description: t('our_leadership_description', { defaultValue: 'Meet the leaders who guide and serve our global church community.' }),
+      content: `<p>${t('leadership_information_coming_soon', { defaultValue: 'Leadership information coming soon...' })}</p>`
     },
     'about/history': {
-      title: 'Our History',
-      description: 'Journey through the rich history of the Church of God of Prophecy.',
-      content: '<p>Historical information coming soon...</p>'
+      title: t('our_history_title', { defaultValue: 'Our History' }),
+      description: t('our_history_description', { defaultValue: 'Journey through the rich history of the Church of God of Prophecy.' }),
+      content: `<p>${t('historical_information_coming_soon', { defaultValue: 'Historical information coming soon...' })}</p>`
     },
     'about/membership': {
-      title: 'Membership',
-      description: 'Learn about becoming a member of our church family.',
+      title: t('membership_title', { defaultValue: 'Membership' }),
+      description: t('membership_description', { defaultValue: 'Learn about becoming a member of our global church family.' }),
       content: `
         <h2>Becoming a Member</h2>
         <p>Membership in the Church of God of Prophecy is open to all who have accepted Jesus Christ as their personal Savior and desire to follow Him in baptism and Christian living.</p>
@@ -730,37 +731,37 @@ const contentData: ContentContextType = {
 
     // Ministries Section
     'ministries': {
-      title: 'Our Ministries',
-      description: 'Explore the various ministries and outreach programs of our church.',
+      title: t('ministries_title', { defaultValue: 'Our Ministries' }),
+      description: t('ministries_description', { defaultValue: 'Explore the various ministries and outreach programs of our church.' }),
       content: `
-        <h2>Serving God Through Ministry</h2>
-        <p>The Church of God of Prophecy is committed to fulfilling the Great Commission through various ministries that serve our local communities and reach the world.</p>
+        <h2>${t('serving_god_through_ministry', { defaultValue: 'Serving God Through Ministry' })}</h2>
+        <p>${t('serving_god_ministry_desc', { defaultValue: 'The Church of God of Prophecy is committed to fulfilling the Great Commission through various ministries that serve our local communities and reach the world.' })}</p>
         
         <div class="row">
           <div class="col-md-4 mb-4">
             <div class="card h-100">
               <div class="card-body">
-                <h5 class="card-title">Global Missions</h5>
-                <p class="card-text">Reaching 135 countries with the Gospel of Jesus Christ.</p>
-                <a href="/ministries/global-missions" class="btn btn-primary">Learn More</a>
+                <h5 class="card-title">${t('global_missions_title', { defaultValue: 'Global Missions' })}</h5>
+                <p class="card-text">${t('global_missions_desc', { defaultValue: 'Reaching 135 countries with the Gospel of Jesus Christ.' })}</p>
+                <a href="/ministries/global-missions" class="btn btn-primary">${t('learn_more', { defaultValue: 'Learn More' })}</a>
               </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
             <div class="card h-100">
               <div class="card-body">
-                <h5 class="card-title">Youth Ministry</h5>
-                <p class="card-text">Empowering the next generation of believers.</p>
-                <a href="/ministries/youth" class="btn btn-primary">Learn More</a>
+                <h5 class="card-title">${t('youth_title', { defaultValue: 'Youth Ministry' })}</h5>
+                <p class="card-text">${t('empowering_next_generation', { defaultValue: 'Empowering the next generation of believers.' })}</p>
+                <a href="/ministries/youth" class="btn btn-primary">${t('learn_more', { defaultValue: 'Learn More' })}</a>
               </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
             <div class="card h-100">
               <div class="card-body">
-                <h5 class="card-title">Seminary</h5>
-                <p class="card-text">Training ministers for effective service.</p>
-                <a href="/ministries/seminary" class="btn btn-primary">Learn More</a>
+                <h5 class="card-title">${t('spirit_life_seminary_title', { defaultValue: 'Seminary' })}</h5>
+                <p class="card-text">${t('training_leaders_ministry', { defaultValue: 'Training ministers for effective service.' })}</p>
+                <a href="/ministries/seminary" class="btn btn-primary">${t('learn_more', { defaultValue: 'Learn More' })}</a>
               </div>
             </div>
           </div>
@@ -768,60 +769,60 @@ const contentData: ContentContextType = {
       `
     },
     'ministries/global-missions': {
-      title: 'Global Missions',
-      description: 'Discover our worldwide mission work and evangelism efforts across 135 countries.',
+      title: t('global_missions_title', { defaultValue: 'Global Missions' }),
+      description: t('global_missions_description', { defaultValue: 'Discover our worldwide mission work and evangelism efforts across 135 countries.' }),
       content: `
-        <h2>Reaching the World for Christ</h2>
-        <p>Our global missions ministry spans 135 countries and territories, working to fulfill the Great Commission by making disciples of all nations.</p>
+        <h2>${t('reaching_world_for_christ', { defaultValue: 'Reaching the World for Christ' })}</h2>
+        <p>${t('global_missions_desc', { defaultValue: 'Our global missions ministry spans 135 countries and territories, working to fulfill the Great Commission by making disciples of all nations.' })}</p>
         
-        <h3>Our Mission</h3>
-        <p>To present the Gospel of Jesus Christ to every person in every nation, establishing churches and training leaders to continue the work of evangelism and discipleship.</p>
+        <h3>${t('our_mission', { defaultValue: 'Our Mission' })}</h3>
+        <p>${t('our_mission_text', { defaultValue: 'To present the Gospel of Jesus Christ to every person in every nation, establishing churches and training leaders to continue the work of evangelism and discipleship.' })}</p>
         
-        <h3>Key Focus Areas</h3>
+        <h3>${t('key_focus_areas', { defaultValue: 'Key Focus Areas' })}</h3>
         <ul>
-          <li>Church planting in unreached areas</li>
-          <li>Training indigenous leadership</li>
-          <li>Bible translation and distribution</li>
-          <li>Medical missions and humanitarian aid</li>
-          <li>Educational ministries</li>
+          <li>${t('church_planting', { defaultValue: 'Church planting in unreached areas' })}</li>
+          <li>${t('training_leadership', { defaultValue: 'Training indigenous leadership' })}</li>
+          <li>${t('bible_translation', { defaultValue: 'Bible translation and distribution' })}</li>
+          <li>${t('medical_missions', { defaultValue: 'Medical missions and humanitarian aid' })}</li>
+          <li>${t('educational_ministries', { defaultValue: 'Educational ministries' })}</li>
         </ul>
         
-        <h3>Get Involved</h3>
-        <p>There are many ways to support global missions:</p>
+        <h3>${t('get_involved', { defaultValue: 'Get Involved' })}</h3>
+        <p>${t('get_involved', { defaultValue: 'There are many ways to support global missions:' })}</p>
         <div class="row">
           <div class="col-md-6">
-            <h4>Pray</h4>
-            <p>Join our prayer network for missionaries and ministry partners around the world.</p>
+            <h4>${t('pray', { defaultValue: 'Pray' })}</h4>
+            <p>${t('pray_desc', { defaultValue: 'Join our prayer network for missionaries and ministry partners around the world.' })}</p>
           </div>
           <div class="col-md-6">
-            <h4>Give</h4>
-            <p>Support missionaries and mission projects through financial contributions.</p>
+            <h4>${t('give', { defaultValue: 'Give' })}</h4>
+            <p>${t('give_desc', { defaultValue: 'Support missionaries and mission projects through financial contributions.' })}</p>
           </div>
         </div>
       `
     },
     'ministries/youth': {
-      title: 'Youth Ministry',
-      description: 'Empowering young people to grow in faith and leadership.',
+      title: t('youth_title', { defaultValue: 'Youth Ministry' }),
+      description: t('youth_description', { defaultValue: 'Empowering young people to grow in faith and leadership.' }),
       content: `
-        <h2>Empowering the Next Generation</h2>
-        <p>Our youth ministry is dedicated to helping young people develop a strong relationship with Jesus Christ and discover their purpose in God's kingdom.</p>
+        <h2>${t('empowering_next_generation', { defaultValue: 'Empowering the Next Generation' })}</h2>
+        <p>${t('youth_ministry_desc', { defaultValue: 'Our youth ministry is dedicated to helping young people develop a strong relationship with Jesus Christ and discover their purpose in God\'s kingdom.' })}</p>
         
-        <h3>Programs and Activities</h3>
+        <h3>${t('programs_activities', { defaultValue: 'Programs and Activities' })}</h3>
         <ul>
-          <li>ICM (International Convention of Ministry) Youth Conference</li>
-          <li>Local youth groups and Bible studies</li>
-          <li>Leadership development programs</li>
-          <li>Mission trips and service projects</li>
-          <li>Sports and recreation ministries</li>
+          <li>${t('icm_youth_conference', { defaultValue: 'ICM (International Convention of Ministry) Youth Conference' })}</li>
+          <li>${t('local_youth_groups', { defaultValue: 'Local youth groups and Bible studies' })}</li>
+          <li>${t('leadership_development_programs', { defaultValue: 'Leadership development programs' })}</li>
+          <li>${t('mission_trips', { defaultValue: 'Mission trips and service projects' })}</li>
+          <li>${t('sports_recreation', { defaultValue: 'Sports and recreation ministries' })}</li>
         </ul>
         
-        <h3>ICM: Testify</h3>
-        <p>Our annual international youth conference brings together young adults from around the world for worship, teaching, and fellowship.</p>
+        <h3>${t('icm_testify', { defaultValue: 'ICM: Testify' })}</h3>
+        <p>${t('icm_testify_desc_full', { defaultValue: 'Our annual international youth conference brings together young adults from around the world for worship, teaching, and fellowship.' })}</p>
         
         <blockquote class="blockquote">
-          <p>"Don't let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity."</p>
-          <footer class="blockquote-footer">1 Timothy 4:12</footer>
+          <p>${t('timothy_quote', { defaultValue: '"Don\'t let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity."' })}</p>
+          <footer class="blockquote-footer">${t('timothy_reference', { defaultValue: '1 Timothy 4:12' })}</footer>
         </blockquote>
       `
     },
@@ -1252,9 +1253,9 @@ const contentData: ContentContextType = {
 
     // Where We Serve Section
     'where-we-serve': {
-      title: 'Where We Serve',
-      description: 'Explore our global presence and ministry impact.',
-      content: '<p>Global presence overview coming soon...</p>'
+      title: t('where_we_serve_title', { defaultValue: 'Where We Serve' }),
+      description: t('where_we_serve_description', { defaultValue: 'Explore our global presence and ministry impact.' }),
+      content: `<p>${t('global_presence_overview_coming_soon', { defaultValue: 'Global presence overview coming soon...' })}</p>`
     },
     'where-we-serve/presiding-bishop': {
       title: 'Presiding Bishop',
@@ -1456,9 +1457,9 @@ const contentData: ContentContextType = {
 
     // Resources Section
     'resources': {
-      title: 'Resources',
-      description: 'Access tools and materials to support your spiritual journey.',
-      content: '<p>Resources overview coming soon...</p>'
+      title: t('resources_title', { defaultValue: 'Resources' }),
+      description: t('resources_description', { defaultValue: 'Access educational materials, documents, and spiritual resources.' }),
+      content: `<p>${t('resources_overview_coming_soon', { defaultValue: 'Resources overview coming soon...' })}</p>`
     },
     'resources/get-started': {
       title: 'Get Started',
@@ -1784,38 +1785,38 @@ const contentData: ContentContextType = {
 
     // Give Section
     'give': {
-      title: 'Give',
-      description: 'Support the ministry and mission of the Church of God of Prophecy through your giving.',
+      title: t('give_title', { defaultValue: 'Give' }),
+      description: t('give_description', { defaultValue: 'Support the ministry and mission of the Church of God of Prophecy through your giving.' }),
       content: `
-        <h2>Why We Give</h2>
-        <p>Giving is an act of worship and a way to participate in God's work around the world. Your generous gifts help support local ministries, global missions, and community outreach.</p>
+        <h2>${t('why_we_give', { defaultValue: 'Why We Give' })}</h2>
+        <p>${t('giving_desc', { defaultValue: 'Giving is an act of worship and a way to participate in God\'s work around the world. Your generous gifts help support local ministries, global missions, and community outreach.' })}</p>
         
-        <h2>Ways to Give</h2>
+        <h2>${t('ways_to_give', { defaultValue: 'Ways to Give' })}</h2>
         <div class="row">
           <div class="col-md-4 mb-3">
             <div class="card">
               <div class="card-body text-center">
-                <h5 class="card-title">Online Giving</h5>
-                <p class="card-text">Secure online donations</p>
-                <button class="btn btn-primary">Give Online</button>
+                <h5 class="card-title">${t('online_giving', { defaultValue: 'Online Giving' })}</h5>
+                <p class="card-text">${t('online_giving_desc', { defaultValue: 'Secure online donations' })}</p>
+                <button class="btn btn-primary">${t('give_online', { defaultValue: 'Give Online' })}</button>
               </div>
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <div class="card">
               <div class="card-body text-center">
-                <h5 class="card-title">Mail a Check</h5>
-                <p class="card-text">Send to our mailing address</p>
-                <button class="btn btn-outline-primary">Get Address</button>
+                <h5 class="card-title">${t('mail_check', { defaultValue: 'Mail a Check' })}</h5>
+                <p class="card-text">${t('mail_check_desc', { defaultValue: 'Send to our mailing address' })}</p>
+                <button class="btn btn-outline-primary">${t('get_address', { defaultValue: 'Get Address' })}</button>
               </div>
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <div class="card">
               <div class="card-body text-center">
-                <h5 class="card-title">Text to Give</h5>
-                <p class="card-text">Give via text message</p>
-                <button class="btn btn-outline-primary">Learn More</button>
+                <h5 class="card-title">${t('text_to_give', { defaultValue: 'Text to Give' })}</h5>
+                <p class="card-text">${t('text_to_give_desc', { defaultValue: 'Give via text message' })}</p>
+                <button class="btn btn-outline-primary">${t('learn_more', { defaultValue: 'Learn More' })}</button>
               </div>
             </div>
           </div>
@@ -1825,45 +1826,45 @@ const contentData: ContentContextType = {
 
     // Find a Church Section
     'find-a-church': {
-      title: 'Find a Church',
-      description: 'Locate a Church of God of Prophecy congregation near you.',
+      title: t('church_locator_title', { defaultValue: 'Find a Church' }),
+      description: t('church_locator_description', { defaultValue: 'Locate a Church of God of Prophecy congregation near you.' }),
       content: `
-        <h2>Find a Congregation Near You</h2>
-        <p>With over 12,000 churches and missions in 135 countries, there's likely a Church of God of Prophecy congregation near you.</p>
+        <h2>${t('find_congregation', { defaultValue: 'Find a Congregation Near You' })}</h2>
+        <p>${t('find_church_desc', { defaultValue: 'With over 12,000 churches and missions in 135 countries, there\'s likely a Church of God of Prophecy congregation near you.' })}</p>
         
         <div class="row">
           <div class="col-md-6">
-            <h3>Search by Location</h3>
+            <h3>${t('search_by_location', { defaultValue: 'Search by Location' })}</h3>
             <form class="mb-4">
               <div class="mb-3">
-                <label for="location" class="form-label">Enter City, State, or Country</label>
-                <input type="text" class="form-control" id="location" placeholder="e.g., Cleveland, TN or United States">
+                <label for="location" class="form-label">${t('enter_location', { defaultValue: 'Enter City, State, or Country' })}</label>
+                <input type="text" class="form-control" id="location" placeholder="${t('location_placeholder', { defaultValue: 'e.g., Cleveland, TN or United States' })}">
               </div>
-              <button type="submit" class="btn btn-primary">Search Churches</button>
+              <button type="submit" class="btn btn-primary">${t('search_churches', { defaultValue: 'Search Churches' })}</button>
             </form>
           </div>
           <div class="col-md-6">
-            <h3>Contact Information</h3>
-            <p>Need help finding a church or have questions?</p>
-            <p><strong>Phone:</strong> (423) 559-5100<br>
+            <h3>${t('contact_information', { defaultValue: 'Contact Information' })}</h3>
+            <p>${t('need_help_finding', { defaultValue: 'Need help finding a church or have questions?' })}</p>
+            <p><strong>${t('phone', { defaultValue: 'Phone' })}:</strong> (423) 559-5100<br>
             <strong>Email:</strong> info@cogop.org</p>
-            <a href="/get-connected/contact" class="btn btn-outline-primary">Contact Us</a>
+            <a href="/get-connected/contact" class="btn btn-outline-primary">${t('contact_us', { defaultValue: 'Contact Us' })}</a>
           </div>
         </div>
         
-        <h3>What to Expect</h3>
-        <p>At Church of God of Prophecy congregations, you'll find:</p>
+        <h3>${t('what_to_expect', { defaultValue: 'What to Expect' })}</h3>
+        <p>${t('what_to_expect_desc', { defaultValue: 'At Church of God of Prophecy congregations, you\'ll find:' })}</p>
         <ul>
-          <li>Spirit-led worship and biblical teaching</li>
-          <li>Warm, welcoming fellowship</li>
-          <li>Opportunities for spiritual growth</li>
-          <li>Community outreach and missions</li>
-          <li>Programs for all ages</li>
+          <li>${t('spirit_led_worship', { defaultValue: 'Spirit-led worship and biblical teaching' })}</li>
+          <li>${t('warm_fellowship', { defaultValue: 'Warm, welcoming fellowship' })}</li>
+          <li>${t('spiritual_growth_opportunities', { defaultValue: 'Opportunities for spiritual growth' })}</li>
+          <li>${t('community_outreach', { defaultValue: 'Community outreach and missions' })}</li>
+          <li>${t('programs_all_ages', { defaultValue: 'Programs for all ages' })}</li>
         </ul>
       `
     }
   }
-};
+});
 
 const ContentContext = createContext<ContentContextType | undefined>(undefined);
 
@@ -1877,7 +1878,7 @@ export function useContent() {
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
   return (
-    <ContentContext.Provider value={contentData}>
+    <ContentContext.Provider value={getContentData()}>
       {children}
     </ContentContext.Provider>
   );
@@ -1885,7 +1886,7 @@ export function ContentProvider({ children }: { children: React.ReactNode }) {
 
 // Helper function to get page content
 export function getPageContent(path: string): PageContent {
-  const content = contentData.pages[path];
+  const content = getContentData().pages[path];
   if (!content) {
     return {
       title: '404 - Page Not Found',

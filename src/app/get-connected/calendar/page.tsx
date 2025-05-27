@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { fetchEventsFromFirestore, Event, formatEventDateTime } from '@/lib/dummyContent'
 import PageLayout from '@/components/PageLayout'
 import Link from 'next/link'
+import { t } from '@/lib/i18n'
 
 export default function CalendarPage() {
   const [events, setEvents] = useState<Event[]>([])
@@ -94,7 +95,7 @@ export default function CalendarPage() {
                 </div>
               ))}
               {dayEvents.length > 2 && (
-                <div className="more-events">+{dayEvents.length - 2} more</div>
+                <div className="more-events">+{dayEvents.length - 2} {t('more', { defaultValue: 'more' })}</div>
               )}
             </div>
           )}
@@ -129,10 +130,10 @@ export default function CalendarPage() {
 
   if (loading) {
     return (
-      <PageLayout title="Event Calendar" description="View all upcoming church events and activities">
+      <PageLayout title={t('event_calendar', { defaultValue: 'Event Calendar' })} description={t('view_all_upcoming_events', { defaultValue: 'View all upcoming church events and activities' })}>
         <div className="text-center py-5">
           <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading calendar...</span>
+            <span className="visually-hidden">{t('loading_calendar', { defaultValue: 'Loading calendar...' })}</span>
           </div>
         </div>
       </PageLayout>
@@ -140,7 +141,7 @@ export default function CalendarPage() {
   }
 
   return (
-    <PageLayout title="Event Calendar" description="View all upcoming church events and activities">
+    <PageLayout title={t('event_calendar', { defaultValue: 'Event Calendar' })} description={t('view_all_upcoming_events', { defaultValue: 'View all upcoming church events and activities' })}>
       <style jsx>{`
         .calendar-container {
           background: white;
