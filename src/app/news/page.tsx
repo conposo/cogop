@@ -1,10 +1,33 @@
 'use client'
 
 import Link from 'next/link'
-import { useContent } from '@/contexts/ContentContext'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import { fetchArticlesFromFirestore, Article } from '@/lib/dummyContent'
 
 export default function News() {
-  const { articles } = useContent()
+  const [articles, setArticles] = useState<Article[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadArticles = async () => {
+      setLoading(true)
+      const fetchedArticles = await fetchArticlesFromFirestore()
+      setArticles(fetchedArticles)
+      setLoading(false)
+    }
+    loadArticles()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="container py-5 text-center">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="container py-5">
@@ -16,19 +39,39 @@ export default function News() {
       </div>
 
       <div className="row">
-        {articles.map((article, index) => (
-          <div key={index} className="col-lg-4 mb-4">
-            <div className="card h-100">
-              <div className="card-body">
-                <span className="badge bg-primary mb-2">{article.category}</span>
-                <h2 className="card-title h5">{article.title}</h2>
-                <p className="card-text">{article.excerpt}</p>
-                <p className="text-muted small">{article.date}</p>
-                <Link href="#" className="btn btn-outline-primary">Read More</Link>
+        {articles.length > 0 ? (
+          articles.map((article) => (
+            <div key={article.id} className="col-lg-4 col-md-6 mb-4">
+              <div className="card h-100">
+                {article.imageUrl && (
+                  <Image
+                    src={article.imageUrl}
+                    alt={article.title}
+                    width={400}
+                    height={250}
+                    className="card-img-top"
+                    style={{ objectFit: 'cover' }}
+                  />
+                )}
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">{article.title}</h5>
+                  {article.category && <span className="badge bg-secondary mb-2 align-self-start">{article.category}</span>}
+                  <p className="card-text flex-grow-1">{article.summary}</p>
+                  <small className="text-muted">
+                    {new Date(article.date).toLocaleDateString()} | By: {article.author}
+                  </small>
+                  <Link href={`/news/${article.slug}`} className="btn btn-sm btn-outline-primary mt-auto align-self-start">
+                    Read More
+                  </Link>
+                </div>
               </div>
             </div>
+          ))
+        ) : (
+          <div className="col-12">
+            <p className="text-center text-muted">No articles found at the moment. Please check back later.</p>
           </div>
-        ))}
+        )}
       </div>
 
       <div className="row mt-5">

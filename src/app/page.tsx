@@ -1,21 +1,53 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
 import { useContent } from '@/contexts/ContentContext'
+import { dummyArticles as fetchDummyArticles, dummyEvents, dummyPodcasts, dummyStatistics, Article, fetchEventsFromFirestore, Event, formatEventDateTime } from '@/lib/dummyContent'
 
 export default function Home() {
-  const { stats, articles, podcasts, events, carousel } = useContent()
+  const { stats, articles: contextArticles, podcasts, events: contextEvents, carousel } = useContent()
+  const [articles, setArticles] = useState<Article[]>([])
+  const [events, setEvents] = useState<Event[]>([])
+
+  useEffect(() => {
+    const loadArticles = async () => {
+      const fetchedArticles = await fetchDummyArticles();
+      // Let's sort and filter articles here once, if these are the primary ways they are used.
+      // This avoids doing it multiple times in the JSX or for chunking.
+      const processedArticles = fetchedArticles
+        .filter(article => article.featured) // Assuming you still want featured articles
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setArticles(processedArticles);
+    }
+    loadArticles()
+  }, [])
+
+  useEffect(() => {
+    const loadEvents = async () => {
+      const fetchedEvents = await fetchEventsFromFirestore();
+      // Show only the first 3 upcoming events
+      setEvents(fetchedEvents.slice(0, 3));
+    }
+    loadEvents()
+  }, [])
 
   // Create chunks of articles for multi-item carousel
-  const chunkArticles = (articles: any[], chunkSize: number) => {
+  const chunkArticles = (articlesToChunk: Article[], chunkSize: number) => {
     const chunks = []
-    for (let i = 0; i < articles.length; i += chunkSize) {
-      chunks.push(articles.slice(i, i + chunkSize))
+    for (let i = 0; i < articlesToChunk.length; i += chunkSize) {
+      chunks.push(articlesToChunk.slice(i, i + chunkSize))
     }
     return chunks
   }
 
-  const articleChunks = chunkArticles(articles, 3)
+  // Prepare only the first 3 articles for the desktop carousel if that's the design.
+  // Or, if the carousel should show all featured articles in chunks, adjust this.
+  const articleChunks = chunkArticles(articles.slice(0, 9), 3); // Using first 3 featured & sorted articles for desktop carousel
+  // For the mobile carousel, we might want all featured articles, or just the first few as well.
+  // The provided JSX for mobile iterates `articles.map(...)` which implies all of them.
+  // If you only want the first N, you can use articles.slice(0, N).map(...)
 
   return (
     <div className="container-fluid">
@@ -101,16 +133,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Articles */}
+      {/* Articles Section (New Structure) */}
       <section className="articles-section py-5">
         <div className="container">
           <h2 className="text-center mb-5">Articles & News</h2>
           
           {/* Mobile Carousel - 1 article per slide */}
           <div id="mobileArticlesCarousel" className="carousel slide d-lg-none" data-bs-ride="carousel">
-            {/* Carousel Indicators */}
             <div className="carousel-indicators">
-              {articles.map((_, index) => (
+              {articles.slice(0,3).map((_, index) => ( // Displaying first 3 articles in mobile carousel as well for consistency
                 <button 
                   key={index}
                   type="button" 
@@ -122,18 +153,16 @@ export default function Home() {
                 ></button>
               ))}
             </div>
-
-            {/* Carousel Inner */}
             <div className="carousel-inner">
-              {articles.map((article, index) => (
-                <div key={index} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+              {articles.slice(0,3).map((article, index) => ( // Displaying first 3 articles
+                <div key={article.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
                   <div className="row justify-content-center">
                     <div className="col-12">
                       <div className="card h-100 shadow">
-                        {article.image && (
+                        {article.imageUrl && (
                           <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                             <img 
-                              src={article.image} 
+                              src={article.imageUrl} 
                               alt={article.title}
                               className="card-img-top w-100 h-100"
                               style={{ objectFit: 'cover' }}
@@ -143,15 +172,15 @@ export default function Home() {
                         <div className="card-body p-4">
                           <span className="badge bg-primary mb-3">{article.category}</span>
                           <h3 className="card-title h5 mb-3">{article.title}</h3>
-                          {article.excerpt && (
-                            <p className="card-text text-muted mb-3">{article.excerpt}</p>
+                          {article.summary && (
+                            <p className="card-text text-muted mb-3">{article.summary}</p>
                           )}
                           {article.date && (
                             <p className="text-muted small mb-3">
-                              <i className="bi bi-calendar me-2"></i>{article.date}
+                              <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
                             </p>
                           )}
-                          <Link href="/news" className="btn btn-primary">Read More</Link>
+                          <Link href={`/news/${article.slug}`} className="btn btn-primary">Read More</Link>
                         </div>
                       </div>
                     </div>
@@ -159,8 +188,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            {/* Carousel Controls */}
             <button className="carousel-control-prev" type="button" data-bs-target="#mobileArticlesCarousel" data-bs-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
               <span className="visually-hidden">Previous</span>
@@ -172,8 +199,8 @@ export default function Home() {
           </div>
 
           {/* Desktop Carousel - 3 articles per slide */}
+          {/* The logic for articleChunks already prepares chunks of 3 from the first 3 featured articles */}
           <div id="desktopArticlesCarousel" className="carousel slide d-none d-lg-block" data-bs-ride="carousel">
-            {/* Carousel Indicators */}
             <div className="carousel-indicators">
               {articleChunks.map((_, index) => (
                 <button 
@@ -187,19 +214,17 @@ export default function Home() {
                 ></button>
               ))}
             </div>
-
-            {/* Carousel Inner */}
             <div className="carousel-inner">
               {articleChunks.map((chunk, chunkIndex) => (
                 <div key={chunkIndex} className={`carousel-item ${chunkIndex === 0 ? 'active' : ''}`}>
                   <div className="row">
-                    {chunk.map((article, articleIndex) => (
-                      <div key={`${chunkIndex}-${articleIndex}`} className="col-lg-4">
+                    {chunk.map((article) => (
+                      <div key={article.id} className="col-lg-4">
                         <div className="card h-100 shadow">
-                          {article.image && (
+                          {article.imageUrl && (
                             <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                               <img 
-                                src={article.image} 
+                                src={article.imageUrl} 
                                 alt={article.title}
                                 className="card-img-top w-100 h-100"
                                 style={{ objectFit: 'cover' }}
@@ -209,15 +234,15 @@ export default function Home() {
                           <div className="card-body p-4">
                             <span className="badge bg-primary mb-3">{article.category}</span>
                             <h3 className="card-title h5 mb-3">{article.title}</h3>
-                            {article.excerpt && (
-                              <p className="card-text text-muted mb-3">{article.excerpt}</p>
+                            {article.summary && (
+                              <p className="card-text text-muted mb-3">{article.summary}</p>
                             )}
                             {article.date && (
                               <p className="text-muted small mb-3">
-                                <i className="bi bi-calendar me-2"></i>{article.date}
+                                <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
                               </p>
                             )}
-                            <Link href="/news" className="btn btn-primary">Read More</Link>
+                            <Link href={`/news/${article.slug}`} className="btn btn-primary">Read More</Link>
                           </div>
                         </div>
                       </div>
@@ -226,8 +251,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            {/* Carousel Controls */}
             <button className="carousel-control-prev" type="button" data-bs-target="#desktopArticlesCarousel" data-bs-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
               <span className="visually-hidden">Previous</span>
@@ -275,23 +298,69 @@ export default function Home() {
       <section className="events-section py-5">
         <div className="container">
           <h2 className="text-center mb-5">Upcoming events</h2>
-          <div className="row">
-            {events.map((event, index) => (
-              <div key={index} className="col-lg-4 mb-4">
-                <div className="card h-100">
-                  <div className="card-body">
-                    <h3 className="card-title h5">{event.title}</h3>
-                    <p className="text-muted">{event.location}</p>
-                    <ul className="list-unstyled">
-                      <li><i className="bi bi-calendar me-2"></i>{event.date}</li>
-                      <li><i className="bi bi-geo-alt me-2"></i>{event.venue}</li>
-                    </ul>
-                    <Link href="/events" className="btn btn-outline-primary btn-sm">Event Details</Link>
+          {events.length > 0 ? (
+            <div className="row">
+              {events.map((event) => (
+                <div key={event.id} className="col-lg-4 mb-4">
+                  <div className="card h-100 shadow">
+                    {event.imageUrl && (
+                      <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                        <img 
+                          src={event.imageUrl} 
+                          alt={event.title}
+                          className="card-img-top w-100 h-100"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                    )}
+                    <div className="card-body">
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <span className="badge bg-info text-dark">{event.category}</span>
+                        {event.featured && (
+                          <span className="badge bg-warning text-dark">Featured</span>
+                        )}
+                      </div>
+                      <h3 className="card-title h5 mb-3">{event.title}</h3>
+                      <p className="card-text text-muted mb-3">{event.excerpt}</p>
+                      <div className="mb-3">
+                        <p className="text-muted small mb-1">
+                          <i className="bi bi-calendar me-2"></i>
+                          {formatEventDateTime(event)}
+                        </p>
+                        <p className="text-muted small mb-0">
+                          <i className="bi bi-geo-alt me-2"></i>
+                          {event.eventLocation}
+                        </p>
+                      </div>
+                      <Link href={`/events/${event.id}`} className="btn btn-outline-primary btn-sm">Event Details</Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+              
+              {/* Add placeholder cards if fewer than 3 events */}
+              {events.length < 3 && Array.from({ length: 3 - events.length }).map((_, index) => (
+                <div key={`placeholder-${index}`} className="col-lg-4 mb-4">
+                  <div className="card h-100 shadow border-2 border-dashed">
+                    <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
+                      <i className="bi bi-calendar-plus fs-1 text-muted mb-3"></i>
+                      <h5 className="text-muted mb-2">More Events Coming Soon</h5>
+                      <p className="text-muted small mb-3">Stay tuned for exciting upcoming events and gatherings.</p>
+                      <Link href="/get-connected/contact" className="btn btn-outline-secondary btn-sm">
+                        Get Notified
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-5">
+              <i className="bi bi-calendar-x fs-1 text-muted mb-3"></i>
+              <h4 className="text-muted">No upcoming events</h4>
+              <p className="text-muted">Check back soon for new events!</p>
+            </div>
+          )}
           <div className="text-center">
             <Link href="/events" className="btn btn-outline-primary">Explore All Events</Link>
           </div>

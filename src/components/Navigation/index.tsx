@@ -3,12 +3,18 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
+import { useAuth } from '@/contexts/AuthContext'
+import AuthModal from '@/components/Auth/AuthModal'
+import UserMenu from '@/components/Auth/UserMenu'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null)
+  const [showAuthModal, setShowAuthModal] = useState(false)
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
   const navRef = useRef<HTMLElement>(null)
   const togglerRef = useRef<HTMLButtonElement>(null)
+  const { user, loading } = useAuth()
 
   // Add Bootstrap JS on client side
   useEffect(() => {
@@ -110,6 +116,11 @@ const Navigation = () => {
     }
   }
 
+  const handleAuthModal = (mode: 'login' | 'signup') => {
+    setAuthMode(mode)
+    setShowAuthModal(true)
+  }
+
   const mainMenu = [
     {
       title: 'Get Connected',
@@ -200,92 +211,125 @@ const Navigation = () => {
   }
 
   return (
-    <nav ref={navRef} className="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
-      <div className="container">
-        <Link href="/" className="navbar-brand">
-          <Image
-            src="/images/logo-cogop.webp"
-            alt="Church of God of Prophecy"
-            width={133}
-            height={48}
-            priority
-            className="d-inline-block align-top"
-          />
-        </Link>
+    <>
+      <nav ref={navRef} className="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
+        <div className="container">
+          <Link href="/" className="navbar-brand">
+            <Image
+              src="/images/logo-cogop.webp"
+              alt="Church of God of Prophecy"
+              width={133}
+              height={48}
+              priority
+              className="d-inline-block align-top"
+            />
+          </Link>
 
-        <button 
-          ref={togglerRef}
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarContent"
-          aria-controls="navbarContent" 
-          aria-expanded={isOpen ? 'true' : 'false'}
-          aria-label="Toggle navigation"
-          onClick={handleToggle}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+          <button 
+            ref={togglerRef}
+            className="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarContent"
+            aria-controls="navbarContent" 
+            aria-expanded={isOpen ? 'true' : 'false'}
+            aria-label="Toggle navigation"
+            onClick={handleToggle}
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-        <div className="collapse navbar-collapse" id="navbarContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {mainMenu.map((item, index) => (
-              <li key={index} className="nav-item dropdown">
-                {item.href ? (
-                  <Link 
-                    href={item.href} 
-                    className="nav-link"
-                    onClick={handleMenuItemClick}
-                  >
-                    {item.title}
-                  </Link>
-                ) : (
-                  <>
-                    <a 
-                      className="nav-link dropdown-toggle" 
-                      href="#" 
-                      role="button" 
-                      data-bs-toggle="dropdown" 
-                      aria-expanded="false"
+          <div className="collapse navbar-collapse" id="navbarContent">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              {mainMenu.map((item, index) => (
+                <li key={index} className="nav-item dropdown">
+                  {item.href ? (
+                    <Link 
+                      href={item.href} 
+                      className="nav-link"
+                      onClick={handleMenuItemClick}
                     >
                       {item.title}
-                    </a>
-                    {item.items && (
-                      <ul className="dropdown-menu">
-                        {item.items.map((subItem, subIndex) => (
-                          <li key={subIndex}>
-                            <Link 
-                              href={subItem.href}
-                              className="dropdown-item"
-                              onClick={handleMenuItemClick}
-                            >
-                              {subItem.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
+                    </Link>
+                  ) : (
+                    <>
+                      <a 
+                        className="nav-link dropdown-toggle" 
+                        href="#" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false"
+                      >
+                        {item.title}
+                      </a>
+                      {item.items && (
+                        <ul className="dropdown-menu">
+                          {item.items.map((subItem, subIndex) => (
+                            <li key={subIndex}>
+                              <Link 
+                                href={subItem.href}
+                                className="dropdown-item"
+                                onClick={handleMenuItemClick}
+                              >
+                                {subItem.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
 
-          <div className="d-flex align-items-center gap-3">
-            <select className="form-select form-select-sm" aria-label="Select language">
-              <option value="en">English</option>
-              <option value="es">Español</option>
-              <option value="fr">Français</option>
-              <option value="pt">Português</option>
-              <option value="ru">Русский</option>
-            </select>
-            <button className="btn btn-link" aria-label="Search">
-              <i className="bi bi-search fs-5"></i>
-            </button>
+            <div className="d-flex align-items-center gap-3">
+              <select className="form-select form-select-sm" aria-label="Select language">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+              </select>
+              <button className="btn btn-link" aria-label="Search">
+                <i className="bi bi-search fs-5"></i>
+              </button>
+              
+              {/* Authentication Section */}
+              {!loading && (
+                <>
+                  {user ? (
+                    <UserMenu />
+                  ) : (
+                    <div className="d-flex gap-2">
+                      <button 
+                        className="btn btn-outline-primary btn-sm"
+                        onClick={() => handleAuthModal('login')}
+                      >
+                        Sign In
+                      </button>
+                      <button 
+                        className="btn btn-primary btn-sm"
+                        onClick={() => handleAuthModal('signup')}
+                      >
+                        Sign Up
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Authentication Modal */}
+      <AuthModal 
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        initialMode={authMode}
+      />
+    </>
   )
 }
 

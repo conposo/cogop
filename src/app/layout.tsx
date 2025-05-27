@@ -5,6 +5,8 @@ import "@/styles/main.scss";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ContentProvider } from "@/contexts/ContentContext";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { AdminProvider } from "@/contexts/AdminContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +24,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ContentProvider>
-          <Navigation />
-          <main className="mt-5 pt-4">
-        {children}
-          </main>
-          <Footer />
+          <AuthProvider>
+            <AdminProvider>
+              <Navigation />
+              <main className="mt-5 pt-4">
+                {children}
+              </main>
+              <Footer />
+            </AdminProvider>
+          </AuthProvider>
         </ContentProvider>
         
         {/* Bootstrap JavaScript */}
