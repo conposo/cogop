@@ -1,8 +1,9 @@
 'use client';
 
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext, useMemo, useState, useEffect } from 'react';
 import { useI18n } from '@/contexts/I18nContext';
 import { t } from '@/lib/i18n';
+import { fetchArticlesFromFirestore, fetchEventsFromFirestore, Article, Event, MultilingualString } from '@/lib/dummyContent';
 
 export interface PageContent {
   title: string;
@@ -47,6 +48,8 @@ interface ContentContextType {
       icon?: string;
     }>;
   };
+  articles: Article[];
+  events: Event[];
   podcasts: Array<{
     series: string;
     host: string;
@@ -61,7 +64,20 @@ interface ContentContextType {
     buttonText?: string;
     buttonLink?: string;
   }>;
+  loading: boolean;
+  refreshData: () => Promise<void>;
 }
+
+// Helper function to get localized string or fallback
+const getLocalizedString = (field: MultilingualString | string | undefined, lang: string, fallbackLang: string = 'en'): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field; // Handle legacy string format
+  if (typeof field === 'object' && field !== null) {
+    // Handle multilingual object format
+    return field[lang] || field[fallbackLang] || Object.values(field)[0] || '';
+  }
+  return '';
+};
 
 const getContentData = (): ContentContextType => ({
   // Global statistics
@@ -1646,6 +1662,14 @@ const getContentData = (): ContentContextType => ({
         </ul>
       `
     }
+  },
+
+  articles: [],
+  events: [],
+  loading: true,
+  refreshData: async () => {
+    // This is a placeholder function for static data
+    // The actual implementation is in the ContentProvider
   }
 });
 
@@ -1661,30 +1685,52 @@ export function useContent() {
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
   const { language } = useI18n();
-  
-  const contentData = useMemo(() => {
-    // Force re-evaluation by calling setLocale before getting content
-    const { setLocale } = require('@/lib/i18n');
-    setLocale(language);
-    return getContentData();
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const refreshData = async () => {
+    try {
+      setLoading(true);
+      const [fetchedArticles, fetchedEvents] = await Promise.all([
+        fetchArticlesFromFirestore(language),
+        fetchEventsFromFirestore(language)
+      ]);
+      setArticles(fetchedArticles);
+      setEvents(fetchedEvents);
+    } catch (error) {
+      console.error('Error fetching articles and events:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    refreshData();
   }, [language]);
-  
+
+  const staticData = useMemo(() => getContentData(), [language]);
+
+  const contextValue: ContentContextType = {
+    ...staticData,
+    articles,
+    events,
+    loading,
+    refreshData
+  };
+
   return (
-    <ContentContext.Provider value={contentData} key={language}>
+    <ContentContext.Provider value={contextValue}>
       {children}
     </ContentContext.Provider>
   );
 }
 
-// Helper function to get page content
 export function getPageContent(path: string): PageContent {
-  const content = getContentData().pages[path];
-  if (!content) {
-    return {
-      title: '404 - Page Not Found',
-      description: 'The page you are looking for does not exist.',
-      content: '<p>This page could not be found.</p>'
-    };
-  }
-  return content;
+  const staticData = getContentData();
+  return staticData.pages[path] || {
+    title: 'Page Not Found',
+    description: 'The requested page could not be found.',
+    content: '<p>Page content not available.</p>'
+  };
 } 

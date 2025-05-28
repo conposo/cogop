@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useContent } from '@/contexts/ContentContext';
+import { useI18n } from '@/contexts/I18nContext';
 import { t } from '@/lib/i18n';
 import Link from 'next/link';
 
@@ -23,13 +24,25 @@ interface SearchResult {
   highlightedDescription?: string;
 }
 
+// Helper function to get localized string or fallback
+const getLocalizedString = (field: any, lang: string, fallbackLang: string = 'en'): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field; // Handle legacy string format
+  if (typeof field === 'object' && field !== null) {
+    // Handle multilingual object format
+    return field[lang] || field[fallbackLang] || Object.values(field)[0] || '';
+  }
+  return '';
+};
+
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const { pages, articles, podcasts, events, carousel } = useContent();
+  const { pages, articles, events, podcasts, carousel, loading } = useContent();
+  const { language } = useI18n();
 
   // Focus search input when modal opens
   useEffect(() => {
@@ -168,27 +181,34 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         }
       });
 
-      // Search articles
+      // Search Firebase articles
       articles.forEach(article => {
         let relevanceScore = 0;
         
-        relevanceScore += calculateRelevance(article.title, searchTerm) * 2;
+        const title = getLocalizedString(article.title, language);
+        const excerpt = getLocalizedString(article.summary, language);
+        const content = getLocalizedString(article.content, language);
+        
+        relevanceScore += calculateRelevance(title, searchTerm) * 2;
         relevanceScore += calculateRelevance(article.category, searchTerm);
-        if (article.excerpt) {
-          relevanceScore += calculateRelevance(article.excerpt, searchTerm);
+        if (excerpt) {
+          relevanceScore += calculateRelevance(excerpt, searchTerm);
+        }
+        if (content) {
+          relevanceScore += calculateRelevance(content, searchTerm) * 0.5;
         }
 
         if (relevanceScore > 0) {
           searchResults.push({
             type: 'article',
-            title: article.title,
-            description: article.excerpt || '',
-            url: '/resources/media', // Articles section
+            title: title,
+            description: excerpt || '',
+            url: `/news/${article.slug || article.id}`,
             category: article.category,
             date: article.date,
             relevanceScore,
-            highlightedTitle: highlightText(article.title, searchTerm),
-            highlightedDescription: highlightText(article.excerpt || '', searchTerm)
+            highlightedTitle: highlightText(title, searchTerm),
+            highlightedDescription: highlightText(excerpt || '', searchTerm)
           });
         }
       });
@@ -216,31 +236,39 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         }
       });
 
-      // Search events
+      // Search Firebase events
       events.forEach(event => {
         let relevanceScore = 0;
         
-        relevanceScore += calculateRelevance(event.title, searchTerm) * 2;
-        relevanceScore += calculateRelevance(event.location, searchTerm);
-        relevanceScore += calculateRelevance(event.venue, searchTerm);
-        if (event.description) {
-          relevanceScore += calculateRelevance(event.description, searchTerm);
+        const title = getLocalizedString(event.title, language);
+        const excerpt = getLocalizedString(event.excerpt, language);
+        const content = getLocalizedString(event.content, language);
+        
+        relevanceScore += calculateRelevance(title, searchTerm) * 2;
+        relevanceScore += calculateRelevance(event.eventLocation, searchTerm);
+        if (event.eventAddress) {
+          relevanceScore += calculateRelevance(event.eventAddress, searchTerm);
         }
-        if (event.category) {
-          relevanceScore += calculateRelevance(event.category, searchTerm);
+        if (excerpt) {
+          relevanceScore += calculateRelevance(excerpt, searchTerm);
         }
+        if (content) {
+          relevanceScore += calculateRelevance(content, searchTerm) * 0.5;
+        }
+        relevanceScore += calculateRelevance(event.category, searchTerm);
 
         if (relevanceScore > 0) {
+          const eventDescription = excerpt || `${event.eventDate} - ${event.eventLocation}`;
           searchResults.push({
             type: 'event',
-            title: event.title,
-            description: event.description || `${event.date} - ${event.location}`,
-            url: '/get-connected/calendar',
+            title: title,
+            description: eventDescription,
+            url: `/events/${event.id}`,
             category: event.category,
-            date: event.date,
+            date: event.eventDate,
             relevanceScore,
-            highlightedTitle: highlightText(event.title, searchTerm),
-            highlightedDescription: highlightText(event.description || `${event.date} - ${event.location}`, searchTerm)
+            highlightedTitle: highlightText(title, searchTerm),
+            highlightedDescription: highlightText(eventDescription, searchTerm)
           });
         }
       });
@@ -274,7 +302,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
     }, 300);
 
     return () => clearTimeout(searchTimeout);
-  }, [searchTerm, pages, articles, podcasts, events, carousel]);
+  }, [searchTerm, pages, articles, events, podcasts, carousel, language]);
 
   // Extract excerpt around search term
   const extractExcerpt = (content: string, term: string): string => {
@@ -349,7 +377,14 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
           </div>
           
           <div className="modal-body pt-2" style={{ maxHeight: '60vh', overflowY: 'auto' }}>
-            {!searchTerm.trim() ? (
+            {loading && !searchTerm.trim() ? (
+              <div className="text-center py-5">
+                <div className="spinner-border text-primary mb-3" role="status">
+                  <span className="visually-hidden">{t('loading', { defaultValue: 'Loading...' })}</span>
+                </div>
+                <p className="text-muted">{t('loading', { defaultValue: 'Loading content...' })}</p>
+              </div>
+            ) : !searchTerm.trim() ? (
               <div className="text-center py-5">
                 <i className="bi bi-search display-4 text-muted mb-3"></i>
                 <h5 className="text-muted">{t('start_typing_to_search', { defaultValue: 'Start typing to search...' })}</h5>
@@ -369,9 +404,9 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     <h6 className="text-muted">{t('search_categories', { defaultValue: 'Search Categories:' })}</h6>
                     <ul className="list-unstyled small text-muted">
                       <li><i className="bi bi-file-text text-primary me-2"></i>{t('pages', { defaultValue: 'Pages' })}</li>
-                      <li><i className="bi bi-newspaper text-primary me-2"></i>{t('articles', { defaultValue: 'Articles' })}</li>
+                      <li><i className="bi bi-newspaper text-primary me-2"></i>{t('articles', { defaultValue: 'Articles' })} ({articles.length})</li>
                       <li><i className="bi bi-mic text-primary me-2"></i>{t('podcasts', { defaultValue: 'Podcasts' })}</li>
-                      <li><i className="bi bi-calendar-event text-primary me-2"></i>{t('events', { defaultValue: 'Events' })}</li>
+                      <li><i className="bi bi-calendar-event text-primary me-2"></i>{t('events', { defaultValue: 'Events' })} ({events.length})</li>
                     </ul>
                   </div>
                 </div>
