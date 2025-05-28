@@ -47,27 +47,11 @@ interface ContentContextType {
       icon?: string;
     }>;
   };
-  articles: Array<{
-    category: string;
-    title: string;
-    excerpt?: string;
-    date?: string;
-    image?: string;
-  }>;
   podcasts: Array<{
     series: string;
     host: string;
     title: string;
     description: string;
-  }>;
-  events: Array<{
-    title: string;
-    location: string;
-    date: string;
-    venue: string;
-    address?: string;
-    description?: string;
-    category?: string;
   }>;
   carousel: Array<{
     id: number;
@@ -141,45 +125,6 @@ const getContentData = (): ContentContextType => ({
     }
   ],
 
-  // Articles and news
-  articles: [
-    {
-      category: t('spirit_life_seminary', { defaultValue: 'Spirit and Life Seminary' }),
-      title: t('seminary_commencement_title', { defaultValue: 'Spirit and Life Seminary Celebrates Fourth Commencement Ceremony' }),
-      excerpt: t('seminary_commencement_excerpt', { defaultValue: 'Celebrating the achievements of our newest ministry graduates.' }),
-      date: 'December 15, 2023',
-      image: '/images/seminary.jpg'
-    },
-    {
-      category: t('digital_evangelism', { defaultValue: 'Digital Evangelism' }),
-      title: t('digital_communities_title', { defaultValue: 'Sharing and Growing in Online Communities' }),
-      excerpt: t('digital_communities_excerpt', { defaultValue: 'How our digital ministry is reaching new audiences.' }),
-      date: 'December 10, 2023',
-      image: '/images/digital.jpg'
-    },
-    {
-      category: t('featured_article', { defaultValue: 'Featured Article' }),
-      title: t('digital_gospel_title', { defaultValue: 'Therefore, Login and Upload the Gospel into All the World' }),
-      excerpt: t('digital_gospel_excerpt', { defaultValue: 'Exploring the intersection of technology and ministry.' }),
-      date: 'December 5, 2023',
-      image: '/images/gospel.jpg'
-    },
-    {
-      category: t('global_missions', { defaultValue: 'Global Missions' }),
-      title: t('sharing_gospel_title', { defaultValue: 'Sharing the Gospel Across the World' }),
-      excerpt: t('sharing_gospel_excerpt', { defaultValue: 'Learn about our mission work across 135 countries.' }),
-      date: 'December 1, 2023',
-      image: '/images/missions.jpg'
-    },
-    {
-      category: t('youth_ministry', { defaultValue: 'Youth Ministry' }),
-      title: t('icm_youth_title', { defaultValue: 'ICM Youth Conference: Empowering the Next Generation' }),
-      excerpt: t('icm_youth_excerpt', { defaultValue: 'Young people from around the world gather for spiritual growth.' }),
-      date: 'November 28, 2023',
-      image: '/images/youth.jpg'
-    }
-  ],
-
   // Podcasts
   podcasts: [
     {
@@ -193,37 +138,6 @@ const getContentData = (): ContentContextType => ({
       host: 'Marsha Robinson',
       title: t('white_wing_podcast_title', { defaultValue: 'The Call: To Send and Support' }),
       description: t('white_wing_podcast_desc', { defaultValue: "Join podcast host Managing Editor Marsha Robinson as we end the month of April with a roundtable discussion of this month's White Wing Messenger." })
-    }
-  ],
-
-  // Events
-  events: [
-    {
-      title: t('icm_testify_title', { defaultValue: 'ICM: Testify' }),
-      location: t('north_carolina_asheville', { defaultValue: 'North Carolina, near Asheville' }),
-      date: 'November 6-9, 2024',
-      venue: t('ridgecrest_center', { defaultValue: 'Ridgecrest Conference Center' }),
-      address: t('north_carolina_asheville', { defaultValue: 'North Carolina, near Asheville' }),
-      description: t('icm_testify_desc', { defaultValue: 'Join young adults from around the world for a transformative conference experience.' }),
-      category: t('youth_conference', { defaultValue: 'Youth Conference' })
-    },
-    {
-      title: t('stewardshift_title', { defaultValue: 'StewardShift Conference' }),
-      location: 'Cleveland, TN',
-      date: 'November 14-15, 2024',
-      venue: t('peerless_church', { defaultValue: 'Peerless Church' }),
-      address: 'Cleveland, TN',
-      description: t('stewardshift_desc', { defaultValue: 'Learn about biblical stewardship and financial responsibility.' }),
-      category: t('stewardship', { defaultValue: 'Stewardship' })
-    },
-    {
-      title: t('international_assembly_title', { defaultValue: 'International Assembly' }),
-      location: 'Orlando, FL',
-      date: 'July 15-19, 2026',
-      venue: t('rosen_shingle_creek', { defaultValue: 'Rosen Shingle Creek' }),
-      address: 'Orlando, FL',
-      description: t('international_assembly_desc', { defaultValue: 'Our global church gathering bringing together believers from 135 countries.' }),
-      category: t('global_assembly', { defaultValue: 'Global Assembly' })
     }
   ],
 
