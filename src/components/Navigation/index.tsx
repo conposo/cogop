@@ -165,17 +165,17 @@ const Navigation = () => {
         { title: t('helping_hands_title', { defaultValue: 'Helping Hands' }), href: '/ministries/helping-hands' },
         { title: t('one_child_fund_title', { defaultValue: 'One Child Fund' }), href: '/ministries/one-child-fund' },
         { title: t('heritage_title', { defaultValue: 'Heritage' }), href: '/ministries/heritage' },
-        { title: t('fields_of_wood_title', { defaultValue: 'Fields of the Wood' }), href: '/ministries/fields-of-the-wood' },
+        // { title: t('fields_of_wood_title', { defaultValue: 'Fields of the Wood' }), href: '/ministries/fields-of-the-wood' },
         { title: t('stewardship_title', { defaultValue: 'Stewardship' }), href: '/ministries/stewardship' },
         { title: t('bookstore_title', { defaultValue: 'Bookstore' }), href: '/ministries/bookstore' },
-        { title: t('global_communications_title', { defaultValue: 'Global Communications' }), href: '/ministries/global-communications' },
-        { title: t('white_wing_messenger_title', { defaultValue: 'White Wing Messenger' }), href: '/ministries/white-wing-messenger' },
+        // { title: t('global_communications_title', { defaultValue: 'Global Communications' }), href: '/ministries/global-communications' },
+        // { title: t('white_wing_messenger_title', { defaultValue: 'White Wing Messenger' }), href: '/ministries/white-wing-messenger' },
         { title: t('prayer_title', { defaultValue: 'Prayer' }), href: '/ministries/prayer' },
         { title: t('international_assembly_title', { defaultValue: 'International Assembly' }), href: '/ministries/international-assembly' },
         { title: t('leadership_development_title', { defaultValue: 'Leadership Development' }), href: '/ministries/leadership-development' },
-        { title: t('accredited_ministries_title', { defaultValue: 'Accredited Ministries' }), href: '/ministries/accredited-ministries' },
+        // { title: t('accredited_ministries_title', { defaultValue: 'Accredited Ministries' }), href: '/ministries/accredited-ministries' },
         { title: t('center_biblical_leadership_title', { defaultValue: 'Center for Biblical Leadership' }), href: '/ministries/center-biblical-leadership' },
-        { title: t('spirit_life_seminary_title', { defaultValue: 'Spirit & Life Seminary' }), href: '/ministries/spirit-life-seminary' },
+        // { title: t('spirit_life_seminary_title', { defaultValue: 'Spirit & Life Seminary' }), href: '/ministries/spirit-life-seminary' },
         { title: t('childrens_title', { defaultValue: "Children's" }), href: '/ministries/childrens' },
         { title: t('youth_title', { defaultValue: 'Youth' }), href: '/ministries/youth' },
       ]
@@ -326,7 +326,7 @@ const Navigation = () => {
                         {t('sign_in', { defaultValue: 'Sign In' })}
                       </button>
                       <button 
-                        className="btn btn-primary btn-sm"
+                        className="btn btn-dark btn-sm"
                         onClick={() => handleAuthModal('signup')}
                       >
                         {t('sign_up', { defaultValue: 'Sign Up' })}

@@ -179,7 +179,7 @@ export default function ProfilePage() {
                 {isEditing ? (
                   <>
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-dark"
                       onClick={handleSave}
                       disabled={saving}
                     >
@@ -202,7 +202,7 @@ export default function ProfilePage() {
                   </>
                 ) : (
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-dark"
                     onClick={() => setIsEditing(true)}
                   >
                     Edit Profile

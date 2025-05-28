@@ -6,11 +6,10 @@ import { t } from '@/lib/i18n'
 
 const Footer = () => {
   const socialLinks = [
-    { icon: 'facebook', label: 'Facebook', href: 'https://facebook.com/cogop' },
-    { icon: 'instagram', label: 'Instagram', href: 'https://instagram.com/cogop' },
-    { icon: 'twitter', label: 'Twitter', href: 'https://twitter.com/cogop' },
-    { icon: 'youtube', label: 'YouTube', href: 'https://youtube.com/cogop' },
-    { icon: 'spotify', label: 'Spotify', href: 'https://spotify.com/cogop' },
+    { icon: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/Bojiq.carkva.na.prorochestvoto/' },
+    { icon: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/cogoppics/' },
+    { icon: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/channel/UCfIWG2CplNym_oZ3oLLeQYw' },
+    { icon: 'spotify', label: 'Spotify', href: 'https://open.spotify.com/user/g1d13yyaprw0wrr2woer8edyp?si=a32b364b555f4d4d&nd=1&dlsi=616f621ad7b54638' },
   ]
 
   return (

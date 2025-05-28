@@ -180,7 +180,7 @@ export default function Home() {
                               <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
                             </p>
                           )}
-                          <Link href={`/news/${article.slug}`} className="btn btn-primary">Read More</Link>
+                          <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
                         </div>
                       </div>
                     </div>
@@ -242,7 +242,7 @@ export default function Home() {
                                 <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
                               </p>
                             )}
-                            <Link href={`/news/${article.slug}`} className="btn btn-primary">Read More</Link>
+                            <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
                           </div>
                         </div>
                       </div>
@@ -282,7 +282,7 @@ export default function Home() {
                     </div>
                     <h3 className="card-title h5">{podcast.title}</h3>
                     <p className="card-text">{podcast.description}</p>
-                    <button className="btn btn-primary">Listen now</button>
+                    <button className="btn btn-dark">Listen now</button>
                   </div>
                 </div>
               </div>

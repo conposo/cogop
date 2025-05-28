@@ -205,7 +205,7 @@ export default function SettingsPage() {
                       </div>
                       <button
                         type="submit"
-                        className="btn btn-primary"
+                        className="btn btn-dark"
                         disabled={changingPassword}
                       >
                         {changingPassword ? (

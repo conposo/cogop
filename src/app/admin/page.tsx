@@ -151,7 +151,7 @@ export default function AdminDashboard() {
             </div>
             <div className="card-body">
               <div className="d-grid gap-2">
-                <Link href="/admin/news/new" className="btn btn-primary">
+                <Link href="/admin/news/new" className="btn btn-dark">
                   <i className="bi bi-plus-circle me-2"></i>
                   Add New Article
                 </Link>

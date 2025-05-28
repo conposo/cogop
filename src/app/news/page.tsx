@@ -76,7 +76,7 @@ export default function News() {
 
       <div className="row mt-5">
         <div className="col-12 text-center">
-          <Link href="/about" className="btn btn-primary">Learn More About Us</Link>
+          <Link href="/about" className="btn btn-dark">Learn More About Us</Link>
         </div>
       </div>
     </div>

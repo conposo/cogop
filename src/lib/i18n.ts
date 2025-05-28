@@ -332,7 +332,7 @@ i18n.translations = {
     toggle_navigation: 'Toggle navigation',
     select_language: 'Select language',
     english: 'English',
-    bulgarian: 'Bulgarian',
+    bulgarian: 'Български',
 
     // Article titles and content
     seminary_commencement_title: 'Spirit and Life Seminary Celebrates Fourth Commencement Ceremony',
@@ -397,9 +397,9 @@ i18n.translations = {
     schedule_tour_description: 'Visit our facilities and learn about our community.',
 
     // Additional FAQ sections
-    faq_giving_support: 'Giving and Support',
+    faq_giving_support: 'Giving & Support',
     faq_tithe_required: 'Do I have to tithe or give money?',
-    faq_tithe_answer: 'Giving is voluntary and should come from a cheerful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions.',
+    faq_tithe_answer: 'Giving is voluntary and should come from a joyful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions.',
     faq_donations_used: 'How are donations used?',
     faq_donations_answer: 'Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God\'s kingdom worldwide.',
     
@@ -407,7 +407,7 @@ i18n.translations = {
     faq_support_missions: 'How can I support global missions?',
     faq_support_missions_answer: 'You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities.',
     faq_international_assembly: 'What is the International Assembly?',
-    faq_international_assembly_answer: 'The International Assembly is our global church gathering held every four years. Delegates from 135 countries come together for worship, fellowship, and church business. The next assembly will be in Orlando, Florida, July 15-19, 2026.',
+    faq_international_assembly_answer: 'The International Assembly is our global church gathering held every four years. It brings together delegates from around the world for worship, fellowship, business sessions, and to set direction for our worldwide ministry.',
     
     faq_contact_next_steps: 'Contact and Next Steps',
     faq_find_local_church: 'How do I find a local church?',
@@ -592,6 +592,7 @@ i18n.translations = {
     spiritual_growth_opportunities: 'Opportunities for spiritual growth',
     community_outreach: 'Community outreach and missions',
     programs_all_ages: 'Programs for all ages',
+    diverse_multicultural_community: 'Diverse, multicultural community',
 
     // Common fallback content
     content_coming_soon: 'Content coming soon...',
@@ -601,6 +602,49 @@ i18n.translations = {
     resources_overview_coming_soon: 'Resources overview coming soon...',
     leadership_information_coming_soon: 'Leadership information coming soon...',
     historical_information_coming_soon: 'Historical information coming soon...',
+
+    // Find a Church page translations
+    find_a_church_title: 'Find a Church',
+    find_a_church_description: 'Locate a Church of God of Prophecy congregation near you.',
+    search_churches: 'Search Churches',
+    enter_city_state_country: 'Enter City, State, or Country',
+    location_placeholder: 'e.g., Cleveland, TN or United States',
+    searching: 'Searching...',
+    filter_by_programs: 'Filter by Programs',
+    clear_filters: 'Clear Filters',
+    need_help: 'Need Help?',
+    cant_find_church: 'Can\'t find a church near you? Contact us for assistance.',
+    found_churches: 'Found {count} Churches',
+    for_search_term: 'for "{term}"',
+    showing_results_worldwide: 'Showing results worldwide',
+    searching_for_churches: 'Searching for churches...',
+    no_churches_found: 'No Churches Found',
+    no_churches_message: 'We couldn\'t find any churches matching your search criteria. Try adjusting your search terms or contact us for assistance.',
+    get_directions: 'Get Directions',
+    visit_website: 'Visit Website',
+    call_church: 'Call Church',
+    pastor: 'Pastor',
+    service_times: 'Service Times',
+    programs_ministries: 'Programs & Ministries',
+    our_global_network: 'Our Global Network',
+    global_network_description: 'The Church of God of Prophecy has over 12,000 churches and missions in 135 countries worldwide. If you don\'t see a church near you, we may still have a congregation in your area.',
+    churches_missions: 'Churches & Missions',
+    countries: 'Countries',
+    members: 'Members',
+    years_of_ministry: 'Years of Ministry',
+    what_to_expect_at_churches: 'What to Expect at Our Churches',
+    spirit_led_worship_teaching: 'Spirit-led worship and biblical teaching',
+    warm_welcoming_fellowship: 'Warm, welcoming fellowship',
+    opportunities_spiritual_growth: 'Opportunities for spiritual growth',
+    community_outreach_missions: 'Community outreach and missions',
+    programs_for_all_ages: 'Programs for all ages',
+    diverse_multicultural_community: 'Diverse, multicultural community',
+
+    // Additional find-a-church translations
+    find_congregation: 'Find a Congregation Near You',
+    find_church_desc: 'With over 12,000 churches and missions in 135 countries, there\'s likely a Church of God of Prophecy congregation near you.',
+    search_by_location: 'Search by Location',
+    what_to_expect_desc: 'At Church of God of Prophecy congregations, you\'ll find:',
   },
   bg: {
     // Navigation
@@ -930,7 +974,7 @@ i18n.translations = {
     // Navigation Labels
     toggle_navigation: 'Превключи навигация',
     select_language: 'Избери език',
-    english: 'Английски',
+    english: 'English',
     bulgarian: 'Български',
 
     // Article titles and content
@@ -1006,7 +1050,7 @@ i18n.translations = {
     faq_support_missions: 'Как мога да подкрепя глобалните мисии?',
     faq_support_missions_answer: 'Можете да подкрепите мисиите чрез молитва, финансово даряване, участие в мисионерски пътувания, спонсориране на дете чрез нашия Фонд за едно дете или ставане на Партньор в жътвата за подкрепа на мисионери. Свържете се с нас, за да научите за конкретни възможности.',
     faq_international_assembly: 'Какво е Международното събрание?',
-    faq_international_assembly_answer: 'Международното събрание е нашето глобално църковно събиране, провеждано на всеки четири години. Делегати от 135 държави се събират заедно за поклонение, общение и църковни дела. Следващото събрание ще бъде в Орландо, Флорида, 15-19 юли 2026 г.',
+    faq_international_assembly_answer: 'Международното събрание е нашето глобално църковно събиране, провеждано на всеки четири години. То обединява делегати от целия свят за поклонение, общение, работни сесии и определяне на посоката за нашето световно служение.',
     
     faq_contact_next_steps: 'Контакт и следващи стъпки',
     faq_find_local_church: 'Как мога да намеря местна църква?',
@@ -1061,6 +1105,49 @@ i18n.translations = {
     resources_overview_coming_soon: 'Преглед на ресурсите идва скоро...',
     leadership_information_coming_soon: 'Информацията за ръководството идва скоро...',
     historical_information_coming_soon: 'Историческата информация идва скоро...',
+
+    // Find a Church page translations
+    find_a_church_title: 'Намери църква',
+    find_a_church_description: 'Намерете конгрегация на Църква на Бога на Пророчеството близо до вас.',
+    search_churches: 'Търси църкви',
+    enter_city_state_country: 'Въведете град, област или държава',
+    location_placeholder: 'напр. София, България или България',
+    searching: 'Търсене...',
+    filter_by_programs: 'Филтрирай по програми',
+    clear_filters: 'Изчисти филтрите',
+    need_help: 'Нужда от помощ?',
+    cant_find_church: 'Не можете да намерите църква близо до вас? Свържете се с нас за помощ.',
+    found_churches: 'Намерени {count} църкви',
+    for_search_term: 'за "{term}"',
+    showing_results_worldwide: 'Показване на резултати по света',
+    searching_for_churches: 'Търсене на църкви...',
+    no_churches_found: 'Няма намерени църкви',
+    no_churches_message: 'Не можахме да намерим църкви, отговарящи на вашите критерии за търсене. Опитайте да промените условията за търсене или се свържете с нас за помощ.',
+    get_directions: 'Вземи указания',
+    visit_website: 'Посети уебсайта',
+    call_church: 'Обади се на църквата',
+    pastor: 'Пастор',
+    service_times: 'Времена на службите',
+    programs_ministries: 'Програми и служения',
+    our_global_network: 'Нашата глобална мрежа',
+    global_network_description: 'Църква на Бога на Пророчеството има над 12 000 църкви и мисии в 135 държави по света. Ако не виждате църква близо до вас, може все още да имаме конгрегация във вашия район.',
+    churches_missions: 'Църкви и мисии',
+    countries: 'Държави',
+    members: 'Членове',
+    years_of_ministry: 'Години служение',
+    what_to_expect_at_churches: 'Какво да очаквате в нашите църкви',
+    spirit_led_worship_teaching: 'Водено от Духа поклонение и библейско учение',
+    warm_welcoming_fellowship: 'Топло, приветливо общение',
+    opportunities_spiritual_growth: 'Възможности за духовен растеж',
+    community_outreach_missions: 'Обществена дейност и мисии',
+    programs_for_all_ages: 'Програми за всички възрасти',
+    diverse_multicultural_community: 'Разнообразна, мултикултурна общност',
+
+    // Additional find-a-church translations
+    find_congregation: 'Намерете конгрегация близо до вас',
+    find_church_desc: 'С над 12 000 църкви и мисии в 135 държави, вероятно има конгрегация на Църква на Бога на Пророчеството близо до вас.',
+    search_by_location: 'Търсене по местоположение',
+    what_to_expect_desc: 'В конгрегациите на Църква на Бога на Пророчеството ще намерите:',
   },
 };
 

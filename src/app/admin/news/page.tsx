@@ -109,7 +109,7 @@ export default function NewsManagement() {
     <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>Content Management</h1>
-        <Link href="/admin/news/new" className="btn btn-primary">
+        <Link href="/admin/news/new" className="btn btn-dark">
           <i className="bi bi-plus-circle me-2"></i>
           Add New Content
         </Link>
@@ -254,7 +254,7 @@ export default function NewsManagement() {
                 }
               </p>
               {filter === 'all' && (
-                <Link href="/admin/news/new" className="btn btn-primary">
+                <Link href="/admin/news/new" className="btn btn-dark">
                   <i className="bi bi-plus-circle me-2"></i>
                   Create First Content
                 </Link>

@@ -107,7 +107,7 @@ export default function UserManagement() {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>User Management</h1>
         <button
-          className="btn btn-primary"
+          className="btn btn-dark"
           onClick={() => setShowAddForm(!showAddForm)}
         >
           <i className="bi bi-plus-circle me-2"></i>
@@ -178,7 +178,7 @@ export default function UserManagement() {
                 </div>
               </div>
               <div className="d-flex gap-2">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-dark">
                   <i className="bi bi-check-circle me-2"></i>
                   Add Admin
                 </button>
@@ -266,7 +266,7 @@ export default function UserManagement() {
       </div>
 
       {/* Instructions */}
-      <div className="card mt-4">
+      <div className="card mt-4 opacity-50">
         <div className="card-header">
           <h5 className="card-title mb-0">Instructions</h5>
         </div>

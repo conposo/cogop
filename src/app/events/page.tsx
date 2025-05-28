@@ -74,7 +74,7 @@ export default function Events() {
                       <p className="text-muted small mb-0 ms-4">{event.eventAddress}</p>
                     )}
                   </div>
-                  <Link href={`/events/${event.id}`} className="btn btn-primary">
+                  <Link href={`/events/${event.id}`} className="btn btn-dark">
                     Learn More
                   </Link>
                 </div>
@@ -93,7 +93,7 @@ export default function Events() {
       <div className="row mt-5">
         <div className="col-12 text-center">
           <h2 className="mb-4">Don't miss out on these opportunities!</h2>
-          <Link href="/get-connected/calendar" className="btn btn-primary me-3">View Full Calendar</Link>
+          <Link href="/get-connected/calendar" className="btn btn-dark me-3">View Full Calendar</Link>
           <Link href="/get-connected/contact" className="btn btn-outline-primary">Contact Us</Link>
         </div>
       </div>

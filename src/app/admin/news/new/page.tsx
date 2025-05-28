@@ -406,7 +406,7 @@ export default function NewArticle() {
                 <div className="d-grid gap-2">
                   <button
                     type="submit"
-                    className="btn btn-primary"
+                    className="btn btn-dark"
                     disabled={loading || imageUploading}
                   >
                     {loading ? (

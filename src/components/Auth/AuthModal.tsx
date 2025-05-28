@@ -141,7 +141,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
 
               <button
                 type="submit"
-                className="btn btn-primary w-100 mb-3"
+                className="btn btn-dark w-100 mb-3"
                 disabled={loading}
               >
                 {loading ? (

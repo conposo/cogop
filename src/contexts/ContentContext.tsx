@@ -8,6 +8,33 @@ export interface PageContent {
   description: string;
   content?: string;
   backgroundImage?: string;
+  sections?: Array<{
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+  }>;
+  faq?: {
+    introduction: string;
+    categories: Array<{
+      title: string;
+      questions: Array<{
+        id: string;
+        question: string;
+        answer: string;
+        isExpanded?: boolean;
+      }>;
+    }>;
+    callToAction: {
+      title: string;
+      description: string;
+      buttons: Array<{
+        text: string;
+        link: string;
+        variant: 'primary' | 'outline' | 'dark';
+      }>;
+    };
+  };
 }
 
 interface ContentContextType {
@@ -179,6 +206,32 @@ const getContentData = (): ContentContextType => ({
     'get-connected': {
       title: t('get_connected_title', { defaultValue: 'Get Connected' }),
       description: t('get_connected_description', { defaultValue: 'Connect with the Church of God of Prophecy community and discover ways to get involved.' }),
+      sections: [
+        {
+          title: t('calendar', { defaultValue: 'Calendar' }),
+          description: t('stay_updated', { defaultValue: 'Stay updated with upcoming events, services, and important dates.' }),
+          buttonText: t('view_calendar', { defaultValue: 'View Calendar' }),
+          buttonLink: '/get-connected/calendar'
+        },
+        {
+          title: t('contact_us', { defaultValue: 'Contact Us' }),
+          description: t('reach_out', { defaultValue: 'Reach out with questions, prayer requests, or to learn more.' }),
+          buttonText: t('contact_us', { defaultValue: 'Contact Us' }),
+          buttonLink: '/get-connected/contact'
+        },
+        {
+          title: t('employment', { defaultValue: 'Employment' }),
+          description: t('explore_career', { defaultValue: 'Explore career opportunities within our organization.' }),
+          buttonText: t('view_opportunities', { defaultValue: 'View Opportunities' }),
+          buttonLink: '/get-connected/employment'
+        },
+        {
+          title: t('schedule_tour', { defaultValue: 'Schedule a Tour' }),
+          description: t('visit_facilities', { defaultValue: 'Visit our facilities and learn about our community.' }),
+          buttonText: t('schedule_tour', { defaultValue: 'Schedule Tour' }),
+          buttonLink: '/get-connected/schedule-tour'
+        }
+      ],
       content: `
         <div class="row">
           <div class="col-md-6 mb-4">
@@ -186,7 +239,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body">
                 <h3 class="card-title">${t('calendar', { defaultValue: 'Calendar' })}</h3>
                 <p class="card-text">${t('stay_updated', { defaultValue: 'Stay updated with upcoming events, services, and important dates.' })}</p>
-                <a href="/get-connected/calendar" class="btn btn-primary">${t('view_calendar', { defaultValue: 'View Calendar' })}</a>
+                <a href="/get-connected/calendar" class="btn btn-dark">${t('view_calendar', { defaultValue: 'View Calendar' })}</a>
               </div>
             </div>
           </div>
@@ -195,7 +248,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body">
                 <h3 class="card-title">${t('contact_us', { defaultValue: 'Contact Us' })}</h3>
                 <p class="card-text">${t('reach_out', { defaultValue: 'Reach out with questions, prayer requests, or to learn more.' })}</p>
-                <a href="/get-connected/contact" class="btn btn-primary">${t('contact_us', { defaultValue: 'Contact Us' })}</a>
+                <a href="/get-connected/contact" class="btn btn-dark">${t('contact_us', { defaultValue: 'Contact Us' })}</a>
               </div>
             </div>
           </div>
@@ -204,7 +257,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body">
                 <h3 class="card-title">${t('employment', { defaultValue: 'Employment' })}</h3>
                 <p class="card-text">${t('explore_career', { defaultValue: 'Explore career opportunities within our organization.' })}</p>
-                <a href="/get-connected/employment" class="btn btn-primary">${t('view_opportunities', { defaultValue: 'View Opportunities' })}</a>
+                <a href="/get-connected/employment" class="btn btn-dark">${t('view_opportunities', { defaultValue: 'View Opportunities' })}</a>
               </div>
             </div>
           </div>
@@ -213,7 +266,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body">
                 <h3 class="card-title">${t('schedule_tour', { defaultValue: 'Schedule a Tour' })}</h3>
                 <p class="card-text">${t('visit_facilities', { defaultValue: 'Visit our facilities and learn about our community.' })}</p>
-                <a href="/get-connected/schedule-tour" class="btn btn-primary">${t('schedule_tour', { defaultValue: 'Schedule Tour' })}</a>
+                <a href="/get-connected/schedule-tour" class="btn btn-dark">${t('schedule_tour', { defaultValue: 'Schedule Tour' })}</a>
               </div>
             </div>
           </div>
@@ -232,10 +285,10 @@ const getContentData = (): ContentContextType => ({
         <div class="row">
           <div class="col-md-6">
             <h3>${t('physical_address', { defaultValue: 'Physical Address' })}</h3>
-            <p>3720 Keith Street NW<br>Cleveland, TN 37312<br>${t('phone', { defaultValue: 'Phone' })}: (423) 559-5100</p>
+            <p>ул. Аксаков 8<br>Русе, 7012<br>${t('phone', { defaultValue: 'Phone' })}: (359) 888-888-888</p>
             
             <h3>${t('mailing_address', { defaultValue: 'Mailing Address' })}</h3>
-            <p>PO Box 2910<br>Cleveland, TN 37320</p>
+            <p>ул. Аксаков 8<br>Русе, 7012</p>
           </div>
           <div class="col-md-6">
             <h3>${t('contact_form', { defaultValue: 'Contact Form' })}</h3>
@@ -252,7 +305,7 @@ const getContentData = (): ContentContextType => ({
                 <label for="message" class="form-label">Message</label>
                 <textarea class="form-control" id="message" rows="4" required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <button type="submit" class="btn btn-dark">Send Message</button>
             </form>
           </div>
         </div>
@@ -261,359 +314,169 @@ const getContentData = (): ContentContextType => ({
     'get-connected/faq': {
       title: t('faq_title', { defaultValue: 'Frequently Asked Questions' }),
       description: t('faq_description', { defaultValue: 'Find answers to common questions about our church, beliefs, and services.' }),
-      content: `
-        <div class="faq-container">
-          <div class="row">
-            <div class="col-12">
-              <p class="lead">We've compiled answers to some of the most common questions about the Church of God of Prophecy. If you don't find what you're looking for, please <a href="/get-connected/contact">contact us</a> directly.</p>
-            </div>
-          </div>
-
-          <div class="row mt-4">
-            <div class="col-12">
-              <div class="accordion" id="faqAccordion">
-                
-                <!-- General Questions -->
-                <h3 class="mb-3 mt-4">General Questions</h3>
-                
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      What is the Church of God of Prophecy?
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      The Church of God of Prophecy is a global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people, and dedicated to reconciling the world to Christ through the power of the Holy Spirit. We have over 12,000 churches and missions in 135 countries worldwide.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      When was the Church of God of Prophecy founded?
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      The Church of God of Prophecy was founded in the early 20th century as part of the modern Pentecostal movement. We have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God's kingdom on earth.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      Where is your headquarters located?
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Our international headquarters is located in Cleveland, Tennessee, USA, at 3720 Keith Street NW. Our mailing address is PO Box 2910, Cleveland, TN 37320. You can reach us at (423) 559-5100.
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Beliefs and Doctrine -->
-                <h3 class="mb-3 mt-5">Beliefs and Doctrine</h3>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                      What do you believe about the Bible?
-                    </button>
-                  </h2>
-                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      We believe the Bible is the inspired, inerrant Word of God and our final authority for faith and practice. Scripture is God-breathed and profitable for teaching, reproof, correction, and instruction in righteousness.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                      Do you believe in the Trinity?
-                    </button>
-                  </h2>
-                  <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Yes, we believe in one God eternally existing in three persons: Father, Son, and Holy Spirit. Each person of the Trinity is fully God, yet there is only one God.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingSix">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                      What is your position on salvation?
-                    </button>
-                  </h2>
-                  <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      We believe salvation is by grace through faith in Jesus Christ, not by works. It is a free gift from God available to all who repent of their sins and accept Jesus as their personal Lord and Savior.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingSeven">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                      Do you believe in the baptism of the Holy Spirit?
-                    </button>
-                  </h2>
-                  <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Yes, we believe in the baptism of the Holy Spirit as a distinct experience available to all believers. This empowerment enables Christians to live victorious lives and serve God effectively in ministry and witness.
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Services and Worship -->
-                <h3 class="mb-3 mt-5">Services and Worship</h3>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingEight">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                      What can I expect during a worship service?
-                    </button>
-                  </h2>
-                  <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Our worship services are Spirit-led and include contemporary and traditional music, biblical preaching, prayer, and fellowship. You'll experience warm hospitality, passionate worship, and practical biblical teaching that applies to daily life.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingNine">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                      What should I wear to church?
-                    </button>
-                  </h2>
-                  <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Come as you are! We welcome people regardless of how they dress. Some prefer casual attire while others dress more formally. The most important thing is that you feel comfortable and can focus on worshiping God.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                      ${t('faq_children_programs', { defaultValue: 'Do you have programs for children and youth?' })}
-                    </button>
-                  </h2>
-                  <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      ${t('faq_children_answer', { defaultValue: 'Yes! We have age-appropriate programs including Sunday School, children\'s church, youth groups, Vacation Bible School, camps, and special events. Our goal is to help young people develop a strong relationship with Jesus Christ.' })}
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Membership and Getting Involved -->
-                <h3 class="mb-3 mt-5">${t('faq_membership_involvement', { defaultValue: 'Membership and Getting Involved' })}</h3>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingEleven">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
-                      ${t('faq_become_member', { defaultValue: 'How do I become a member?' })}
-                    </button>
-                  </h2>
-                  <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      ${t('faq_member_answer', { defaultValue: 'Membership is open to all who have accepted Jesus Christ as their personal Savior. The steps include: accepting Christ, being baptized by immersion, committing to spiritual growth through Bible study and fellowship, and using your gifts to serve others.' })}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwelve">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
-                      ${t('faq_baptism_required', { defaultValue: 'Do I need to be baptized to attend church?' })}
-                    </button>
-                  </h2>
-                  <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      ${t('faq_baptism_answer', { defaultValue: 'No, you don\'t need to be baptized to attend church. Everyone is welcome to join us for worship and fellowship. Baptism is required for membership and represents your public declaration of faith in Jesus Christ.' })}
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThirteen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
-                      ${t('faq_get_involved_ministry', { defaultValue: 'How can I get involved in ministry?' })}
-                    </button>
-                  </h2>
-                  <div id="collapseThirteen" class="accordion-collapse collapse" aria-labelledby="headingThirteen" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      ${t('faq_ministry_answer', { defaultValue: 'There are many ways to get involved! You can serve in worship teams, children\'s ministry, youth programs, missions, community outreach, administrative roles, and more. Contact your local church leadership to discover opportunities that match your gifts and interests.' })}
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Giving and Support -->
-                <h3 class="mb-3 mt-5">Giving and Support</h3>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingFourteen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
-                      Do I have to tithe or give money?
-                    </button>
-                  </h2>
-                  <div id="collapseFourteen" class="accordion-collapse collapse" aria-labelledby="headingFourteen" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Giving is voluntary and should come from a cheerful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingFifteen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
-                      How are donations used?
-                    </button>
-                  </h2>
-                  <div id="collapseFifteen" class="accordion-collapse collapse" aria-labelledby="headingFifteen" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God's kingdom worldwide.
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Global Ministry -->
-                <h3 class="mb-3 mt-5">Global Ministry</h3>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingSixteen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
-                      How can I support global missions?
-                    </button>
-                  </h2>
-                  <div id="collapseSixteen" class="accordion-collapse collapse" aria-labelledby="headingSixteen" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingSeventeen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen">
-                      What is the International Assembly?
-                    </button>
-                  </h2>
-                  <div id="collapseSeventeen" class="accordion-collapse collapse" aria-labelledby="headingSeventeen" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      The International Assembly is our global church gathering held every four years. Delegates from 135 countries come together for worship, fellowship, and church business. The next assembly will be in Orlando, Florida, July 15-19, 2026.
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Contact and Next Steps -->
-                <h3 class="mb-3 mt-5">Contact and Next Steps</h3>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingEighteen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEighteen" aria-expanded="false" aria-controls="collapseEighteen">
-                      How do I find a local church?
-                    </button>
-                  </h2>
-                  <div id="collapseEighteen" class="accordion-collapse collapse" aria-labelledby="headingEighteen" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Use our <a href="/find-a-church">church locator</a> to find a congregation near you. You can also call our headquarters at (423) 559-5100 or <a href="/get-connected/contact">contact us online</a> for assistance in finding a local church.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingNineteen">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNineteen" aria-expanded="false" aria-controls="collapseNineteen">
-                      Can I schedule a tour of your facilities?
-                    </button>
-                  </h2>
-                  <div id="collapseNineteen" class="accordion-collapse collapse" aria-labelledby="headingNineteen" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      Yes! We'd love to show you around our facilities. You can <a href="/get-connected/schedule-tour">schedule a tour</a> of our headquarters in Cleveland, Tennessee, or visit Fields of the Wood, our biblical theme park in North Carolina.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingTwenty">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwenty" aria-expanded="false" aria-controls="collapseTwenty">
-                      I have more questions. How can I get answers?
-                    </button>
-                  </h2>
-                  <div id="collapseTwenty" class="accordion-collapse collapse" aria-labelledby="headingTwenty" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                      We're here to help! You can <a href="/get-connected/contact">contact us</a> through our website, call us at (423) 559-5100, or email us at info@cogop.org. You can also reach out to a local Church of God of Prophecy pastor in your area.
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="row mt-5">
-            <div class="col-12">
-              <div class="card bg-light">
-                <div class="card-body text-center">
-                  <h4 class="card-title">Still Have Questions?</h4>
-                  <p class="card-text">We're here to help! Don't hesitate to reach out with any questions about our church, beliefs, or how to get involved.</p>
-                  <div class="row">
-                    <div class="col-md-4 mb-2">
-                      <a href="/get-connected/contact" class="btn btn-primary w-100">Contact Us</a>
-                    </div>
-                    <div class="col-md-4 mb-2">
-                      <a href="/find-a-church" class="btn btn-outline-primary w-100">Find a Church</a>
-                    </div>
-                    <div class="col-md-4 mb-2">
-                      <a href="/get-connected/schedule-tour" class="btn btn-outline-primary w-100">Schedule a Tour</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <style>
-          .faq-container .accordion-button {
-            font-weight: 500;
-            font-size: 1.1rem;
+      faq: {
+        introduction: "We've compiled answers to some of the most common questions about the Church of God of Prophecy. If you don't find what you're looking for, please contact us directly.",
+        categories: [
+          {
+            title: "General Questions",
+            questions: [
+              {
+                id: "general-1",
+                question: "What is the Church of God of Prophecy?",
+                answer: "The Church of God of Prophecy is a global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people, and dedicated to reconciling the world to Christ through the power of the Holy Spirit. We have over 12,000 churches and missions in 135 countries worldwide.",
+                isExpanded: true
+              },
+              {
+                id: "general-2",
+                question: "When was the Church of God of Prophecy founded?",
+                answer: "The Church of God of Prophecy was founded in the early 20th century as part of the modern Pentecostal movement. We have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God's kingdom on earth."
+              },
+              {
+                id: "general-3",
+                question: "Where is your headquarters located?",
+                answer: "Our international headquarters is located in Cleveland, Tennessee, USA, at 3720 Keith Street NW. Our mailing address is PO Box 2910, Cleveland, TN 37320. You can reach us at (423) 559-5100."
+              }
+            ]
+          },
+          {
+            title: "Beliefs and Doctrine",
+            questions: [
+              {
+                id: "beliefs-1",
+                question: "What do you believe about the Bible?",
+                answer: "We believe the Bible is the inspired, inerrant Word of God and our final authority for faith and practice. Scripture is God-breathed and profitable for teaching, reproof, correction, and instruction in righteousness."
+              },
+              {
+                id: "beliefs-2",
+                question: "Do you believe in the Trinity?",
+                answer: "Yes, we believe in one God eternally existing in three persons: Father, Son, and Holy Spirit. Each person of the Trinity is fully God, yet there is only one God."
+              },
+              {
+                id: "beliefs-3",
+                question: "What is your position on salvation?",
+                answer: "We believe salvation is by grace through faith in Jesus Christ, not by works. It is a free gift from God available to all who repent of their sins and accept Jesus as their personal Lord and Savior."
+              },
+              {
+                id: "beliefs-4",
+                question: "Do you believe in the baptism of the Holy Spirit?",
+                answer: "Yes, we believe in the baptism of the Holy Spirit as a distinct experience available to all believers. This empowerment enables Christians to live victorious lives and serve God effectively in ministry and witness."
+              }
+            ]
+          },
+          {
+            title: "Services and Worship",
+            questions: [
+              {
+                id: "worship-1",
+                question: "What can I expect during a worship service?",
+                answer: "Our worship services are Spirit-led and include contemporary and traditional music, biblical preaching, prayer, and fellowship. You'll experience warm hospitality, passionate worship, and practical biblical teaching that applies to daily life."
+              },
+              {
+                id: "worship-2",
+                question: "What should I wear to church?",
+                answer: "Come as you are! We welcome people regardless of how they dress. Some prefer casual attire while others dress more formally. The most important thing is that you feel comfortable and can focus on worshiping God."
+              },
+              {
+                id: "worship-3",
+                question: t('faq_children_programs', { defaultValue: 'Do you have programs for children and youth?' }),
+                answer: t('faq_children_answer', { defaultValue: 'Yes! We have age-appropriate programs including Sunday School, children\'s church, youth groups, Vacation Bible School, camps, and special events. Our goal is to help young people develop a strong relationship with Jesus Christ.' })
+              }
+            ]
+          },
+          {
+            title: t('faq_membership_involvement', { defaultValue: 'Membership and Getting Involved' }),
+            questions: [
+              {
+                id: "membership-1",
+                question: t('faq_become_member', { defaultValue: 'How do I become a member?' }),
+                answer: t('faq_member_answer', { defaultValue: 'Membership is open to all who have accepted Jesus Christ as their personal Savior. The steps include: accepting Christ, being baptized by immersion, committing to spiritual growth through Bible study and fellowship, and using your gifts to serve others.' })
+              },
+              {
+                id: "membership-2",
+                question: t('faq_baptism_required', { defaultValue: 'Do I need to be baptized to attend church?' }),
+                answer: t('faq_baptism_answer', { defaultValue: 'No, you don\'t need to be baptized to attend church. Everyone is welcome to join us for worship and fellowship. Baptism is required for membership and represents your public declaration of faith in Jesus Christ.' })
+              },
+              {
+                id: "membership-3",
+                question: t('faq_get_involved_ministry', { defaultValue: 'How can I get involved in ministry?' }),
+                answer: t('faq_ministry_answer', { defaultValue: 'There are many ways to get involved! You can serve in worship teams, children\'s ministry, youth programs, missions, community outreach, administrative roles, and more. Contact your local church leadership to discover opportunities that match your gifts and interests.' })
+              }
+            ]
+          },
+          {
+            title: "Giving and Support",
+            questions: [
+              {
+                id: "giving-1",
+                question: "Do I have to tithe or give money?",
+                answer: "Giving is voluntary and should come from a cheerful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions."
+              },
+              {
+                id: "giving-2",
+                question: "How are donations used?",
+                answer: "Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God's kingdom worldwide."
+              }
+            ]
+          },
+          {
+            title: "Global Ministry",
+            questions: [
+              {
+                id: "global-1",
+                question: "How can I support global missions?",
+                answer: "You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities."
+              },
+              {
+                id: "global-2",
+                question: "What is the International Assembly?",
+                answer: "The International Assembly is our global church gathering held every four years. Delegates from 135 countries come together for worship, fellowship, and church business. The next assembly will be in Orlando, Florida, July 15-19, 2026."
+              }
+            ]
+          },
+          {
+            title: "Contact and Next Steps",
+            questions: [
+              {
+                id: "contact-1",
+                question: "How do I find a local church?",
+                answer: "Use our church locator to find a congregation near you. You can also call our headquarters at (423) 559-5100 or contact us online for assistance in finding a local church."
+              },
+              {
+                id: "contact-2",
+                question: "Can I schedule a tour of your facilities?",
+                answer: "Yes! We'd love to show you around our facilities. You can schedule a tour of our headquarters in Cleveland, Tennessee, or visit Fields of the Wood, our biblical theme park in North Carolina."
+              },
+              {
+                id: "contact-3",
+                question: "I have more questions. How can I get answers?",
+                answer: "We're here to help! You can contact us through our website, call us at (423) 559-5100, or email us at info@cogop.org. You can also reach out to a local Church of God of Prophecy pastor in your area."
+              }
+            ]
           }
-          
-          .faq-container .accordion-body {
-            font-size: 1rem;
-            line-height: 1.6;
-          }
-          
-          .faq-container h3 {
-            color: #2c5aa0;
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 0.5rem;
-          }
-          
-          .faq-container .accordion-item {
-            border: 1px solid #dee2e6;
-            margin-bottom: 0.5rem;
-            border-radius: 0.375rem;
-          }
-          
-          .faq-container .accordion-button:not(.collapsed) {
-            background-color: #f8f9fa;
-            color: #2c5aa0;
-          }
-          
-          .faq-container .accordion-button:focus {
-            box-shadow: 0 0 0 0.25rem rgba(44, 90, 160, 0.25);
-          }
-        </style>
-      `
+        ],
+        callToAction: {
+          title: "Still Have Questions?",
+          description: "We're here to help! Don't hesitate to reach out with any questions about our church, beliefs, or how to get involved.",
+          buttons: [
+            {
+              text: "Contact Us",
+              link: "/get-connected/contact",
+              variant: "dark"
+            },
+            {
+              text: "Find a Church",
+              link: "/find-a-church",
+              variant: "outline"
+            },
+            {
+              text: "Schedule a Tour",
+              link: "/get-connected/schedule-tour",
+              variant: "outline"
+            }
+          ]
+        }
+      },
+      content: `<p>FAQ content will be rendered using structured data above.</p>`
     },
     'get-connected/employment': {
       title: t('employment_title', { defaultValue: 'Employment' }),
@@ -743,7 +606,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body">
                 <h5 class="card-title">${t('global_missions_title', { defaultValue: 'Global Missions' })}</h5>
                 <p class="card-text">${t('global_missions_desc', { defaultValue: 'Reaching 135 countries with the Gospel of Jesus Christ.' })}</p>
-                <a href="/ministries/global-missions" class="btn btn-primary">${t('learn_more', { defaultValue: 'Learn More' })}</a>
+                <a href="/ministries/global-missions" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
               </div>
             </div>
           </div>
@@ -752,7 +615,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body">
                 <h5 class="card-title">${t('youth_title', { defaultValue: 'Youth Ministry' })}</h5>
                 <p class="card-text">${t('empowering_next_generation', { defaultValue: 'Empowering the next generation of believers.' })}</p>
-                <a href="/ministries/youth" class="btn btn-primary">${t('learn_more', { defaultValue: 'Learn More' })}</a>
+                <a href="/ministries/youth" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
               </div>
             </div>
           </div>
@@ -761,7 +624,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body">
                 <h5 class="card-title">${t('spirit_life_seminary_title', { defaultValue: 'Seminary' })}</h5>
                 <p class="card-text">${t('training_leaders_ministry', { defaultValue: 'Training ministers for effective service.' })}</p>
-                <a href="/ministries/seminary" class="btn btn-primary">${t('learn_more', { defaultValue: 'Learn More' })}</a>
+                <a href="/ministries/seminary" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
               </div>
             </div>
           </div>
@@ -902,7 +765,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body text-center">
                 <h5 class="card-title">Sponsor a Child</h5>
                 <p class="card-text">Begin your sponsorship journey today and change a child's life forever.</p>
-                <a href="/give" class="btn btn-primary">Start Sponsoring</a>
+                <a href="/give" class="btn btn-dark">Start Sponsoring</a>
               </div>
             </div>
           </div>
@@ -1783,7 +1646,7 @@ const getContentData = (): ContentContextType => ({
       `
     },
 
-    // Give Section
+    // Give Section // https://app.easytithe.com/app/giving/cogop
     'give': {
       title: t('give_title', { defaultValue: 'Give' }),
       description: t('give_description', { defaultValue: 'Support the ministry and mission of the Church of God of Prophecy through your giving.' }),
@@ -1798,7 +1661,7 @@ const getContentData = (): ContentContextType => ({
               <div class="card-body text-center">
                 <h5 class="card-title">${t('online_giving', { defaultValue: 'Online Giving' })}</h5>
                 <p class="card-text">${t('online_giving_desc', { defaultValue: 'Secure online donations' })}</p>
-                <button class="btn btn-primary">${t('give_online', { defaultValue: 'Give Online' })}</button>
+                <button class="btn btn-dark">${t('give_online', { defaultValue: 'Give Online' })}</button>
               </div>
             </div>
           </div>
@@ -1826,8 +1689,8 @@ const getContentData = (): ContentContextType => ({
 
     // Find a Church Section
     'find-a-church': {
-      title: t('church_locator_title', { defaultValue: 'Find a Church' }),
-      description: t('church_locator_description', { defaultValue: 'Locate a Church of God of Prophecy congregation near you.' }),
+      title: t('find_a_church_title', { defaultValue: 'Find a Church' }),
+      description: t('find_a_church_description', { defaultValue: 'Locate a Church of God of Prophecy congregation near you.' }),
       content: `
         <h2>${t('find_congregation', { defaultValue: 'Find a Congregation Near You' })}</h2>
         <p>${t('find_church_desc', { defaultValue: 'With over 12,000 churches and missions in 135 countries, there\'s likely a Church of God of Prophecy congregation near you.' })}</p>
@@ -1837,29 +1700,29 @@ const getContentData = (): ContentContextType => ({
             <h3>${t('search_by_location', { defaultValue: 'Search by Location' })}</h3>
             <form class="mb-4">
               <div class="mb-3">
-                <label for="location" class="form-label">${t('enter_location', { defaultValue: 'Enter City, State, or Country' })}</label>
+                <label for="location" class="form-label">${t('enter_city_state_country', { defaultValue: 'Enter City, State, or Country' })}</label>
                 <input type="text" class="form-control" id="location" placeholder="${t('location_placeholder', { defaultValue: 'e.g., Cleveland, TN or United States' })}">
               </div>
-              <button type="submit" class="btn btn-primary">${t('search_churches', { defaultValue: 'Search Churches' })}</button>
+              <button type="submit" class="btn btn-dark">${t('search_churches', { defaultValue: 'Search Churches' })}</button>
             </form>
           </div>
           <div class="col-md-6">
             <h3>${t('contact_information', { defaultValue: 'Contact Information' })}</h3>
-            <p>${t('need_help_finding', { defaultValue: 'Need help finding a church or have questions?' })}</p>
+            <p>${t('cant_find_church', { defaultValue: 'Can\'t find a church near you? Contact us for assistance.' })}</p>
             <p><strong>${t('phone', { defaultValue: 'Phone' })}:</strong> (423) 559-5100<br>
             <strong>Email:</strong> info@cogop.org</p>
             <a href="/get-connected/contact" class="btn btn-outline-primary">${t('contact_us', { defaultValue: 'Contact Us' })}</a>
           </div>
         </div>
         
-        <h3>${t('what_to_expect', { defaultValue: 'What to Expect' })}</h3>
+        <h3>${t('what_to_expect_at_churches', { defaultValue: 'What to Expect at Our Churches' })}</h3>
         <p>${t('what_to_expect_desc', { defaultValue: 'At Church of God of Prophecy congregations, you\'ll find:' })}</p>
         <ul>
-          <li>${t('spirit_led_worship', { defaultValue: 'Spirit-led worship and biblical teaching' })}</li>
-          <li>${t('warm_fellowship', { defaultValue: 'Warm, welcoming fellowship' })}</li>
-          <li>${t('spiritual_growth_opportunities', { defaultValue: 'Opportunities for spiritual growth' })}</li>
-          <li>${t('community_outreach', { defaultValue: 'Community outreach and missions' })}</li>
-          <li>${t('programs_all_ages', { defaultValue: 'Programs for all ages' })}</li>
+          <li>${t('spirit_led_worship_teaching', { defaultValue: 'Spirit-led worship and biblical teaching' })}</li>
+          <li>${t('warm_welcoming_fellowship', { defaultValue: 'Warm, welcoming fellowship' })}</li>
+          <li>${t('opportunities_spiritual_growth', { defaultValue: 'Opportunities for spiritual growth' })}</li>
+          <li>${t('community_outreach_missions', { defaultValue: 'Community outreach and missions' })}</li>
+          <li>${t('programs_for_all_ages', { defaultValue: 'Programs for all ages' })}</li>
         </ul>
       `
     }

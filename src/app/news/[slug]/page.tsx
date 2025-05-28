@@ -47,7 +47,7 @@ export default function ArticlePage() {
       <div className="container py-5 text-center">
         <h1 className="display-4">Article Not Found</h1>
         <p className="lead">The article you are looking for does not exist or may have been moved.</p>
-        <Link href="/news" className="btn btn-primary mt-3">
+        <Link href="/news" className="btn btn-dark mt-3">
           Back to News
         </Link>
       </div>

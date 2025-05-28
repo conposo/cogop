@@ -24,7 +24,7 @@ export default function RootLayout({
             <AuthProvider>
               <AdminProvider>
                 <Navigation />
-                <main className="mt-5 pt-4">
+                <main className="-mt-5 -pt-4">
                   {children}
                 </main>
                 <Footer />

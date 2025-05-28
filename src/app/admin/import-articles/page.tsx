@@ -94,7 +94,7 @@ export default function ImportArticles() {
                 <button
                   onClick={handleImport}
                   disabled={loading}
-                  className="btn btn-primary btn-lg"
+                  className="btn btn-dark btn-lg"
                 >
                   {loading ? (
                     <>

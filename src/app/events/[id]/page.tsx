@@ -45,7 +45,7 @@ export default function EventPage() {
       <div className="container py-5 text-center">
         <h1 className="display-4">Event Not Found</h1>
         <p className="lead">The event you are looking for does not exist or may have been moved.</p>
-        <Link href="/events" className="btn btn-primary mt-3">
+        <Link href="/events" className="btn btn-dark mt-3">
           Back to Events
         </Link>
       </div>

@@ -47,7 +47,7 @@ export default function KnowGod() {
           <div className="text-center bg-light p-4 rounded">
             <h2 className="h4 mb-3">Ready to Take the Next Step?</h2>
             <p className="mb-4">If you'd like to know more about having a personal relationship with Jesus Christ, we're here to help.</p>
-            <Link href="/get-connected/contact" className="btn btn-primary me-3">Contact Us</Link>
+            <Link href="/get-connected/contact" className="btn btn-dark me-3">Contact Us</Link>
             <Link href="/resources/membership" className="btn btn-outline-primary">Learn About Membership</Link>
           </div>
         </div>

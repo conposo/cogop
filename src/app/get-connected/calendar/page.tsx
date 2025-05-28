@@ -296,7 +296,7 @@ export default function CalendarPage() {
               <Link href="/events" className="btn btn-outline-primary">
                 <i className="bi bi-arrow-left me-2"></i>All Events
               </Link>
-              <button className="btn btn-primary" onClick={goToToday}>
+              <button className="btn btn-dark" onClick={goToToday}>
                 <i className="bi bi-calendar-check me-2"></i>Today
               </button>
             </div>
@@ -439,7 +439,7 @@ export default function CalendarPage() {
                             <p className="text-muted small mb-0 ms-4">{event.eventAddress}</p>
                           )}
                         </div>
-                        <Link href={`/events/${event.id}`} className="btn btn-primary">
+                        <Link href={`/events/${event.id}`} className="btn btn-dark">
                           Learn More
                         </Link>
                       </div>
@@ -466,7 +466,7 @@ export default function CalendarPage() {
               Don't miss out on any of our upcoming events and activities!
             </p>
             <div className="d-flex justify-content-center gap-3 flex-wrap">
-              <Link href="/get-connected/contact" className="btn btn-primary">
+              <Link href="/get-connected/contact" className="btn btn-dark">
                 <i className="bi bi-envelope me-2"></i>Contact Us
               </Link>
               <Link href="/get-connected/schedule-tour" className="btn btn-outline-primary">

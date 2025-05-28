@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { getPageContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
+import { t } from '@/lib/i18n'
 
 // Sample church data - in a real app, this would come from an API/database
 const sampleChurches = [
@@ -248,7 +249,7 @@ export default function FindaChurchPage() {
               <div className="card-header">
                 <h5 className="mb-0">
                   <i className="bi bi-search me-2"></i>
-                  Search Churches
+                  {t('search_churches', { defaultValue: 'Search Churches' })}
                 </h5>
               </div>
               <div className="card-body">
@@ -256,7 +257,7 @@ export default function FindaChurchPage() {
                 <form onSubmit={handleSearch} className="mb-4">
                   <div className="mb-3">
                     <label htmlFor="location" className="form-label">
-                      Enter City, State, or Country
+                      {t('enter_city_state_country', { defaultValue: 'Enter City, State, or Country' })}
                     </label>
                     <input
                       type="text"
@@ -264,19 +265,19 @@ export default function FindaChurchPage() {
                       id="location"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      placeholder="e.g., Cleveland, TN or United States"
+                      placeholder={t('location_placeholder', { defaultValue: 'e.g., Cleveland, TN or United States' })}
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary w-100" disabled={isLoading}>
+                  <button type="submit" className="btn btn-dark w-100" disabled={isLoading}>
                     {isLoading ? (
                       <>
                         <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        Searching...
+                        {t('searching', { defaultValue: 'Searching...' })}
                       </>
                     ) : (
                       <>
                         <i className="bi bi-search me-2"></i>
-                        Search Churches
+                        {t('search_churches', { defaultValue: 'Search Churches' })}
                       </>
                     )}
                   </button>
@@ -284,7 +285,7 @@ export default function FindaChurchPage() {
 
                 {/* Program Filters */}
                 <div className="mb-4">
-                  <h6 className="mb-3">Filter by Programs</h6>
+                  <h6 className="mb-3">{t('filter_by_programs', { defaultValue: 'Filter by Programs' })}</h6>
                   {allPrograms.map(program => (
                     <div key={program} className="form-check mb-2">
                       <input
@@ -309,23 +310,23 @@ export default function FindaChurchPage() {
                     onClick={clearFilters}
                   >
                     <i className="bi bi-x-circle me-2"></i>
-                    Clear Filters
+                    {t('clear_filters', { defaultValue: 'Clear Filters' })}
                   </button>
                 )}
 
                 {/* Contact Info */}
                 <hr />
                 <div className="mt-4">
-                  <h6>Need Help?</h6>
+                  <h6>{t('need_help', { defaultValue: 'Need Help?' })}</h6>
                   <p className="small text-muted mb-2">
-                    Can't find a church near you? Contact us for assistance.
+                    {t('cant_find_church', { defaultValue: 'Can\'t find a church near you? Contact us for assistance.' })}
                   </p>
                   <p className="small">
-                    <strong>Phone:</strong> (423) 559-5100<br />
+                    <strong>{t('phone', { defaultValue: 'Phone' })}:</strong> (423) 559-5100<br />
                     <strong>Email:</strong> info@cogop.org
                   </p>
                   <a href="/get-connected/contact" className="btn btn-outline-primary btn-sm">
-                    Contact Us
+                    {t('contact_us', { defaultValue: 'Contact Us' })}
                   </a>
                 </div>
               </div>
@@ -337,17 +338,17 @@ export default function FindaChurchPage() {
             {/* Results Header */}
             <div className="d-flex justify-content-between align-items-center mb-4">
               <h3>
-                {isLoading ? 'Searching...' : `Found ${filteredChurches.length} Churches`}
+                {isLoading ? t('searching', { defaultValue: 'Searching...' }) : t('found_churches', { defaultValue: 'Found {count} Churches' }).replace('{count}', filteredChurches.length.toString())}
                 {searchTerm && (
                   <small className="text-muted ms-2">
-                    for "{searchTerm}"
+                    {t('for_search_term', { defaultValue: 'for "{term}"' }).replace('{term}', searchTerm)}
                   </small>
                 )}
               </h3>
               {filteredChurches.length > 0 && (
                 <div className="text-muted">
                   <i className="bi bi-geo-alt me-1"></i>
-                  Showing results worldwide
+                  {t('showing_results_worldwide', { defaultValue: 'Showing results worldwide' })}
                 </div>
               )}
             </div>
@@ -356,26 +357,25 @@ export default function FindaChurchPage() {
             {isLoading ? (
               <div className="text-center py-5">
                 <div className="spinner-border text-primary" role="status">
-                  <span className="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">{t('loading', { defaultValue: 'Loading...' })}</span>
                 </div>
-                <p className="mt-3 text-muted">Searching for churches...</p>
+                <p className="mt-3 text-muted">{t('searching_for_churches', { defaultValue: 'Searching for churches...' })}</p>
               </div>
             ) : filteredChurches.length === 0 ? (
               <div className="text-center py-5">
                 <i className="bi bi-search display-1 text-muted mb-3"></i>
-                <h4>No Churches Found</h4>
+                <h4>{t('no_churches_found', { defaultValue: 'No Churches Found' })}</h4>
                 <p className="text-muted mb-4">
-                  We couldn't find any churches matching your search criteria.
-                  Try adjusting your search terms or contact us for assistance.
+                  {t('no_churches_message', { defaultValue: 'We couldn\'t find any churches matching your search criteria. Try adjusting your search terms or contact us for assistance.' })}
                 </p>
                 <button
-                  className="btn btn-primary me-2"
+                  className="btn btn-dark me-2"
                   onClick={clearFilters}
                 >
-                  Clear Filters
+                  {t('clear_filters', { defaultValue: 'Clear Filters' })}
                 </button>
                 <a href="/get-connected/contact" className="btn btn-outline-primary">
-                  Contact Us
+                  {t('contact_us', { defaultValue: 'Contact Us' })}
                 </a>
               </div>
             ) : (
@@ -410,18 +410,18 @@ export default function FindaChurchPage() {
                               </p>
                               <p className="mb-0">
                                 <i className="bi bi-person text-muted me-2"></i>
-                                Pastor: {church.pastor}
+                                {t('pastor', { defaultValue: 'Pastor' })}: {church.pastor}
                               </p>
                             </div>
 
                             <div className="mb-3">
-                              <h6 className="text-muted mb-2">Service Times</h6>
+                              <h6 className="text-muted mb-2">{t('service_times', { defaultValue: 'Service Times' })}</h6>
                               <p className="small mb-1">{church.servicesTimes.sunday}</p>
                               <p className="small mb-0">{church.servicesTimes.wednesday}</p>
                             </div>
 
                             <div className="mb-3">
-                              <h6 className="text-muted mb-2">Programs & Ministries</h6>
+                              <h6 className="text-muted mb-2">{t('programs_ministries', { defaultValue: 'Programs & Ministries' })}</h6>
                               <div className="d-flex flex-wrap gap-1">
                                 {church.programs.map(program => (
                                   <span key={program} className="badge bg-light text-dark border">
@@ -441,7 +441,7 @@ export default function FindaChurchPage() {
                                 className="btn btn-outline-primary btn-sm"
                               >
                                 <i className="bi bi-map me-1"></i>
-                                Get Directions
+                                {t('get_directions', { defaultValue: 'Get Directions' })}
                               </a>
                               {church.website && (
                                 <a
@@ -451,15 +451,15 @@ export default function FindaChurchPage() {
                                   className="btn btn-outline-secondary btn-sm"
                                 >
                                   <i className="bi bi-globe me-1"></i>
-                                  Visit Website
+                                  {t('visit_website', { defaultValue: 'Visit Website' })}
                                 </a>
                               )}
                               <a
                                 href={`tel:${church.phone}`}
-                                className="btn btn-primary btn-sm"
+                                className="btn btn-dark btn-sm"
                               >
                                 <i className="bi bi-telephone me-1"></i>
-                                Call Church
+                                {t('call_church', { defaultValue: 'Call Church' })}
                               </a>
                             </div>
                           </div>
@@ -474,28 +474,26 @@ export default function FindaChurchPage() {
             {/* Global Network Info */}
             {filteredChurches.length > 0 && (
               <div className="mt-5 p-4 bg-light rounded">
-                <h4>Our Global Network</h4>
+                <h4>{t('our_global_network', { defaultValue: 'Our Global Network' })}</h4>
                 <p className="mb-3">
-                  The Church of God of Prophecy has over 12,000 churches and missions 
-                  in 135 countries worldwide. If you don't see a church near you, 
-                  we may still have a congregation in your area.
+                  {t('global_network_description', { defaultValue: 'The Church of God of Prophecy has over 12,000 churches and missions in 135 countries worldwide. If you don\'t see a church near you, we may still have a congregation in your area.' })}
                 </p>
                 <div className="row text-center">
                   <div className="col-6 col-md-3">
                     <div className="h5 text-primary mb-1">12,000+</div>
-                    <div className="small text-muted">Churches & Missions</div>
+                    <div className="small text-muted">{t('churches_missions', { defaultValue: 'Churches & Missions' })}</div>
                   </div>
                   <div className="col-6 col-md-3">
                     <div className="h5 text-primary mb-1">135+</div>
-                    <div className="small text-muted">Countries</div>
+                    <div className="small text-muted">{t('countries', { defaultValue: 'Countries' })}</div>
                   </div>
                   <div className="col-6 col-md-3">
                     <div className="h5 text-primary mb-1">1.5M+</div>
-                    <div className="small text-muted">Members</div>
+                    <div className="small text-muted">{t('members', { defaultValue: 'Members' })}</div>
                   </div>
                   <div className="col-6 col-md-3">
                     <div className="h5 text-primary mb-1">100+</div>
-                    <div className="small text-muted">Years of Ministry</div>
+                    <div className="small text-muted">{t('years_of_ministry', { defaultValue: 'Years of Ministry' })}</div>
                   </div>
                 </div>
               </div>
@@ -503,21 +501,21 @@ export default function FindaChurchPage() {
 
             {/* What to Expect Section */}
             <div className="mt-5 p-4 border rounded">
-              <h4>What to Expect at Our Churches</h4>
+              <h4>{t('what_to_expect_at_churches', { defaultValue: 'What to Expect at Our Churches' })}</h4>
               <div className="row">
                 <div className="col-md-6">
                   <ul className="list-unstyled">
                     <li className="mb-2">
                       <i className="bi bi-check-circle text-success me-2"></i>
-                      Spirit-led worship and biblical teaching
+                      {t('spirit_led_worship_teaching', { defaultValue: 'Spirit-led worship and biblical teaching' })}
                     </li>
                     <li className="mb-2">
                       <i className="bi bi-check-circle text-success me-2"></i>
-                      Warm, welcoming fellowship
+                      {t('warm_welcoming_fellowship', { defaultValue: 'Warm, welcoming fellowship' })}
                     </li>
                     <li className="mb-2">
                       <i className="bi bi-check-circle text-success me-2"></i>
-                      Opportunities for spiritual growth
+                      {t('opportunities_spiritual_growth', { defaultValue: 'Opportunities for spiritual growth' })}
                     </li>
                   </ul>
                 </div>
@@ -525,15 +523,15 @@ export default function FindaChurchPage() {
                   <ul className="list-unstyled">
                     <li className="mb-2">
                       <i className="bi bi-check-circle text-success me-2"></i>
-                      Community outreach and missions
+                      {t('community_outreach_missions', { defaultValue: 'Community outreach and missions' })}
                     </li>
                     <li className="mb-2">
                       <i className="bi bi-check-circle text-success me-2"></i>
-                      Programs for all ages
+                      {t('programs_for_all_ages', { defaultValue: 'Programs for all ages' })}
                     </li>
                     <li className="mb-2">
                       <i className="bi bi-check-circle text-success me-2"></i>
-                      Diverse, multicultural community
+                      {t('diverse_multicultural_community', { defaultValue: 'Diverse, multicultural community' })}
                     </li>
                   </ul>
                 </div>
