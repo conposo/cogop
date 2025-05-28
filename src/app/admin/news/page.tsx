@@ -11,6 +11,7 @@ interface NewsArticle {
   excerpt: string;
   content: string;
   category: string;
+  languages?: string[];
   published: boolean;
   featured: boolean;
   createdAt: any;
@@ -173,6 +174,7 @@ export default function NewsManagement() {
                     <th>Status</th>
                     <th>Author</th>
                     <th>Date/Event Info</th>
+                    <th>Languages</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -220,6 +222,19 @@ export default function NewsManagement() {
                           <small className="text-muted">
                             {article.createdAt?.toDate?.()?.toLocaleDateString() || 'Unknown'}
                           </small>
+                        )}
+                      </td>
+                      <td>
+                        {article.languages && article.languages.length > 0 ? (
+                          <div>
+                            {article.languages.map(lang => (
+                              <span key={lang} className="badge bg-info me-1">
+                                {lang === 'en' ? 'English' : lang === 'bg' ? 'Български' : lang}
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          <span className="text-muted">No languages</span>
                         )}
                       </td>
                       <td>

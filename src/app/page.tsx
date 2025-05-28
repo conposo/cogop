@@ -4,16 +4,18 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useContent } from '@/contexts/ContentContext'
-import { dummyArticles as fetchDummyArticles, dummyEvents, dummyPodcasts, dummyStatistics, Article, fetchEventsFromFirestore, Event, formatEventDateTime } from '@/lib/dummyContent'
+import { useI18n } from '@/contexts/I18nContext'
+import { dummyArticles as fetchDummyArticles, dummyEvents, dummyPodcasts, dummyStatistics, Article, fetchEventsFromFirestore, Event, formatEventDateTime, fetchArticlesFromFirestore } from '@/lib/dummyContent'
 
 export default function Home() {
   const { stats, articles: contextArticles, podcasts, events: contextEvents, carousel } = useContent()
+  const { language } = useI18n()
   const [articles, setArticles] = useState<Article[]>([])
   const [events, setEvents] = useState<Event[]>([])
 
   useEffect(() => {
     const loadArticles = async () => {
-      const fetchedArticles = await fetchDummyArticles();
+      const fetchedArticles = await fetchArticlesFromFirestore(language);
       // Let's sort and filter articles here once, if these are the primary ways they are used.
       // This avoids doing it multiple times in the JSX or for chunking.
       const processedArticles = fetchedArticles
@@ -22,16 +24,16 @@ export default function Home() {
       setArticles(processedArticles);
     }
     loadArticles()
-  }, [])
+  }, [language])
 
   useEffect(() => {
     const loadEvents = async () => {
-      const fetchedEvents = await fetchEventsFromFirestore();
+      const fetchedEvents = await fetchEventsFromFirestore(language);
       // Show only the first 3 upcoming events
       setEvents(fetchedEvents.slice(0, 3));
     }
     loadEvents()
-  }, [])
+  }, [language])
 
   // Create chunks of articles for multi-item carousel
   const chunkArticles = (articlesToChunk: Article[], chunkSize: number) => {
@@ -52,7 +54,7 @@ export default function Home() {
   return (
     <div className="container-fluid">
       {/* Hero Carousel Section */}
-      <section className="hero-carousel">
+      <section className="hero-carousel mx-n2">
         <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel">
           {/* Carousel Indicators */}
           <div className="carousel-indicators">
@@ -159,10 +161,19 @@ export default function Home() {
                   <div className="row justify-content-center">
                     <div className="col-12">
                       <div className="card h-100 shadow">
-                        {article.imageUrl && (
+                        {article.imageUrl !== '' ? (
                           <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                             <img 
                               src={article.imageUrl} 
+                              alt={article.title}
+                              className="card-img-top w-100 h-100"
+                              style={{ objectFit: 'cover' }}
+                            />
+                          </div>
+                        ) : (
+                          <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                            <img 
+                              src="/images/default-article-image.jpg" 
                               alt={article.title}
                               className="card-img-top w-100 h-100"
                               style={{ objectFit: 'cover' }}
@@ -221,10 +232,19 @@ export default function Home() {
                     {chunk.map((article) => (
                       <div key={article.id} className="col-lg-4">
                         <div className="card h-100 shadow">
-                          {article.imageUrl && (
+                          {article.imageUrl !== '' ? (
                             <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                               <img 
                                 src={article.imageUrl} 
+                                alt={article.title}
+                                className="card-img-top w-100 h-100"
+                                style={{ objectFit: 'cover' }}
+                              />
+                            </div>
+                          ) : (
+                            <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                              <img 
+                                src="/images/default-article-image.jpg" 
                                 alt={article.title}
                                 className="card-img-top w-100 h-100"
                                 style={{ objectFit: 'cover' }}
@@ -368,7 +388,13 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="cta-section py-5 bg-primary text-white text-center">
+      <section 
+        className="cta-section py-5 text-white text-center rounded-5"
+        style={{
+          background: 'linear-gradient(135deg, #007bff, #0056b3)',
+          padding: '1.5rem'
+        }}
+      >
         <div className="container">
           <h2 className="mb-4">Have you ever wondered how to know God and experience the peace that comes from him?</h2>
           <Link href="/resources/know-god" className="btn btn-light btn-lg">How to Know God</Link>

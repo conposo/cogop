@@ -8,6 +8,7 @@ export interface Article {
   summary: string;
   imageUrl?: string;
   category: string;
+  languages?: string[];
   date: string;
   author: string;
   featured?: boolean;
@@ -155,14 +156,26 @@ export const saveStaticArticlesToFirebase = async (): Promise<void> => {
 };
 
 // New function to fetch articles from Firestore
-export const fetchArticlesFromFirestore = async (): Promise<Article[]> => {
+export const fetchArticlesFromFirestore = async (language?: string): Promise<Article[]> => {
   try {
-    const q = query(
-      collection(db, 'news'), 
-      where('type', '!=', 'event'),
-      orderBy('type'),
-      orderBy('createdAt', 'desc')
-    );
+    let q;
+    if (language) {
+      q = query(
+        collection(db, 'news'), 
+        where('type', '!=', 'event'),
+        where('languages', 'array-contains', language),
+        orderBy('type'),
+        orderBy('createdAt', 'desc')
+      );
+    } else {
+      q = query(
+        collection(db, 'news'), 
+        where('type', '!=', 'event'),
+        orderBy('type'),
+        orderBy('createdAt', 'desc')
+      );
+    }
+    
     const querySnapshot = await getDocs(q);
     const articlesData = querySnapshot.docs.map(docSnap => {
       const data = docSnap.data();
@@ -180,6 +193,7 @@ export const fetchArticlesFromFirestore = async (): Promise<Article[]> => {
         summary: data.excerpt || '',
         imageUrl: data.imageUrl,
         category: data.category || 'General',
+        languages: data.languages || ['en'], // Default to English array
         date: dateString,
         author: data.authorName || 'Unknown Author',
         featured: data.featured || false,
@@ -448,6 +462,7 @@ export interface Event {
   excerpt: string;
   content: string;
   category: string;
+  languages?: string[];
   published: boolean;
   featured: boolean;
   createdAt: any;
@@ -466,12 +481,22 @@ export interface Event {
 }
 
 // Function to fetch events from Firestore
-export const fetchEventsFromFirestore = async (): Promise<Event[]> => {
+export const fetchEventsFromFirestore = async (language?: string): Promise<Event[]> => {
   try {
-    const q = query(
-      collection(db, 'news'), 
-      orderBy('eventDate', 'asc')
-    );
+    let q;
+    if (language) {
+      q = query(
+        collection(db, 'news'), 
+        where('languages', 'array-contains', language),
+        orderBy('eventDate', 'asc')
+      );
+    } else {
+      q = query(
+        collection(db, 'news'), 
+        orderBy('eventDate', 'asc')
+      );
+    }
+    
     const querySnapshot = await getDocs(q);
     const eventsData = querySnapshot.docs
       .map(docSnap => {

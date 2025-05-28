@@ -3,21 +3,23 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { useI18n } from '@/contexts/I18nContext'
 import { fetchArticlesFromFirestore, Article } from '@/lib/dummyContent'
 
 export default function News() {
+  const { language } = useI18n()
   const [articles, setArticles] = useState<Article[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const loadArticles = async () => {
       setLoading(true)
-      const fetchedArticles = await fetchArticlesFromFirestore()
+      const fetchedArticles = await fetchArticlesFromFirestore(language)
       setArticles(fetchedArticles)
       setLoading(false)
     }
     loadArticles()
-  }, [])
+  }, [language])
 
   if (loading) {
     return (

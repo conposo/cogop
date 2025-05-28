@@ -2,21 +2,23 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useI18n } from '@/contexts/I18nContext'
 import { fetchEventsFromFirestore, Event, formatEventDateTime } from '@/lib/dummyContent'
 
 export default function Events() {
+  const { language } = useI18n()
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const loadEvents = async () => {
       setLoading(true)
-      const fetchedEvents = await fetchEventsFromFirestore()
+      const fetchedEvents = await fetchEventsFromFirestore(language)
       setEvents(fetchedEvents)
       setLoading(false)
     }
     loadEvents()
-  }, [])
+  }, [language])
 
   if (loading) {
     return (

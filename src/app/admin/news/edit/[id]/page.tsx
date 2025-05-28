@@ -19,6 +19,7 @@ export default function EditArticle() {
     excerpt: '',
     content: '',
     category: 'General',
+    languages: ['en'],
     published: false,
     featured: false,
     imageUrl: '',
@@ -43,6 +44,11 @@ export default function EditArticle() {
     'Prayer Requests'
   ];
 
+  const languages = [
+    { code: 'en', name: 'English' },
+    { code: 'bg', name: 'Български' }
+  ];
+
   useEffect(() => {
     const fetchArticle = async () => {
       if (!params.id) return;
@@ -58,6 +64,7 @@ export default function EditArticle() {
             excerpt: data.excerpt || '',
             content: data.content || '',
             category: data.category || 'General',
+            languages: data.languages || ['en'],
             published: data.published || false,
             featured: data.featured || false,
             imageUrl: data.imageUrl || '',
@@ -86,11 +93,21 @@ export default function EditArticle() {
   }, [params.id, router]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-    }));
+    const { name, value, type, checked } = e.target as HTMLInputElement;
+    
+    if (name === 'languages') {
+      setFormData(prev => ({
+        ...prev,
+        languages: checked 
+          ? [...prev.languages, value]
+          : prev.languages.filter(lang => lang !== value)
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: type === 'checkbox' ? checked : value
+      }));
+    }
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,6 +144,7 @@ export default function EditArticle() {
         excerpt: formData.excerpt,
         content: formData.content,
         category: formData.category,
+        languages: formData.languages,
         published: formData.published,
         featured: formData.featured,
         imageUrl: formData.imageUrl,
@@ -400,6 +418,27 @@ export default function EditArticle() {
                       </option>
                     ))}
                   </select>
+                </div>
+
+                <div className="mb-3">
+                  <label className="form-label">Languages *</label>
+                  {languages.map(language => (
+                    <div key={language.code} className="form-check">
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id={`language-${language.code}`}
+                        name="languages"
+                        value={language.code}
+                        checked={formData.languages.includes(language.code)}
+                        onChange={handleInputChange}
+                      />
+                      <label className="form-check-label" htmlFor={`language-${language.code}`}>
+                        {language.name}
+                      </label>
+                    </div>
+                  ))}
+                  <div className="form-text">Select all languages this content will be available in</div>
                 </div>
 
                 <div className="mb-3">

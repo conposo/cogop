@@ -51,14 +51,14 @@ const CallToAction: React.FC<CallToActionProps> = ({
   return (
     <div className="row mt-5">
       <div className="col-12">
-        <div className="card bg-light">
+        <div className="card px-sm-5 bg-light rounded-5 border-0 shadow-sm">
           <div className="card-body text-center">
-            <h4 className="card-title">{title}</h4>
+            <h4 className="card-title my-2">{title}</h4>
             <p className="card-text">{description}</p>
             <div className="row">
               {buttons.map((button, index) => (
                 <div key={index} className="col-md-4 mb-2">
-                  <Link href={button.link} className={`${getButtonClass(button.variant)} w-100`}>
+                  <Link href={button.link} className={`${getButtonClass(button.variant)} w-100 rounded-5`}>
                     {button.icon && <i className={`${button.icon} me-2`}></i>}
                     {button.text}
                   </Link>

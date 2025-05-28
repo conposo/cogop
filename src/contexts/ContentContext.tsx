@@ -759,7 +759,7 @@ const getContentData = (): ContentContextType => ({
         <h3>Make a Difference</h3>
         <p>For just $30 per month, you can sponsor a child and help break the cycle of poverty through education and Christian love.</p>
         
-        <div class="row mt-4">
+        <div class="row my-4">
           <div class="col-md-6">
             <div class="card">
               <div class="card-body text-center">

@@ -65,7 +65,7 @@ export default function UserMenu() {
             {initials}
           </div>
         )}
-        <span className="text-dark">{displayName}</span>
+        {/* <span className="text-dark">{displayName}</span> */}
         <i className={`bi bi-chevron-${isOpen ? 'up' : 'down'} ms-1`}></i>
       </button>
 

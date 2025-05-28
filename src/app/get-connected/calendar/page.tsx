@@ -249,6 +249,11 @@ export default function CalendarPage() {
           color: white;
           box-shadow: 0 2px 5px rgba(0,123,255,0.3);
         }
+
+        .view-toggle .btn:not(.active):hover {
+          background: transparent;
+          color: #007bff;
+        }
         
         .upcoming-events {
           background: white;

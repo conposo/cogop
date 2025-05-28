@@ -16,13 +16,17 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="row">
-          <div className="col-lg-4">
+          <div className="col-lg-4 d-flex flex-column justify-content-between">
             <Image
               src="/images/Cogop-white.svg"
               alt="Church of God of Prophecy"
-              width={200}
-              height={60}
-              className="footer__logo"
+              width={133}
+              height={32}
+              className="footer__logo -p-2 -border -bg-white -rounded-5"
+              style={{
+                width: (112),
+                height: 'auto'
+              }}
             />
             <ul className="footer__social">
               {socialLinks.map((link, index) => (
@@ -35,7 +39,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-lg-2">
-            <h5>{t('about', { defaultValue: 'About' })}</h5>
+            <h5 className="small text-uppercase opacity-50">{t('about', { defaultValue: 'About' })}</h5>
             <ul className="footer__links">
               <li><Link href="/about/who-we-are">{t('who_we_are', { defaultValue: 'Who We Are' })}</Link></li>
               <li><Link href="/about/what-we-believe">{t('what_we_believe', { defaultValue: 'What We Believe' })}</Link></li>
@@ -44,7 +48,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-lg-2">
-            <h5>{t('get_connected', { defaultValue: 'Get Connected' })}</h5>
+            <h5 className="small text-uppercase opacity-50">{t('get_connected', { defaultValue: 'Get Connected' })}</h5>
             <ul className="footer__links">
               <li><Link href="/get-connected/calendar">{t('calendar', { defaultValue: 'Calendar' })}</Link></li>
               <li><Link href="/get-connected/contact">{t('contact', { defaultValue: 'Contact' })}</Link></li>
@@ -53,7 +57,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-lg-2">
-            <h5>{t('ministries', { defaultValue: 'Ministries' })}</h5>
+            <h5 className="small text-uppercase opacity-50">{t('ministries', { defaultValue: 'Ministries' })}</h5>
             <ul className="footer__links">
               <li><Link href="/ministries/global-missions">{t('global_missions', { defaultValue: 'Global Missions' })}</Link></li>
               <li><Link href="/ministries/youth">{t('youth_ministry', { defaultValue: 'Youth Ministry' })}</Link></li>
@@ -62,7 +66,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-lg-2">
-            <h5>{t('resources', { defaultValue: 'Resources' })}</h5>
+            <h5 className="small text-uppercase opacity-50">{t('resources', { defaultValue: 'Resources' })}</h5>
             <ul className="footer__links">
               <li><Link href="/resources/library">{t('library_title', { defaultValue: 'Library' })}</Link></li>
               <li><Link href="/resources/media">{t('media_title', { defaultValue: 'Media' })}</Link></li>

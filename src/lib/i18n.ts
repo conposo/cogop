@@ -246,7 +246,20 @@ i18n.translations = {
     
     // Search
     search: 'Search',
-    search_placeholder: 'Search...',
+    search_placeholder: 'Search pages, articles, podcasts, and events...',
+    search_shortcut: 'Search (Ctrl+K)',
+    start_typing_to_search: 'Start typing to search...',
+    search_help_text: 'Search through pages, articles, podcasts, and events',
+    searching: 'Searching...',
+    no_results_found: 'No results found',
+    no_results_help: 'Try different keywords or check your spelling',
+    search_navigation_help: 'Use arrow keys to navigate, Enter to select, Esc to close',
+    
+    // Result types
+    page: 'Page',
+    article: 'Article',
+    podcast: 'Podcast',
+    event: 'Event',
     
     // Loading states
     loading: 'Loading...',
@@ -606,10 +619,6 @@ i18n.translations = {
     // Find a Church page translations
     find_a_church_title: 'Find a Church',
     find_a_church_description: 'Locate a Church of God of Prophecy congregation near you.',
-    search_churches: 'Search Churches',
-    enter_city_state_country: 'Enter City, State, or Country',
-    location_placeholder: 'e.g., Cleveland, TN or United States',
-    searching: 'Searching...',
     filter_by_programs: 'Filter by Programs',
     clear_filters: 'Clear Filters',
     need_help: 'Need Help?',
@@ -639,12 +648,6 @@ i18n.translations = {
     community_outreach_missions: 'Community outreach and missions',
     programs_for_all_ages: 'Programs for all ages',
     diverse_multicultural_community: 'Diverse, multicultural community',
-
-    // Additional find-a-church translations
-    find_congregation: 'Find a Congregation Near You',
-    find_church_desc: 'With over 12,000 churches and missions in 135 countries, there\'s likely a Church of God of Prophecy congregation near you.',
-    search_by_location: 'Search by Location',
-    what_to_expect_desc: 'At Church of God of Prophecy congregations, you\'ll find:',
   },
   bg: {
     // Navigation
@@ -889,7 +892,20 @@ i18n.translations = {
     
     // Search
     search: 'Търсене',
-    search_placeholder: 'Търсене...',
+    search_placeholder: 'Търсете страници, статии, подкастове и събития...',
+    search_shortcut: 'Търсене (Ctrl+K)',
+    start_typing_to_search: 'Започнете да пишете за търсене...',
+    search_help_text: 'Търсете в страници, статии, подкастове и събития',
+    searching: 'Търсене...',
+    no_results_found: 'Няма намерени резултати',
+    no_results_help: 'Опитайте различни ключови думи или проверете правописа',
+    search_navigation_help: 'Използвайте стрелките за навигация, Enter за избор, Esc за затваряне',
+    
+    // Result types
+    page: 'Страница',
+    article: 'Статия',
+    podcast: 'Подкаст',
+    event: 'Събитие',
     
     // Loading states
     loading: 'Зареждане...',

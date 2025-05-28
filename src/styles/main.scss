@@ -18,5 +18,12 @@
 @import 'layout/news';
 @import 'layout/resources';
 
-// Bootstrap
+// Bootstrap - Import variables first, then enable negative margins
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+// Enable negative margins
+$enable-negative-margins: true;
+
+// Import the rest of Bootstrap
 @import '~bootstrap/scss/bootstrap'; 

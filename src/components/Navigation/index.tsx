@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import AuthModal from '@/components/Auth/AuthModal'
 import UserMenu from '@/components/Auth/UserMenu'
+import SearchModal from '@/components/SearchModal'
 import { setLocale, t } from '@/lib/i18n'
 import { useI18n } from '@/contexts/I18nContext'
 
@@ -13,7 +14,9 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null)
   const [showAuthModal, setShowAuthModal] = useState(false)
+  const [showSearchModal, setShowSearchModal] = useState(false)
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
+  const [isMac, setIsMac] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const togglerRef = useRef<HTMLButtonElement>(null)
   const { user, loading } = useAuth()
@@ -21,6 +24,9 @@ const Navigation = () => {
 
   // Add Bootstrap JS on client side
   useEffect(() => {
+    // Detect if user is on macOS
+    setIsMac(navigator.platform.toUpperCase().indexOf('MAC') >= 0)
+    
     // Bootstrap is already loaded via script tag in layout.tsx
     // Initialize dropdowns when component mounts
     const initializeDropdowns = () => {
@@ -99,6 +105,20 @@ const Navigation = () => {
     }
   }, [isOpen])
 
+  // Handle keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ctrl/Cmd + K to open search
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault()
+        setShowSearchModal(true)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   // Handle toggle button click
   const handleToggle = () => {
     setIsOpen(!isOpen)
@@ -122,6 +142,10 @@ const Navigation = () => {
   const handleAuthModal = (mode: 'login' | 'signup') => {
     setAuthMode(mode)
     setShowAuthModal(true)
+  }
+
+  const handleSearchClick = () => {
+    setShowSearchModal(true)
   }
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -226,16 +250,27 @@ const Navigation = () => {
 
   return (
     <>
-      <nav ref={navRef} className="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
-        <div className="container">
+      <style>
+        {`
+          .search-btn:hover .search-shortcut {
+            opacity: 1 !important;
+          }
+        `}
+      </style>
+      <nav ref={navRef} className="navbar navbar-expand-lg fixed-top bg-transparent shadow-none">
+        <div className="container py-1 bg-white shadow-sm rounded-5">
           <Link href="/" className="navbar-brand">
             <Image
               src="/images/logo-cogop.webp"
               alt="Church of God of Prophecy"
-              width={133}
-              height={48}
+              width={(133)}
+              height={(32)}
               priority
-              className="d-inline-block align-top"
+              className="d-flex"
+              style={{
+                width: (133),
+                height: 'auto'
+              }}
             />
           </Link>
 
@@ -308,8 +343,30 @@ const Navigation = () => {
                 <option value="en">{t('english', { defaultValue: 'English' })}</option>
                 <option value="bg">{t('bulgarian', { defaultValue: 'Български' })}</option>
               </select>
-              <button className="btn btn-link" aria-label={t('search', { defaultValue: 'Search' })}>
+              
+              {/* Search Button */}
+              <button 
+                className="btn btn-link position-relative search-btn" 
+                aria-label={t('search', { defaultValue: 'Search' })}
+                onClick={handleSearchClick}
+                title={t('search_shortcut', { defaultValue: `Search (${isMac ? '⌘' : 'Ctrl'}+K)` })}
+                style={{ 
+                  '--bs-btn-hover-bg': 'rgba(0,0,0,0.05)',
+                  '--bs-btn-hover-border-color': 'transparent'
+                } as React.CSSProperties}
+              >
                 <i className="bi bi-search fs-5"></i>
+                <span 
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark small search-shortcut"
+                  style={{ 
+                    fontSize: '0.6rem',
+                    opacity: 0,
+                    transition: 'opacity 0.2s ease-in-out',
+                    pointerEvents: 'none'
+                  }}
+                >
+                  {isMac ? '⌘K' : 'Ctrl+K'}
+                </span>
               </button>
               
               {/* Authentication Section */}
@@ -339,6 +396,12 @@ const Navigation = () => {
           </div>
         </div>
       </nav>
+
+      {/* Search Modal */}
+      <SearchModal 
+        isOpen={showSearchModal}
+        onClose={() => setShowSearchModal(false)}
+      />
 
       {/* Authentication Modal */}
       <AuthModal 
