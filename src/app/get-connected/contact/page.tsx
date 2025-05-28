@@ -11,6 +11,7 @@ export default function ContactUsPage() {
       title={pageContent.title}
       description={pageContent.description}
       backgroundImage={pageContent.backgroundImage}
+      showCallToAction={false}
     >
       <div dangerouslySetInnerHTML={{ __html: pageContent.content || '<p>Content coming soon...</p>' }} />
     </PageLayout>

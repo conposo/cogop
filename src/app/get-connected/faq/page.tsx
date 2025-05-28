@@ -8,22 +8,12 @@ import Link from 'next/link'
 export default function FAQPage() {
   const pageContent = getPageContent('get-connected/faq')
 
-  const getButtonClass = (variant: 'primary' | 'outline' | 'dark') => {
-    switch (variant) {
-      case 'dark':
-        return 'btn btn-dark'
-      case 'outline':
-        return 'btn btn-outline-primary'
-      default:
-        return 'btn btn-primary'
-    }
-  }
-
   return (
     <PageLayout
       title={pageContent.title}
       description={pageContent.description}
       backgroundImage={pageContent.backgroundImage}
+      showCallToAction={false}
     >
       {pageContent.faq ? (
         <div className="faq-container">
@@ -74,6 +64,7 @@ export default function FAQPage() {
             </div>
           </div>
 
+          {/* FAQ-specific call to action */}
           <div className="row mt-5">
             <div className="col-12">
               <div className="card bg-light">
@@ -83,7 +74,7 @@ export default function FAQPage() {
                   <div className="row">
                     {pageContent.faq.callToAction.buttons.map((button, index) => (
                       <div key={index} className="col-md-4 mb-2">
-                        <Link href={button.link} className={`${getButtonClass(button.variant)} w-100`}>
+                        <Link href={button.link} className={`btn ${button.variant === 'dark' ? 'btn-dark' : button.variant === 'outline' ? 'btn-outline-primary' : 'btn-primary'} w-100`}>
                           {button.text}
                         </Link>
                       </div>

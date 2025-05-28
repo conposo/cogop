@@ -12,6 +12,7 @@ export default function ScheduleaTourPage() {
       title={pageContent.title}
       description={pageContent.description}
       backgroundImage={pageContent.backgroundImage}
+      showCallToAction={false}
     >
       <div dangerouslySetInnerHTML={{ __html: pageContent.content || `<p>${t('content_coming_soon', { defaultValue: 'Content coming soon...' })}</p>` }} />
     </PageLayout>

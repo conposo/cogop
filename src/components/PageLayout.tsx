@@ -1,17 +1,20 @@
 import PageHeader from './PageHeader';
+import CallToAction from './CallToAction';
 
 interface PageLayoutProps {
   title: string;
   description?: string;
   backgroundImage?: string;
   children: React.ReactNode;
+  showCallToAction?: boolean;
 }
 
 const PageLayout: React.FC<PageLayoutProps> = ({ 
   title, 
   description, 
   backgroundImage, 
-  children 
+  children,
+  showCallToAction = true
 }) => {
   return (
     <>
@@ -24,6 +27,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
         <div className="row">
           <div className="col-12">
             {children}
+            {showCallToAction && <CallToAction />}
           </div>
         </div>
       </div>

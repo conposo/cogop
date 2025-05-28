@@ -81,7 +81,7 @@ export default function CalendarPage() {
           key={day} 
           className={`calendar-day ${isToday ? 'today' : ''} ${isPast ? 'past' : ''} ${dayEvents.length > 0 ? 'has-events' : ''}`}
         >
-          <div className="day-number">{day}</div>
+          <div className="day-number py-2 d-flex justify-content-center align-items-center">{day}</div>
           {dayEvents.length > 0 && (
             <div className="events-indicator">
               {dayEvents.slice(0, 2).map((event, index) => (
@@ -458,24 +458,6 @@ export default function CalendarPage() {
         </div>
       )}
 
-      <div className="row mt-5">
-        <div className="col-12 text-center">
-          <div className="p-4 bg-light rounded">
-            <h4 className="mb-3">Stay Connected</h4>
-            <p className="text-muted mb-3">
-              Don't miss out on any of our upcoming events and activities!
-            </p>
-            <div className="d-flex justify-content-center gap-3 flex-wrap">
-              <Link href="/get-connected/contact" className="btn btn-dark">
-                <i className="bi bi-envelope me-2"></i>Contact Us
-              </Link>
-              <Link href="/get-connected/schedule-tour" className="btn btn-outline-primary">
-                <i className="bi bi-calendar-plus me-2"></i>Schedule a Visit
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
     </PageLayout>
   )
 }
