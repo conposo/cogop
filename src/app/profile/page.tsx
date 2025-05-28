@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useChurchUser, ChurchUser } from '@/contexts/ChurchUserContext';
 import { updateProfile } from 'firebase/auth';
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc, query, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -221,14 +221,17 @@ export default function ProfilePage() {
 
   const fetchAvailableChurches = async () => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'churches'));
+      const churchesQuery = query(
+        collection(db, 'churches'),
+        where('isActive', '==', true)
+      );
+      const querySnapshot = await getDocs(churchesQuery);
       
       const churches = querySnapshot.docs
         .map(doc => ({
           id: doc.id,
           ...doc.data()
-        }))
-        .filter((church: any) => church.isActive) as Church[];
+        })) as Church[];
       
       setAvailableChurches(churches);
       

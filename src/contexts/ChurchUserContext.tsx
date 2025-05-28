@@ -81,7 +81,7 @@ export function ChurchUserProvider({ children }: { children: React.ReactNode }) 
       createdAt: serverTimestamp(),
       createdBy: user.uid,
     };
-
+    console.log(churchUserId, '🔍 New church user:', newChurchUser);
     await setDoc(doc(db, 'churchUsers', churchUserId), newChurchUser);
   };
 
