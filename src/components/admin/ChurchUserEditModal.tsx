@@ -51,13 +51,13 @@ export default function ChurchUserEditModal({
   const getDefaultPermissions = (role: string): string[] => {
     switch (role) {
       case 'admin':
-        return ['manage_users', 'manage_content', 'manage_events', 'view_analytics', 'manage_settings'];
+        return ['manage_users', 'manage_content', 'manage_events', 'view_analytics', 'manage_settings', 'manage_discussions', 'pin_discussions', 'moderate_discussions'];
       case 'manager':
-        return ['manage_content', 'manage_events', 'view_analytics'];
+        return ['manage_content', 'manage_events', 'view_analytics', 'manage_discussions', 'pin_discussions', 'moderate_discussions'];
       case 'editor':
-        return ['manage_content', 'manage_events'];
+        return ['manage_content', 'manage_events', 'create_discussions', 'moderate_discussions'];
       case 'member':
-        return ['view_content'];
+        return ['view_content', 'create_discussions', 'comment_discussions'];
       default:
         return ['view_content'];
     }
@@ -180,7 +180,7 @@ export default function ChurchUserEditModal({
               <div className="col-md-6">
                 <label className="form-label">Custom Permissions</label>
                 <div className="border rounded p-3" style={{ maxHeight: '200px', overflowY: 'auto' }}>
-                  {['manage_users', 'manage_content', 'manage_events', 'view_analytics', 'manage_settings', 'view_content'].map(permission => (
+                  {['manage_users', 'manage_content', 'manage_events', 'view_analytics', 'manage_settings', 'view_content', 'manage_discussions', 'pin_discussions', 'moderate_discussions', 'create_discussions', 'comment_discussions'].map(permission => (
                     <div key={permission} className="form-check">
                       <input
                         className="form-check-input"

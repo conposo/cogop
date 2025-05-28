@@ -41,22 +41,6 @@ export default function AdminLayout({
     // This is true if this is the first effect run where isCurrentlyLoading is false
     const isFirstCycleCompletelyLoaded = !isCurrentlyLoading && wasLoadingPreviously;
 
-    console.log(
-      'AdminLayout Effect Triggered:',
-      {
-        authLoading: currentAuthLoading,
-        adminLoading: currentAdminLoading,
-        isAdmin: currentIsAdmin,
-        user: !!currentUser,
-        currentAdminData: currentAdminData, // Log the actual data for better debugging
-        prevAdminData: prevAdminData,       // Log the actual data
-        adminDataJustTransitionedToTruthy,
-        isCurrentlyLoading,
-        wasLoadingPreviously, 
-        isFirstCycleCompletelyLoaded,
-      }
-    );
-
     // --- Main Redirect/Access Logic ---
     if (!isCurrentlyLoading) {
       if (!currentUser) {

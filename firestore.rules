@@ -14,6 +14,40 @@ service cloud.firestore {
         get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'super_admin';
     }
     
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to check if user is a member of a church
+    function isChurchMember(churchId) {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/churchUsers/$(churchId + '_' + request.auth.uid));
+    }
+    
+    // Helper function to get church user data
+    function getChurchUser(churchId) {
+      return get(/databases/$(database)/documents/churchUsers/$(churchId + '_' + request.auth.uid)).data;
+    }
+    
+    // Helper function to check if user has specific permission for a church
+    function hasPermission(churchId, permission) {
+      return isChurchMember(churchId) && 
+             permission in getChurchUser(churchId).permissions;
+    }
+    
+    // Helper function to check if user is member of church that owns a discussion
+    function isChurchMemberOfDiscussion(discussionId) {
+      let discussion = get(/databases/$(database)/documents/discussions/$(discussionId)).data;
+      return isChurchMember(discussion.churchId);
+    }
+    
+    // Helper function to check permission for a specific discussion
+    function hasPermissionForDiscussion(discussionId, permission) {
+      let discussion = get(/databases/$(database)/documents/discussions/$(discussionId)).data;
+      return hasPermission(discussion.churchId, permission);
+    }
+    
     // Allow read access to published news articles
     match /news/{document} {
       allow read: if resource.data.published == true;
@@ -65,6 +99,43 @@ service cloud.firestore {
       // Users can delete their own church membership (leave church)
       allow delete: if request.auth != null && 
         resource.data.userId == request.auth.uid;
+    }
+    
+    // Discussions collection
+    match /discussions/{discussionId} {
+      allow read: if isAuthenticated() && isChurchMember(resource.data.churchId);
+      
+      allow create: if isAuthenticated() && 
+                    isChurchMember(request.resource.data.churchId) &&
+                    hasPermission(request.resource.data.churchId, 'create_discussions') &&
+                    request.resource.data.authorId == request.auth.uid;
+      
+      allow update: if isAuthenticated() && 
+                    (resource.data.authorId == request.auth.uid ||
+                     hasPermission(resource.data.churchId, 'moderate_discussions'));
+      
+      allow delete: if isAuthenticated() && 
+                    (resource.data.authorId == request.auth.uid ||
+                     hasPermission(resource.data.churchId, 'moderate_discussions'));
+    }
+
+    // Comments collection
+    match /comments/{commentId} {
+      allow read: if isAuthenticated() && 
+                  isChurchMemberOfDiscussion(resource.data.discussionId);
+      
+      allow create: if isAuthenticated() && 
+                    isChurchMemberOfDiscussion(request.resource.data.discussionId) &&
+                    hasPermissionForDiscussion(request.resource.data.discussionId, 'comment_discussions') &&
+                    request.resource.data.authorId == request.auth.uid;
+      
+      allow update: if isAuthenticated() && 
+                    (resource.data.authorId == request.auth.uid ||
+                     hasPermissionForDiscussion(resource.data.discussionId, 'moderate_discussions'));
+      
+      allow delete: if isAuthenticated() && 
+                    (resource.data.authorId == request.auth.uid ||
+                     hasPermissionForDiscussion(resource.data.discussionId, 'moderate_discussions'));
     }
     
     // Default deny all other collections

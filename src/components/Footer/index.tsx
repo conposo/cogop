@@ -24,7 +24,7 @@ const Footer = () => {
               height={32}
               className="footer__logo -p-2 -border -bg-white -rounded-5"
               style={{
-                width: (112),
+                width: (136),
                 height: 'auto'
               }}
             />

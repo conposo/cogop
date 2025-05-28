@@ -176,13 +176,13 @@ export function ChurchUserProvider({ children }: { children: React.ReactNode }) 
   const getDefaultPermissions = (role: string): string[] => {
     switch (role) {
       case 'admin':
-        return ['manage_users', 'manage_content', 'manage_events', 'view_analytics', 'manage_settings'];
+        return ['manage_users', 'manage_content', 'manage_events', 'view_analytics', 'manage_settings', 'manage_discussions', 'pin_discussions', 'moderate_discussions'];
       case 'manager':
-        return ['manage_content', 'manage_events', 'view_analytics'];
+        return ['manage_content', 'manage_events', 'view_analytics', 'manage_discussions', 'pin_discussions', 'moderate_discussions'];
       case 'editor':
-        return ['manage_content', 'manage_events'];
+        return ['manage_content', 'manage_events', 'create_discussions', 'moderate_discussions'];
       case 'member':
-        return ['view_content'];
+        return ['view_content', 'create_discussions', 'comment_discussions'];
       default:
         return ['view_content'];
     }
