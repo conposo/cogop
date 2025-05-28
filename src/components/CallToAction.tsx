@@ -1,3 +1,4 @@
+import { useContent } from '@/contexts/ContentContext';
 import Link from 'next/link'
 
 interface CallToActionButton {
@@ -13,30 +14,8 @@ interface CallToActionProps {
   buttons?: CallToActionButton[];
 }
 
-const CallToAction: React.FC<CallToActionProps> = ({ 
-  title = "Still Have Questions?",
-  description = "We're here to help! Don't hesitate to reach out with any questions about our church, beliefs, or how to get involved.",
-  buttons = [
-    {
-      text: "Contact Us",
-      link: "/get-connected/contact",
-      variant: "dark",
-      icon: "bi bi-envelope"
-    },
-    {
-      text: "Find a Church",
-      link: "/find-a-church",
-      variant: "outline",
-      icon: "bi bi-geo-alt"
-    },
-    {
-      text: "Schedule a Tour",
-      link: "/get-connected/schedule-tour",
-      variant: "outline",
-      icon: "bi bi-calendar-plus"
-    }
-  ]
-}) => {
+const CallToAction: React.FC<CallToActionProps> = () => {
+  const { callToActions } = useContent();
   const getButtonClass = (variant: 'primary' | 'outline' | 'dark') => {
     switch (variant) {
       case 'dark':
@@ -49,14 +28,14 @@ const CallToAction: React.FC<CallToActionProps> = ({
   }
 
   return (
-    <div className="row mt-5">
+    <div className="row mt-5 pt-4 pt-sm-5">
       <div className="col-12">
         <div className="card px-sm-5 bg-light rounded-5 border-0 shadow-sm">
           <div className="card-body text-center">
-            <h4 className="card-title my-2">{title}</h4>
-            <p className="card-text">{description}</p>
+            <h4 className="card-title my-2">{callToActions.title}</h4>
+            <p className="card-text">{callToActions.description}</p>
             <div className="row">
-              {buttons.map((button, index) => (
+              {callToActions.buttons.map((button, index) => (
                 <div key={index} className="col-md-4 mb-2">
                   <Link href={button.link} className={`${getButtonClass(button.variant)} w-100 rounded-5`}>
                     {button.icon && <i className={`${button.icon} me-2`}></i>}

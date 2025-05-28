@@ -11,6 +11,7 @@ export default function OurHistoryPage() {
       title={pageContent.title}
       description={pageContent.description}
       backgroundImage={pageContent.backgroundImage}
+      isAboutPage={true}
     >
       <div dangerouslySetInnerHTML={{ __html: pageContent.content || '<p>Content coming soon...</p>' }} />
     </PageLayout>

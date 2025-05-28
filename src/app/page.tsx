@@ -5,7 +5,18 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useContent } from '@/contexts/ContentContext'
 import { useI18n } from '@/contexts/I18nContext'
-import { dummyArticles as fetchDummyArticles, dummyEvents, dummyPodcasts, dummyStatistics, Article, fetchEventsFromFirestore, Event, formatEventDateTime, fetchArticlesFromFirestore } from '@/lib/dummyContent'
+import { dummyArticles as fetchDummyArticles, dummyEvents, dummyPodcasts, dummyStatistics, Article, fetchEventsFromFirestore, Event, formatEventDateTime, fetchArticlesFromFirestore, MultilingualString } from '@/lib/dummyContent'
+
+// Helper function to get localized string or fallback
+const getLocalizedString = (field: MultilingualString | string | undefined, lang: string, fallbackLang: string = 'en'): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field; // Handle legacy string format
+  if (typeof field === 'object' && field !== null) {
+    // Handle multilingual object format
+    return field[lang] || field[fallbackLang] || Object.values(field)[0] || '';
+  }
+  return '';
+};
 
 export default function Home() {
   const { stats, articles: contextArticles, podcasts, events: contextEvents, carousel } = useContent()
@@ -54,7 +65,7 @@ export default function Home() {
   return (
     <div className="container-fluid">
       {/* Hero Carousel Section */}
-      <section className="hero-carousel mx-n2">
+      <section className="hero-carousel mx-n3">
         <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel">
           {/* Carousel Indicators */}
           <div className="carousel-indicators">
@@ -165,7 +176,7 @@ export default function Home() {
                           <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                             <img 
                               src={article.imageUrl} 
-                              alt={article.title}
+                              alt={getLocalizedString(article.title, language)}
                               className="card-img-top w-100 h-100"
                               style={{ objectFit: 'cover' }}
                             />
@@ -174,7 +185,7 @@ export default function Home() {
                           <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                             <img 
                               src="/images/default-article-image.jpg" 
-                              alt={article.title}
+                              alt={getLocalizedString(article.title, language)}
                               className="card-img-top w-100 h-100"
                               style={{ objectFit: 'cover' }}
                             />
@@ -182,9 +193,9 @@ export default function Home() {
                         )}
                         <div className="card-body p-4">
                           <span className="badge bg-primary mb-3">{article.category}</span>
-                          <h3 className="card-title h5 mb-3">{article.title}</h3>
-                          {article.summary && (
-                            <p className="card-text text-muted mb-3">{article.summary}</p>
+                          <h3 className="card-title h5 mb-3">{getLocalizedString(article.title, language)}</h3>
+                          {getLocalizedString(article.summary, language) && (
+                            <p className="card-text text-muted mb-3">{getLocalizedString(article.summary, language)}</p>
                           )}
                           {article.date && (
                             <p className="text-muted small mb-3">
@@ -236,7 +247,7 @@ export default function Home() {
                             <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                               <img 
                                 src={article.imageUrl} 
-                                alt={article.title}
+                                alt={getLocalizedString(article.title, language)}
                                 className="card-img-top w-100 h-100"
                                 style={{ objectFit: 'cover' }}
                               />
@@ -245,7 +256,7 @@ export default function Home() {
                             <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                               <img 
                                 src="/images/default-article-image.jpg" 
-                                alt={article.title}
+                                alt={getLocalizedString(article.title, language)}
                                 className="card-img-top w-100 h-100"
                                 style={{ objectFit: 'cover' }}
                               />
@@ -253,9 +264,9 @@ export default function Home() {
                           )}
                           <div className="card-body p-4">
                             <span className="badge bg-primary mb-3">{article.category}</span>
-                            <h3 className="card-title h5 mb-3">{article.title}</h3>
-                            {article.summary && (
-                              <p className="card-text text-muted mb-3">{article.summary}</p>
+                            <h3 className="card-title h5 mb-3">{getLocalizedString(article.title, language)}</h3>
+                            {getLocalizedString(article.summary, language) && (
+                              <p className="card-text text-muted mb-3">{getLocalizedString(article.summary, language)}</p>
                             )}
                             {article.date && (
                               <p className="text-muted small mb-3">
@@ -327,7 +338,7 @@ export default function Home() {
                       <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
                         <img 
                           src={event.imageUrl} 
-                          alt={event.title}
+                          alt={getLocalizedString(event.title, language)}
                           className="card-img-top w-100 h-100"
                           style={{ objectFit: 'cover' }}
                         />
@@ -340,8 +351,8 @@ export default function Home() {
                           <span className="badge bg-warning text-dark">Featured</span>
                         )}
                       </div>
-                      <h3 className="card-title h5 mb-3">{event.title}</h3>
-                      <p className="card-text text-muted mb-3">{event.excerpt}</p>
+                      <h3 className="card-title h5 mb-3">{getLocalizedString(event.title, language)}</h3>
+                      <p className="card-text text-muted mb-3">{getLocalizedString(event.excerpt, language)}</p>
                       <div className="mb-3">
                         <p className="text-muted small mb-1">
                           <i className="bi bi-calendar me-2"></i>

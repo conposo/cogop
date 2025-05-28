@@ -65,6 +65,15 @@ const Navigation = () => {
     }
   }, [])
 
+  // Load language from localStorage on mount
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+      setLocale(savedLanguage);
+    }
+  }, [setLanguage]);
+
   // Handle clicking outside the navigation
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
@@ -152,6 +161,7 @@ const Navigation = () => {
     const newLocale = e.target.value;
     setLanguage(newLocale);
     setLocale(newLocale);
+    localStorage.setItem('language', newLocale);
   };
 
   // Force re-render when language changes
@@ -204,19 +214,19 @@ const Navigation = () => {
         { title: t('youth_title', { defaultValue: 'Youth' }), href: '/ministries/youth' },
       ]
     },
-    {
-      title: t('where_we_serve', { defaultValue: 'Where We Serve' }),
-      items: [
-        { title: t('presiding_bishop', { defaultValue: 'Presiding Bishop' }), href: '/where-we-serve/presiding-bishop' },
-        { title: t('africa', { defaultValue: 'Africa' }), href: '/where-we-serve/africa' },
-        { title: t('asia_australia_oceania', { defaultValue: 'Asia, Australia & Oceania' }), href: '/where-we-serve/asia-australia-oceania' },
-        { title: t('caribbean_atlantic', { defaultValue: 'Caribbean & Atlantic' }), href: '/where-we-serve/caribbean-atlantic' },
-        { title: t('central_america', { defaultValue: 'Central America' }), href: '/where-we-serve/central-america' },
-        { title: t('north_america', { defaultValue: 'North America' }), href: '/where-we-serve/north-america' },
-        { title: t('south_america', { defaultValue: 'South America' }), href: '/where-we-serve/south-america' },
-        { title: t('europe_middle_east', { defaultValue: 'Europe & Middle East' }), href: '/where-we-serve/europe-middle-east' },
-      ]
-    },
+    // {
+    //   title: t('where_we_serve', { defaultValue: 'Where We Serve' }),
+    //   items: [
+    //     { title: t('presiding_bishop', { defaultValue: 'Presiding Bishop' }), href: '/where-we-serve/presiding-bishop' },
+    //     { title: t('africa', { defaultValue: 'Africa' }), href: '/where-we-serve/africa' },
+    //     { title: t('asia_australia_oceania', { defaultValue: 'Asia, Australia & Oceania' }), href: '/where-we-serve/asia-australia-oceania' },
+    //     { title: t('caribbean_atlantic', { defaultValue: 'Caribbean & Atlantic' }), href: '/where-we-serve/caribbean-atlantic' },
+    //     { title: t('central_america', { defaultValue: 'Central America' }), href: '/where-we-serve/central-america' },
+    //     { title: t('north_america', { defaultValue: 'North America' }), href: '/where-we-serve/north-america' },
+    //     { title: t('south_america', { defaultValue: 'South America' }), href: '/where-we-serve/south-america' },
+    //     { title: t('europe_middle_east', { defaultValue: 'Europe & Middle East' }), href: '/where-we-serve/europe-middle-east' },
+    //   ]
+    // },
     {
       title: t('resources', { defaultValue: 'Resources' }),
       items: [
@@ -233,7 +243,7 @@ const Navigation = () => {
         { title: t('assembly_minutes_title', { defaultValue: 'Assembly Minutes' }), href: '/resources/assembly-minutes' },
         { title: t('church_resources_title', { defaultValue: 'Church Resources' }), href: '/resources/church-resources' },
         { title: t('church_locator_title', { defaultValue: 'Church Locator' }), href: '/resources/church-locator' },
-        { title: t('church_logos_title', { defaultValue: 'Church Logos' }), href: '/resources/church-logos' },
+        // { title: t('church_logos_title', { defaultValue: 'Church Logos' }), href: '/resources/church-logos' },
         { title: t('treasurers_report_title', { defaultValue: "Treasurer's Report" }), href: '/resources/treasurers-report' },
         { title: t('directory_title', { defaultValue: 'Directory' }), href: '/resources/directory' },
       ]

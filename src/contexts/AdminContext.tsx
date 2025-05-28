@@ -12,7 +12,7 @@ interface AdminContextType {
 }
 
 interface AdminData {
-  role: 'admin' | 'super_admin';
+  role: 'admin' | 'super_admin' | 'editor';
   permissions: string[];
   createdAt: Date;
   createdBy: string;

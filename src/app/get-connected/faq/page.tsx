@@ -2,6 +2,7 @@
 
 import { useContent, getPageContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
+import CallToAction from '@/components/CallToAction'
 import { t } from '@/lib/i18n'
 import Link from 'next/link'
 
@@ -36,7 +37,7 @@ export default function FAQPage() {
                       <div key={question.id} className="accordion-item">
                         <h2 className="accordion-header" id={`heading${question.id}`}>
                           <button
-                            className={`accordion-button ${question.isExpanded ? '' : 'collapsed'}`}
+                            className={`accordion-button bg-transparent ${question.isExpanded ? '' : 'collapsed'}`}
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target={`#collapse${question.id}`}
@@ -65,25 +66,7 @@ export default function FAQPage() {
           </div>
 
           {/* FAQ-specific call to action */}
-          <div className="row mt-5">
-            <div className="col-12">
-              <div className="card bg-light">
-                <div className="card-body text-center">
-                  <h4 className="card-title">{pageContent.faq.callToAction.title}</h4>
-                  <p className="card-text">{pageContent.faq.callToAction.description}</p>
-                  <div className="row">
-                    {pageContent.faq.callToAction.buttons.map((button, index) => (
-                      <div key={index} className="col-md-4 mb-2">
-                        <Link href={button.link} className={`btn ${button.variant === 'dark' ? 'btn-dark' : button.variant === 'outline' ? 'btn-outline-primary' : 'btn-primary'} w-100`}>
-                          {button.text}
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CallToAction />
 
           <style jsx>{`
             .faq-container .accordion-button {

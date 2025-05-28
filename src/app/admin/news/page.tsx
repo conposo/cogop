@@ -1,26 +1,39 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { collection, getDocs, deleteDoc, doc, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, deleteDoc, doc, query, orderBy, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import Link from 'next/link';
+import { useI18n } from '@/contexts/I18nContext';
+import { MultilingualString } from '@/lib/dummyContent';
+
+// Helper function to get localized string or fallback
+const getLocalizedString = (field: MultilingualString | string | undefined, lang: string, fallbackLang: string = 'en'): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field; // Handle legacy string format
+  if (typeof field === 'object' && field !== null) {
+    // Handle multilingual object format
+    return field[lang] || field[fallbackLang] || Object.values(field)[0] || '';
+  }
+  return '';
+};
 
 interface NewsArticle {
   id: string;
-  title: string;
-  excerpt: string;
-  content: string;
+  title: MultilingualString;
+  excerpt: MultilingualString;
+  content: MultilingualString;
   category: string;
   languages?: string[];
   published: boolean;
   featured: boolean;
-  createdAt: any;
-  updatedAt: any;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
   authorId: string;
   authorName: string;
   imageUrl?: string;
   tags: string[];
-  type?: string; // 'article' or 'event'
+  type?: 'article' | 'event';
   // Event-specific fields
   eventDate?: string;
   eventTime?: string;
@@ -31,6 +44,7 @@ interface NewsArticle {
 }
 
 export default function NewsManagement() {
+  const { language } = useI18n();
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'published' | 'draft' | 'articles' | 'events'>('all');
@@ -40,13 +54,36 @@ export default function NewsManagement() {
   }, []);
 
   const fetchArticles = async () => {
+    setLoading(true);
     try {
       const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'));
       const querySnapshot = await getDocs(q);
-      const articlesData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      })) as NewsArticle[];
+      const articlesData = querySnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          title: data.title || { en: 'No Title' }, 
+          excerpt: data.excerpt || { en: '' },
+          content: data.content || { en: '' }, 
+          category: data.category || 'General',
+          languages: data.languages || ['en'],
+          published: data.published || false,
+          featured: data.featured || false,
+          createdAt: data.createdAt as Timestamp,
+          updatedAt: data.updatedAt as Timestamp,
+          authorId: data.authorId || 'system',
+          authorName: data.authorName || 'Unknown Author',
+          imageUrl: data.imageUrl,
+          tags: data.tags || [],
+          type: data.type || 'article',
+          eventDate: data.eventDate,
+          eventTime: data.eventTime,
+          eventLocation: data.eventLocation,
+          eventAddress: data.eventAddress,
+          eventEndDate: data.eventEndDate,
+          eventEndTime: data.eventEndTime,
+        } as NewsArticle;
+      });
       setArticles(articlesData);
     } catch (error) {
       console.error('Error fetching articles:', error);
@@ -183,8 +220,8 @@ export default function NewsManagement() {
                     <tr key={article.id}>
                       <td>
                         <div>
-                          <h6 className="mb-1">{article.title}</h6>
-                          <small className="text-muted">{article.excerpt}</small>
+                          <h6 className="mb-1">{getLocalizedString(article.title, language)}</h6>
+                          <small className="text-muted">{getLocalizedString(article.excerpt, language, 'en').substring(0, 100)}{getLocalizedString(article.excerpt, language, 'en').length > 100 ? '...' : ''}</small>
                           {article.featured && (
                             <span className="badge bg-warning text-dark ms-2">Featured</span>
                           )}

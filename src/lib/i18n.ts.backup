@@ -7,12 +7,18 @@ i18n.translations = {
     // Navigation
     welcome: 'Welcome',
     home: 'Home',
+    about: 'About',
     get_connected: 'Get Connected',
     calendar: 'Calendar',
     contact: 'Contact',
     faq: 'FAQ',
     employment: 'Employment',
     schedule_tour: 'Schedule a Tour',
+    who_we_are: 'Who We Are',
+    what_we_believe: 'What We Believe',
+    our_leadership: 'Our Leadership',
+    our_history: 'Our History',
+    membership: 'Membership',
     ministries: 'Ministries',
     resources: 'Resources',
     give: 'Give',
@@ -184,16 +190,6 @@ i18n.translations = {
     
     library_title: 'Library',
     library_description: 'Access our digital library of books, articles, and educational materials.',
-    digital_library: 'Digital Library',
-    digital_library_desc: 'Our online library provides access to theological books, historical documents, and educational resources.',
-    collection_includes: 'Collection Includes',
-    theological_biblical_reference: 'Theological and biblical reference works',
-    church_history_heritage: 'Church history and heritage materials',
-    ministry_training_resources: 'Ministry training resources',
-    devotional_inspirational: 'Devotional and inspirational books',
-    academic_papers_research: 'Academic papers and research',
-    access: 'Access',
-    library_access_desc: 'Library resources are available to members and ministry leaders. Contact us for access information.',
     
     assembly_documents_title: 'Assembly Documents',
     assembly_documents_description: 'Official documents and proceedings from our International Assembly.',
@@ -302,48 +298,6 @@ i18n.translations = {
     faq_get_involved_ministry: 'How can I get involved in ministry?',
     faq_ministry_answer: 'There are many ways to get involved! You can serve in worship teams, children\'s ministry, youth programs, missions, community outreach, administrative roles, and more. Contact your local church leadership to discover opportunities that match your gifts and interests.',
     
-    faq_giving_support: 'Giving & Support',
-    faq_tithe_required: 'Do I have to tithe or give money?',
-    faq_tithe_answer: 'Giving is voluntary and should come from a joyful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions.',
-    faq_donations_used: 'How are donations used?',
-    faq_donations_answer: 'Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God\'s kingdom worldwide.',
-    
-    faq_global_ministry: 'Global Ministry',
-    faq_support_missions: 'How can I support global missions?',
-    faq_support_missions_answer: 'You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities.',
-    faq_international_assembly: 'What is the International Assembly?',
-    faq_international_assembly_answer: 'The International Assembly is our global church gathering held every four years. It brings together delegates from around the world for worship, fellowship, business sessions, and to set direction for our worldwide ministry.',
-    
-    faq_contact_next_steps: 'Contact and Next Steps',
-    faq_find_local_church: 'How do I find a local church?',
-    faq_find_local_church_answer: 'Use our church locator to find a congregation near you. You can also call our headquarters at (423) 559-5100 or contact us online for assistance in finding a local church.',
-    faq_schedule_tour_question: 'Can I schedule a tour of your facilities?',
-    faq_schedule_tour_answer: 'Yes! We\'d love to show you around our facilities. You can schedule a tour of our headquarters in Cleveland, Tennessee, or visit Fields of the Wood, our biblical theme park in North Carolina.',
-    faq_more_questions: 'I have more questions. How can I get answers?',
-    faq_more_questions_answer: 'We\'re here to help! You can contact us through our website, call us at (423) 559-5100, or email us at info@cogop.org. You can also reach out to a local Church of God of Prophecy pastor in your area.',
-    
-    // FAQ footer section
-    still_have_questions: 'Still Have Questions?',
-    still_have_questions_text: 'We\'re here to help! Don\'t hesitate to reach out with any questions about our church, beliefs, or how to get involved.',
-    find_a_church: 'Find a Church',
-    
-    // FAQ content
-    faq_lead_text: "We've compiled answers to some of the most common questions about the Church of God of Prophecy. If you don't find what you're looking for, please",
-    faq_contact_link: 'contact us',
-    faq_contact_link_end: 'directly.',
-    
-    // FAQ introduction
-    faq_introduction: 'We\'ve compiled answers to some of the most common questions about the Church of God of Prophecy. If you don\'t find what you\'re looking for, please contact us directly.',
-    
-    // FAQ callToAction button texts
-    faq_contact_us: 'Contact Us',
-    faq_find_church: 'Find a Church',
-    faq_schedule_tour: 'Schedule a Tour',
-    
-    // FAQ callToAction section
-    faq_still_have_questions: 'Still Have Questions?',
-    faq_here_to_help: 'We\'re here to help! Don\'t hesitate to reach out with any questions about our church, beliefs, or how to get involved.',
-    
     // Article Categories
     spirit_life_seminary: 'Spirit and Life Seminary',
     digital_evangelism: 'Digital Evangelism',
@@ -424,6 +378,11 @@ i18n.translations = {
     peerless_church: 'Peerless Church',
     rosen_shingle_creek: 'Rosen Shingle Creek',
 
+    // FAQ content
+    faq_lead_text: "We've compiled answers to some of the most common questions about the Church of God of Prophecy. If you don't find what you're looking for, please",
+    faq_contact_link: 'contact us',
+    faq_contact_link_end: 'directly.',
+
     // Page content
     global_movement_heading: 'A Global Movement',
     global_movement_text: 'The Church of God of Prophecy is a vibrant, global Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.',
@@ -449,6 +408,32 @@ i18n.translations = {
     employment_description: 'Explore career opportunities within our organization.',
     schedule_tour_title: 'Schedule a Tour',
     schedule_tour_description: 'Visit our facilities and learn about our community.',
+
+    // Additional FAQ sections
+    faq_giving_support: 'Giving & Support',
+    faq_tithe_required: 'Do I have to tithe or give money?',
+    faq_tithe_answer: 'Giving is voluntary and should come from a joyful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions.',
+    faq_donations_used: 'How are donations used?',
+    faq_donations_answer: 'Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God\'s kingdom worldwide.',
+    
+    faq_global_ministry: 'Global Ministry',
+    faq_support_missions: 'How can I support global missions?',
+    faq_support_missions_answer: 'You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities.',
+    faq_international_assembly: 'What is the International Assembly?',
+    faq_international_assembly_answer: 'The International Assembly is our global church gathering held every four years. It brings together delegates from around the world for worship, fellowship, business sessions, and to set direction for our worldwide ministry.',
+    
+    faq_contact_next_steps: 'Contact and Next Steps',
+    faq_find_local_church: 'How do I find a local church?',
+    faq_find_local_church_answer: 'Use our church locator to find a congregation near you. You can also call our headquarters at (423) 559-5100 or contact us online for assistance in finding a local church.',
+    faq_schedule_tour_question: 'Can I schedule a tour of your facilities?',
+    faq_schedule_tour_answer: 'Yes! We\'d love to show you around our facilities. You can schedule a tour of our headquarters in Cleveland, Tennessee, or visit Fields of the Wood, our biblical theme park in North Carolina.',
+    faq_more_questions: 'I have more questions. How can I get answers?',
+    faq_more_questions_answer: 'We\'re here to help! You can contact us through our website, call us at (423) 559-5100, or email us at info@cogop.org. You can also reach out to a local Church of God of Prophecy pastor in your area.',
+    
+    // FAQ footer section
+    still_have_questions: 'Still Have Questions?',
+    still_have_questions_text: 'We\'re here to help! Don\'t hesitate to reach out with any questions about our church, beliefs, or how to get involved.',
+    find_a_church: 'Find a Church',
 
     // Page content sections
     our_ministries: 'Our Ministries',
@@ -547,17 +532,30 @@ i18n.translations = {
 
     // Who We Are content
     global_movement: 'A Global Movement',
+    global_movement_text: 'The Church of God of Prophecy is a vibrant, global Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.',
     our_identity: 'Our Identity',
     we_are: 'We are:',
+    christ_centered: 'Christ-centered in our worship and witness',
+    spirit_led: 'Spirit-led in our ministry and mission',
+    scripture_based: 'Scripture-based in our beliefs and practices',
+    global_reach: 'Global in our reach and impact',
+    unified_diversity: 'Unified in our diversity',
     our_story: 'Our Story',
 
     // What We Believe content
+    statement_of_faith: 'Statement of Faith',
     we_believe_in: 'We believe in:',
+    the_trinity: 'The Trinity',
     trinity_desc: 'One God eternally existing in three persons: Father, Son, and Holy Spirit.',
+    jesus_christ: 'Jesus Christ',
     jesus_desc: 'The deity of Jesus Christ, His virgin birth, sinless life, atoning death, bodily resurrection, and glorious return.',
+    salvation: 'Salvation',
     salvation_desc: 'Salvation by grace through faith in Jesus Christ, not by works.',
+    holy_spirit: 'The Holy Spirit',
     holy_spirit_desc: 'The baptism of the Holy Spirit as a distinct experience available to all believers.',
+    the_church: 'The Church',
     church_desc: 'The church as the body of Christ, called to unity and holiness.',
+    scripture: 'Scripture',
     scripture_desc: 'The Bible as the inspired, inerrant Word of God and our final authority for faith and practice.',
 
     // Membership content
@@ -598,6 +596,7 @@ i18n.translations = {
     enter_location: 'Enter City, State, or Country',
     location_placeholder: 'e.g., Cleveland, TN or United States',
     search_churches: 'Search Churches',
+    contact_information: 'Contact Information',
     need_help_finding: 'Need help finding a church or have questions?',
     what_to_expect: 'What to Expect',
     what_to_expect_desc: 'At Church of God of Prophecy congregations, you\'ll find:',
@@ -607,6 +606,15 @@ i18n.translations = {
     community_outreach: 'Community outreach and missions',
     programs_all_ages: 'Programs for all ages',
     diverse_multicultural_community: 'Diverse, multicultural community',
+
+    // Common fallback content
+    content_coming_soon: 'Content coming soon...',
+    employment_opportunities_coming_soon: 'Employment opportunities coming soon...',
+    tour_scheduling_coming_soon: 'Tour scheduling coming soon...',
+    global_presence_overview_coming_soon: 'Global presence overview coming soon...',
+    resources_overview_coming_soon: 'Resources overview coming soon...',
+    leadership_information_coming_soon: 'Leadership information coming soon...',
+    historical_information_coming_soon: 'Historical information coming soon...',
 
     // Find a Church page translations
     find_a_church_title: 'Find a Church',
@@ -630,6 +638,7 @@ i18n.translations = {
     our_global_network: 'Our Global Network',
     global_network_description: 'The Church of God of Prophecy has over 12,000 churches and missions in 135 countries worldwide. If you don\'t see a church near you, we may still have a congregation in your area.',
     churches_missions: 'Churches & Missions',
+    countries: 'Countries',
     members: 'Members',
     years_of_ministry: 'Years of Ministry',
     what_to_expect_at_churches: 'What to Expect at Our Churches',
@@ -638,6 +647,7 @@ i18n.translations = {
     opportunities_spiritual_growth: 'Opportunities for spiritual growth',
     community_outreach_missions: 'Community outreach and missions',
     programs_for_all_ages: 'Programs for all ages',
+    diverse_multicultural_community: 'Diverse, multicultural community',
 
     // Event page translations
     event_not_found: 'Event Not Found',
@@ -661,6 +671,7 @@ i18n.translations = {
     events_description: 'Join us for these special gatherings and conferences throughout the year.',
     loading_events: 'Loading events...',
     featured: 'Featured',
+    learn_more: 'Learn More',
     no_upcoming_events: 'No upcoming events',
     check_back_soon: 'Check back soon for new events!',
     dont_miss_opportunities: 'Don\'t miss out on these opportunities!',
@@ -696,54 +707,69 @@ i18n.translations = {
     verification_email_sent: 'Verification email sent! Check your inbox.',
     failed_to_send_verification: 'Failed to send verification email',
 
-    // Calendar specific translations
-    event_calendar: 'Event Calendar',
-    view_all_upcoming_events: 'View all upcoming events and activities',
-    loading_calendar: 'Loading calendar...',
-    more: 'more',
-    today: 'Today',
-    previous_month: 'Previous month',
-    next_month: 'Next month',
-    calendar_view: 'Calendar view',
-    list_view: 'List view',
-    no_events_scheduled: 'No events scheduled',
-    
-    // Profile page translations
-    profile: 'Profile',
-    update_profile: 'Update Profile',
-    profile_updated: 'Profile updated successfully',
-    saving: 'Saving...',
+    // FAQ callToAction button texts
+    faq_contact_us: 'Contact Us',
+    faq_find_church: 'Find a Church',
+    faq_schedule_tour: 'Schedule a Tour',
+
+    // FAQ callToAction section
+    faq_still_have_questions: 'Still Have Questions?',
+    faq_here_to_help: 'We\'re here to help! Don\'t hesitate to reach out with any questions about our church, beliefs, or how to get involved.',
+
+    // FAQ introduction
+    faq_introduction: 'We\'ve compiled answers to some of the most common questions about the Church of God of Prophecy. If you don\'t find what you\'re looking for, please contact us directly.',
 
     // Contact form translations
     email_label: 'Email',
     message_label: 'Message',
+    send_message: 'Send Message',
 
-    // Common fallback content
-    employment_opportunities_coming_soon: 'Employment opportunities coming soon...',
-    tour_scheduling_coming_soon: 'Tour scheduling coming soon...',
-    global_presence_overview_coming_soon: 'Global presence overview coming soon...',
-    resources_overview_coming_soon: 'Resources overview coming soon...',
-    leadership_information_coming_soon: 'Leadership information coming soon...',
-    historical_information_coming_soon: 'Historical information coming soon...',
-
-    // About section navigation
-    about: 'About',
-    who_we_are: 'Who We Are',
-    what_we_believe: 'What We Believe',
-    our_leadership: 'Our Leadership',
-    our_history: 'Our History',
-    membership: 'Membership',
+    // Settings page translations
+    account_settings: 'Account Settings',
+    email_verification: 'Email Verification',
+    verified: 'Verified',
+    not_verified: 'Not verified',
+    send_verification: 'Send Verification',
+    sending: 'Sending...',
+    change_password: 'Change Password',
+    current_password: 'Current Password',
+    new_password: 'New Password',
+    confirm_new_password: 'Confirm New Password',
+    update_password: 'Update Password',
+    updating: 'Updating...',
+    account_information: 'Account Information',
+    account_type: 'Account Type',
+    google_account: 'Google Account',
+    email_account: 'Email Account',
+    member_since: 'Member Since',
+    last_sign_in: 'Last Sign In',
+    unknown: 'Unknown',
+    google_password_notice: 'You\'re signed in with Google. Password changes must be done through your Google account.',
+    new_passwords_do_not_match: 'New passwords do not match',
+    password_must_be_6_chars: 'Password must be at least 6 characters long',
+    password_updated_successfully: 'Password updated successfully!',
+    current_password_incorrect: 'Current password is incorrect',
+    password_too_weak: 'Password is too weak',
+    failed_to_update_password: 'Failed to update password',
+    verification_email_sent: 'Verification email sent! Check your inbox.',
+    failed_to_send_verification: 'Failed to send verification email',
   },
   bg: {
     // Navigation
     welcome: 'Добре дошли',
     home: 'Начало',
+    about: 'За нас',
     get_connected: 'Свържете се с нас',
     calendar: 'Календар',
     contact: 'Контакт',
     faq: 'Често задавани въпроси',
     employment: 'Работа',
     schedule_tour: 'Запишете обиколка',
+    who_we_are: 'Кои сме ние',
+    what_we_believe: 'В какво вярваме',
+    our_leadership: 'Нашето ръководство',
+    our_history: 'Нашата история',
+    membership: 'Членство',
     ministries: 'Служения',
     resources: 'Ресурси',
     give: 'Дари',
@@ -825,7 +851,7 @@ i18n.translations = {
     one_child_fund_description: 'Подкрепа на деца и семейства в нужда по целия свят.',
     
     heritage_title: 'Наследство',
-    heritage_description: 'Запазване и споделяне на историята на Църква на Бога на Пророчеството.',
+    heritage_description: 'Запазване и споделяне на историята на Církva на Бога на Пророчеството.',
     
     fields_of_wood_title: 'Полета на дървото',
     fields_of_wood_description: 'Библейски тематичен парк и център за отдих в Мърфи, Северна Каролина.',
@@ -915,16 +941,6 @@ i18n.translations = {
     
     library_title: 'Библиотека',
     library_description: 'Достъп до нашата цифрова библиотека с книги, статии и образователни материали.',
-    digital_library: 'Цифрова библиотека',
-    digital_library_desc: 'Нашата онлайн библиотека предоставя достъп до теологични книги, исторически документи и образователни ресурси.',
-    collection_includes: 'Колекцията включва',
-    theological_biblical_reference: 'Теологични и библейски справочни трудове',
-    church_history_heritage: 'Материали по църковна история и наследство',
-    ministry_training_resources: 'Ресурси за обучение в служението',
-    devotional_inspirational: 'Молитвени и вдъхновяващи книги',
-    academic_papers_research: 'Академични статии и изследвания',
-    access: 'Достъп',
-    library_access_desc: 'Библиотечните ресурси са достъпни за членове и лидери в служението. Свържете се с нас за информация за достъп.',
     
     assembly_documents_title: 'Документи от събранието',
     assembly_documents_description: 'Официални документи и протоколи от нашето Международно събрание.',
@@ -968,7 +984,7 @@ i18n.translations = {
     jesus_christ: 'Исус Христос',
     salvation: 'Спасение',
     holy_spirit: 'Светият Дух',
-    the_church: 'Църквата',
+    the_church: 'Цървата',
     scripture: 'Писанието',
     our_mission: 'Нашата мисия',
     get_involved: 'Включете се',
@@ -1032,48 +1048,6 @@ i18n.translations = {
     faq_baptism_answer: 'Не, не е необходимо да бъдете кръстени, за да посещавате църквата. Всички са добре дошли да се присъединят към нас за поклонение и общение. Кръщението е необходимо за членство и представлява вашето публично обявяване на вяра в Исус Христос.',
     faq_get_involved_ministry: 'Как мога да се включа в служението?',
     faq_ministry_answer: 'Има много начини да се включите! Можете да служите в екипи за поклонение, детско служение, младежки програми, мисии, обществена дейност, административни роли и други. Свържете се с местното църковно ръководство, за да откриете възможности, които съответстват на вашите дарби и интереси.',
-    
-    faq_giving_support: 'Даряване и подкрепа',
-    faq_tithe_required: 'Трябва ли да давам десятък или пари?',
-    faq_tithe_answer: 'Даряването е доброволно и трябва да идва от радостно сърце. Учим библейско настойничество и вярваме, че десятъкът (даване на 10% от дохода) е библейски принцип, но никога не принуждаваме никого да дава. Вашата връзка с Бога не се основава на вашите финансови приноси.',
-    faq_donations_used: 'Как се използват дарениите?',
-    faq_donations_answer: 'Дарениите подкрепят местни църковни служения, глобални мисии, хуманитарна помощ, образователни програми и административни разходи. Практикуваме финансова прозрачност и предоставяме годишни доклади, показващи как средствата се използват за напредването на Божието царство по света.',
-    
-    faq_global_ministry: 'Глобално служение',
-    faq_support_missions: 'Как мога да подкрепя глобалните мисии?',
-    faq_support_missions_answer: 'Можете да подкрепите мисиите чрез молитва, финансово даряване, участие в мисионерски пътувания, спонсориране на дете чрез нашия Фонд за едно дете или ставане на Партньор в жътвата за подкрепа на мисионери. Свържете се с нас, за да научите за конкретни възможности.',
-    faq_international_assembly: 'Какво е Международното събрание?',
-    faq_international_assembly_answer: 'Международното събрание е нашето глобално църковно събиране, провеждано на всеки четири години. То обединява делегати от целия свят за поклонение, общение, работни сесии и определяне на посоката за нашето световно служение.',
-    
-    faq_contact_next_steps: 'Контакт и следващи стъпки',
-    faq_find_local_church: 'Как мога да намеря местна църква?',
-    faq_find_local_church_answer: 'Използвайте нашия локатор на църкви, за да намерите конгрегация близо до вас. Можете също да се обадите на нашата централа на (423) 559-5100 или да се свържете с нас онлайн за помощ при намирането на местна църква.',
-    faq_schedule_tour_question: 'Мога ли да запиша обиколка на вашите съоръжения?',
-    faq_schedule_tour_answer: 'Да! Ще се радваме да ви покажем нашите съоръжения. Можете да запишете обиколка на нашата централа в Кливланд, Тенеси, или да посетите Полета на дървото, нашия библейски тематичен парк в Северна Каролина.',
-    faq_more_questions: 'Имам още въпроси. Как мога да получа отговори?',
-    faq_more_questions_answer: 'Тук сме, за да помогнем! Можете да се свържете с нас чрез нашия уебсайт, да ни се обадите на (423) 559-5100 или да ни изпратите имейл на info@cogop.org. Можете също да се свържете с местен пастор на Църква на Бога на Пророчеството във вашия район.',
-    
-    // FAQ footer section
-    still_have_questions: 'Все още имате въпроси?',
-    still_have_questions_text: 'Тук сме, за да помогнем! Не се колебайте да се свържете с всякакви въпроси за нашата църква, вярвания или как да се включите.',
-    find_a_church: 'Намерете църква',
-    
-    // FAQ content
-    faq_lead_text: 'Събрахме отговори на някои от най-често задаваните въпроси за Църква на Бога на Пророчеството. Ако не намерите това, което търсите, моля',
-    faq_contact_link: 'свържете се с нас',
-    faq_contact_link_end: 'директно.',
-    
-    // FAQ introduction
-    faq_introduction: 'Събрахме отговори на някои от най-често задаваните въпроси за Църква на Бога на Пророчеството. Ако не намерите това, което търсите, моля свържете се с нас директно.',
-    
-    // FAQ callToAction button texts
-    faq_contact_us: 'Свържете се с нас',
-    faq_find_church: 'Намерете църква',
-    faq_schedule_tour: 'Запишете обиколка',
-    
-    // FAQ callToAction section
-    faq_still_have_questions: 'Все още имате въпроси?',
-    faq_here_to_help: 'Тук сме, за да помогнем! Не се колебайте да се свържете с всякакви въпроси за нашата църква, вярвания или как да се включите.',
     
     // Article Categories
     spirit_life_seminary: 'Семинария Дух и живот',
@@ -1155,6 +1129,11 @@ i18n.translations = {
     peerless_church: 'Църква Пиърлес',
     rosen_shingle_creek: 'Розен Шингъл Крийк',
 
+    // FAQ content
+    faq_lead_text: 'Събрахме отговори на някои от най-често задаваните въпроси за Църква на Бога на Пророчеството. Ако не намерите това, което търсите, моля',
+    faq_contact_link: 'свържете се с нас',
+    faq_contact_link_end: 'директно.',
+
     // Page content
     global_movement_heading: 'Глобално движение',
     global_movement_text: 'Църква на Бога на Пророчеството е живо, глобално християнско движение с присъствие в 135 държави и територии. Обединени сме от нашата обща вяра в Исус Христос и нашия ангажимент към библейската истина.',
@@ -1181,167 +1160,80 @@ i18n.translations = {
     schedule_tour_title: 'Запишете обиколка',
     schedule_tour_description: 'Посетете нашите съоръжения и научете за нашата общност.',
 
-    // Page content sections
-    our_ministries: 'Нашите служения',
-    serving_god_through_ministry: 'Служене на Бога чрез служение',
-    serving_god_ministry_desc: 'Църква на Бога на Пророчеството е ангажирана с изпълнението на Великото поръчение чрез различни служения, които служат на нашите местни общности и достигат света.',
-    reaching_world_for_christ: 'Достигане на света за Христос',
-    global_missions_desc: 'Нашето глобално мисионерско служение обхваща 135 държави и територии, работейки за изпълнението на Великото поръчение чрез правене на ученици от всички народи.',
-    our_mission_text: 'Да представим Евангелието на Исус Христос на всеки човек във всяка нация, основавайки църкви и обучавайки лидери да продължат работата на евангелизацията и ученичеството.',
-    key_focus_areas: 'Ключови области на фокус',
-    church_planting: 'Основаване на църкви в недостигнати области',
-    training_leadership: 'Обучение на местно лидерство',
-    bible_translation: 'Превод и разпространение на Библията',
-    medical_missions: 'Медицински мисии и хуманитарна помощ',
-    educational_ministries: 'Образователни служения',
-    pray: 'Молете се',
-    pray_desc: 'Присъединете се към нашата молитвена мрежа за мисионери и служебни партньори по целия свят.',
-    give_desc: 'Подкрепете мисионери и мисионерски проекти чрез финансови приноси.',
+    // Additional FAQ sections
+    faq_giving_support: 'Даряване и подкрепа',
+    faq_tithe_required: 'Трябва ли да давам десятък или пари?',
+    faq_tithe_answer: 'Даряването е доброволно и трябва да идва от радостно сърце. Учим библейско настойничество и вярваме, че десятъкът (даване на 10% от дохода) е библейски принцип, но никога не принуждаваме никого да дава. Вашата връзка с Бога не се основава на вашите финансови приноси.',
+    faq_donations_used: 'Как се използват дарениите?',
+    faq_donations_answer: 'Дарениите подкрепят местни църковни служения, глобални мисии, хуманитарна помощ, образователни програми и административни разходи. Практикуваме финансова прозрачност и предоставяме годишни доклади, показващи как средствата се използват за напредването на Божието царство по света.',
+    
+    faq_global_ministry: 'Глобално служение',
+    faq_support_missions: 'Как мога да подкрепя глобалните мисии?',
+    faq_support_missions_answer: 'Можете да подкрепите мисиите чрез молитва, финансово даряване, участие в мисионерски пътувания, спонсориране на дете чрез нашия Фонд за едно дете или ставане на Партньор в жътвата за подкрепа на мисионери. Свържете се с нас, за да научите за конкретни възможности.',
+    faq_international_assembly: 'Какво е Международното събрание?',
+    faq_international_assembly_answer: 'Международното събрание е нашето глобално църковно събиране, провеждано на всеки четири години. То обединява делегати от целия свят за поклонение, общение, работни сесии и определяне на посоката за нашето световно служение.',
+    
+    faq_contact_next_steps: 'Контакт и следващи стъпки',
+    faq_find_local_church: 'Как мога да намеря местна църква?',
+    faq_find_local_church_answer: 'Използвайте нашия локатор на църкви, за да намерите конгрегация близо до вас. Можете също да се обадите на нашата централа на (423) 559-5100 или да се свържете с нас онлайн за помощ при намирането на местна църква.',
+    faq_schedule_tour_question: 'Мога ли да запиша обиколка на вашите съоръжения?',
+    faq_schedule_tour_answer: 'Да! Ще се радваме да ви покажем нашите съоръжения. Можете да запишете обиколка на нашата централа в Кливланд, Тенеси, или да посетите Полета на дървото, нашия библейски тематичен парк в Северна Каролина.',
+    faq_more_questions: 'Имам още въпроси. Как мога да получа отговори?',
+    faq_more_questions_answer: 'Тук сме, за да помогнем! Можете да се свържете с нас чрез нашия уебсайт, да ни се обадите на (423) 559-5100 или да ни изпратите имейл на info@cogop.org. Можете също да се свържете с местен пастор на Църква на Бога на Пророчеството във вашия район.',
+    
+    // FAQ footer section
+    still_have_questions: 'Все още имате въпроси?',
+    still_have_questions_text: 'Тук сме, за да помогнем! Не се колебайте да се свържете с всякакви въпроси за нашата църква, вярвания или как да се включите.',
+    find_a_church: 'Намерете църква',
 
-    // Youth Ministry content
-    empowering_next_generation: 'Овластяване на следващото поколение',
-    youth_ministry_desc: 'Нашето младежко служение е посветено на помагането на младите хора да развият силна връзка с Исус Христос и да открият своята цел в Божието царство.',
-    programs_activities: 'Програми и дейности',
-    icm_youth_conference: 'ICM (Международна конвенция на служението) Младежка конференция',
-    local_youth_groups: 'Местни младежки групи и библейски изучавания',
-    leadership_development_programs: 'Програми за развитие на лидерството',
-    mission_trips: 'Мисионерски пътувания и служебни проекти',
-    sports_recreation: 'Спортни и развлекателни служения',
-    icm_testify: 'ICM: Свидетелствай',
-    icm_testify_desc_full: 'Нашата годишна международна младежка конференция обединява млади възрастни от цял свят за поклонение, учение и общение.',
-    timothy_quote: '"Никой да не презира младостта ти, но бъди пример за вярващите в слово, в поведение, в любов, във вяра и в чистота."',
-    timothy_reference: '1 Тимотей 4:12',
-
-    // Seminary content
-    training_leaders_ministry: 'Обучение на лидери за служение',
-    seminary_desc: 'Семинария Дух и живот съществува, за да предоставя качествено теологическо образование и практическо обучение за служение на настоящи и бъдещи лидери в Църква на Бога на Пророчеството.',
-    our_programs: 'Нашите програми',
-    bachelor_arts_ministry: 'Бакалавър по изкуства в служението',
-    master_divinity: 'Магистър по богословие',
-    master_christian_leadership: 'Магистър по изкуства в християнското лидерство',
-    certificate_programs: 'Сертификатни програми в различни служебни специализации',
-    continuing_education: 'Продължаващо образование за служители',
-    seminary_mission: 'Да предоставим отлично академично и практическо обучение, което подготвя мъже и жени за ефективно служение в глобалната Църква на Бога на Пророчеството.',
-    seminary_accreditation: 'Семинария Дух и живот е ангажирана с поддържането на най-високите академични стандарти, оставайки вярна на нашето петдесятническо наследство и библейска основа.',
-
-    // Children's Ministry content
-    building_faith_early: 'Изграждане на вяра от ранна възраст',
-    children_ministry_desc: 'Нашето детско служение е проектирано да помогне на децата да развият любов към Бога, да научат библейски истини и да растат в своята връзка с Исус Христос.',
-    age_appropriate_programs: 'Подходящи за възрастта програми',
-    sunday_school_classes: 'Часове в неделното училище за всички възрастови групи',
-    childrens_church: 'Детска църква по време на богослужения',
-    vacation_bible_school: 'Ваканционно библейско училище',
-    kids_camps: 'Детски лагери и отдих',
-    family_ministry_events: 'Семейни служебни събития',
-    teaching_approach: 'Подход на преподаване',
-    teaching_approach_desc: 'Използваме творчески, интерактивни методи, за да помогнем на децата да:',
-    learn_bible_stories: 'Научат библейски истории и принципи',
-    develop_prayer_habits: 'Развият молитвени навици',
-    understand_gods_love: 'Разберат Божията любов',
-    build_christian_friendships: 'Изградят християнски приятелства',
-    serve_community: 'Служат на другите в тяхната общност',
-
-    // One Child Fund content
-    changing_lives_one_child: 'Променяне на животи едно дете наведнъж',
-    one_child_fund_desc: 'Фондът за едно дете е служение на състрадание, което предоставя образователни възможности, основни нужди и духовно възпитание за деца в развиващите се страни.',
-    how_it_works: 'Как работи',
-    monthly_sponsorship_provides: 'Чрез месечно спонсориране, поддръжниците предоставят:',
-    educational_expenses: 'Образователни разходи, включително такси, книги и материали',
-    nutritious_meals: 'Питателни ястия и здравеопазване',
-    clothing_necessities: 'Облекло и други основни нужди',
-    spiritual_guidance: 'Духовно ръководство и библейско наставление',
-    hope_future: 'Надежда за по-светло бъдеще',
-    make_difference: 'Направете разлика',
-    sponsor_child_desc: 'За само 30 долара месечно можете да спонсорирате дете и да помогнете за прекъсването на цикъла на бедността чрез образование и християнска любов.',
-    sponsor_child: 'Спонсорирайте дете',
-    sponsor_child_btn_desc: 'Започнете вашето спонсорско пътуване днес и променете живота на дете завинаги.',
-    start_sponsoring: 'Започнете спонсориране',
-    learn_more_btn_desc: 'Открийте повече за нашите глобални инициативи за детско служение.',
-    global_impact: 'Глобално въздействие',
-    global_impact_desc: 'Фондът за едно дете работи в множество държави, партнирайки с местни конгрегации на Църква на Бога на Пророчеството за идентифициране и подкрепа на деца, които се нуждаят от образователна помощ.',
-
-    // About section content
-    global_movement_desc: 'Църква на Бога на Пророчеството е живо, глобално християнско движение с присъствие в 135 държави и територии. Обединени сме от нашата обща вяра в Исус Христос и нашия ангажимент към библейската истина.',
-    our_vision: 'Нашата визия',
-    our_vision_text: 'Да бъдем водена от Духа глобална общност от вярващи, ангажирани с достигането на всеки човек във всяка нация с Евангелието на Исус Христос.',
-    our_values: 'Нашите ценности',
-    biblical_authority: 'Библейски авторитет',
-    biblical_authority_desc: 'Вярваме, че Библията е вдъхновената Божия дума',
-    global_unity: 'Глобално единство',
-    global_unity_desc: 'Ние сме една църква с много изрази',
-    spirit_led_living: 'Водено от Духа живеене',
-    spirit_led_living_desc: 'Разчитаме на Светия Дух за ръководство',
-    holistic_ministry: 'Холистично служение',
-    holistic_ministry_desc: 'Служим на целия човек',
-    cultural_sensitivity: 'Културна чувствителност',
-    cultural_sensitivity_desc: 'Уважаваме и приемаме разнообразието',
-
-    // Who We Are content
-    global_movement: 'Глобално движение',
-    our_identity: 'Нашата идентичност',
-    we_are: 'Ние сме:',
-    our_story: 'Нашата история',
-
-    // What We Believe content
-    we_believe_in: 'Вярваме в:',
-    trinity_desc: 'Един Бог, съществуващ вечно в три лица: Отец, Син и Свети Дух.',
-    jesus_desc: 'Божествеността на Исус Христос, Неговото девствено раждане, безгрешен живот, изкупителна смърт, телесно възкресение и славно завръщане.',
-    salvation_desc: 'Спасение чрез благодат чрез вяра в Исус Христос, не чрез дела.',
-    holy_spirit_desc: 'Кръщението със Светия Дух като отделно преживяване, достъпно за всички вярващи.',
-    church_desc: 'Църквата като тяло на Христос, призвана към единство и светост.',
-    scripture_desc: 'Библията като вдъхновената, безгрешна Божия дума и нашия окончателен авторитет за вяра и практика.',
-
-    // Membership content
-    becoming_member: 'Ставане на член',
-    membership_desc: 'Членството в Църква на Бога на Пророчеството е отворено за всички, които са приели Исус Христос като свой личен Спасител и желаят да Го следват в кръщение и християнски живот.',
-    steps_to_membership: 'Стъпки към членство',
-    accept_christ: 'Приемете Христос',
-    accept_christ_desc: 'Вземете лично решение да следвате Исус',
-    be_baptized: 'Бъдете кръстени',
-    be_baptized_desc: 'Следвайте Христос във водно кръщение',
-    commit_growth: 'Ангажирайте се към растеж',
-    commit_growth_desc: 'Включете се в изучаване на Библията и общение',
-    serve_others: 'Служете на другите',
-    serve_others_desc: 'Използвайте вашите дарби, за да служите на Бога и другите',
-    member_benefits: 'Предимства на членството',
-    voting_privileges: 'Право на глас в църковни въпроси',
-    access_resources: 'Достъп до членски ресурси и материали',
-    leadership_opportunities: 'Възможности за лидерство и служене',
-    global_connection: 'Връзка с нашето глобално църковно семейство',
-
-    // Give section content
-    why_we_give: 'Защо даряваме',
-    giving_desc: 'Даряването е акт на поклонение и начин да участваме в Божията работа по света. Вашите щедри дарения помагат за подкрепа на местни служения, глобални мисии и обществена дейност.',
-    ways_to_give: 'Начини за даряване',
-    online_giving: 'Онлайн даряване',
-    online_giving_desc: 'Сигурни онлайн дарения',
-    give_online: 'Дарете онлайн',
-    mail_check: 'Изпратете чек',
-    mail_check_desc: 'Изпратете на нашия пощенски адрес',
-    get_address: 'Вземете адреса',
-    text_to_give: 'Дарете чрез SMS',
-    text_to_give_desc: 'Дарете чрез текстово съобщение',
-
-    // Find a Church content
-    find_congregation: 'Намерете конгрегация близо до вас',
-    find_church_desc: 'С над 12,000 църкви и мисии в 135 държави, вероятно има конгрегация на Църква на Бога на Пророчеството близо до вас.',
-    search_by_location: 'Търсене по местоположение',
-    enter_location: 'Въведете град, област или държава',
-    location_placeholder: 'напр. София, България или България',
-    search_churches: 'Търси църкви',
-    need_help_finding: 'Нужда от помощ при намирането на църква или имате въпроси?',
-    what_to_expect: 'Какво да очаквате',
-    what_to_expect_desc: 'В конгрегациите на Църква на Бога на Пророчеството ще намерите:',
-    spirit_led_worship: 'Водено от Духа поклонение и библейско учение',
-    warm_fellowship: 'Топло, приветливо общение',
-    spiritual_growth_opportunities: 'Възможности за духовен растеж',
-    community_outreach: 'Обществена дейност и мисии',
-    programs_all_ages: 'Програми за всички възрасти',
-    diverse_multicultural_community: 'Разнообразна, мултикултурна общност',
+    // Calendar specific translations
+    event_calendar: 'Календар на събитията',
+    view_all_upcoming_events: 'Вижте всички предстоящи събития и дейности',
+    loading_calendar: 'Зареждане на календара...',
+    more: 'още',
+    today: 'Днес',
+    previous_month: 'Предишен месец',
+    next_month: 'Следващ месец',
+    calendar_view: 'Изглед календар',
+    list_view: 'Изглед списък',
+    upcoming_events: 'Предстоящи събития',
+    no_events_scheduled: 'Няма планирани събития',
+    
+    // Profile page translations
+    profile: 'Профил',
+    display_name: 'Показвано име',
+    update_profile: 'Актуализирай профила',
+    profile_updated: 'Профилът е актуализиран успешно',
+    saving: 'Запазване...',
+    
+    // Footer translations
+    about: 'За нас',
+    who_we_are: 'Кои сме ние',
+    what_we_believe: 'В какво вярваме',
+    our_leadership: 'Нашето ръководство',
+    our_history: 'Нашата история',
+    get_connected: 'Свържете се с нас',
+    ministries: 'Служения',
+    where_we_serve: 'Къде служим',
+    resources: 'Ресурси',
+    give: 'Дари',
+    
+    // Common fallback content
+    content_coming_soon: 'Съдържанието идва скоро...',
+    employment_opportunities_coming_soon: 'Възможностите за работа идват скоро...',
+    tour_scheduling_coming_soon: 'Планирането на обиколки идва скоро...',
+    global_presence_overview_coming_soon: 'Преглед на глобалното присъствие идва скоро...',
+    resources_overview_coming_soon: 'Преглед на ресурсите идва скоро...',
+    leadership_information_coming_soon: 'Информацията за ръководството идва скоро...',
+    historical_information_coming_soon: 'Историческата информация идва скоро...',
 
     // Find a Church page translations
     find_a_church_title: 'Намери църква',
     find_a_church_description: 'Намерете конгрегация на Църква на Бога на Пророчеството близо до вас.',
+    search_churches: 'Търси църкви',
+    enter_city_state_country: 'Въведете град, област или държава',
+    location_placeholder: 'напр. София, България или България',
+    searching: 'Търсене...',
     filter_by_programs: 'Филтрирай по програми',
     clear_filters: 'Изчисти филтрите',
     need_help: 'Нужда от помощ?',
@@ -1361,6 +1253,7 @@ i18n.translations = {
     our_global_network: 'Нашата глобална мрежа',
     global_network_description: 'Църква на Бога на Пророчеството има над 12 000 църкви и мисии в 135 държави по света. Ако не виждате църква близо до вас, може все още да имаме конгрегация във вашия район.',
     churches_missions: 'Църкви и мисии',
+    countries: 'Държави',
     members: 'Членове',
     years_of_ministry: 'Години служение',
     what_to_expect_at_churches: 'Какво да очаквате в нашите църкви',
@@ -1369,6 +1262,13 @@ i18n.translations = {
     opportunities_spiritual_growth: 'Възможности за духовен растеж',
     community_outreach_missions: 'Обществена дейност и мисии',
     programs_for_all_ages: 'Програми за всички възрасти',
+    diverse_multicultural_community: 'Разнообразна, мултикултурна общност',
+
+    // Additional find-a-church translations
+    find_congregation: 'Намерете конгрегация близо до вас',
+    find_church_desc: 'С над 12 000 църкви и мисии в 135 държави, вероятно има конгрегация на Църква на Бога на Пророчеството близо до вас.',
+    search_by_location: 'Търсене по местоположение',
+    what_to_expect_desc: 'В конгрегациите на Църква на Бога на Пророчеството ще намерите:',
 
     // Event page translations
     event_not_found: 'Събитието не е намерено',
@@ -1392,6 +1292,7 @@ i18n.translations = {
     events_description: 'Присъединете се към нас за тези специални събирания и конференции през годината.',
     loading_events: 'Зареждане на събития...',
     featured: 'Препоръчано',
+    learn_more: 'Научете повече',
     no_upcoming_events: 'Няма предстоящи събития',
     check_back_soon: 'Проверете отново скоро за нови събития!',
     dont_miss_opportunities: 'Не пропускайте тези възможности!',
@@ -1424,46 +1325,55 @@ i18n.translations = {
     current_password_incorrect: 'Текущата парола е неправилна',
     password_too_weak: 'Паролата е твърде слаба',
     failed_to_update_password: 'Неуспешно обновяване на паролата',
-    verification_email_sent: 'Писмо за потвърждение е изпратено! Проверете входящата поща.',
+    verification_email_sent: 'Писмо за потвърждение е изпратено! Проверете входно писмото.',
     failed_to_send_verification: 'Неуспешно изпращане на имейл за потвърждение',
 
-    // Calendar specific translations
-    event_calendar: 'Календар на събитията',
-    view_all_upcoming_events: 'Вижте всички предстоящи събития и дейности',
-    loading_calendar: 'Зареждане на календара...',
-    more: 'още',
-    today: 'Днес',
-    previous_month: 'Предишен месец',
-    next_month: 'Следващ месец',
-    calendar_view: 'Изглед календар',
-    list_view: 'Изглед списък',
-    no_events_scheduled: 'Няма планирани събития',
-    
-    // Profile page translations
-    profile: 'Профил',
-    update_profile: 'Актуализирай профила',
-    profile_updated: 'Профилът е актуализиран успешно',
-    saving: 'Запазване...',
+    // FAQ callToAction button texts
+    faq_contact_us: 'Свържете се с нас',
+    faq_find_church: 'Намерете църква',
+    faq_schedule_tour: 'Запишете обиколка',
+
+    // FAQ callToAction section
+    faq_still_have_questions: 'Все още имате въпроси?',
+    faq_here_to_help: 'Тук сме, за да помогнем! Не се колебайте да се свържете с всякакви въпроси за нашата църква, вярвания или как да се включите.',
+
+    // FAQ introduction
+    faq_introduction: 'Събрахме отговори на някои от най-често задаваните въпроси за Църква на Бога на Пророчеството. Ако не намерите това, което търсите, моля свържете се с нас директно.',
 
     // Contact form translations
     email_label: 'Имейл',
     message_label: 'Съобщение',
+    send_message: 'Изпрати съобщение',
 
-    // Common fallback content
-    employment_opportunities_coming_soon: 'Възможностите за работа идват скоро...',
-    tour_scheduling_coming_soon: 'Планирането на обиколки идва скоро...',
-    global_presence_overview_coming_soon: 'Преглед на глобалното присъствие идва скоро...',
-    resources_overview_coming_soon: 'Преглед на ресурсите идва скоро...',
-    leadership_information_coming_soon: 'Информацията за ръководството идва скоро...',
-    historical_information_coming_soon: 'Историческата информация идва скоро...',
-
-    // About section navigation
-    about: 'За нас',
-    who_we_are: 'Кои сме ние',
-    what_we_believe: 'Вярваме в',
-    our_leadership: 'Нашето ръководство',
-    our_history: 'Нашата история',
-    membership: 'Членство',
+    // Settings page translations
+    account_settings: 'Настройки на акаунта',
+    email_verification: 'Потвърждение на имейла',
+    verified: 'Потвърден',
+    not_verified: 'Непотвърден',
+    send_verification: 'Изпрати потвърждение',
+    sending: 'Изпращане...',
+    change_password: 'Промени парола',
+    current_password: 'Текуща парола',
+    new_password: 'Нова парола',
+    confirm_new_password: 'Потвърди новата парола',
+    update_password: 'Обнови парола',
+    updating: 'Обновяване...',
+    account_information: 'Информация за акаунта',
+    account_type: 'Тип на акаунта',
+    google_account: 'Google акаунт',
+    email_account: 'Имейл акаунт',
+    member_since: 'Член от',
+    last_sign_in: 'Последно влизане',
+    unknown: 'Неизвестно',
+    google_password_notice: 'Вие сте влязли с Google. Промените на паролата трябва да се правят чрез вашия Google акаунт.',
+    new_passwords_do_not_match: 'Новите пароли не съвпадат',
+    password_must_be_6_chars: 'Паролата трябва да е поне 6 символа дълга',
+    password_updated_successfully: 'Паролата е обновена успешно!',
+    current_password_incorrect: 'Текущата парола е неправилна',
+    password_too_weak: 'Паролата е твърде слаба',
+    failed_to_update_password: 'Неуспешно обновяване на паролата',
+    verification_email_sent: 'Писмо за потвърждение е изпратено! Проверете входно писмото.',
+    failed_to_send_verification: 'Неуспешно изпращане на имейл за потвърждение',
   },
 };
 

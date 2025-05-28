@@ -1,5 +1,6 @@
 "use client";
-import { createContext, useState, useContext, ReactNode } from "react";
+import { createContext, useState, useContext, ReactNode, useEffect } from "react";
+import { setLocale } from "@/lib/i18n";
 
 interface I18nContextProps {
   language: string;
@@ -17,6 +18,12 @@ export function useI18n() {
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState("bg");
+  
+  // Sync with i18n system when language changes
+  useEffect(() => {
+    setLocale(language);
+  }, [language]);
+  
   return (
     <I18nContext.Provider value={{ language, setLanguage }}>
       {children}

@@ -241,7 +241,7 @@ export default function FindaChurchPage() {
       description={pageContent.description}
       backgroundImage={pageContent.backgroundImage}
     >
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           {/* Search and Filters Sidebar */}
           <div className="col-lg-4 col-xl-3 mb-4">

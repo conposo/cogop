@@ -4,7 +4,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
-import { fetchArticlesFromFirestore, Article } from '@/lib/dummyContent'
+import { fetchArticlesFromFirestore, Article, MultilingualString } from '@/lib/dummyContent'
+
+// Helper function to get localized string or fallback
+const getLocalizedString = (field: MultilingualString | undefined, lang: string, fallbackLang: string = 'en'): string => {
+  if (!field) return '';
+  return field[lang] || field[fallbackLang] || Object.values(field)[0] || '';
+};
 
 export default function News() {
   const { language } = useI18n()
@@ -45,20 +51,29 @@ export default function News() {
           articles.map((article) => (
             <div key={article.id} className="col-lg-4 col-md-6 mb-4">
               <div className="card h-100">
-                {article.imageUrl && (
+                {article.imageUrl !== '' ? (
                   <Image
                     src={article.imageUrl}
-                    alt={article.title}
+                    alt={getLocalizedString(article.title, language)}
                     width={400}
                     height={250}
                     className="card-img-top"
                     style={{ objectFit: 'cover' }}
                   />
+                ) : (
+                  <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                    <img 
+                      src="/images/default-article-image.jpg" 
+                      alt="Default Article Image"
+                      className="card-img-top w-100 h-100"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </div>
                 )}
                 <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{article.title}</h5>
+                  <h5 className="card-title">{getLocalizedString(article.title, language)}</h5>
                   {article.category && <span className="badge bg-secondary mb-2 align-self-start">{article.category}</span>}
-                  <p className="card-text flex-grow-1">{article.summary}</p>
+                  <p className="card-text flex-grow-1">{getLocalizedString(article.summary, language)}</p>
                   <small className="text-muted">
                     {new Date(article.date).toLocaleDateString()} | By: {article.author}
                   </small>

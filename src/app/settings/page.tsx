@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { updatePassword, sendEmailVerification, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
+import { t } from '@/lib/i18n';
 
 export default function SettingsPage() {
   const { user, loading } = useAuth();
@@ -28,12 +29,12 @@ export default function SettingsPage() {
     if (!user || !user.email) return;
 
     if (newPassword !== confirmPassword) {
-      setError('New passwords do not match');
+      setError(t('new_passwords_do_not_match'));
       return;
     }
 
     if (newPassword.length < 6) {
-      setError('Password must be at least 6 characters long');
+      setError(t('password_must_be_6_chars'));
       return;
     }
 
@@ -49,17 +50,17 @@ export default function SettingsPage() {
       // Update password
       await updatePassword(user, newPassword);
       
-      setMessage('Password updated successfully!');
+      setMessage(t('password_updated_successfully'));
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
     } catch (error: any) {
       if (error.code === 'auth/wrong-password') {
-        setError('Current password is incorrect');
+        setError(t('current_password_incorrect'));
       } else if (error.code === 'auth/weak-password') {
-        setError('Password is too weak');
+        setError(t('password_too_weak'));
       } else {
-        setError(error.message || 'Failed to update password');
+        setError(error.message || t('failed_to_update_password'));
       }
     } finally {
       setChangingPassword(false);
@@ -75,9 +76,9 @@ export default function SettingsPage() {
 
     try {
       await sendEmailVerification(user);
-      setMessage('Verification email sent! Check your inbox.');
+      setMessage(t('verification_email_sent'));
     } catch (error: any) {
-      setError(error.message || 'Failed to send verification email');
+      setError(error.message || t('failed_to_send_verification'));
     } finally {
       setSendingVerification(false);
     }
@@ -88,7 +89,7 @@ export default function SettingsPage() {
       <div className="container py-5">
         <div className="text-center">
           <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
+            <span className="visually-hidden">{t('loading')}</span>
           </div>
         </div>
       </div>
@@ -107,7 +108,7 @@ export default function SettingsPage() {
         <div className="col-md-8 col-lg-6">
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title mb-0">Account Settings</h2>
+              <h2 className="card-title mb-0">{t('account_settings')}</h2>
             </div>
             <div className="card-body">
               {message && (
@@ -123,7 +124,7 @@ export default function SettingsPage() {
 
               {/* Email Verification Section */}
               <div className="mb-4">
-                <h5>Email Verification</h5>
+                <h5>{t('email_verification')}</h5>
                 <div className="d-flex align-items-center justify-content-between">
                   <div>
                     <div className="fw-bold">{user.email}</div>
@@ -131,12 +132,12 @@ export default function SettingsPage() {
                       {user.emailVerified ? (
                         <>
                           <i className="bi bi-check-circle me-1"></i>
-                          Verified
+                          {t('verified')}
                         </>
                       ) : (
                         <>
                           <i className="bi bi-exclamation-circle me-1"></i>
-                          Not verified
+                          {t('not_verified')}
                         </>
                       )}
                     </small>
@@ -150,10 +151,10 @@ export default function SettingsPage() {
                       {sendingVerification ? (
                         <>
                           <span className="spinner-border spinner-border-sm me-2"></span>
-                          Sending...
+                          {t('sending')}
                         </>
                       ) : (
-                        'Send Verification'
+                        t('send_verification')
                       )}
                     </button>
                   )}

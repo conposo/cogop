@@ -5,6 +5,19 @@ import { useAdmin } from '@/contexts/AdminContext';
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import Link from 'next/link';
+import { useI18n } from '@/contexts/I18nContext';
+import { MultilingualString } from '@/lib/dummyContent';
+
+// Helper function to get localized string or fallback
+const getLocalizedString = (field: MultilingualString | string | undefined, lang: string, fallbackLang: string = 'en'): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field; // Handle legacy string format
+  if (typeof field === 'object' && field !== null) {
+    // Handle multilingual object format
+    return field[lang] || field[fallbackLang] || Object.values(field)[0] || '';
+  }
+  return '';
+};
 
 interface DashboardStats {
   totalNews: number;
@@ -14,6 +27,7 @@ interface DashboardStats {
 
 export default function AdminDashboard() {
   const { adminData } = useAdmin();
+  const { language } = useI18n();
   const [stats, setStats] = useState<DashboardStats>({
     totalNews: 0,
     totalUsers: 0,
@@ -175,16 +189,16 @@ export default function AdminDashboard() {
             <div className="card-body">
               {stats.recentNews.length > 0 ? (
                 <div className="list-group list-group-flush">
-                  {stats.recentNews.map((article) => (
+                  {stats.recentNews.map((article: any) => (
                     <div key={article.id} className="list-group-item px-0">
                       <div className="d-flex w-100 justify-content-between">
-                        <h6 className="mb-1">{article.title}</h6>
+                        <h6 className="mb-1">{getLocalizedString(article.title, language)}</h6>
                         <small className="text-muted">
                           {article.createdAt?.toDate?.()?.toLocaleDateString() || 'Unknown date'}
                         </small>
                       </div>
                       <p className="mb-1 text-muted small">
-                        {article.excerpt || 'No excerpt available'}
+                        {getLocalizedString(article.excerpt, language) || 'No excerpt available'}
                       </p>
                       <small className="text-muted">
                         Status: <span className={`badge ${article.published ? 'bg-success' : 'bg-warning'}`}>

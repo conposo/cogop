@@ -7,6 +7,7 @@ interface PageLayoutProps {
   backgroundImage?: string;
   children: React.ReactNode;
   showCallToAction?: boolean;
+  isAboutPage?: boolean;
 }
 
 const PageLayout: React.FC<PageLayoutProps> = ({ 
@@ -14,7 +15,8 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   description, 
   backgroundImage, 
   children,
-  showCallToAction = true
+  showCallToAction = true,
+  isAboutPage = false
 }) => {
   return (
     <>
@@ -22,8 +24,9 @@ const PageLayout: React.FC<PageLayoutProps> = ({
         title={title} 
         description={description} 
         backgroundImage={backgroundImage} 
+        isAboutPage={isAboutPage}
       />
-      <div className="container pb-5">
+      <div className="container -fluid pb-5">
         <div className="row">
           <div className="col-12">
             {children}

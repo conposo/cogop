@@ -7,6 +7,11 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '@/lib/firebase';
 import { useAuth } from '@/contexts/AuthContext';
 
+// Define a type for multilingual fields
+interface MultilingualString {
+  [key: string]: string;
+}
+
 export default function EditArticle() {
   const router = useRouter();
   const params = useParams();
@@ -15,11 +20,11 @@ export default function EditArticle() {
   const [pageLoading, setPageLoading] = useState(true);
   const [imageUploading, setImageUploading] = useState(false);
   const [formData, setFormData] = useState({
-    title: '',
-    excerpt: '',
-    content: '',
+    title: { en: '' } as MultilingualString,
+    excerpt: { en: '' } as MultilingualString,
+    content: { en: '' } as MultilingualString,
     category: 'General',
-    languages: ['en'],
+    languages: ['en'], // Default selected language
     published: false,
     featured: false,
     imageUrl: '',
@@ -44,7 +49,7 @@ export default function EditArticle() {
     'Prayer Requests'
   ];
 
-  const languages = [
+  const availableLanguages = [
     { code: 'en', name: 'English' },
     { code: 'bg', name: 'Български' }
   ];
@@ -52,19 +57,32 @@ export default function EditArticle() {
   useEffect(() => {
     const fetchArticle = async () => {
       if (!params.id) return;
-
+      setPageLoading(true);
       try {
         const docRef = doc(db, 'news', params.id as string);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
           const data = docSnap.data();
+          // Initialize title, excerpt, content for all languages present in data.languages
+          // or default to {en: ''} if data.languages is not set or empty.
+          const currentLanguages = data.languages && data.languages.length > 0 ? data.languages : ['en'];
+          const initialTitle: MultilingualString = {};
+          const initialExcerpt: MultilingualString = {};
+          const initialContent: MultilingualString = {};
+
+          currentLanguages.forEach((lang: string) => {
+            initialTitle[lang] = data.title?.[lang] || '';
+            initialExcerpt[lang] = data.excerpt?.[lang] || '';
+            initialContent[lang] = data.content?.[lang] || '';
+          });
+
           setFormData({
-            title: data.title || '',
-            excerpt: data.excerpt || '',
-            content: data.content || '',
+            title: initialTitle,
+            excerpt: initialExcerpt,
+            content: initialContent,
             category: data.category || 'General',
-            languages: data.languages || ['en'],
+            languages: currentLanguages,
             published: data.published || false,
             featured: data.featured || false,
             imageUrl: data.imageUrl || '',
@@ -92,17 +110,74 @@ export default function EditArticle() {
     fetchArticle();
   }, [params.id, router]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
-    
-    if (name === 'languages') {
+  // Effect to manage the structure of title, excerpt, content based on formData.languages
+  // This is important if languages are changed dynamically after initial load
+  useEffect(() => {
+    // Skip if page is still loading initial data to avoid race conditions
+    if (pageLoading) return;
+
+    setFormData(prev => {
+      const newTitle: MultilingualString = { ...prev.title };
+      const newExcerpt: MultilingualString = { ...prev.excerpt };
+      const newContent: MultilingualString = { ...prev.content };
+
+      (prev.languages || []).forEach(lang => {
+        if (newTitle[lang] === undefined) newTitle[lang] = '';
+        if (newExcerpt[lang] === undefined) newExcerpt[lang] = '';
+        if (newContent[lang] === undefined) newContent[lang] = '';
+      });
+      
+      // Optional: Clean up fields for languages that are no longer selected
+      // This part is crucial if a language is deselected, its data should be handled (e.g., removed or kept)
+      // For now, we ensure fields exist for selected languages. Actual removal can be complex if data is valuable.
+
+      return { ...prev, title: newTitle, excerpt: newExcerpt, content: newContent };
+    });
+  }, [formData.languages, pageLoading]); // Depend on pageLoading as well
+
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    langForTextField?: string // language code for title, excerpt, content
+  ) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked; // For checkboxes
+
+    if (name === "languages") { // Checkbox for selecting a language from availableLanguages
+      setFormData(prev => {
+        const currentSelectedLanguages = prev.languages || [];
+        const newSelectedLanguages = checked
+          ? [...currentSelectedLanguages, value] // Add language if checked
+          : currentSelectedLanguages.filter(l => l !== value); // Remove if unchecked
+        
+        // Ensure title, excerpt, content objects have keys for all selected languages
+        const newTitle = { ...prev.title };
+        const newExcerpt = { ...prev.excerpt };
+        const newContent = { ...prev.content };
+
+        newSelectedLanguages.forEach(lang => {
+          if (newTitle[lang] === undefined) newTitle[lang] = '';
+          if (newExcerpt[lang] === undefined) newExcerpt[lang] = '';
+          if (newContent[lang] === undefined) newContent[lang] = '';
+        });
+
+        return { 
+          ...prev, 
+          languages: newSelectedLanguages,
+          title: newTitle,
+          excerpt: newExcerpt,
+          content: newContent
+        };
+      });
+    } else if (langForTextField && (name === 'title' || name === 'excerpt' || name === 'content')) {
       setFormData(prev => ({
         ...prev,
-        languages: checked 
-          ? [...prev.languages, value]
-          : prev.languages.filter(lang => lang !== value)
+        [name]: {
+          ...(prev[name] as MultilingualString),
+          [langForTextField]: value
+        }
       }));
-    } else {
+    } else { 
       setFormData(prev => ({
         ...prev,
         [name]: type === 'checkbox' ? checked : value
@@ -139,10 +214,20 @@ export default function EditArticle() {
         .map(tag => tag.trim())
         .filter(tag => tag.length > 0);
 
-      const baseData = {
-        title: formData.title,
-        excerpt: formData.excerpt,
-        content: formData.content,
+      const titleData: MultilingualString = {};
+      const excerptData: MultilingualString = {};
+      const contentData: MultilingualString = {};
+
+      formData.languages.forEach(lang => {
+        if (formData.title[lang] !== undefined) titleData[lang] = formData.title[lang];
+        if (formData.excerpt[lang] !== undefined) excerptData[lang] = formData.excerpt[lang];
+        if (formData.content[lang] !== undefined) contentData[lang] = formData.content[lang];
+      });
+
+      const baseData: any = {
+        title: titleData,
+        excerpt: excerptData,
+        content: contentData,
         category: formData.category,
         languages: formData.languages,
         published: formData.published,
@@ -163,6 +248,8 @@ export default function EditArticle() {
           eventEndTime: formData.eventEndTime || formData.eventTime
         });
       } else {
+        // For articles, ensure event-specific fields that might have been populated
+        // if type was switched from event to article are nulled out.
         Object.assign(baseData, {
           eventDate: null,
           eventTime: null,
@@ -215,50 +302,58 @@ export default function EditArticle() {
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-md-8">
-                <div className="mb-3">
-                  <label htmlFor="title" className="form-label">Title *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="title"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
+                {(formData.languages || []).map(langCode => {
+                  const language = availableLanguages.find(l => l.code === langCode);
+                  return (
+                    <div key={langCode} className="mb-4 p-3 border rounded">
+                      <h5 className="mb-3">{language ? language.name : langCode.toUpperCase()} Content</h5>
+                      <div className="mb-3">
+                        <label htmlFor={`title-${langCode}`} className="form-label">Title *</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id={`title-${langCode}`}
+                          name="title"
+                          value={formData.title[langCode] || ''}
+                          onChange={(e) => handleInputChange(e, langCode)}
+                          required
+                        />
+                      </div>
 
-                <div className="mb-3">
-                  <label htmlFor="excerpt" className="form-label">
-                    {formData.type === 'event' ? 'Description' : 'Excerpt'} *
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="excerpt"
-                    name="excerpt"
-                    rows={3}
-                    value={formData.excerpt}
-                    onChange={handleInputChange}
-                    placeholder={formData.type === 'event' ? 'Brief description of the event...' : 'Brief summary of the article...'}
-                    required
-                  />
-                </div>
+                      <div className="mb-3">
+                        <label htmlFor={`excerpt-${langCode}`} className="form-label">
+                          {formData.type === 'event' ? 'Description' : 'Excerpt'} *
+                        </label>
+                        <textarea
+                          className="form-control"
+                          id={`excerpt-${langCode}`}
+                          name="excerpt"
+                          rows={3}
+                          value={formData.excerpt[langCode] || ''}
+                          onChange={(e) => handleInputChange(e, langCode)}
+                          placeholder={formData.type === 'event' ? 'Brief description of the event...' : 'Brief summary of the article...'}
+                          required
+                        />
+                      </div>
 
-                <div className="mb-3">
-                  <label htmlFor="content" className="form-label">
-                    {formData.type === 'event' ? 'Event Details' : 'Content'} *
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="content"
-                    name="content"
-                    rows={15}
-                    value={formData.content}
-                    onChange={handleInputChange}
-                    placeholder={formData.type === 'event' ? 'Detailed event information...' : 'Write your article content here...'}
-                    required
-                  />
-                </div>
+                      <div className="mb-3">
+                        <label htmlFor={`content-${langCode}`} className="form-label">
+                          {formData.type === 'event' ? 'Event Details' : 'Content'} *
+                        </label>
+                        <textarea
+                          className="form-control"
+                          id={`content-${langCode}`}
+                          name="content"
+                          rows={15}
+                          value={formData.content[langCode] || ''}
+                          onChange={(e) => handleInputChange(e, langCode)}
+                          placeholder={formData.type === 'event' ? 'Detailed event information...' : 'Write your article content here...'}
+                          required
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
 
                 {formData.type === 'event' && (
                   <>
@@ -422,7 +517,7 @@ export default function EditArticle() {
 
                 <div className="mb-3">
                   <label className="form-label">Languages *</label>
-                  {languages.map(language => (
+                  {availableLanguages.map(language => (
                     <div key={language.code} className="form-check">
                       <input
                         type="checkbox"

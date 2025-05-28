@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useMemo } from 'react';
+import { useI18n } from '@/contexts/I18nContext';
 import { t } from '@/lib/i18n';
 
 export interface PageContent {
@@ -25,15 +26,6 @@ export interface PageContent {
         isExpanded?: boolean;
       }>;
     }>;
-    callToAction: {
-      title: string;
-      description: string;
-      buttons: Array<{
-        text: string;
-        link: string;
-        variant: 'primary' | 'outline' | 'dark';
-      }>;
-    };
   };
 }
 
@@ -45,6 +37,16 @@ interface ContentContextType {
     label: string;
     value: string;
   }>;
+  callToActions: {
+    title: string;
+    description: string;
+    buttons: Array<{
+      text: string;
+      link: string;
+      variant: 'primary' | 'outline' | 'dark';
+      icon?: string;
+    }>;
+  };
   articles: Array<{
     category: string;
     title: string;
@@ -85,6 +87,31 @@ const getContentData = (): ContentContextType => ({
     { label: t('members_around_world', { defaultValue: 'Members Around the World' }), value: '1.5m' },
     { label: t('languages', { defaultValue: 'Languages' }), value: '130' },
   ],
+
+  callToActions: {
+    title: t('faq_still_have_questions', { defaultValue: 'Still Have Questions?' }),
+    description: t('faq_here_to_help', { defaultValue: 'We\'re here to help! Don\'t hesitate to reach out with any questions about our church, beliefs, or how to get involved.' }),
+    buttons: [
+      {
+        text: t('faq_contact_us', { defaultValue: 'Contact Us' }),
+        link: "/get-connected/contact",
+        variant: "dark",
+        icon: "bi bi-envelope"
+      },
+      {
+        text: t('faq_find_church', { defaultValue: 'Find a Church' }),
+        link: "/find-a-church",
+        variant: "outline",
+        icon: "bi bi-geo-alt"
+      },
+      {
+        text: t('faq_schedule_tour', { defaultValue: 'Schedule a Tour' }),
+        link: "/get-connected/schedule-tour",
+        variant: "outline",
+        icon: "bi bi-calendar-plus"
+      }
+    ]
+  },
 
   // Carousel slides for hero section
   carousel: [
@@ -298,14 +325,14 @@ const getContentData = (): ContentContextType => ({
                 <input type="text" class="form-control" id="name" required>
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">${t('email_label', { defaultValue: 'Email' })}</label>
                 <input type="email" class="form-control" id="email" required>
               </div>
               <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
+                <label for="message" class="form-label">${t('message_label', { defaultValue: 'Message' })}</label>
                 <textarea class="form-control" id="message" rows="4" required></textarea>
               </div>
-              <button type="submit" class="btn btn-dark">Send Message</button>
+              <button type="submit" class="btn btn-dark">${t('send_message', { defaultValue: 'Send Message' })}</button>
             </form>
           </div>
         </div>
@@ -315,7 +342,7 @@ const getContentData = (): ContentContextType => ({
       title: t('faq_title', { defaultValue: 'Frequently Asked Questions' }),
       description: t('faq_description', { defaultValue: 'Find answers to common questions about our church, beliefs, and services.' }),
       faq: {
-        introduction: "We've compiled answers to some of the most common questions about the Church of God of Prophecy. If you don't find what you're looking for, please contact us directly.",
+        introduction: t('faq_introduction', { defaultValue: 'We\'ve compiled answers to some of the most common questions about the Church of God of Prophecy. If you don\'t find what you\'re looking for, please contact us directly.' }),
         categories: [
           {
             title: "General Questions",
@@ -453,28 +480,7 @@ const getContentData = (): ContentContextType => ({
               }
             ]
           }
-        ],
-        callToAction: {
-          title: "Still Have Questions?",
-          description: "We're here to help! Don't hesitate to reach out with any questions about our church, beliefs, or how to get involved.",
-          buttons: [
-            {
-              text: "Contact Us",
-              link: "/get-connected/contact",
-              variant: "dark"
-            },
-            {
-              text: "Find a Church",
-              link: "/find-a-church",
-              variant: "outline"
-            },
-            {
-              text: "Schedule a Tour",
-              link: "/get-connected/schedule-tour",
-              variant: "outline"
-            }
-          ]
-        }
+        ]
       },
       content: `<p>FAQ content will be rendered using structured data above.</p>`
     },
@@ -1448,23 +1454,23 @@ const getContentData = (): ContentContextType => ({
       `
     },
     'resources/library': {
-      title: 'Library',
-      description: 'Access our digital library of books, articles, and educational materials.',
+      title: t('library_title', { defaultValue: 'Library' }),
+      description: t('library_description', { defaultValue: 'Access our digital library of books, articles, and educational materials.' }),
       content: `
-        <h2>Digital Library</h2>
-        <p>Our online library provides access to theological books, historical documents, and educational resources.</p>
+        <h2>${t('digital_library', { defaultValue: 'Digital Library' })}</h2>
+        <p>${t('digital_library_desc', { defaultValue: 'Our online library provides access to theological books, historical documents, and educational resources.' })}</p>
         
-        <h3>Collection Includes</h3>
+        <h3>${t('collection_includes', { defaultValue: 'Collection Includes' })}</h3>
         <ul>
-          <li>Theological and biblical reference works</li>
-          <li>Church history and heritage materials</li>
-          <li>Ministry training resources</li>
-          <li>Devotional and inspirational books</li>
-          <li>Academic papers and research</li>
+          <li>${t('theological_biblical_reference', { defaultValue: 'Theological and biblical reference works' })}</li>
+          <li>${t('church_history_heritage', { defaultValue: 'Church history and heritage materials' })}</li>
+          <li>${t('ministry_training_resources', { defaultValue: 'Ministry training resources' })}</li>
+          <li>${t('devotional_inspirational', { defaultValue: 'Devotional and inspirational books' })}</li>
+          <li>${t('academic_papers_research', { defaultValue: 'Academic papers and research' })}</li>
         </ul>
         
-        <h3>Access</h3>
-        <p>Library resources are available to members and ministry leaders. Contact us for access information.</p>
+        <h3>${t('access', { defaultValue: 'Access' })}</h3>
+        <p>${t('library_access_desc', { defaultValue: 'Library resources are available to members and ministry leaders. Contact us for access information.' })}</p>
       `
     },
     'resources/assembly-documents': {
@@ -1740,8 +1746,17 @@ export function useContent() {
 }
 
 export function ContentProvider({ children }: { children: React.ReactNode }) {
+  const { language } = useI18n();
+  
+  const contentData = useMemo(() => {
+    // Force re-evaluation by calling setLocale before getting content
+    const { setLocale } = require('@/lib/i18n');
+    setLocale(language);
+    return getContentData();
+  }, [language]);
+  
   return (
-    <ContentContext.Provider value={getContentData()}>
+    <ContentContext.Provider value={contentData} key={language}>
       {children}
     </ContentContext.Provider>
   );
