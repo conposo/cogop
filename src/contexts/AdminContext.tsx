@@ -18,6 +18,30 @@ interface AdminData {
   createdBy: string;
 }
 
+interface ChurchUser {
+  id: string;
+  userId: string;
+  churchId: string;
+  role: 'admin' | 'manager' | 'editor' | 'member';
+  permissions: string[];
+  email?: string;
+  displayName?: string;
+  isActive: boolean;
+  createdAt: Date;
+  createdBy: string;
+  updatedAt?: Date;
+  updatedBy?: string;
+}
+
+interface ChurchUserContextType {
+  churchUsers: ChurchUser[];
+  loading: boolean;
+  addChurchUser: (churchId: string, userData: Partial<ChurchUser>) => Promise<void>;
+  updateChurchUser: (churchUserId: string, updates: Partial<ChurchUser>) => Promise<void>;
+  removeChurchUser: (churchUserId: string) => Promise<void>;
+  getChurchUsers: (churchId: string) => Promise<ChurchUser[]>;
+}
+
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
 export function useAdmin() {

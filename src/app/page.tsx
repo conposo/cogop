@@ -220,76 +220,64 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Desktop Carousel - 3 articles per slide */}
-          {/* The logic for articleChunks already prepares chunks of 3 from the first 3 featured articles */}
-          <div id="desktopArticlesCarousel" className="carousel slide d-none d-lg-block" data-bs-ride="carousel">
-            <div className="carousel-indicators">
-              {articleChunks.map((_, index) => (
-                <button 
-                  key={index}
-                  type="button" 
-                  data-bs-target="#desktopArticlesCarousel" 
-                  data-bs-slide-to={index}
-                  className={index === 0 ? 'active' : ''}
-                  aria-current={index === 0 ? 'true' : 'false'}
-                  aria-label={`Slide ${index + 1}`}
-                ></button>
-              ))}
-            </div>
-            <div className="carousel-inner">
-              {articleChunks.map((chunk, chunkIndex) => (
-                <div key={chunkIndex} className={`carousel-item ${chunkIndex === 0 ? 'active' : ''}`}>
-                  <div className="row">
-                    {chunk.map((article) => (
-                      <div key={article.id} className="col-lg-4">
-                        <div className="card h-100 shadow">
-                          {article.imageUrl !== '' ? (
-                            <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
-                              <img 
-                                src={article.imageUrl} 
-                                alt={getLocalizedString(article.title, language)}
-                                className="card-img-top w-100 h-100"
-                                style={{ objectFit: 'cover' }}
-                              />
-                            </div>
-                          ) : (
-                            <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
-                              <img 
-                                src="/images/default-article-image.jpg" 
-                                alt={getLocalizedString(article.title, language)}
-                                className="card-img-top w-100 h-100"
-                                style={{ objectFit: 'cover' }}
-                              />
-                            </div>
-                          )}
-                          <div className="card-body p-4">
-                            <span className="badge bg-primary mb-3">{article.category}</span>
-                            <h3 className="card-title h5 mb-3">{getLocalizedString(article.title, language)}</h3>
-                            {getLocalizedString(article.summary, language) && (
-                              <p className="card-text text-muted mb-3">{getLocalizedString(article.summary, language)}</p>
-                            )}
-                            {article.date && (
-                              <p className="text-muted small mb-3">
-                                <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
-                              </p>
-                            )}
-                            <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
-                          </div>
-                        </div>
+          {/* Desktop View - Static Grid Layout */}
+          <div className="d-none d-lg-block">
+            <div className="row">
+              {articles.slice(0, 3).map((article) => (
+                <div key={article.id} className="col-lg-4 mb-4">
+                  <div className="card h-100 shadow">
+                    {article.imageUrl !== '' ? (
+                      <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                        <img 
+                          src={article.imageUrl} 
+                          alt={getLocalizedString(article.title, language)}
+                          className="card-img-top w-100 h-100"
+                          style={{ objectFit: 'cover' }}
+                        />
                       </div>
-                    ))}
+                    ) : (
+                      <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                        <img 
+                          src="/images/default-article-image.jpg" 
+                          alt={getLocalizedString(article.title, language)}
+                          className="card-img-top w-100 h-100"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                    )}
+                    <div className="card-body p-4">
+                      <span className="badge bg-primary mb-3">{article.category}</span>
+                      <h3 className="card-title h5 mb-3">{getLocalizedString(article.title, language)}</h3>
+                      {getLocalizedString(article.summary, language) && (
+                        <p className="card-text text-muted mb-3">{getLocalizedString(article.summary, language)}</p>
+                      )}
+                      {article.date && (
+                        <p className="text-muted small mb-3">
+                          <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
+                        </p>
+                      )}
+                      <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Add placeholder cards if fewer than 3 articles */}
+              {articles.length < 3 && Array.from({ length: 3 - articles.length }).map((_, index) => (
+                <div key={`article-placeholder-${index}`} className="col-lg-4 mb-4">
+                  <div className="card h-100 shadow border-2 border-dashed">
+                    <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
+                      <i className="bi bi-newspaper fs-1 text-muted mb-3"></i>
+                      <h5 className="text-muted mb-2">More Articles Coming Soon</h5>
+                      <p className="text-muted small mb-3">Stay tuned for inspiring articles and church updates.</p>
+                      <Link href="/news" className="btn btn-outline-secondary btn-sm">
+                        View All Articles
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#desktopArticlesCarousel" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#desktopArticlesCarousel" data-bs-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Next</span>
-            </button>
           </div>
 
           <div className="text-center mt-4">

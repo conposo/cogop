@@ -1,16 +1,29 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { fetchEventsFromFirestore, Event, formatEventDateTime } from '@/lib/dummyContent'
+import { fetchEventsFromFirestore, Event, formatEventDateTime, MultilingualString } from '@/lib/dummyContent'
 import PageLayout from '@/components/PageLayout'
 import Link from 'next/link'
 import { t } from '@/lib/i18n'
+import { useI18n } from '@/contexts/I18nContext'
+
+// Helper function to get localized string or fallback
+const getLocalizedString = (field: MultilingualString | string | undefined, lang: string, fallbackLang: string = 'en'): string => {
+  if (!field) return '';
+  if (typeof field === 'string') return field; // Handle legacy string format
+  if (typeof field === 'object' && field !== null) {
+    // Handle multilingual object format
+    return field[lang] || field[fallbackLang] || Object.values(field)[0] || '';
+  }
+  return '';
+};
 
 export default function CalendarPage() {
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
   const [currentDate, setCurrentDate] = useState(new Date())
   const [viewMode, setViewMode] = useState<'calendar' | 'list'>('calendar')
+  const { language } = useI18n()
 
   useEffect(() => {
     const loadEvents = async () => {
@@ -32,11 +45,17 @@ export default function CalendarPage() {
   }
 
   const getEventsForDate = (date: Date) => {
-    const dateStr = date.toISOString().split('T')[0]
+    // Create a local date string in YYYY-MM-DD format without timezone conversion
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const dateStr = `${year}-${month}-${day}`;
+    
     return events.filter(event => {
-      const eventDate = new Date(event.eventDate).toISOString().split('T')[0]
-      const eventEndDate = event.eventEndDate ? new Date(event.eventEndDate).toISOString().split('T')[0] : eventDate
-      return dateStr >= eventDate && dateStr <= eventEndDate
+      // Event dates are already in YYYY-MM-DD format, so we can compare directly
+      const eventDate = event.eventDate;
+      const eventEndDate = event.eventEndDate || eventDate;
+      return dateStr >= eventDate && dateStr <= eventEndDate;
     })
   }
 
@@ -79,19 +98,19 @@ export default function CalendarPage() {
       days.push(
         <div 
           key={day} 
-          className={`calendar-day ${isToday ? 'today' : ''} ${isPast ? 'past' : ''} ${dayEvents.length > 0 ? 'has-events' : ''}`}
+          className={`calendar-day position-relative ${isToday ? 'today' : ''} ${isPast ? 'past' : ''} ${dayEvents.length > 0 ? 'has-events' : ''}`}
         >
           <div className="day-number py-2 d-flex justify-content-center align-items-center">{day}</div>
           {dayEvents.length > 0 && (
-            <div className="events-indicator">
-              {dayEvents.slice(0, 2).map((event, index) => (
+            <div className="events-indicator position-absolute top-0 end-0 me-4">
+              {dayEvents.slice(0, 2).map((event) => (
                 <div 
                   key={event.id} 
-                  className="event-dot"
-                  title={event.title}
-                  style={{ backgroundColor: getCategoryColor(event.category) }}
+                  className="event-dot opacity-25 rounded-circle d-flex justify-content-center align-items-center"
+                  title={getLocalizedString(event.title, language)}
+                  style={{ backgroundColor: getCategoryColor(event.category), width: '18px', height: '18px' }}
                 >
-                  <span className="event-title">{event.title}</span>
+                  {/* <i className="bi bi-circle-fill"></i> */}
                 </div>
               ))}
               {dayEvents.length > 2 && (
@@ -372,7 +391,7 @@ export default function CalendarPage() {
                           <span className="badge bg-warning text-dark">Featured</span>
                         )}
                       </div>
-                      <h6 className="mb-2">{event.title}</h6>
+                      <h6 className="mb-2">{getLocalizedString(event.title, language)}</h6>
                       <p className="text-muted small mb-2">
                         <i className="bi bi-calendar-event me-1"></i>
                         {formatEventDateTime(event)}
@@ -411,7 +430,7 @@ export default function CalendarPage() {
                         <div style={{ height: '200px', overflow: 'hidden' }}>
                           <img 
                             src={event.imageUrl} 
-                            alt={event.title}
+                            alt={getLocalizedString(event.title, language)}
                             className="card-img-top w-100 h-100"
                             style={{ objectFit: 'cover' }}
                           />
@@ -429,8 +448,8 @@ export default function CalendarPage() {
                             <span className="badge bg-warning text-dark">Featured</span>
                           )}
                         </div>
-                        <h5 className="card-title">{event.title}</h5>
-                        <p className="card-text text-muted">{event.excerpt}</p>
+                        <h5 className="card-title">{getLocalizedString(event.title, language)}</h5>
+                        <p className="card-text text-muted">{getLocalizedString(event.excerpt, language)}</p>
                         <div className="mb-3">
                           <p className="text-muted small mb-1">
                             <i className="bi bi-calendar-event me-2"></i>

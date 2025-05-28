@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { ContentProvider } from "@/contexts/ContentContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminProvider } from "@/contexts/AdminContext";
+import { ChurchUserProvider } from "@/contexts/ChurchUserContext";
 import { I18nProvider } from "@/contexts/I18nContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,11 +24,13 @@ export default function RootLayout({
           <ContentProvider>
             <AuthProvider>
               <AdminProvider>
-                <Navigation />
-                <main className="-mt-5 -pt-4">
-                  {children}
-                </main>
-                <Footer />
+                <ChurchUserProvider>
+                  <Navigation />
+                  <main className="-mt-5 -pt-4">
+                    {children}
+                  </main>
+                  <Footer />
+                </ChurchUserProvider>
               </AdminProvider>
             </AuthProvider>
           </ContentProvider>

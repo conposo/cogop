@@ -22,6 +22,7 @@ const getLocalizedString = (field: MultilingualString | string | undefined, lang
 interface DashboardStats {
   totalNews: number;
   totalUsers: number;
+  totalChurches: number;
   recentNews: any[];
 }
 
@@ -31,6 +32,7 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats>({
     totalNews: 0,
     totalUsers: 0,
+    totalChurches: 0,
     recentNews: []
   });
   const [loading, setLoading] = useState(true);
@@ -58,9 +60,14 @@ export default function AdminDashboard() {
         const usersSnapshot = await getDocs(collection(db, 'admins'));
         const totalUsers = usersSnapshot.size;
 
+        // Fetch churches count (churches collection)
+        const churchesSnapshot = await getDocs(collection(db, 'churches'));
+        const totalChurches = churchesSnapshot.size;
+
         setStats({
           totalNews,
           totalUsers,
+          totalChurches,
           recentNews
         });
       } catch (error) {
@@ -129,11 +136,11 @@ export default function AdminDashboard() {
             <div className="card-body">
               <div className="d-flex justify-content-between">
                 <div>
-                  <h4 className="card-title">5</h4>
-                  <p className="card-text">Recent Articles</p>
+                  <h4 className="card-title">{stats.totalChurches}</h4>
+                  <p className="card-text">Total Churches</p>
                 </div>
                 <div className="align-self-center">
-                  <i className="bi bi-clock-history fs-1"></i>
+                  <i className="bi bi-church fs-1"></i>
                 </div>
               </div>
             </div>
@@ -177,6 +184,12 @@ export default function AdminDashboard() {
                   <i className="bi bi-people me-2"></i>
                   Manage Users
                 </Link>
+                {adminData?.role === 'super_admin' && (
+                  <Link href="/admin/churches" className="btn btn-outline-info">
+                    <i className="bi bi-building me-2"></i>
+                    Manage Churches
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -236,6 +249,9 @@ export default function AdminDashboard() {
               <ul className="list-unstyled">
                 <li><Link href="/admin/news" className="text-decoration-none">News Management</Link></li>
                 <li><Link href="/admin/users" className="text-decoration-none">User Management</Link></li>
+                {adminData?.role === 'super_admin' && (
+                  <li><Link href="/admin/churches" className="text-decoration-none">Churches Management</Link></li>
+                )}
                 <li><Link href="/admin/settings" className="text-decoration-none">Admin Settings</Link></li>
                 <li><Link href="/" className="text-decoration-none">Back to Website</Link></li>
               </ul>

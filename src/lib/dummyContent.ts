@@ -1,5 +1,5 @@
 import { collection, getDocs, query, orderBy, where, Timestamp, doc, getDoc, addDoc, setDoc } from 'firebase/firestore';
-import { db } from './firebase'; // Assuming firebase.ts is in the same lib folder
+import { db, auth } from './firebase'; // Assuming firebase.ts is in the same lib folder
 
 // Define a type for multilingual fields used in Article and Event
 export interface MultilingualString {
@@ -172,25 +172,57 @@ export const saveStaticArticlesToFirebase = async (): Promise<void> => {
   }
 };
 
+// Helper function to check if current user is admin
+const checkIsAdmin = async (): Promise<boolean> => {
+  const currentUser = auth.currentUser;
+  if (!currentUser) return false;
+  
+  try {
+    const adminDoc = await getDoc(doc(db, 'admins', currentUser.uid));
+    return adminDoc.exists();
+  } catch (error) {
+    console.error('Error checking admin status:', error);
+    return false;
+  }
+};
+
 // New function to fetch articles from Firestore
 export const fetchArticlesFromFirestore = async (currentLang?: string): Promise<Article[]> => {
   try {
-    let q = query(
-      collection(db, 'news'), 
-      where('type', '!=', 'event'),
-      // orderBy('type'), // orderBy on type might not be needed if only fetching articles
-      orderBy('createdAt', 'desc')
-    );
+    const isAdmin = await checkIsAdmin();
     
-    // If a language is specified, we also filter by it. 
-    // This means an article must *include* the current language to be fetched.
-    if (currentLang) {
-        q = query(
+    let q;
+    
+    if (isAdmin) {
+      // Admin can see all articles (published and unpublished)
+      q = currentLang
+        ? query(
             collection(db, 'news'),
-            where('type', '!=', 'event'),
+            where('type', '==', 'article'),
             where('languages', 'array-contains', currentLang),
             orderBy('createdAt', 'desc')
-        );
+          )
+        : query(
+            collection(db, 'news'), 
+            where('type', '==', 'article'),
+            orderBy('createdAt', 'desc')
+          );
+    } else {
+      // Non-admin users can only see published articles
+      q = currentLang
+        ? query(
+            collection(db, 'news'),
+            where('type', '==', 'article'),
+            where('published', '==', true),
+            where('languages', 'array-contains', currentLang),
+            orderBy('createdAt', 'desc')
+          )
+        : query(
+            collection(db, 'news'), 
+            where('type', '==', 'article'),
+            where('published', '==', true),
+            orderBy('createdAt', 'desc')
+          );
     }
 
     const querySnapshot = await getDocs(q);
@@ -358,19 +390,40 @@ export const staticDummyEvents: Event[] = [
 // Function to fetch events from Firestore
 export const fetchEventsFromFirestore = async (currentLang?: string): Promise<Event[]> => {
   try {
-    let q = query(
-      collection(db, 'news'), 
-      where('type', '==', 'event'),
-      orderBy('eventDate', 'asc')
-    );
-
-    if (currentLang) {
-        q = query(
+    const isAdmin = await checkIsAdmin();
+    
+    let q;
+    
+    if (isAdmin) {
+      // Admin can see all events (published and unpublished)
+      q = currentLang 
+        ? query(
             collection(db, 'news'),
             where('type', '==', 'event'),
             where('languages', 'array-contains', currentLang),
             orderBy('eventDate', 'asc')
-        );
+          )
+        : query(
+            collection(db, 'news'), 
+            where('type', '==', 'event'),
+            orderBy('eventDate', 'asc')
+          );
+    } else {
+      // Non-admin users can only see published events
+      q = currentLang
+        ? query(
+            collection(db, 'news'),
+            where('type', '==', 'event'),
+            where('published', '==', true),
+            where('languages', 'array-contains', currentLang),
+            orderBy('eventDate', 'asc')
+          )
+        : query(
+            collection(db, 'news'), 
+            where('type', '==', 'event'),
+            where('published', '==', true),
+            orderBy('eventDate', 'asc')
+          );
     }
 
     const querySnapshot = await getDocs(q);
@@ -386,7 +439,7 @@ export const fetchEventsFromFirestore = async (currentLang?: string): Promise<Ev
           languages: data.languages || ['en'],
           published: data.published || false,
           featured: data.featured || false,
-          createdAt: data.createdAt as Timestamp, // Cast to Timestamp
+          createdAt: data.createdAt as Timestamp,
           updatedAt: data.updatedAt as Timestamp,
           authorId: data.authorId || 'system',
           authorName: data.authorName || 'Unknown Author',
@@ -401,12 +454,15 @@ export const fetchEventsFromFirestore = async (currentLang?: string): Promise<Ev
           eventEndTime: data.eventEndTime || '',
         } as Event;
       })
-      .filter(item => item.published)
       .filter(event => {
-        const eventDateObj = new Date(event.eventDate);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        return eventDateObj >= today;
+        // For non-admin users, also filter out past events
+        if (!isAdmin) {
+          const eventDateObj = new Date(event.eventDate);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          return eventDateObj >= today;
+        }
+        return true; // Admins can see all events including past ones
       });
     
     return eventsData;

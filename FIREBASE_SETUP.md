@@ -79,23 +79,45 @@ Fields:
 
 ## 8. Firestore Security Rules
 
-Update your Firestore security rules to protect admin data:
+Update your Firestore security rules to protect admin data and churches collection:
 
 ```javascript
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow read access to published news articles
-    match /news/{document} {
-      allow read: if resource.data.published == true;
-      allow write: if request.auth != null && 
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return request.auth != null && 
         exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
     
-    // Protect admin collection
+    // Helper function to check if user is super admin
+    function isSuperAdmin() {
+      return request.auth != null && 
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'super_admin';
+    }
+    
+    // Allow read access to published news articles
+    match /news/{document} {
+      allow read: if resource.data.published == true;
+      allow write: if isAdmin();
+    }
+    
+    // Protect admin collection - only admins can read/write
     match /admins/{document} {
-      allow read, write: if request.auth != null && 
-        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+      allow read, write: if isAdmin();
+    }
+    
+    // Churches collection - super admins can read/write all, others can read only active
+    match /churches/{document} {
+      allow read: if isSuperAdmin() || resource.data.isActive == true;
+      allow write: if isSuperAdmin();
+    }
+    
+    // Default deny all other collections
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

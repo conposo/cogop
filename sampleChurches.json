@@ -1,0 +1,146 @@
+[
+  {
+    id: 1,
+    name: 'Cleveland Church of God of Prophecy',
+    address: '3720 Keith Street NW, Cleveland, TN 37312',
+    phone: '(423) 559-5100',
+    email: 'info@cogop.org',
+    pastor: 'Rev. John Smith',
+    servicesTimes: {
+      sunday: 'Sunday: 10:00 AM & 6:00 PM',
+      wednesday: 'Wednesday: 7:00 PM'
+    },
+    programs: ['Youth Ministry', 'Children\'s Ministry', 'Bible Study', 'Prayer Group'],
+    website: 'https://cogop.org',
+    city: 'Cleveland',
+    state: 'TN',
+    country: 'United States',
+    coordinates: { lat: 35.1595, lng: -84.8766 }
+  },
+  {
+    id: 2,
+    name: 'Atlanta Church of God of Prophecy',
+    address: '1234 Peachtree Street, Atlanta, GA 30309',
+    phone: '(404) 555-0123',
+    email: 'atlanta@cogop.org',
+    pastor: 'Rev. Mary Johnson',
+    servicesTimes: {
+      sunday: 'Sunday: 9:00 AM & 11:00 AM',
+      wednesday: 'Wednesday: 7:30 PM'
+    },
+    programs: ['Youth Ministry', 'Children\'s Ministry', 'Senior Ministry', 'Music Ministry'],
+    website: 'https://atlanta.cogop.org',
+    city: 'Atlanta',
+    state: 'GA',
+    country: 'United States',
+    coordinates: { lat: 33.7490, lng: -84.3880 }
+  },
+  {
+    id: 3,
+    name: 'Nashville Church of God of Prophecy',
+    address: '567 Music Row, Nashville, TN 37203',
+    phone: '(615) 555-0456',
+    email: 'nashville@cogop.org',
+    pastor: 'Rev. David Williams',
+    servicesTimes: {
+      sunday: 'Sunday: 10:30 AM & 6:00 PM',
+      wednesday: 'Wednesday: 7:00 PM'
+    },
+    programs: ['Youth Ministry', 'Children\'s Ministry', 'Music Ministry', 'Outreach'],
+    website: 'https://nashville.cogop.org',
+    city: 'Nashville',
+    state: 'TN',
+    country: 'United States',
+    coordinates: { lat: 36.1627, lng: -86.7816 }
+  },
+  {
+    id: 4,
+    name: 'Miami Church of God of Prophecy',
+    address: '890 Ocean Drive, Miami, FL 33139',
+    phone: '(305) 555-0789',
+    email: 'miami@cogop.org',
+    pastor: 'Rev. Carlos Rodriguez',
+    servicesTimes: {
+      sunday: 'Sunday: 9:00 AM & 11:00 AM (English), 1:00 PM (Spanish)',
+      wednesday: 'Wednesday: 7:00 PM'
+    },
+    programs: ['Youth Ministry', 'Children\'s Ministry', 'Spanish Ministry', 'Community Outreach'],
+    website: 'https://miami.cogop.org',
+    city: 'Miami',
+    state: 'FL',
+    country: 'United States',
+    coordinates: { lat: 25.7617, lng: -80.1918 }
+  },
+  {
+    id: 5,
+    name: 'Toronto Church of God of Prophecy',
+    address: '123 Yonge Street, Toronto, ON M5C 1W4',
+    phone: '(416) 555-0321',
+    email: 'toronto@cogop.org',
+    pastor: 'Rev. Sarah Thompson',
+    servicesTimes: {
+      sunday: 'Sunday: 10:00 AM & 6:00 PM',
+      wednesday: 'Wednesday: 7:30 PM'
+    },
+    programs: ['Youth Ministry', 'Children\'s Ministry', 'International Ministry', 'Bible Study'],
+    website: 'https://toronto.cogop.org',
+    city: 'Toronto',
+    state: 'ON',
+    country: 'Canada',
+    coordinates: { lat: 43.6532, lng: -79.3832 }
+  },
+  {
+    id: 6,
+    name: 'Phoenix Church of God of Prophecy',
+    address: '456 Desert View Drive, Phoenix, AZ 85001',
+    phone: '(602) 555-0987',
+    email: 'phoenix@cogop.org',
+    pastor: 'Rev. Michael Davis',
+    servicesTimes: {
+      sunday: 'Sunday: 9:30 AM & 6:30 PM',
+      wednesday: 'Wednesday: 7:00 PM'
+    },
+    programs: ['Youth Ministry', 'Children\'s Ministry', 'Men\'s Ministry', 'Women\'s Ministry'],
+    website: 'https://phoenix.cogop.org',
+    city: 'Phoenix',
+    state: 'AZ',
+    country: 'United States',
+    coordinates: { lat: 33.4484, lng: -112.0740 }
+  },
+  {
+    id: 7,
+    name: 'London Church of God of Prophecy',
+    address: '789 Westminster Road, London, UK SW1A 1AA',
+    phone: '+44 20 7946 0958',
+    email: 'london@cogop.org',
+    pastor: 'Rev. James Wilson',
+    servicesTimes: {
+      sunday: 'Sunday: 10:00 AM & 6:00 PM',
+      wednesday: 'Wednesday: 7:30 PM'
+    },
+    programs: ['Youth Ministry', 'Children\'s Ministry', 'International Ministry', 'Community Service'],
+    website: 'https://london.cogop.org',
+    city: 'London',
+    state: 'England',
+    country: 'United Kingdom',
+    coordinates: { lat: 51.5074, lng: -0.1278 }
+  },
+  {
+    id: 8,
+    name: 'São Paulo Igreja de Deus da Profecia',
+    address: 'Rua da Consolação, 1000, São Paulo, SP 01302-000',
+    phone: '+55 11 3456-7890',
+    email: 'saopaulo@cogop.org',
+    pastor: 'Rev. Ana Silva',
+    servicesTimes: {
+      sunday: 'Domingo: 9:00 & 18:00',
+      wednesday: 'Quarta-feira: 19:30'
+    },
+    programs: ['Ministério Jovem', 'Ministério Infantil', 'Escola Bíblica', 'Ação Social'],
+    website: 'https://saopaulo.cogop.org',
+    city: 'São Paulo',
+    state: 'SP',
+    country: 'Brazil',
+    coordinates: { lat: -23.5505, lng: -46.6333 }
+  }
+]

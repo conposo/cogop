@@ -1,220 +1,154 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
 import { getPageContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 import { t } from '@/lib/i18n'
 
-// Sample church data - in a real app, this would come from an API/database
-const sampleChurches = [
-  {
-    id: 1,
-    name: 'Cleveland Church of God of Prophecy',
-    address: '3720 Keith Street NW, Cleveland, TN 37312',
-    phone: '(423) 559-5100',
-    email: 'info@cogop.org',
-    pastor: 'Rev. John Smith',
-    servicesTimes: {
-      sunday: 'Sunday: 10:00 AM & 6:00 PM',
-      wednesday: 'Wednesday: 7:00 PM'
-    },
-    programs: ['Youth Ministry', 'Children\'s Ministry', 'Bible Study', 'Prayer Group'],
-    website: 'https://cogop.org',
-    city: 'Cleveland',
-    state: 'TN',
-    country: 'United States',
-    coordinates: { lat: 35.1595, lng: -84.8766 }
-  },
-  {
-    id: 2,
-    name: 'Atlanta Church of God of Prophecy',
-    address: '1234 Peachtree Street, Atlanta, GA 30309',
-    phone: '(404) 555-0123',
-    email: 'atlanta@cogop.org',
-    pastor: 'Rev. Mary Johnson',
-    servicesTimes: {
-      sunday: 'Sunday: 9:00 AM & 11:00 AM',
-      wednesday: 'Wednesday: 7:30 PM'
-    },
-    programs: ['Youth Ministry', 'Children\'s Ministry', 'Senior Ministry', 'Music Ministry'],
-    website: 'https://atlanta.cogop.org',
-    city: 'Atlanta',
-    state: 'GA',
-    country: 'United States',
-    coordinates: { lat: 33.7490, lng: -84.3880 }
-  },
-  {
-    id: 3,
-    name: 'Nashville Church of God of Prophecy',
-    address: '567 Music Row, Nashville, TN 37203',
-    phone: '(615) 555-0456',
-    email: 'nashville@cogop.org',
-    pastor: 'Rev. David Williams',
-    servicesTimes: {
-      sunday: 'Sunday: 10:30 AM & 6:00 PM',
-      wednesday: 'Wednesday: 7:00 PM'
-    },
-    programs: ['Youth Ministry', 'Children\'s Ministry', 'Music Ministry', 'Outreach'],
-    website: 'https://nashville.cogop.org',
-    city: 'Nashville',
-    state: 'TN',
-    country: 'United States',
-    coordinates: { lat: 36.1627, lng: -86.7816 }
-  },
-  {
-    id: 4,
-    name: 'Miami Church of God of Prophecy',
-    address: '890 Ocean Drive, Miami, FL 33139',
-    phone: '(305) 555-0789',
-    email: 'miami@cogop.org',
-    pastor: 'Rev. Carlos Rodriguez',
-    servicesTimes: {
-      sunday: 'Sunday: 9:00 AM & 11:00 AM (English), 1:00 PM (Spanish)',
-      wednesday: 'Wednesday: 7:00 PM'
-    },
-    programs: ['Youth Ministry', 'Children\'s Ministry', 'Spanish Ministry', 'Community Outreach'],
-    website: 'https://miami.cogop.org',
-    city: 'Miami',
-    state: 'FL',
-    country: 'United States',
-    coordinates: { lat: 25.7617, lng: -80.1918 }
-  },
-  {
-    id: 5,
-    name: 'Toronto Church of God of Prophecy',
-    address: '123 Yonge Street, Toronto, ON M5C 1W4',
-    phone: '(416) 555-0321',
-    email: 'toronto@cogop.org',
-    pastor: 'Rev. Sarah Thompson',
-    servicesTimes: {
-      sunday: 'Sunday: 10:00 AM & 6:00 PM',
-      wednesday: 'Wednesday: 7:30 PM'
-    },
-    programs: ['Youth Ministry', 'Children\'s Ministry', 'International Ministry', 'Bible Study'],
-    website: 'https://toronto.cogop.org',
-    city: 'Toronto',
-    state: 'ON',
-    country: 'Canada',
-    coordinates: { lat: 43.6532, lng: -79.3832 }
-  },
-  {
-    id: 6,
-    name: 'Phoenix Church of God of Prophecy',
-    address: '456 Desert View Drive, Phoenix, AZ 85001',
-    phone: '(602) 555-0987',
-    email: 'phoenix@cogop.org',
-    pastor: 'Rev. Michael Davis',
-    servicesTimes: {
-      sunday: 'Sunday: 9:30 AM & 6:30 PM',
-      wednesday: 'Wednesday: 7:00 PM'
-    },
-    programs: ['Youth Ministry', 'Children\'s Ministry', 'Men\'s Ministry', 'Women\'s Ministry'],
-    website: 'https://phoenix.cogop.org',
-    city: 'Phoenix',
-    state: 'AZ',
-    country: 'United States',
-    coordinates: { lat: 33.4484, lng: -112.0740 }
-  },
-  {
-    id: 7,
-    name: 'London Church of God of Prophecy',
-    address: '789 Westminster Road, London, UK SW1A 1AA',
-    phone: '+44 20 7946 0958',
-    email: 'london@cogop.org',
-    pastor: 'Rev. James Wilson',
-    servicesTimes: {
-      sunday: 'Sunday: 10:00 AM & 6:00 PM',
-      wednesday: 'Wednesday: 7:30 PM'
-    },
-    programs: ['Youth Ministry', 'Children\'s Ministry', 'International Ministry', 'Community Service'],
-    website: 'https://london.cogop.org',
-    city: 'London',
-    state: 'England',
-    country: 'United Kingdom',
-    coordinates: { lat: 51.5074, lng: -0.1278 }
-  },
-  {
-    id: 8,
-    name: 'São Paulo Igreja de Deus da Profecia',
-    address: 'Rua da Consolação, 1000, São Paulo, SP 01302-000',
-    phone: '+55 11 3456-7890',
-    email: 'saopaulo@cogop.org',
-    pastor: 'Rev. Ana Silva',
-    servicesTimes: {
-      sunday: 'Domingo: 9:00 & 18:00',
-      wednesday: 'Quarta-feira: 19:30'
-    },
-    programs: ['Ministério Jovem', 'Ministério Infantil', 'Escola Bíblica', 'Ação Social'],
-    website: 'https://saopaulo.cogop.org',
-    city: 'São Paulo',
-    state: 'SP',
-    country: 'Brazil',
-    coordinates: { lat: -23.5505, lng: -46.6333 }
-  }
-]
-
 interface Church {
-  id: number
+  id: string
   name: string
   address: string
-  phone: string
-  email: string
-  pastor: string
-  servicesTimes: {
-    sunday: string
-    wednesday: string
-  }
-  programs: string[]
-  website: string
   city: string
   state: string
+  zipCode: string
   country: string
-  coordinates: { lat: number; lng: number }
+  phone?: string
+  email?: string
+  website?: string
+  pastor?: string
+  denomination?: string
+  description?: string
+  servicesTimes: {
+    day: string
+    time: string
+  }[]
+  programs: string[]
+  coordinates?: {
+    lat: number
+    lng: number
+  }
+  isActive: boolean
 }
 
 export default function FindaChurchPage() {
   const pageContent = getPageContent('find-a-church')
+  const [churches, setChurches] = useState<Church[]>([])
+  const [filteredChurches, setFilteredChurches] = useState<Church[]>([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [filteredChurches, setFilteredChurches] = useState<Church[]>(sampleChurches)
   const [selectedPrograms, setSelectedPrograms] = useState<string[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Helper function to migrate old servicesTimes structure to new format
+  const migrateServicesTimes = (servicesTimes: any): { day: string; time: string }[] => {
+    if (Array.isArray(servicesTimes)) {
+      return servicesTimes;
+    }
+    
+    // Handle old structure with sunday/wednesday properties
+    if (servicesTimes && typeof servicesTimes === 'object') {
+      const migrated = [];
+      if (servicesTimes.sunday) {
+        migrated.push({ day: 'Sunday', time: servicesTimes.sunday });
+      }
+      if (servicesTimes.wednesday) {
+        migrated.push({ day: 'Wednesday', time: servicesTimes.wednesday });
+      }
+      return migrated;
+    }
+    
+    return [];
+  };
+
+  // Fetch churches from Firebase
+  useEffect(() => {
+    fetchChurches();
+  }, []);
+
+  const fetchChurches = async () => {
+    try {
+      setError(null);
+      let churchesData: Church[] = [];
+      
+      try {
+        // Try the filtered query first
+        const churchesQuery = query(
+          collection(db, 'churches'),
+          where('isActive', '==', true)
+        );
+        const snapshot = await getDocs(churchesQuery);
+        churchesData = snapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+            servicesTimes: migrateServicesTimes(data.servicesTimes)
+          };
+        }) as Church[];
+      } catch (queryError) {
+        console.warn('Filtered query failed, trying to fetch all churches:', queryError);
+        // Fallback: try to fetch all churches
+        const allChurchesSnapshot = await getDocs(collection(db, 'churches'));
+        const allChurches = allChurchesSnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+            servicesTimes: migrateServicesTimes(data.servicesTimes)
+          };
+        }) as Church[];
+        // Filter manually for active churches
+        churchesData = allChurches.filter(church => church.isActive === true);
+      }
+      
+      // Sort manually since we removed orderBy
+      churchesData.sort((a, b) => a.name.localeCompare(b.name));
+      
+      setChurches(churchesData);
+      setFilteredChurches(churchesData);
+    } catch (error) {
+      console.error('Error fetching churches:', error);
+      setError('An error occurred while fetching churches.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Get all unique programs for filtering
-  const allPrograms = Array.from(new Set(sampleChurches.flatMap(church => church.programs)))
+  const allPrograms = Array.from(new Set(churches.flatMap(church => church.programs || [])));
 
   useEffect(() => {
     filterChurches()
-  }, [searchTerm, selectedPrograms])
+  }, [searchTerm, selectedPrograms, churches])
 
   const filterChurches = () => {
-    setIsLoading(true)
-    
-    // Simulate API delay
-    setTimeout(() => {
-      let filtered = sampleChurches
+    let filtered = churches
 
-      // Filter by search term (city, state, country, or church name)
-      if (searchTerm.trim()) {
-        const term = searchTerm.toLowerCase()
-        filtered = filtered.filter(church => 
-          church.city.toLowerCase().includes(term) ||
-          church.state.toLowerCase().includes(term) ||
-          church.country.toLowerCase().includes(term) ||
-          church.name.toLowerCase().includes(term) ||
-          church.address.toLowerCase().includes(term)
-        )
-      }
+    // Filter by search term (city, state, country, or church name)
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase()
+      filtered = filtered.filter(church => 
+        (church.city || '').toLowerCase().includes(term) ||
+        (church.state || '').toLowerCase().includes(term) ||
+        (church.country || '').toLowerCase().includes(term) ||
+        (church.name || '').toLowerCase().includes(term) ||
+        (church.address || '').toLowerCase().includes(term) ||
+        (church.pastor || '').toLowerCase().includes(term) ||
+        (church.denomination || '').toLowerCase().includes(term)
+      )
+    }
 
-      // Filter by selected programs
-      if (selectedPrograms.length > 0) {
-        filtered = filtered.filter(church =>
-          selectedPrograms.every(program => church.programs.includes(program))
-        )
-      }
+    // Filter by selected programs
+    if (selectedPrograms.length > 0) {
+      filtered = filtered.filter(church =>
+        selectedPrograms.every(program => (church.programs || []).includes(program))
+      )
+    }
 
-      setFilteredChurches(filtered)
-      setIsLoading(false)
-    }, 500)
+    setFilteredChurches(filtered)
   }
 
   const handleSearch = (e: React.FormEvent) => {
@@ -353,6 +287,23 @@ export default function FindaChurchPage() {
               )}
             </div>
 
+            {/* Error State */}
+            {error && (
+              <div className="alert alert-danger">
+                <h4>Error Loading Churches</h4>
+                <p>{error}</p>
+                <button 
+                  className="btn btn-primary" 
+                  onClick={() => {
+                    setError(null);
+                    fetchChurches();
+                  }}
+                >
+                  Try Again
+                </button>
+              </div>
+            )}
+
             {/* Church Cards */}
             {isLoading ? (
               <div className="text-center py-5">
@@ -361,12 +312,15 @@ export default function FindaChurchPage() {
                 </div>
                 <p className="mt-3 text-muted">{t('searching_for_churches', { defaultValue: 'Searching for churches...' })}</p>
               </div>
-            ) : filteredChurches.length === 0 ? (
+            ) : filteredChurches.length === 0 && !error ? (
               <div className="text-center py-5">
                 <i className="bi bi-search display-1 text-muted mb-3"></i>
                 <h4>{t('no_churches_found', { defaultValue: 'No Churches Found' })}</h4>
                 <p className="text-muted mb-4">
-                  {t('no_churches_message', { defaultValue: 'We couldn\'t find any churches matching your search criteria. Try adjusting your search terms or contact us for assistance.' })}
+                  {churches.length === 0 
+                    ? 'No churches are currently listed in our directory.' 
+                    : t('no_churches_message', { defaultValue: 'We couldn\'t find any churches matching your search criteria. Try adjusting your search terms or contact us for assistance.' })
+                  }
                 </p>
                 <button
                   className="btn btn-dark me-2"
@@ -378,7 +332,7 @@ export default function FindaChurchPage() {
                   {t('contact_us', { defaultValue: 'Contact Us' })}
                 </a>
               </div>
-            ) : (
+            ) : !error && (
               <div className="row">
                 {filteredChurches.map(church => (
                   <div key={church.id} className="col-12 mb-4">
@@ -391,51 +345,86 @@ export default function FindaChurchPage() {
                               {church.name}
                             </h5>
                             
+                            {church.denomination && (
+                              <p className="text-muted small mb-2">
+                                <i className="bi bi-bookmark me-1"></i>
+                                {church.denomination}
+                              </p>
+                            )}
+                            
                             <div className="mb-3">
                               <p className="mb-1">
                                 <i className="bi bi-geo-alt text-muted me-2"></i>
                                 {church.address}
+                                {church.city && church.state && (
+                                  <><br />{church.city}, {church.state} {church.zipCode}</>
+                                )}
+                                {church.country && church.country !== 'United States' && (
+                                  <><br />{church.country}</>
+                                )}
                               </p>
-                              <p className="mb-1">
-                                <i className="bi bi-telephone text-muted me-2"></i>
-                                <a href={`tel:${church.phone}`} className="text-decoration-none">
-                                  {church.phone}
-                                </a>
-                              </p>
-                              <p className="mb-1">
-                                <i className="bi bi-envelope text-muted me-2"></i>
-                                <a href={`mailto:${church.email}`} className="text-decoration-none">
-                                  {church.email}
-                                </a>
-                              </p>
-                              <p className="mb-0">
-                                <i className="bi bi-person text-muted me-2"></i>
-                                {t('pastor', { defaultValue: 'Pastor' })}: {church.pastor}
-                              </p>
+                              {church.phone && (
+                                <p className="mb-1">
+                                  <i className="bi bi-telephone text-muted me-2"></i>
+                                  <a href={`tel:${church.phone}`} className="text-decoration-none">
+                                    {church.phone}
+                                  </a>
+                                </p>
+                              )}
+                              {church.email && (
+                                <p className="mb-1">
+                                  <i className="bi bi-envelope text-muted me-2"></i>
+                                  <a href={`mailto:${church.email}`} className="text-decoration-none">
+                                    {church.email}
+                                  </a>
+                                </p>
+                              )}
+                              {church.pastor && (
+                                <p className="mb-0">
+                                  <i className="bi bi-person text-muted me-2"></i>
+                                  {t('pastor', { defaultValue: 'Pastor' })}: {church.pastor}
+                                </p>
+                              )}
                             </div>
 
-                            <div className="mb-3">
-                              <h6 className="text-muted mb-2">{t('service_times', { defaultValue: 'Service Times' })}</h6>
-                              <p className="small mb-1">{church.servicesTimes.sunday}</p>
-                              <p className="small mb-0">{church.servicesTimes.wednesday}</p>
-                            </div>
-
-                            <div className="mb-3">
-                              <h6 className="text-muted mb-2">{t('programs_ministries', { defaultValue: 'Programs & Ministries' })}</h6>
-                              <div className="d-flex flex-wrap gap-1">
-                                {church.programs.map(program => (
-                                  <span key={program} className="badge bg-light text-dark border">
-                                    {program}
-                                  </span>
+                            {church.servicesTimes.length > 0 && (
+                              <div className="mb-3">
+                                <h6 className="text-muted mb-2">{t('service_times', { defaultValue: 'Service Times' })}</h6>
+                                {church.servicesTimes.map((service, index) => (
+                                  <p key={index} className="small mb-1">{service.day}: {service.time}</p>
                                 ))}
                               </div>
-                            </div>
+                            )}
+
+                            {church.programs && church.programs.length > 0 && (
+                              <div className="mb-3">
+                                <h6 className="text-muted mb-2">{t('programs_ministries', { defaultValue: 'Programs & Ministries' })}</h6>
+                                <div className="d-flex flex-wrap gap-1">
+                                  {church.programs.map(program => (
+                                    <span key={program} className="badge bg-light text-dark border">
+                                      {program}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {church.description && (
+                              <div className="mb-3">
+                                <p className="text-muted small">
+                                  {church.description.length > 150 
+                                    ? `${church.description.substring(0, 150)}...` 
+                                    : church.description
+                                  }
+                                </p>
+                              </div>
+                            )}
                           </div>
                           
                           <div className="col-md-4 text-md-end">
                             <div className="d-grid gap-2">
                               <a
-                                href={`https://maps.google.com/?q=${encodeURIComponent(church.address)}`}
+                                href={`https://maps.google.com/?q=${encodeURIComponent(`${church.address}, ${church.city}, ${church.state} ${church.zipCode}`)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-outline-primary btn-sm"
@@ -454,12 +443,21 @@ export default function FindaChurchPage() {
                                   {t('visit_website', { defaultValue: 'Visit Website' })}
                                 </a>
                               )}
+                              {church.phone && (
+                                <a
+                                  href={`tel:${church.phone}`}
+                                  className="btn btn-dark btn-sm"
+                                >
+                                  <i className="bi bi-telephone me-1"></i>
+                                  {t('call_church', { defaultValue: 'Call Church' })}
+                                </a>
+                              )}
                               <a
-                                href={`tel:${church.phone}`}
-                                className="btn btn-dark btn-sm"
+                                href={`/churches/${church.id}`}
+                                className="btn btn-primary btn-sm"
                               >
-                                <i className="bi bi-telephone me-1"></i>
-                                {t('call_church', { defaultValue: 'Call Church' })}
+                                <i className="bi bi-eye me-1"></i>
+                                View Details
                               </a>
                             </div>
                           </div>
@@ -472,28 +470,28 @@ export default function FindaChurchPage() {
             )}
 
             {/* Global Network Info */}
-            {filteredChurches.length > 0 && (
+            {filteredChurches.length > 0 && !error && (
               <div className="mt-5 p-4 bg-light rounded">
                 <h4>{t('our_global_network', { defaultValue: 'Our Global Network' })}</h4>
                 <p className="mb-3">
-                  {t('global_network_description', { defaultValue: 'The Church of God of Prophecy has over 12,000 churches and missions in 135 countries worldwide. If you don\'t see a church near you, we may still have a congregation in your area.' })}
+                  {t('global_network_description', { defaultValue: 'The Church of God of Prophecy has churches and missions worldwide. If you don\'t see a church near you, we may still have a congregation in your area.' })}
                 </p>
                 <div className="row text-center">
                   <div className="col-6 col-md-3">
-                    <div className="h5 text-primary mb-1">12,000+</div>
+                    <div className="h5 text-primary mb-1">{churches.length}+</div>
                     <div className="small text-muted">{t('churches_missions', { defaultValue: 'Churches & Missions' })}</div>
                   </div>
                   <div className="col-6 col-md-3">
-                    <div className="h5 text-primary mb-1">135+</div>
+                    <div className="h5 text-primary mb-1">{new Set(churches.map(c => c.country)).size}+</div>
                     <div className="small text-muted">{t('countries', { defaultValue: 'Countries' })}</div>
                   </div>
                   <div className="col-6 col-md-3">
-                    <div className="h5 text-primary mb-1">1.5M+</div>
-                    <div className="small text-muted">{t('members', { defaultValue: 'Members' })}</div>
+                    <div className="h5 text-primary mb-1">{new Set(churches.map(c => c.state)).size}+</div>
+                    <div className="small text-muted">{t('states_provinces', { defaultValue: 'States/Provinces' })}</div>
                   </div>
                   <div className="col-6 col-md-3">
-                    <div className="h5 text-primary mb-1">100+</div>
-                    <div className="small text-muted">{t('years_of_ministry', { defaultValue: 'Years of Ministry' })}</div>
+                    <div className="h5 text-primary mb-1">{new Set(churches.map(c => c.city)).size}+</div>
+                    <div className="small text-muted">{t('cities', { defaultValue: 'Cities' })}</div>
                   </div>
                 </div>
               </div>

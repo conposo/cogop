@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAdmin } from '@/contexts/AdminContext';
+import { ChurchUserProvider } from '@/contexts/ChurchUserContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -140,6 +141,9 @@ export default function AdminLayout({
     { href: '/admin/news', label: 'News Management', icon: 'bi-newspaper' },
     { href: '/admin/import-articles', label: 'Import Articles', icon: 'bi-download' },
     { href: '/admin/users', label: 'User Management', icon: 'bi-people' },
+    ...(adminData?.role === 'super_admin' ? [
+      { href: '/admin/churches', label: 'Churches Management', icon: 'bi-building' }
+    ] : []),
     { href: '/admin/settings', label: 'Admin Settings', icon: 'bi-gear' },
   ];
 
@@ -173,7 +177,9 @@ export default function AdminLayout({
           </div>
         </div>
         <div className="col-md-9 col-lg-10">
-          {children}
+          <ChurchUserProvider>
+            {children}
+          </ChurchUserProvider>
         </div>
       </div>
     </div>
