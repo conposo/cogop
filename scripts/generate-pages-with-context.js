@@ -92,7 +92,6 @@ const pages = [
   { path: 'resources/bible-study', title: 'Bible Study' },
   { path: 'resources/prayer', title: 'Prayer' },
   { path: 'resources/fasting', title: 'Fasting' },
-  { path: 'resources/media-library', title: 'Media Library' },
   { path: 'resources/white-wing-messenger', title: 'White Wing Messenger' },
   { path: 'resources/policies', title: 'Policies' },
   { path: 'resources/forms', title: 'Forms' },
