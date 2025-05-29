@@ -867,7 +867,7 @@ const getContentData = (): ContentContextType => ({
         <p>Follow us on social media and subscribe to our communications to stay informed about global church news and events.</p>
       `
     },
-    'ministries/white-wing-messenger': {
+    'resources/white-wing-messenger': {
       title: 'White Wing Messenger',
       description: 'Our official church publication sharing news, inspiration, and teaching.',
       content: `
