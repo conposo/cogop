@@ -267,7 +267,7 @@ const Navigation = () => {
           }
         `}
       </style>
-      <nav ref={navRef} className="navbar navbar-expand-lg fixed-top bg-transparent shadow-none">
+      <nav ref={navRef} className="navbar navbar-expand-lg fixed-top px-2 bg-transparent shadow-none">
         <div className="container py-1 bg-white shadow-sm rounded-5">
           <Link href="/" className="navbar-brand">
             <Image
@@ -286,7 +286,7 @@ const Navigation = () => {
 
           <button 
             ref={togglerRef}
-            className="navbar-toggler" 
+            className="navbar-toggler border-0" 
             type="button" 
             data-bs-toggle="collapse" 
             data-bs-target="#navbarContent"
@@ -344,7 +344,7 @@ const Navigation = () => {
 
             <div className="d-flex align-items-center gap-3">
               <select
-                className="form-select form-select-sm me-2"
+                className="form-select form-select-sm rounded-5"
                 value={language}
                 onChange={handleLanguageChange}
                 aria-label={t('select_language', { defaultValue: 'Select language' })}
@@ -385,15 +385,15 @@ const Navigation = () => {
                   {user ? (
                     <UserMenu />
                   ) : (
-                    <div className="d-flex gap-2 me-2">
+                    <div className="d-flex gap-2 ">
                       <button 
-                        className="btn btn-outline-primary btn-sm rounded-5"
+                        className="btn btn-light border-light shadow -sm btn-sm rounded-5 focus-ring"
                         onClick={() => handleAuthModal('login')}
                       >
                         {t('sign_in', { defaultValue: 'Sign In' })}
                       </button>
                       <button 
-                        className="btn btn-dark btn-sm rounded-5"
+                        className="btn btn-white -border-dark shadow -sm btn-sm rounded-5"
                         onClick={() => handleAuthModal('signup')}
                       >
                         {t('sign_up', { defaultValue: 'Sign Up' })}
@@ -402,6 +402,7 @@ const Navigation = () => {
                   )}
                 </>
               )}
+
             </div>
           </div>
         </div>

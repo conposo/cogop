@@ -60,12 +60,15 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const checkAdminStatus = async () => {
-      if (!user) {
+      if (!user || !user.uid) {
         setIsAdmin(false);
         setAdminData(null);
         setLoading(false);
         return;
       }
+
+      // Wait a brief moment to ensure auth is initialized
+      await new Promise(resolve => setTimeout(resolve, 100));
 
       // User is present, so we need to fetch their admin status.
       // Set loading to true *before* starting the async operation.
@@ -82,7 +85,10 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
           setAdminData(null);
         }
       } catch (error) {
-        console.error('Error checking admin status:', error);
+        // Only log error if it's not a permission error during initialization
+        if (error instanceof Error && !error.message.includes('permission')) {
+          console.error('Error checking admin status:', error);
+        }
         setIsAdmin(false);
         setAdminData(null);
       } finally {

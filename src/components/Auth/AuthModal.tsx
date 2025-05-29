@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface AuthModalProps {
@@ -19,6 +19,10 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }: Au
   const [message, setMessage] = useState('');
 
   const { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword } = useAuth();
+
+  useEffect(() => {
+    setMode(initialMode);
+  }, [initialMode]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

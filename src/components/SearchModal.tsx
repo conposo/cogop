@@ -391,23 +391,27 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 <p className="text-muted small">
                   {t('search_help_text', { defaultValue: 'Search through pages, articles, podcasts, events, and more' })}
                 </p>
-                <div className="row text-start mt-4">
-                  <div className="col-md-6">
-                    <h6 className="text-muted">{t('search_tips', { defaultValue: 'Search Tips:' })}</h6>
-                    <ul className="list-unstyled small text-muted">
-                      <li><i className="bi bi-check2 text-success me-2"></i>{t('search_tip_1', { defaultValue: 'Use specific keywords' })}</li>
-                      <li><i className="bi bi-check2 text-success me-2"></i>{t('search_tip_2', { defaultValue: 'Try different terms' })}</li>
-                      <li><i className="bi bi-check2 text-success me-2"></i>{t('search_tip_3', { defaultValue: 'Search by category' })}</li>
-                    </ul>
+                <div className="row text-start mt-4 mt-sm-5">
+                  <div className="col-md-6 d-flex justify-content-center">
+                    <div className={`mx-sm-3 w-100 p-3 bg-light rounded-2`}>
+                      <h6 className="mb-3 small fw-semibold text-uppercase opacity-25">{t('search_tips', { defaultValue: 'Search Tips:' })}</h6>
+                      <ul className="list-unstyled small text-muted">
+                        <li className="my-2"><i className="bi bi-check2 text-success me-2"></i>{t('search_tip_1', { defaultValue: 'Use specific keywords' })}</li>
+                        <li className="my-2"><i className="bi bi-check2 text-success me-2"></i>{t('search_tip_2', { defaultValue: 'Try different terms' })}</li>
+                        <li className="my-2"><i className="bi bi-check2 text-success me-2"></i>{t('search_tip_3', { defaultValue: 'Search by category' })}</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className="col-md-6">
-                    <h6 className="text-muted">{t('search_categories', { defaultValue: 'Search Categories:' })}</h6>
-                    <ul className="list-unstyled small text-muted">
-                      <li><i className="bi bi-file-text text-primary me-2"></i>{t('pages', { defaultValue: 'Pages' })}</li>
-                      <li><i className="bi bi-newspaper text-primary me-2"></i>{t('articles', { defaultValue: 'Articles' })} ({articles.length})</li>
-                      <li><i className="bi bi-mic text-primary me-2"></i>{t('podcasts', { defaultValue: 'Podcasts' })}</li>
-                      <li><i className="bi bi-calendar-event text-primary me-2"></i>{t('events', { defaultValue: 'Events' })} ({events.length})</li>
-                    </ul>
+                  <div className="col-md-6 d-flex justify-content-center">
+                    <div className={`mx-sm-3 w-100 p-3 bg-light rounded-2`}>
+                      <h6 className="mb-3 small fw-semibold text-uppercase opacity-25">{t('search_categories', { defaultValue: 'Search Categories:' })}</h6>
+                      <ul className="list-unstyled small text-muted">
+                        <li className="my-2"><i className="bi bi-file-text text-primary me-2"></i>{t('pages', { defaultValue: 'Pages' })}</li>
+                        <li className="my-2"><i className="bi bi-newspaper text-primary me-2"></i>{t('articles', { defaultValue: 'Articles' })} ({articles.length})</li>
+                        <li className="my-2"><i className="bi bi-mic text-primary me-2"></i>{t('podcasts', { defaultValue: 'Podcasts' })}</li>
+                        <li className="my-2"><i className="bi bi-calendar-event text-primary me-2"></i>{t('events', { defaultValue: 'Events' })} ({events.length})</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

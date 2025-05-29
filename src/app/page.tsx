@@ -100,7 +100,7 @@ export default function Home() {
                 {carousel.map((slide, index) => (
                   <div key={slide.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
                     <div 
-                      className="carousel-slide d-flex align-items-center justify-content-center"
+                      className="carousel-slide d-flex align-items-center justify-content-center  py-5"
                       style={{
                         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
                         backgroundSize: 'cover',
@@ -108,7 +108,7 @@ export default function Home() {
                         minHeight: '70vh'
                       }}
                     >
-                      <div className="container">
+                      <div className="container  py-5">
                         <div className="row justify-content-center">
                           <div className="col-lg-8 text-center text-white">
                             <h1 className="display-4 fw-bold mb-4">{slide.title}</h1>
@@ -148,11 +148,11 @@ export default function Home() {
 
         {/* mainCTAs */}
         {mainCTAs && mainCTAs.length > 0 && (
-          <section className="stats-section py-5 bg-light">
+          <section className="stats-section mx-n3 py-5 bg-light">
             <div className="container">
               <div className="row py-sm-3 text-center">
                 {mainCTAs.map((cta, index) => (
-                  <div key={index} className="col-md-3">
+                  <div key={index} className="col-md-3 mb-4 mb-sm-0">
                     <Link href={cta.link} className="btn py-sm-3 d-flex flex-column align-items-center justify-content-center h-100 shadow-sm bg-white rounded-5">
                       <i className={`bi bi-${cta.icon}`}  style={{ fontSize: '2rem' }}></i>
                       <div className="mt-2" style={{ maxWidth: '100px' }}><span className="fw-bold text-uppercase text-center">{cta.label}</span></div>
@@ -319,7 +319,7 @@ export default function Home() {
         </section>
 
         {/* Podcasts */}
-        <section className="podcasts-section py-5 bg-light">
+        <section className="podcasts-section mx-n3 py-5 bg-light">
           <div className="container">
             <h2 className="text-center mb-5">{t('our_podcasts')}</h2>
             <div className="row">
@@ -391,7 +391,7 @@ export default function Home() {
                 
                 {/* Add placeholder cards if fewer than 3 events */}
                 {events.length < 3 && Array.from({ length: 3 - events.length }).map((_, index) => (
-                  <div key={`placeholder-${index}`} className="col-lg-4 mb-4">
+                  <div key={`placeholder-${index}`} className="d-none d-sm-block col-lg-4 mb-4">
                     <div className="card h-100 shadow border-2 border-dashed">
                       <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
                         <i className="bi bi-calendar-plus fs-1 text-muted mb-3"></i>

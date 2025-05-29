@@ -189,7 +189,17 @@ const checkIsAdmin = async (): Promise<boolean> => {
 // New function to fetch articles from Firestore
 export const fetchArticlesFromFirestore = async (currentLang?: string): Promise<Article[]> => {
   try {
-    const isAdmin = await checkIsAdmin();
+    // Wait a brief moment to ensure auth is initialized
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    let isAdmin = false;
+    try {
+      isAdmin = await checkIsAdmin();
+    } catch (error) {
+      // If admin check fails, assume not admin and continue
+      console.debug('Admin check failed, proceeding as non-admin user');
+      isAdmin = false;
+    }
     
     let q;
     
@@ -235,27 +245,28 @@ export const fetchArticlesFromFirestore = async (currentLang?: string): Promise<
         dateString = data.createdAt.toDate().toISOString().split('T')[0];
       }
 
-      // The returned Article object will have title, summary, content as MultilingualString
-      // The consumer of this function will need to select the appropriate language string.
       return {
         id: docSnap.id,
-        title: data.title || { en: 'No Title' }, // Default to English if somehow missing
-        slug: docSnap.id || data.slug, // Slug needs careful consideration for multilingual
-        summary: data.excerpt || { en: '' }, // Default to English
+        title: data.title || { en: 'No Title' },
+        slug: docSnap.id || data.slug,
+        summary: data.excerpt || { en: '' },
         imageUrl: data.imageUrl,
         category: data.category || 'General',
         languages: data.languages || ['en'],
         date: dateString,
         author: data.authorName || 'Unknown Author',
         featured: data.featured || false,
-        content: data.content || { en: '' }, // Default to English
+        content: data.content || { en: '' },
       } as Article;
     });
     return articlesData;
   } catch (error) {
-    console.error('Error fetching articles from Firestore:', error);
-    // Fallback to staticDummyArticles needs careful handling due to structure mismatch now.
-    // For simplicity, returning an empty array. Update static data or handle fallback properly.
+    // Only log error if it's not a permission error during initialization
+    if (error instanceof Error && !error.message.includes('permission')) {
+      console.error('Error fetching articles from Firestore:', error);
+    } else {
+      console.debug('Permission error while fetching articles, returning empty array');
+    }
     return []; 
   }
 };
