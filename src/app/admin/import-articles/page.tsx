@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { saveStaticArticlesToFirebase, staticDummyArticles, staticDummyEvents } from '@/lib/dummyContent';
+import Link from 'next/link';
 
 export default function ImportArticles() {
   const [loading, setLoading] = useState(false);
@@ -115,7 +116,7 @@ export default function ImportArticles() {
                 <div className="alert alert-success" role="alert">
                   <i className="bi bi-check-circle me-2"></i>
                   Successfully imported all content to Firebase! You can now view them in the{' '}
-                  <a href="/admin/news" className="alert-link">Content Management</a> section.
+                  <Link href="/admin/news" className="alert-link">Content Management</Link> section.
                 </div>
               )}
 

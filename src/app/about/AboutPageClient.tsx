@@ -14,6 +14,7 @@ export default function AboutPageClient({ pageContent }: Props) {
       title={pageContent.title}
       description={pageContent.description}
       backgroundImage={pageContent.backgroundImage}
+      isAboutPage={true}
     >
       <div dangerouslySetInnerHTML={{ 
         __html: pageContent.content || `<p>${t('content_coming_soon', { defaultValue: 'Content coming soon...' })}</p>` 

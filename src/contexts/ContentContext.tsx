@@ -38,6 +38,11 @@ interface ContentContextType {
     label: string;
     value: string;
   }>;
+  mainCTAs: Array<{
+    label: string;
+    link: string;
+    icon: string;
+  }>;
   callToActions: {
     title: string;
     description: string;
@@ -86,6 +91,13 @@ const getContentData = (): ContentContextType => ({
     { label: t('churches_and_missions', { defaultValue: 'Churches and Missions' }), value: '12k' },
     { label: t('members_around_world', { defaultValue: 'Members Around the World' }), value: '1.5m' },
     { label: t('languages', { defaultValue: 'Languages' }), value: '130' },
+  ],
+
+  mainCTAs: [
+    { label: t('start_here', { defaultValue: 'Get Connected' }), link: '/get-connected', icon: 'bi bi-house' },
+    { label: t('about', { defaultValue: 'About' }), link: '/about', icon: 'bi bi-envelope' },
+    { label: t('ministries', { defaultValue: 'Ministries' }), link: '/ministries', icon: 'bi bi-person-plus' },
+    { label: t('resources', { defaultValue: 'Resources' }), link: '/resources', icon: 'bi bi-geo-alt' },
   ],
 
   callToActions: {
@@ -1279,50 +1291,50 @@ const getContentData = (): ContentContextType => ({
         <p>Our new member classes help you understand our beliefs, discover your purpose, and connect with our church family.</p>
       `
     },
-    'resources/how-to-know-god': {
-      title: 'How to Know God',
-      description: 'Discover a personal relationship with Jesus Christ.',
-      content: `
-        <h2>God Loves You</h2>
-        <p>God created you in His image and desires a personal relationship with you. He loves you unconditionally and has a wonderful plan for your life.</p>
-        <blockquote class="blockquote">
-          <p>"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p>
-          <footer class="blockquote-footer">John 3:16</footer>
-        </blockquote>
-        
-        <h2>We Are Separated from God</h2>
-        <p>Sin has created a barrier between us and God. We all fall short of God's perfect standard.</p>
-        
-        <h2>Jesus Is the Answer</h2>
-        <p>Jesus Christ bridged the gap between God and humanity through His death on the cross.</p>
-        
-        <h2>You Must Respond</h2>
-        <p>You must personally receive Jesus Christ as your Lord and Savior by faith.</p>
-      `
-    },
-    'resources/membership': {
-      title: 'Membership',
-      description: 'Learn about becoming a member of our church family.',
-      content: `
-        <h2>Becoming a Member</h2>
-        <p>Membership in the Church of God of Prophecy is open to all who have accepted Jesus Christ as their personal Savior and desire to follow Him in baptism and Christian living.</p>
-        
-        <h2>Steps to Membership</h2>
-        <ol>
-          <li><strong>Accept Christ:</strong> Make a personal decision to follow Jesus</li>
-          <li><strong>Be Baptized:</strong> Follow Christ in water baptism</li>
-          <li><strong>Commit to Growth:</strong> Engage in Bible study and fellowship</li>
-          <li><strong>Serve Others:</strong> Use your gifts to serve God and others</li>
-        </ol>
-        
-        <h2>Member Benefits</h2>
-        <ul>
-          <li>Voting privileges in church matters</li>
-          <li>Access to member resources and materials</li>
-          <li>Opportunities for leadership and service</li>
-          <li>Connection with our global church family</li>
-        </ul>
-      `
+    'resources/know-god': {
+      title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }),
+      description: t('how_to_know_god_description', { defaultValue: 'Discover a personal relationship with Jesus Christ and experience the peace that comes from knowing God.' }),
+      content: `<div className="mb-5">
+          <h2 className="h3 mb-3">${t('god_loves_you', { defaultValue: 'God Loves You' })}</h2>
+          <p>${t('god_created_you_in_his_image_and_desires_a_personal_relationship_with_you', { defaultValue: 'God created you in His image and desires a personal relationship with you. He loves you unconditionally and has a wonderful plan for your life.' })}</p>
+          <blockquote className="blockquote">
+            <p>"${t('for_god_so_loved_the_world_that_he_gave_his_one_and_only_son_that_whoever_believes_in_him_shall_not_perish_but_have_eternal_life', { defaultValue: 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.' })}"</p>
+            <footer className="blockquote-footer">${t('john_3_16', { defaultValue: 'John 3:16' })}</footer>
+          </blockquote>
+        </div>
+
+        <div className="mb-5">
+          <h2 className="h3 mb-3">${t('we_are_separated_from_god', { defaultValue: 'We Are Separated from God' })}</h2>
+          <p>${t('sin_has_created_a_barrier_between_us_and_god_we_all_fall_short_of_gods_perfect_standard_and_this_separation_affects_every_aspect_of_our_lives', { defaultValue: 'Sin has created a barrier between us and God. We all fall short of God\'s perfect standard, and this separation affects every aspect of our lives.' })}</p>
+          <blockquote className="blockquote">
+            <p>"${t('for_all_have_sinned_and_fall_short_of_the_glory_of_god', { defaultValue: 'For all have sinned and fall short of the glory of God.' })}"</p>
+            <footer className="blockquote-footer">${t('romans_3_23', { defaultValue: 'Romans 3:23' })}</footer>
+          </blockquote>
+        </div>
+
+        <div className="mb-5">
+          <h2 className="h3 mb-3">${t('jesus_is_the_answer', { defaultValue: 'Jesus Is the Answer' })}</h2>
+          <p>${t('jesus_christ_bridged_the_gap_between_god_and_humanity_through_his_death_on_the_cross_he_paid_the_price_for_our_sins_so_we_could_have_a_relationship_with_god', { defaultValue: 'Jesus Christ bridged the gap between God and humanity through His death on the cross. He paid the price for our sins so we could have a relationship with God.' })}</p>
+          <blockquote className="blockquote">
+            <p>"${t('but_god_demonstrates_his_own_love_for_us_in_this_while_we_were_still_sinners_christ_died_for_us', { defaultValue: 'But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.' })}"</p>
+            <footer className="blockquote-footer">${t('romans_5_8', { defaultValue: 'Romans 5:8' })}</footer>
+          </blockquote>
+        </div>
+
+        <div className="mb-5">
+          <h2 className="h3 mb-3">${t('you_must_respond', { defaultValue: 'You Must Respond' })}</h2>
+          <p>${t('knowing_about_gods_love_is_not_enough_you_must_personally_receive_jesus_christ_as_your_lord_and_savior_by_faith', { defaultValue: 'Knowing about God\'s love is not enough. You must personally receive Jesus Christ as your Lord and Savior by faith.' })}</p>
+          <blockquote className="blockquote">
+            <p>"${t('if_you_declare_with_your_mouth_jesus_is_lord_and_believe_in_your_heart_that_god_raised_him_from_the_dead_you_will_be_saved', { defaultValue: 'If you declare with your mouth, "Jesus is Lord," and believe in your heart that God raised him from the dead, you will be saved.' })}"</p>
+            <footer className="blockquote-footer">${t('romans_10_9', { defaultValue: 'Romans 10:9' })}</footer>
+          </blockquote>
+        </div>
+
+        <div className="text-center bg-light p-4 rounded">
+          <h2 className="h4 mb-3">${t('ready_to_take_the_next_step', { defaultValue: 'Ready to Take the Next Step?' })}</h2>
+          <p className="mb-4">${t('if_you_would_like_to_know_more_about_having_a_personal_relationship_with_jesus_christ_we_are_here_to_help', { defaultValue: 'If you would like to know more about having a personal relationship with Jesus Christ, we are here to help.' })}</p>
+          <Link href="/get-connected/contact" className="btn btn-dark me-3">${t('contact_us', { defaultValue: 'Contact Us' })}</Link>
+        </div>`
     },
     'resources/media': {
       title: 'Media',

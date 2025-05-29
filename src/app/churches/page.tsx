@@ -401,9 +401,9 @@ export default function ChurchesPage() {
           <p className="text-muted mb-4">
             {t('church_directory_help', { defaultValue: 'If you\'re a church leader and would like to have your church included in our directory, please contact us.' })}
           </p>
-          <a href="/get-connected/contact" className="btn btn-outline-primary">
+          <Link href="/get-connected/contact" className="btn btn-outline-primary">
             {t('contact_us_btn', { defaultValue: 'Contact Us' })}
-          </a>
+          </Link>
         </div>
       )}
     </div>

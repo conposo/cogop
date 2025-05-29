@@ -6,6 +6,7 @@ import { db } from '@/lib/firebase'
 import { getPageContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 import { t } from '@/lib/i18n'
+import Link from 'next/link'
 
 interface Church {
   id: string
@@ -259,9 +260,9 @@ export default function FindaChurchPage() {
                     <strong>{t('phone', { defaultValue: 'Phone' })}:</strong> (423) 559-5100<br />
                     <strong>Email:</strong> info@cogop.org
                   </p>
-                  <a href="/get-connected/contact" className="btn btn-outline-primary btn-sm">
+                  <Link href="/get-connected/contact" className="btn btn-outline-primary btn-sm">
                     {t('contact_us', { defaultValue: 'Contact Us' })}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -328,9 +329,9 @@ export default function FindaChurchPage() {
                 >
                   {t('clear_filters', { defaultValue: 'Clear Filters' })}
                 </button>
-                <a href="/get-connected/contact" className="btn btn-outline-primary">
+                <Link href="/get-connected/contact" className="btn btn-outline-primary">
                   {t('contact_us', { defaultValue: 'Contact Us' })}
-                </a>
+                </Link>
               </div>
             ) : !error && (
               <div className="row">

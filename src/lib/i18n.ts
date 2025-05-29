@@ -22,6 +22,7 @@ i18n.translations = {
     // Navigation
     welcome: 'Welcome',
     home: 'Home',
+    start_here: 'Start Here',
     get_connected: 'Get Connected',
     calendar: 'Calendar',
     contact: 'Contact',
@@ -51,12 +52,32 @@ i18n.translations = {
     hero_title_1: 'We are the Church of God of Prophecy',
     hero_desc_1: 'This 24-page booklet is a guide for anyone interested in understanding who we are, what we believe, and how we live out our mission together.',
     hero_btn_1: 'Order Now',
-    hero_title_2: 'Global Community of Faith',
+    hero_title_2: 'Community of Faith',
     hero_desc_2: 'Join us as we serve Christ in 135 countries with over 12,000 churches and missions worldwide.',
     hero_btn_2: 'Learn More',
     hero_title_3: 'Spirit-Led Ministry',
     hero_desc_3: 'Discover how we are fulfilling the Great Commission through the power of the Holy Spirit.',
     hero_btn_3: 'Our Mission',
+
+    // Front Page
+    articles_and_news: 'Articles & News',
+    more_articles_coming_soon: 'More Articles Coming Soon',
+    stay_tuned_for_inspiring_articles_and_church_updates: 'Stay tuned for inspiring articles and church updates.',
+    read_more: 'Read More',
+    view_all: 'View All',
+    our_podcasts: 'Our Podcasts',
+    listen_now: 'Listen Now',
+    upcoming_events: 'Upcoming Events',
+    featured: 'Featured',
+    event_details: 'Event Details',
+    more_events_coming_soon: 'More Events Coming Soon',
+    stay_tuned_for_exciting_upcoming_events_and_gatherings: 'Stay tuned for exciting upcoming events and gatherings.',
+    get_notified: 'Get Notified',
+    no_upcoming_events: 'No Upcoming Events',
+    check_back_soon_for_new_events: 'Check back soon for new events!',
+    explore_all_events: 'Explore All Events',
+    have_you_ever_wondered_how_to_know_god_and_experience_the_peace_that_comes_from_him: 'Have you ever wondered how to know God and experience the peace that comes from him?',
+    how_to_know_god: 'How to Know God',
     
     // Buttons & UI
     sign_in: 'Sign In',
@@ -72,22 +93,22 @@ i18n.translations = {
     get_connected_description: 'Connect with the Church of God of Prophecy community and discover ways to get involved.',
     
     about_title: 'About',
-    about_description: 'Learn about our identity, beliefs, and mission as a global church movement.',
+    about_description: 'Learn about our identity, beliefs, and mission as a church movement.',
     
     who_we_are_title: 'Who We Are',
-    who_we_are_description: 'Discover our identity as a Christ-centered, Spirit-led global movement.',
+    who_we_are_description: 'Discover our identity as a Christ-centered, Spirit-led movement.',
     
     what_we_believe_title: 'What We Believe',
     what_we_believe_description: 'Explore our core beliefs, doctrine, and theological foundations.',
     
     our_leadership_title: 'Our Leadership',
-    our_leadership_description: 'Meet the leaders who guide and serve our global church community.',
+    our_leadership_description: 'Meet the leaders who guide and serve our church community.',
     
     our_history_title: 'Our History',
     our_history_description: 'Journey through the rich history of the Church of God of Prophecy.',
     
     membership_title: 'Membership',
-    membership_description: 'Learn about becoming a member of our global church family.',
+    membership_description: 'Learn about becoming a member of our church family.',
     
     // Ministries
     ministries_title: 'Ministries',
@@ -96,7 +117,7 @@ i18n.translations = {
     admin_finance_title: 'Administration & Finance',
     admin_finance_description: 'Supporting ministry through sound financial stewardship and administration.',
     
-    global_missions_title: 'Global Missions',
+    global_missions_title: 'Missions',
     global_missions_description: 'Discover our worldwide mission work and evangelism efforts across 135 countries.',
     
     harvest_partners_title: 'Harvest Partners',
@@ -120,7 +141,7 @@ i18n.translations = {
     bookstore_title: 'Bookstore',
     bookstore_description: 'Christian books, resources, and materials for spiritual growth.',
     
-    global_communications_title: 'Global Communications',
+    global_communications_title: 'Communications',
     global_communications_description: 'Connecting our worldwide church through media and communications.',
     
     white_wing_messenger_title: 'White Wing Messenger',
@@ -130,7 +151,7 @@ i18n.translations = {
     prayer_description: 'Connecting believers worldwide through the power of prayer.',
     
     international_assembly_title: 'International Assembly',
-    international_assembly_description: 'Our global church gathering held every four years.',
+    international_assembly_description: 'Our church gathering held every four years.',
     
     leadership_development_title: 'Leadership Development',
     leadership_development_description: 'Training and equipping leaders for effective ministry worldwide.',
@@ -152,10 +173,10 @@ i18n.translations = {
     
     // Where We Serve
     where_we_serve_title: 'Where We Serve',
-    where_we_serve_description: 'Explore our global presence and ministry impact.',
+    where_we_serve_description: 'Explore our presence and ministry impact.',
     
     presiding_bishop_title: 'Presiding Bishop',
-    presiding_bishop_description: 'Leadership and oversight of our global church movement.',
+    presiding_bishop_description: 'Leadership and oversight of our church movement.',
     
     africa_title: 'Africa',
     africa_description: 'Ministry and church growth across the African continent.',
@@ -187,6 +208,24 @@ i18n.translations = {
     
     how_to_know_god_title: 'How to Know God',
     how_to_know_god_description: 'Discover a personal relationship with Jesus Christ.',
+    god_loves_you: 'God Loves You',
+    god_created_you_in_his_image_and_desires_a_personal_relationship_with_you: 'God created you in His image and desires a personal relationship with you.',
+    for_god_so_loved_the_world_that_he_gave_his_one_and_only_son_that_whoever_believes_in_him_shall_not_perish_but_have_eternal_life: 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.',
+    john_3_16: 'John 3:16',
+    we_are_separated_from_god: 'We Are Separated from God',
+    sin_has_created_a_barrier_between_us_and_god_we_all_fall_short_of_gods_perfect_standard_and_this_separation_affects_every_aspect_of_our_lives: 'Sin has created a barrier between us and God. We all fall short of God\'s perfect standard, and this separation affects every aspect of our lives.',
+    for_all_have_sinned_and_fall_short_of_the_glory_of_god: 'For all have sinned and fall short of the glory of God.',
+    romans_3_23: 'Romans 3:23',
+    jesus_is_the_answer: 'Jesus Is the Answer',
+    jesus_christ_bridged_the_gap_between_god_and_humanity_through_his_death_on_the_cross_he_paid_the_price_for_our_sins_so_we_could_have_a_relationship_with_god: 'Jesus Christ bridged the gap between God and humanity through His death on the cross. He paid the price for our sins so we could have a relationship with God.',
+    but_god_demonstrates_his_own_love_for_us_in_this_while_we_were_still_sinners_christ_died_for_us: 'But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.',
+    romans_5_8: 'Romans 5:8',
+    you_must_respond: 'You Must Respond',
+    knowing_about_gods_love_is_not_enough_you_must_personally_receive_jesus_christ_as_your_lord_and_savior_by_faith: 'Knowing about God\'s love is not enough. You must personally receive Jesus Christ as your Lord and Savior by faith.',
+    if_you_declare_with_your_mouth_jesus_is_lord_and_believe_in_your_heart_that_god_raised_him_from_the_dead_you_will_be_saved: 'If you declare with your mouth, "Jesus is Lord," and believe in your heart that God raised him from the dead, you will be saved.',
+    romans_10_9: 'Romans 10:9',
+    ready_to_take_the_next_step: 'Ready to Take the Next Step?',
+    if_you_would_like_to_know_more_about_having_a_personal_relationship_with_jesus_christ_we_are_here_to_help: 'If you would like to know more about having a personal relationship with Jesus Christ, we are here to help.',
     
     media_title: 'Media',
     media_description: 'Videos, audio, and multimedia resources for spiritual growth.',
@@ -285,8 +324,6 @@ i18n.translations = {
     search_suggestions: 'Try searching for: "ministry", "events", "contact", "about"',
     search_results_count: 'Found {count} result{plural} for "{term}"',
     best_match: 'Best Match',
-    featured: 'Featured',
-    faq: 'FAQ',
     
     // Result types
     page: 'Page',
@@ -337,11 +374,11 @@ i18n.translations = {
     faq_donations_used: 'How are donations used?',
     faq_donations_answer: 'Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God\'s kingdom worldwide.',
     
-    faq_global_ministry: 'Global Ministry',
-    faq_support_missions: 'How can I support global missions?',
+    faq_global_ministry: 'Ministry',
+    faq_support_missions: 'How can I support missions?',
     faq_support_missions_answer: 'You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities.',
     faq_international_assembly: 'What is the International Assembly?',
-    faq_international_assembly_answer: 'The International Assembly is our global church gathering held every four years. It brings together delegates from around the world for worship, fellowship, business sessions, and to set direction for our worldwide ministry.',
+    faq_international_assembly_answer: 'The International Assembly is our church gathering held every four years. It brings together delegates from around the world for worship, fellowship, business sessions, and to set direction for our worldwide ministry.',
     
     faq_contact_next_steps: 'Contact and Next Steps',
     faq_find_local_church: 'How do I find a local church?',
@@ -377,13 +414,13 @@ i18n.translations = {
     spirit_life_seminary: 'Spirit and Life Seminary',
     digital_evangelism: 'Digital Evangelism',
     featured_article: 'Featured Article',
-    global_missions: 'Global Missions',
+    global_missions: 'Missions',
     youth_ministry: 'Youth Ministry',
     
     // Event Categories
     youth_conference: 'Youth Conference',
     stewardship: 'Stewardship',
-    global_assembly: 'Global Assembly',
+    global_assembly: 'Assembly',
     
     // Contact Information
     physical_address: 'Physical Address',
@@ -401,6 +438,7 @@ i18n.translations = {
     reach_out: 'Reach out with questions, prayer requests, or to learn more',
     explore_career: 'Explore career opportunities within our organization',
     visit_facilities: 'Visit our facilities and learn about our community',
+    mission_statement: 'We invite you to join with us as we seek to fulfill our mission of reconciling the world to God through the Power of the Holy Spirit by the deeds of Jesus Christ.',
     
     // Form Labels
     full_name: 'Full Name',
@@ -447,21 +485,21 @@ i18n.translations = {
     icm_testify_desc: 'Join young adults from around the world for a transformative conference experience.',
     stewardshift_title: 'StewardShift Conference',
     stewardshift_desc: 'Learn about biblical stewardship and financial responsibility.',
-    international_assembly_desc: 'Our global church gathering bringing together believers from 135 countries.',
+    international_assembly_desc: 'Our church gathering bringing together believers from 135 countries.',
     north_carolina_asheville: 'North Carolina, near Asheville',
     ridgecrest_center: 'Ridgecrest Conference Center',
     peerless_church: 'Peerless Church',
     rosen_shingle_creek: 'Rosen Shingle Creek',
 
     // Page content
-    global_movement_heading: 'A Global Movement',
-    global_movement_text: 'The Church of God of Prophecy is a vibrant, global Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.',
+    global_movement_heading: 'A Movement',
+    global_movement_text: 'The Church of God of Prophecy is a vibrant, Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.',
     our_identity_heading: 'Our Identity',
     our_identity_intro: 'We are:',
     christ_centered: 'Christ-centered in our worship and witness',
     spirit_led: 'Spirit-led in our ministry and mission',
     scripture_based: 'Scripture-based in our beliefs and practices',
-    global_reach: 'Global in our reach and impact',
+    global_reach: 'In our reach and impact',
     unified_diversity: 'Unified in our diversity',
     our_story_heading: 'Our Story',
     our_story_text: 'Founded in the early 20th century, we have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God\'s kingdom on earth.',
@@ -559,13 +597,13 @@ i18n.translations = {
     global_impact_desc: 'The One Child Fund operates in multiple countries, partnering with local Church of God of Prophecy congregations to identify and support children who need educational assistance.',
 
     // About section content
-    global_movement_desc: 'The Church of God of Prophecy is a vibrant, global Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.',
+    global_movement_desc: 'The Church of God of Prophecy is a vibrant, Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.',
     our_vision: 'Our Vision',
-    our_vision_text: 'To be a Spirit-led global community of believers committed to reaching every person in every nation with the Gospel of Jesus Christ.',
+    our_vision_text: 'To be a Spirit-led community of believers committed to reaching every person in every nation with the Gospel of Jesus Christ.',
     our_values: 'Our Values',
     biblical_authority: 'Biblical Authority',
     biblical_authority_desc: 'We believe the Bible is the inspired Word of God',
-    global_unity: 'Global Unity',
+    global_unity: 'Unity',
     global_unity_desc: 'We are one church with many expressions',
     spirit_led_living: 'Spirit-Led Living',
     spirit_led_living_desc: 'We depend on the Holy Spirit for guidance',
@@ -575,7 +613,7 @@ i18n.translations = {
     cultural_sensitivity_desc: 'We respect and embrace diversity',
 
     // Who We Are content
-    global_movement: 'A Global Movement',
+    global_movement: 'A Movement',
     our_identity: 'Our Identity',
     we_are: 'We are:',
     our_story: 'Our Story',
@@ -605,7 +643,7 @@ i18n.translations = {
     voting_privileges: 'Voting privileges in church matters',
     access_resources: 'Access to member resources and materials',
     leadership_opportunities: 'Opportunities for leadership and service',
-    global_connection: 'Connection with our global church family',
+    global_connection: 'Connection with our church family',
 
     // Give section content
     why_we_give: 'Why We Give',
@@ -747,12 +785,12 @@ i18n.translations = {
     message_label: 'Message',
 
     // Common fallback content
-    employment_opportunities_coming_soon: 'Employment opportunities coming soon...',
-    tour_scheduling_coming_soon: 'Tour scheduling coming soon...',
-    global_presence_overview_coming_soon: 'Global presence overview coming soon...',
-    resources_overview_coming_soon: 'Resources overview coming soon...',
-    leadership_information_coming_soon: 'Leadership information coming soon...',
-    historical_information_coming_soon: 'Historical information coming soon...',
+    employment_opportunities_coming_soon: 'Coming soon...',
+    tour_scheduling_coming_soon: 'Coming soon...',
+    global_presence_overview_coming_soon: 'Coming soon...',
+    resources_overview_coming_soon: 'Coming soon...',
+    leadership_information_coming_soon: 'Coming soon...',
+    historical_information_coming_soon: 'Coming soon...',
 
     // About section navigation
     about: 'About',
@@ -867,6 +905,7 @@ i18n.translations = {
     // Navigation
     welcome: 'Добре дошли',
     home: 'Начало',
+    start_here: 'Начало',
     get_connected: 'Свържете се с нас',
     calendar: 'Календар',
     contact: 'Контакт',
@@ -896,12 +935,32 @@ i18n.translations = {
     hero_title_1: 'Ние сме Църква на Бога на Пророчеството',
     hero_desc_1: 'Тази 24-странична брошура е ръководство за всеки, който иска да разбере кои сме, в какво вярваме и как изпълняваме нашата мисия заедно.',
     hero_btn_1: 'Поръчай сега',
-    hero_title_2: 'Глобална общност на вярата',
+    hero_title_2: 'Общност на вярата',
     hero_desc_2: 'Присъединете се към нас, докато служим на Христос в 135 държави с над 12 000 църкви и мисии по света.',
     hero_btn_2: 'Научете повече',
     hero_title_3: 'Водено от Духа служение',
     hero_desc_3: 'Открийте как изпълняваме Великото поръчение чрез силата на Светия Дух.',
     hero_btn_3: 'Нашата мисия',
+
+    // Front Page
+    articles_and_news: 'Статии и новини',
+    more_articles_coming_soon: 'Повече скоро',
+    stay_tuned_for_inspiring_articles_and_church_updates: 'Следете за вдъхновяващи статии и новини от църквата.',
+    read_more: 'Прочети повече',
+    view_all: 'Виж всички',
+    our_podcasts: 'Нашите подкастове',
+    listen_now: 'Слушай сега',
+    upcoming_events: 'Предстоящи събития',
+    featured: 'Препоръчано',
+    event_details: 'Подробности за събитието',
+    more_events_coming_soon: 'Повече събития скоро',
+    stay_tuned_for_exciting_upcoming_events_and_gatherings: 'Следете за вълнуващи предстоящи събития и събрания.',
+    get_notified: 'Получете известия',
+    no_upcoming_events: 'Няма предстоящи събития',
+    check_back_soon_for_new_events: 'Проверете отново скоро за нови събития!',
+    explore_all_events: 'Изследвайте всички събития',
+    have_you_ever_wondered_how_to_know_god_and_experience_the_peace_that_comes_from_him: 'Имате ли съмнение как да познаете Бога и да изпитате мира, който идва от него?',
+    how_to_know_god: 'Как да познаем Бога',
     
     // Buttons & UI
     sign_in: 'Вход',
@@ -926,7 +985,7 @@ i18n.translations = {
     what_we_believe_description: 'Изследвайте нашите основни вярвания, доктрина и теологически основи.',
     
     our_leadership_title: 'Нашето ръководство',
-    our_leadership_description: 'Запознайте се с лидерите, които ръководят и служат на нашата глобална църковна общност.',
+    our_leadership_description: 'Запознайте се с лидерите, които ръководят и служат на нашата църковна общност.',
     
     our_history_title: 'Нашата история',
     our_history_description: 'Пътувайте през богатата история на Църква на Бога на Пророчеството.',
@@ -1031,7 +1090,25 @@ i18n.translations = {
     get_started_description: 'Започнете вашето пътуване с Църква на Бога на Пророчеството.',
     
     how_to_know_god_title: 'Как да познаем Бога',
-    how_to_know_god_description: 'Открийте лична връзка с Исус Христос.',
+    how_to_know_god_description: 'Открийте лична връзка с Исус Христос и изпитайте мира, който идва от познаването на Бога',
+    god_loves_you: 'Бог обича те',
+    god_created_you_in_his_image_and_desires_a_personal_relationship_with_you: 'Бог създаде те в образа Си и желае лична връзка с теб.',
+    for_god_so_loved_the_world_that_he_gave_his_one_and_only_son_that_whoever_believes_in_him_shall_not_perish_but_have_eternal_life: 'Защото Бог толкова възлюби света, че даде Своя Единороден Син, за да не погине нито един, който вярва в Него, а да има вечен живот.',
+    john_3_16: 'Йоан 3:16',
+    we_are_separated_from_god: 'Ние сме разделени от Бога',
+    sin_has_created_a_barrier_between_us_and_god_we_all_fall_short_of_gods_perfect_standard_and_this_separation_affects_every_aspect_of_our_lives: 'Грехът създаде бариера между нас и Бога. Ние всички пропускаме Божия съвършен стандарт и тази разделение влияе на всяка част от нашите жития.',
+    for_all_have_sinned_and_fall_short_of_the_glory_of_god: 'Защото всички сме грешни и пропускаме славата на Бога.',
+    romans_3_23: 'Римляни 3:23',
+    jesus_is_the_answer: 'Исус е отговора',
+    jesus_christ_bridged_the_gap_between_god_and_humanity_through_his_death_on_the_cross_he_paid_the_price_for_our_sins_so_we_could_have_a_relationship_with_god: 'Исус Христос преодолел бариерата между Бога и човечеството чрез смъртта Си на кръста. Той заплатил за греховете ни, така че да можем да имаме връзка с Бога.',
+    but_god_demonstrates_his_own_love_for_us_in_this_while_we_were_still_sinners_christ_died_for_us: 'Но Бог демонстрира собствената си любов към нас в това: докато сме грешници, Христос умря за нас.',
+    romans_5_8: 'Римляни 5:8',
+    you_must_respond: 'Трябва да отговорите',
+    knowing_about_gods_love_is_not_enough_you_must_personally_receive_jesus_christ_as_your_lord_and_savior_by_faith: 'Знанието за Божията любов не е достатъчно. Трябва лично да приемеш Исус Христос като свой Господ и Спасител чрез вяра.',
+    if_you_declare_with_your_mouth_jesus_is_lord_and_believe_in_your_heart_that_god_raised_him_from_the_dead_you_will_be_saved: 'Ако декларираш с устата, "Исус е Господ," и вярваш в сърцето си, че Бог възкресна Христос от мъртвите, ще бъдеш спасен.',
+    romans_10_9: 'Римляни 10:9',
+    ready_to_take_the_next_step: 'Готови ли сте да направите следващия стъпки?',
+    if_you_would_like_to_know_more_about_having_a_personal_relationship_with_jesus_christ_we_are_here_to_help: 'Ако желаете да научите повече за личната връзка с Исус Христос, ние сме тук, за да ви помогнем.',
     
     media_title: 'Медия',
     media_description: 'Видеа, аудио и мултимедийни ресурси за духовен растеж.',
@@ -1246,6 +1323,7 @@ i18n.translations = {
     reach_out: 'Свържете се с въпроси, молитвени искания или за да научите повече',
     explore_career: 'Изследвайте кариерни възможности в нашата организация',
     visit_facilities: 'Посетете нашите съоръжения и научете за нашата общност',
+    mission_statement: 'Каним ви да се присъедините към нас, докато се стремим да изпълним нашата мисия за примиряване на света с Бог чрез силата на Светия Дух поради делата на Исус Христос.',
     
     // Form Labels
     full_name: 'Пълно име',
@@ -1321,8 +1399,8 @@ i18n.translations = {
     faq_description: 'Намерете отговори на често задавани въпроси за нашата църква, вярвания и служби.',
     employment_title: 'Работа',
     employment_description: 'Изследвайте кариерни възможности в нашата организация.',
-    schedule_tour_title: 'Запишете обиколка',
-    schedule_tour_description: 'Посетете нашите съоръжения и научете за нашата общност.',
+    schedule_tour_title: 'Запишете се за обиколка',
+    schedule_tour_description: 'Посетете ни и научете повече за нашата общност.',
 
     // Page content sections
     our_ministries: 'Нашите служения',
@@ -1420,23 +1498,23 @@ i18n.translations = {
     cultural_sensitivity_desc: 'We respect and embrace diversity',
 
     // Who We Are content
-    global_movement: 'A Global Movement',
-    our_identity: 'Our Identity',
-    we_are: 'We are:',
-    our_story: 'Our Story',
+    global_movement: 'Глобално движение',
+    our_identity: 'Нашият идентитет',
+    we_are: 'Ние сме:',
+    our_story: 'Нашата история',
 
     // What We Believe content
-    we_believe_in: 'We believe in:',
-    trinity_desc: 'One God eternally existing in three persons: Father, Son, and Holy Spirit.',
-    jesus_desc: 'The deity of Jesus Christ, His virgin birth, sinless life, atoning death, bodily resurrection, and glorious return.',
-    salvation_desc: 'Salvation by grace through faith in Jesus Christ, not by works.',
-    holy_spirit_desc: 'The baptism of the Holy Spirit as a distinct experience available to all believers.',
-    church_desc: 'The church as the body of Christ, called to unity and holiness.',
-    scripture_desc: 'The Bible as the inspired, inerrant Word of God and our final authority for faith and practice.',
+    we_believe_in: 'Ние вярваме в:',
+    trinity_desc: 'Един Бог, вечно съществуващ в три лица: Отец, Син и Свети Дух.',
+    jesus_desc: 'Божествеността на Исус Христос, Неговото непорочно зачатие, безгрешен живот, изкупителна смърт, телесно възкресение и славно завръщане.',
+    salvation_desc: 'Спасение чрез благодат чрез вяра в Исус Христос, а не чрез дела.',
+    holy_spirit_desc: 'Кръщението със Светия Дух като отделно преживяване, достъпно за всички вярващи.',
+    church_desc: 'Църквата като тялото на Христос, призвана към единство и святост.',
+    scripture_desc: 'Библията като вдъхновеното, непогрешимо Слово на Бога и нашето окончателно основание за вяра и практика.',
 
     // Membership content
     becoming_member: 'Ставане на член',
-    membership_desc: 'Membership in the Church of God of Prophecy is open to all who have accepted Jesus Christ as their personal Savior and desire to follow Him in baptism and Christian living.',
+    membership_desc: 'Членството в Църква на Бога на Пророчеството е отворено за всички, които са приели Исус Христос като свой личен Спасител и желаят да Го следват в кръщение и християнски живот.',
     steps_to_membership: 'Стъпки към членство',
     accept_christ: 'Приемете Христос',
     accept_christ_desc: 'Вземете лично решение да следвате Исус',
@@ -1501,7 +1579,7 @@ i18n.translations = {
     pastor: 'Пастор',
     service_times: 'Времена на службите',
     programs_ministries: 'Програми и служения',
-    our_global_network: 'Нашата глобална мрежа',
+    our_global_network: 'Нашата мрежа',
     global_network_description: 'Църква на Бога на Пророчеството има над 12,000 църкви и мисии в 135 държави по света. Ако не виждате църква близо до вас, може все още да имаме конгрегация във вашия район.',
     churches_missions: 'Църкви и мисии',
     members: 'Членове',
@@ -1532,12 +1610,12 @@ i18n.translations = {
 
     // Events page translations
     upcoming_events: 'Предстоящи събития',
-    events_description: 'Join us for these special gatherings and conferences throughout the year.',
-    loading_events: 'Loading events...',
-    no_upcoming_events: 'No upcoming events',
-    check_back_soon: 'Check back soon for new events!',
-    dont_miss_opportunities: 'Don\'t miss out on these opportunities!',
-    view_full_calendar: 'View Full Calendar',
+    events_description: 'Присъединете се към нас за тези специални събрания и конференции през цялата година.',
+    loading_events: 'Зареждане на събития...',
+    no_upcoming_events: 'Няма предстоящи събития',
+    check_back_soon: 'Проверете отново скоро за нови събития!',
+    dont_miss_opportunities: 'Не пропускайте тези възможности!',
+    view_full_calendar: 'Преглед на пълен календар',
 
     // Settings page translations
     account_settings: 'Настройки на акаунта',
@@ -1572,7 +1650,7 @@ i18n.translations = {
     // Calendar specific translations
     event_calendar: 'Календар на събитията',
     view_all_upcoming_events: 'Вижте всички предстоящи събития и дейности',
-    loading_calendar: 'Loading calendar...',
+    loading_calendar: 'Зареждане на календар...',
     more: 'още',
     today: 'Днес',
     previous_month: 'Предишен месец',
@@ -1592,12 +1670,12 @@ i18n.translations = {
     message_label: 'Съобщение',
 
     // Common fallback content
-    employment_opportunities_coming_soon: 'Възможностите за работа идват скоро...',
-    tour_scheduling_coming_soon: 'Планирането на обиколки идва скоро...',
-    global_presence_overview_coming_soon: 'Преглед на глобалното присъствие идва скоро...',
-    resources_overview_coming_soon: 'Преглед на ресурсите идва скоро...',
-    leadership_information_coming_soon: 'Информацията за ръководството идва скоро...',
-    historical_information_coming_soon: 'Историческата информация идва скоро...',
+    employment_opportunities_coming_soon: 'Очаквайте скоро...',
+    tour_scheduling_coming_soon: 'Очаквайте скоро...',
+    global_presence_overview_coming_soon: 'Очаквайте скоро...',
+    resources_overview_coming_soon: 'Очаквайте скоро...',
+    leadership_information_coming_soon: 'Очаквайте скоро...',
+    historical_information_coming_soon: 'Очаквайте скоро...',
 
     // About section navigation
     about: 'За нас',
@@ -1685,7 +1763,7 @@ i18n.translations = {
     find_a_church_header: 'Намери църква',
     discover_churches_description: 'Открийте църкви в вашия район и свържете се с местните църкви',
     search_church_placeholder: 'Търсете по име на църква, град, пастор или denominatie...',
-    all_denominations: 'Всички denominatii',
+    all_denominations: 'Всички деноминации',
     churches_found: '{count} църква{plural} намерени',
     no_churches_found_header: 'Няма намерени църкви',
     no_churches_listed: 'В момента няма църкви, включени в нашият указател.',

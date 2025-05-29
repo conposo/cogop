@@ -20,12 +20,12 @@ const Footer = () => {
             <Image
               src="/images/Cogop-white.svg"
               alt="Church of God of Prophecy"
-              width={1}
-              height={1}
+              width={169}
+              height={40}
               className="footer__logo"
               style={{
-                width: 'auto',
-                height: 'auto'
+                width: '169px',
+                height: '40px'
               }}
             />
             <ul className="footer__social">

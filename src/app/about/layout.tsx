@@ -23,12 +23,12 @@ export default function AboutLayout({
     <div className="container-fluid">
       <div className="row">
         {/* Sidebar Navigation */}
-        <nav className="col-lg-3 col-md-4 sidebar ">
+        <nav className="col-lg-3 col-md-4 sidebar navbar-light">
           <div className="p-3 position-sticky top-0 border- bg-light rounded-5">
             <h4 className="mb-3 small text-uppercase fw-bold opacity-50">{t('about')}</h4>
-            <ul className="nav nav-pills flex-column">
+            <ul className="nav nav-underline flex-column">
               {links.map((link) => (
-                <li key={link.href} className="nav-item mb-1">
+                <li key={link.href} className="nav-item">
                   <Link 
                     href={link.href}
                     className={`nav-link ${pathname === link.href ? 'active' : 'text-dark'}`}

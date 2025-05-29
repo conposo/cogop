@@ -7,6 +7,7 @@ import { useContent } from '@/contexts/ContentContext'
 import { useI18n } from '@/contexts/I18nContext'
 import { dummyArticles as fetchDummyArticles, dummyEvents, dummyPodcasts, dummyStatistics, Article, fetchEventsFromFirestore, Event, formatEventDateTime, fetchArticlesFromFirestore, MultilingualString } from '@/lib/dummyContent'
 import { generateOrganizationStructuredData } from '@/lib/metadata'
+import { t } from '@/lib/i18n'
 
 // Helper function to get localized string or fallback
 const getLocalizedString = (field: MultilingualString | string | undefined, lang: string, fallbackLang: string = 'en'): string => {
@@ -20,7 +21,7 @@ const getLocalizedString = (field: MultilingualString | string | undefined, lang
 };
 
 export default function Home() {
-  const { stats, articles: contextArticles, podcasts, events: contextEvents, carousel } = useContent()
+  const { stats, mainCTAs, articles: contextArticles, podcasts, events: contextEvents, carousel } = useContent()
   const { language } = useI18n()
   const [articles, setArticles] = useState<Article[]>([])
   const [events, setEvents] = useState<Event[]>([])
@@ -139,12 +140,28 @@ export default function Home() {
         {/* Mission Statement */}
         <section className="mission-section py-5">
           <div className="container">
-            <h2 className="text-center mb-5">We invite you to join with us as we seek to fulfill our mission of reconciling the world to Christ through the Power of the Holy Spirit.</h2>
+            <h2 className="text-center mb-0 py-sm-3">{t('mission_statement')}</h2>
+          </div>
+        </section>
+
+        {/* mainCTAs */}
+        <section className="stats-section py-5 bg-light">
+          <div className="container">
+            <div className="row py-sm-3 text-center">
+              {mainCTAs.map((cta, index) => (
+                <div key={index} className="col-md-3">
+                  <Link href={cta.link} className="btn py-sm-3 d-flex flex-column align-items-center justify-content-center h-100 shadow-sm bg-white rounded-5">
+                    <i className={`bi bi-${cta.icon}`}  style={{ fontSize: '2rem' }}></i>
+                    <div className="mt-2" style={{ maxWidth: '100px' }}><span className="fw-bold text-uppercase text-center">{cta.label}</span></div>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Statistics */}
-        <section className="stats-section py-5 bg-light">
+        {/* <section className="stats-section py-5 bg-light">
           <div className="container">
             <div className="row text-center">
               {stats.map((stat, index) => (
@@ -155,12 +172,12 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Articles Section (New Structure) */}
         <section className="articles-section py-5">
           <div className="container">
-            <h2 className="text-center mb-5">Articles & News</h2>
+            <h2 className="text-center mb-5">{t('articles_and_news')}</h2>
             
             {/* Mobile Carousel - 1 article per slide */}
             <div id="mobileArticlesCarousel" className="carousel slide d-lg-none" data-bs-ride="carousel">
@@ -213,7 +230,7 @@ export default function Home() {
                                 <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
                               </p>
                             )}
-                            <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
+                            <Link href={`/news/${article.slug}`} className="btn btn-dark">{t('read_more')}</Link>
                           </div>
                         </div>
                       </div>
@@ -267,7 +284,7 @@ export default function Home() {
                             <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
                           </p>
                         )}
-                        <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
+                        <Link href={`/news/${article.slug}`} className="btn btn-dark">{t('read_more')}</Link>
                       </div>
                     </div>
                   </div>
@@ -279,10 +296,10 @@ export default function Home() {
                     <div className="card h-100 shadow border-2 border-dashed">
                       <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
                         <i className="bi bi-newspaper fs-1 text-muted mb-3"></i>
-                        <h5 className="text-muted mb-2">More Articles Coming Soon</h5>
-                        <p className="text-muted small mb-3">Stay tuned for inspiring articles and church updates.</p>
+                        <h5 className="text-muted mb-2">{t('more_articles_coming_soon')}</h5>
+                        <p className="text-muted small mb-3">{t('stay_tuned_for_inspiring_articles_and_church_updates')}</p>
                         <Link href="/news" className="btn btn-outline-secondary btn-sm">
-                          View All Articles
+                          {t('view_all')}
                         </Link>
                       </div>
                     </div>
@@ -292,7 +309,7 @@ export default function Home() {
             </div>
 
             <div className="text-center mt-4">
-              <Link href="/news" className="btn btn-outline-primary">View all</Link>
+              <Link href="/news" className="btn btn-outline-primary">{t('view_all')}</Link>
             </div>
           </div>
         </section>
@@ -300,7 +317,7 @@ export default function Home() {
         {/* Podcasts */}
         <section className="podcasts-section py-5 bg-light">
           <div className="container">
-            <h2 className="text-center mb-5">Our Podcasts</h2>
+            <h2 className="text-center mb-5">{t('our_podcasts')}</h2>
             <div className="row">
               {podcasts.map((podcast, index) => (
                 <div key={index} className="col-lg-6 mb-4">
@@ -312,14 +329,14 @@ export default function Home() {
                       </div>
                       <h3 className="card-title h5">{podcast.title}</h3>
                       <p className="card-text">{podcast.description}</p>
-                      <button className="btn btn-dark">Listen now</button>
+                      <button className="btn btn-dark">{t('listen_now')}</button>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
             <div className="text-center">
-              <Link href="/podcasts" className="btn btn-outline-primary">View all</Link>
+              <Link href="/podcasts" className="btn btn-outline-primary">{t('view_all')}</Link>
             </div>
           </div>
         </section>
@@ -327,7 +344,7 @@ export default function Home() {
         {/* Events */}
         <section className="events-section py-5">
           <div className="container">
-            <h2 className="text-center mb-5">Upcoming events</h2>
+            <h2 className="text-center mb-5">{t('upcoming_events')}</h2>
             {events.length > 0 ? (
               <div className="row">
                 {events.map((event) => (
@@ -347,7 +364,7 @@ export default function Home() {
                         <div className="d-flex justify-content-between align-items-start mb-2">
                           <span className="badge bg-info text-dark">{event.category}</span>
                           {event.featured && (
-                            <span className="badge bg-warning text-dark">Featured</span>
+                            <span className="badge bg-warning text-dark">{t('featured')}</span>
                           )}
                         </div>
                         <h3 className="card-title h5 mb-3">{getLocalizedString(event.title, language)}</h3>
@@ -362,7 +379,7 @@ export default function Home() {
                             {event.eventLocation}
                           </p>
                         </div>
-                        <Link href={`/events/${event.id}`} className="btn btn-outline-primary btn-sm">Event Details</Link>
+                        <Link href={`/events/${event.id}`} className="btn btn-outline-primary btn-sm">{t('event_details')}</Link>
                       </div>
                     </div>
                   </div>
@@ -374,10 +391,10 @@ export default function Home() {
                     <div className="card h-100 shadow border-2 border-dashed">
                       <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
                         <i className="bi bi-calendar-plus fs-1 text-muted mb-3"></i>
-                        <h5 className="text-muted mb-2">More Events Coming Soon</h5>
-                        <p className="text-muted small mb-3">Stay tuned for exciting upcoming events and gatherings.</p>
+                        <h5 className="text-muted mb-2">{t('more_events_coming_soon')}</h5>
+                        <p className="text-muted small mb-3">{t('stay_tuned_for_exciting_upcoming_events_and_gatherings')}</p>
                         <Link href="/get-connected/contact" className="btn btn-outline-secondary btn-sm">
-                          Get Notified
+                          {t('get_notified')}
                         </Link>
                       </div>
                     </div>
@@ -387,12 +404,12 @@ export default function Home() {
             ) : (
               <div className="text-center py-5">
                 <i className="bi bi-calendar-x fs-1 text-muted mb-3"></i>
-                <h4 className="text-muted">No upcoming events</h4>
-                <p className="text-muted">Check back soon for new events!</p>
+                <h4 className="text-muted">{t('no_upcoming_events')}</h4>
+                <p className="text-muted">{t('check_back_soon_for_new_events')}</p>
               </div>
             )}
             <div className="text-center">
-              <Link href="/events" className="btn btn-outline-primary">Explore All Events</Link>
+              <Link href="/events" className="btn btn-outline-primary">{t('explore_all_events')}</Link>
             </div>
           </div>
         </section>
@@ -406,8 +423,8 @@ export default function Home() {
           }}
         >
           <div className="container">
-            <h2 className="mb-4">Have you ever wondered how to know God and experience the peace that comes from him?</h2>
-            <Link href="/resources/know-god" className="btn btn-light btn-lg">How to Know God</Link>
+            <h2 className="mb-4">{t('have_you_ever_wondered_how_to_know_god_and_experience_the_peace_that_comes_from_him')}</h2>
+            <Link href="/resources/know-god" className="btn btn-light btn-lg">{t('how_to_know_god')}</Link>
           </div>
         </section>
       </div>

@@ -197,7 +197,7 @@ ${t('please_try', { defaultValue: 'Please try' })}:
   };
 
   return (
-    <div className="container-fluid">
+    <div className="">
       {/* Header */}
       <div className="d-flex justify-content-end align-items-center mt-sm-n5 mb-4 d-flex">
         

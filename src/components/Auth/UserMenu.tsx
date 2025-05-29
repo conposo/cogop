@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAdmin } from '@/contexts/AdminContext';
+import Link from 'next/link';
 
 export default function UserMenu() {
   const { user, logout } = useAuth();
@@ -82,25 +83,25 @@ export default function UserMenu() {
           </li>
           <li><hr className="dropdown-divider" /></li>
           <li>
-            <a className="dropdown-item" href="/profile">
+            <Link className="dropdown-item" href="/profile">
               <i className="bi bi-person me-2"></i>
               Profile
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="dropdown-item" href="/settings">
+            <Link className="dropdown-item" href="/settings">
               <i className="bi bi-gear me-2"></i>
               Settings
-            </a>
+            </Link>
           </li>
           {isAdmin && (
             <>
               <li><hr className="dropdown-divider" /></li>
               <li>
-                <a className="dropdown-item" href="/admin">
+                <Link className="dropdown-item" href="/admin">
                   <i className="bi bi-shield-check me-2"></i>
                   Admin Dashboard
-                </a>
+                </Link>
               </li>
             </>
           )}

@@ -9,6 +9,7 @@ import DiscussionsList from '@/components/admin/DiscussionsList';
 import SetupChurchMembership from '@/components/admin/SetupChurchMembership';
 import { useSuperAdmin } from '@/hooks/useSuperAdmin';
 import { useTranslation } from '@/lib/i18n';
+import Link from 'next/link';
 
 export default function ChurchDiscussionsPage() {
   const params = useParams();
@@ -121,10 +122,10 @@ export default function ChurchDiscussionsPage() {
         <nav aria-label="breadcrumb" className="mb-4">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="/churches" className="text-decoration-none">{t('churches', { defaultValue: 'Churches' })}</a>
+              <Link href="/churches" className="text-decoration-none">{t('churches', { defaultValue: 'Churches' })}</Link>
             </li>
             <li className="breadcrumb-item">
-              <a href={`/churches/${churchId}`} className="text-decoration-none">{churchName}</a>
+              <Link href={`/churches/${churchId}`} className="text-decoration-none">{churchName}</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">{t('discussions', { defaultValue: 'Discussions' })}</li>
           </ol>

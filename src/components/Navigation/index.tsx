@@ -176,8 +176,8 @@ const Navigation = () => {
         { title: t('calendar', { defaultValue: 'Calendar' }), href: '/get-connected/calendar' },
         { title: t('contact', { defaultValue: 'Contact' }), href: '/get-connected/contact' },
         { title: t('faq', { defaultValue: 'FAQ' }), href: '/get-connected/faq' },
-        { title: t('employment', { defaultValue: 'Employment' }), href: '/get-connected/employment' },
-        { title: t('schedule_tour', { defaultValue: 'Schedule a Tour' }), href: '/get-connected/schedule-tour' },
+        // { title: t('employment', { defaultValue: 'Employment' }), href: '/get-connected/employment' },
+        // { title: t('schedule_tour', { defaultValue: 'Schedule a Tour' }), href: '/get-connected/schedule-tour' },
       ]
     },
     {
@@ -231,8 +231,8 @@ const Navigation = () => {
       title: t('resources', { defaultValue: 'Resources' }),
       items: [
         { title: t('get_started_title', { defaultValue: 'Get Started' }), href: '/resources/get-started' },
-        { title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }), href: '/resources/how-to-know-god' },
-        { title: t('membership', { defaultValue: 'Membership' }), href: '/resources/membership' },
+        { title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }), href: '/resources/know-god' },
+        // { title: t('membership', { defaultValue: 'Membership' }), href: '/resources/membership' },
         { title: t('media_title', { defaultValue: 'Media' }), href: '/resources/media' },
         { title: t('podcasts_title', { defaultValue: 'Podcasts' }), href: '/resources/podcasts' },
         { title: t('youtube_title', { defaultValue: 'YouTube' }), href: '/resources/youtube' },
