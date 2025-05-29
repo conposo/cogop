@@ -7,6 +7,10 @@ export default function GetStartedPage() {
   const { pages } = useContent()
   const pageContent = pages['resources/get-started']
 
+  if (!pageContent) {
+    return <div>Loading...</div>; // Or your preferred loading/fallback
+  }
+
   return (
     <PageLayout
       title={pageContent.title}

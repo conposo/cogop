@@ -77,65 +77,67 @@ export default function Home() {
       
       <div className="container-fluid">
         {/* Hero Carousel Section */}
-        <section className="hero-carousel mx-n3">
-          <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel">
-            {/* Carousel Indicators */}
-            <div className="carousel-indicators">
-              {carousel.map((slide, index) => (
-                <button 
-                  key={slide.id}
-                  type="button" 
-                  data-bs-target="#heroCarousel" 
-                  data-bs-slide-to={index}
-                  className={index === 0 ? 'active' : ''}
-                  aria-current={index === 0 ? 'true' : 'false'}
-                  aria-label={`Slide ${index + 1}`}
-                ></button>
-              ))}
-            </div>
+        {carousel && carousel.length > 0 && (
+          <section className="hero-carousel mx-n3">
+            <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel">
+              {/* Carousel Indicators */}
+              <div className="carousel-indicators">
+                {carousel.map((slide, index) => (
+                  <button 
+                    key={slide.id}
+                    type="button" 
+                    data-bs-target="#heroCarousel" 
+                    data-bs-slide-to={index}
+                    className={index === 0 ? 'active' : ''}
+                    aria-current={index === 0 ? 'true' : 'false'}
+                    aria-label={`Slide ${index + 1}`}
+                  ></button>
+                ))}
+              </div>
 
-            {/* Carousel Inner */}
-            <div className="carousel-inner">
-              {carousel.map((slide, index) => (
-                <div key={slide.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                  <div 
-                    className="carousel-slide d-flex align-items-center justify-content-center"
-                    style={{
-                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      minHeight: '70vh'
-                    }}
-                  >
-                    <div className="container">
-                      <div className="row justify-content-center">
-                        <div className="col-lg-8 text-center text-white">
-                          <h1 className="display-4 fw-bold mb-4">{slide.title}</h1>
-                          <p className="lead mb-4">{slide.description}</p>
-                          {slide.buttonText && slide.buttonLink && (
-                            <Link href={slide.buttonLink} className="btn btn-light btn-lg px-4 py-2">
-                              {slide.buttonText}
-                            </Link>
-                          )}
+              {/* Carousel Inner */}
+              <div className="carousel-inner">
+                {carousel.map((slide, index) => (
+                  <div key={slide.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                    <div 
+                      className="carousel-slide d-flex align-items-center justify-content-center"
+                      style={{
+                        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        minHeight: '70vh'
+                      }}
+                    >
+                      <div className="container">
+                        <div className="row justify-content-center">
+                          <div className="col-lg-8 text-center text-white">
+                            <h1 className="display-4 fw-bold mb-4">{slide.title}</h1>
+                            <p className="lead mb-4">{slide.description}</p>
+                            {slide.buttonText && slide.buttonLink && (
+                              <Link href={slide.buttonLink} className="btn btn-light btn-lg px-4 py-2">
+                                {slide.buttonText}
+                              </Link>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* Carousel Controls */}
-            <button className="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-              <span className="carousel-control-next-icon" aria-hidden="true"></span>
-              <span className="visually-hidden">Next</span>
-            </button>
-          </div>
-        </section>
+              {/* Carousel Controls */}
+              <button className="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Previous</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
+              </button>
+            </div>
+          </section>
+        )}
 
         {/* Mission Statement */}
         <section className="mission-section py-5">
@@ -145,20 +147,22 @@ export default function Home() {
         </section>
 
         {/* mainCTAs */}
-        <section className="stats-section py-5 bg-light">
-          <div className="container">
-            <div className="row py-sm-3 text-center">
-              {mainCTAs.map((cta, index) => (
-                <div key={index} className="col-md-3">
-                  <Link href={cta.link} className="btn py-sm-3 d-flex flex-column align-items-center justify-content-center h-100 shadow-sm bg-white rounded-5">
-                    <i className={`bi bi-${cta.icon}`}  style={{ fontSize: '2rem' }}></i>
-                    <div className="mt-2" style={{ maxWidth: '100px' }}><span className="fw-bold text-uppercase text-center">{cta.label}</span></div>
-                  </Link>
-                </div>
-              ))}
+        {mainCTAs && mainCTAs.length > 0 && (
+          <section className="stats-section py-5 bg-light">
+            <div className="container">
+              <div className="row py-sm-3 text-center">
+                {mainCTAs.map((cta, index) => (
+                  <div key={index} className="col-md-3">
+                    <Link href={cta.link} className="btn py-sm-3 d-flex flex-column align-items-center justify-content-center h-100 shadow-sm bg-white rounded-5">
+                      <i className={`bi bi-${cta.icon}`}  style={{ fontSize: '2rem' }}></i>
+                      <div className="mt-2" style={{ maxWidth: '100px' }}><span className="fw-bold text-uppercase text-center">{cta.label}</span></div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Statistics */}
         {/* <section className="stats-section py-5 bg-light">

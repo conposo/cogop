@@ -7,6 +7,10 @@ export default function OneChildFundPage() {
   const { pages } = useContent()
   const pageContent = pages['ministries/one-child-fund']
 
+  if (!pageContent) {
+    return <div>Loading...</div>; // Or your preferred loading/fallback
+  }
+
   return (
     <PageLayout
       title={pageContent.title}

@@ -8,6 +8,10 @@ export default function GivePage() {
   const { pages } = useContent()
   const pageContent = pages['give']
 
+  if (!pageContent) {
+    return <div>Loading...</div>; // Or your preferred loading/fallback
+  }
+
   return (
     <PageLayout
       title={pageContent.title}

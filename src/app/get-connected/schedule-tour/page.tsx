@@ -8,6 +8,10 @@ export default function ScheduleaTourPage() {
   const { pages } = useContent()
   const pageContent = pages['get-connected/schedule-tour']
 
+  if (!pageContent) {
+    return <div>Loading...</div>; // Or your preferred loading/fallback
+  }
+
   return (
     <PageLayout
       title={pageContent.title}

@@ -131,7 +131,7 @@ const getContentData = (): ContentContextType => ({
       id: 1,
       title: t('hero_title_1', { defaultValue: 'We are the Church of God of Prophecy' }),
       description: t('hero_desc_1', { defaultValue: 'This 24-page booklet is a guide for anyone interested in understanding who we are, what we believe, and how we live out our mission together.' }),
-      image: 'https://cogop.org/wp-content/uploads/2025/03/slider-01.webp',
+      image: 'https://firebasestorage.googleapis.com/v0/b/cogop-beta.firebasestorage.app/o/news-images%2F1748511359680-slider-01.webp?alt=media&token=182e1e9f-a315-49e7-b58a-79388c9c73ee',
       buttonText: t('hero_btn_1', { defaultValue: 'Order Now' }),
       buttonLink: '/resources/booklet'
     },
