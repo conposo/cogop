@@ -8,6 +8,7 @@ import { DiscussionsProvider } from '@/contexts/DiscussionsContext';
 import DiscussionsList from '@/components/admin/DiscussionsList';
 import SetupChurchMembership from '@/components/admin/SetupChurchMembership';
 import { useSuperAdmin } from '@/hooks/useSuperAdmin';
+import { t } from '@/lib/i18n';
 
 export default function ChurchDiscussionsPage() {
   const params = useParams();
@@ -59,9 +60,9 @@ export default function ChurchDiscussionsPage() {
       <div className="container -fluid py-5">
         <div className="text-center">
           <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
+            <span className="visually-hidden">{t('loading', { defaultValue: 'Loading...' })}</span>
           </div>
-          <p className="mt-2 text-muted">Loading discussions...</p>
+          <p className="mt-2 text-muted">{t('loading_discussions', { defaultValue: 'Loading discussions...' })}</p>
         </div>
       </div>
     );
@@ -72,10 +73,10 @@ export default function ChurchDiscussionsPage() {
       <div className="container -fluid py-5">
         <div className="text-center">
           <i className="bi bi-person-x text-muted" style={{ fontSize: '4rem' }}></i>
-          <h3 className="mt-3">Authentication Required</h3>
-          <p className="text-muted">Please log in to access church discussions.</p>
+          <h3 className="mt-3">{t('authentication_required', { defaultValue: 'Authentication Required' })}</h3>
+          <p className="text-muted">{t('please_log_in_discussions', { defaultValue: 'Please log in to access church discussions.' })}</p>
           <button className="btn btn-primary" onClick={() => window.location.href = '/login'}>
-            Log In
+            {t('log_in', { defaultValue: 'Log In' })}
           </button>
         </div>
       </div>
@@ -87,13 +88,12 @@ export default function ChurchDiscussionsPage() {
       <div className="container-fluid py-5">
         <div className="text-center mb-4">
           <i className="bi bi-shield-exclamation text-warning" style={{ fontSize: '4rem' }}></i>
-          <h3 className="mt-3">Access Denied</h3>
+          <h3 className="mt-3">{t('access_denied', { defaultValue: 'Access Denied' })}</h3>
           <p className="text-muted">
-            You don't have access to this church's discussions. 
-            Please contact a church administrator to request access.
+            {t('no_access_discussions', { defaultValue: "You don't have access to this church's discussions. Please contact a church administrator to request access." })}
           </p>
           <button className="btn btn-secondary" onClick={() => window.history.back()}>
-            Go Back
+            {t('go_back', { defaultValue: 'Go Back' })}
           </button>
         </div>
         
@@ -103,7 +103,7 @@ export default function ChurchDiscussionsPage() {
             <div className="col-md-8">
               <div className="alert alert-warning mb-3">
                 <i className="bi bi-shield-check me-2"></i>
-                <strong>Super Admin Tools</strong> - The following development tools are only visible to super administrators.
+                <strong>{t('super_admin_tools', { defaultValue: 'Super Admin Tools' })}</strong> - {t('super_admin_tools_description', { defaultValue: 'The following development tools are only visible to super administrators.' })}
               </div>
               <SetupChurchMembership churchId={churchId} />
             </div>
@@ -120,12 +120,12 @@ export default function ChurchDiscussionsPage() {
         <nav aria-label="breadcrumb" className="mb-4">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <a href="/churches" className="text-decoration-none">Churches</a>
+              <a href="/churches" className="text-decoration-none">{t('churches', { defaultValue: 'Churches' })}</a>
             </li>
             <li className="breadcrumb-item">
               <a href={`/churches/${churchId}`} className="text-decoration-none">{churchName}</a>
             </li>
-            <li className="breadcrumb-item active" aria-current="page">Discussions</li>
+            <li className="breadcrumb-item active" aria-current="page">{t('discussions', { defaultValue: 'Discussions' })}</li>
           </ol>
         </nav>
 
@@ -136,10 +136,10 @@ export default function ChurchDiscussionsPage() {
               <div>
                 <h1 className="h2 mb-1">
                   <i className="bi bi-chat-dots me-2"></i>
-                  {churchName} Discussions
+                  {t('church_discussions_title', { defaultValue: '{churchName} Discussions', churchName })}
                 </h1>
                 <p className="text-muted mb-0">
-                  Connect and engage with your church community
+                  {t('connect_engage_community', { defaultValue: 'Connect and engage with your church community' })}
                   <span className="badge bg-light text-dark ms-2">{userRole}</span>
                 </p>
               </div>
@@ -152,29 +152,29 @@ export default function ChurchDiscussionsPage() {
           <div className="col-12">
             <ul className="nav nav-tabs">
               <li className="nav-item">
-                <a className="nav-link active" href={`/churches/${churchId}/discussions`}>
-                  <i className="bi bi-chat-dots me-1"></i>
-                  All Discussions
-                </a>
-              </li>
-              <li className="nav-item">
                 <a className="nav-link" href={`/churches/${churchId}`}>
                   <i className="bi bi-house me-1"></i>
-                  Church Home
+                  {t('church_home', { defaultValue: 'Church Home' })}
                 </a>
               </li>
               <li className="nav-item">
+                <a className="nav-link active" href={`/churches/${churchId}/discussions`}>
+                  <i className="bi bi-chat-dots me-1"></i>
+                  {t('all_discussions', { defaultValue: 'All Discussions' })}
+                </a>
+              </li>
+              {/* <li className="nav-item">
                 <a className="nav-link" href={`/churches/${churchId}/events`}>
                   <i className="bi bi-calendar-event me-1"></i>
-                  Events
+                  {t('events', { defaultValue: 'Events' })}
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href={`/churches/${churchId}/members`}>
                   <i className="bi bi-people me-1"></i>
-                  Members
+                  {t('members', { defaultValue: 'Members' })}
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function ChurchDiscussionsPage() {
               <div className="card-header bg-info bg-opacity-10">
                 <h6 className="mb-0">
                   <i className="bi bi-question-circle me-2"></i>
-                  How to Use Discussions
+                  {t('how_to_use_discussions', { defaultValue: 'How to Use Discussions' })}
                 </h6>
               </div>
               <div className="card-body">
@@ -201,37 +201,37 @@ export default function ChurchDiscussionsPage() {
                   <div className="col-md-3">
                     <h6 className="text-primary">
                       <i className="bi bi-plus-circle me-1"></i>
-                      Create
+                      {t('create', { defaultValue: 'Create' })}
                     </h6>
                     <small className="text-muted">
-                      Start new discussions on topics that matter to your church community.
+                      {t('create_discussions_description', { defaultValue: 'Start new discussions on topics that matter to your church community.' })}
                     </small>
                   </div>
                   <div className="col-md-3">
                     <h6 className="text-success">
                       <i className="bi bi-chat-left-text me-1"></i>
-                      Engage
+                      {t('engage', { defaultValue: 'Engage' })}
                     </h6>
                     <small className="text-muted">
-                      Comment and reply to discussions to build meaningful connections.
+                      {t('engage_discussions_description', { defaultValue: 'Comment and reply to discussions to build meaningful connections.' })}
                     </small>
                   </div>
                   <div className="col-md-3">
                     <h6 className="text-warning">
                       <i className="bi bi-tags me-1"></i>
-                      Organize
+                      {t('organize', { defaultValue: 'Organize' })}
                     </h6>
                     <small className="text-muted">
-                      Use tags to categorize discussions and make them easy to find.
+                      {t('organize_discussions_description', { defaultValue: 'Use tags to categorize discussions and make them easy to find.' })}
                     </small>
                   </div>
                   <div className="col-md-3">
                     <h6 className="text-info">
                       <i className="bi bi-search me-1"></i>
-                      Discover
+                      {t('discover', { defaultValue: 'Discover' })}
                     </h6>
                     <small className="text-muted">
-                      Search and filter discussions to find conversations you're interested in.
+                      {t('discover_discussions_description', { defaultValue: 'Search and filter discussions to find conversations you\'re interested in.' })}
                     </small>
                   </div>
                 </div>

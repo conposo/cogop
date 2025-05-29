@@ -1,6 +1,7 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+  
     // Helper function to check if user is admin
     function isAdmin() {
       return request.auth != null && 
@@ -12,6 +13,19 @@ service cloud.firestore {
       return request.auth != null && 
         exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
         get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'super_admin';
+    }
+    
+    match /admins/{userId} {
+      // Allow an authenticated user to read their own admin document if it exists.
+      allow read: if request.auth != null && request.auth.uid == userId &&
+                     exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+      
+      allow read: if request.auth.uid == '275ZXVhluzWF2suhIXAm6PqUQBH2';
+      
+      // Allow an authenticated admin (checked by exists()) to write to any admin document.
+      // Consider if you want more granular control (e.g., only super_admins can write).
+      allow write: if request.auth != null &&
+                      exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
     
     // Helper function to check if user is authenticated
@@ -48,59 +62,6 @@ service cloud.firestore {
       return hasPermission(discussion.churchId, permission);
     }
     
-    // Allow read access to published news articles
-    match /news/{document} {
-      allow read: if resource.data.published == true;
-      allow write: if isAdmin();
-    }
-    
-    // Protect admin collection - only admins can read/write
-    match /admins/{document} {
-      allow read, write: if isAdmin();
-    }
-    
-    // Churches collection - super admins can read/write all, others can read only active
-    match /churches/{document} {
-      allow read: if isSuperAdmin() || 
-        resource.data.isActive == true ||
-        // Allow users to read churches they are members of
-        (request.auth != null && 
-         exists(/databases/$(database)/documents/churchUsers/$(document + '_' + request.auth.uid)));
-      allow write: if isSuperAdmin();
-    }
-    
-    // Church users collection - manage church memberships
-    match /churchUsers/{document} {
-      // Super admins can read/write all church users
-      allow read, write: if isSuperAdmin();
-      
-      // Users can read their own church memberships
-      allow read: if request.auth != null && 
-        resource.data.userId == request.auth.uid;
-      
-      // Users can add themselves as members to churches
-      allow create: if request.auth != null && 
-        request.auth.uid != null &&
-        resource.data.userId == request.auth.uid &&
-        resource.data.role == 'member' &&
-        resource.data.isActive == true &&
-        resource.data.createdBy == request.auth.uid &&
-        // Ensure the church exists and is active
-        exists(/databases/$(database)/documents/churches/$(resource.data.churchId)) &&
-        get(/databases/$(database)/documents/churches/$(resource.data.churchId)).data.isActive == true;
-      
-      // Users can update their own church membership (limited fields)
-      allow update: if request.auth != null && 
-        resource.data.userId == request.auth.uid &&
-        // Only allow updating specific fields by the user themselves
-        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['updatedAt', 'updatedBy']) &&
-        request.resource.data.updatedBy == request.auth.uid;
-      
-      // Users can delete their own church membership (leave church)
-      allow delete: if request.auth != null && 
-        resource.data.userId == request.auth.uid;
-    }
-    
     // Discussions collection
     match /discussions/{discussionId} {
       allow read: if isAuthenticated() && isChurchMember(resource.data.churchId);
@@ -111,8 +72,15 @@ service cloud.firestore {
                     request.resource.data.authorId == request.auth.uid;
       
       allow update: if isAuthenticated() && 
-                    (resource.data.authorId == request.auth.uid ||
-                     hasPermission(resource.data.churchId, 'moderate_discussions'));
+                    (
+                      // Original author or moderator can update any fields
+                      (resource.data.authorId == request.auth.uid ||
+                       hasPermission(resource.data.churchId, 'moderate_discussions')) ||
+                      // Church members can update commentCount and lastActivityAt when creating comments
+                      (isChurchMember(resource.data.churchId) &&
+                       hasPermission(resource.data.churchId, 'comment_discussions') &&
+                       request.resource.data.diff(resource.data).affectedKeys().hasOnly(['commentCount', 'lastActivityAt']))
+                    );
       
       allow delete: if isAuthenticated() && 
                     (resource.data.authorId == request.auth.uid ||
@@ -137,6 +105,57 @@ service cloud.firestore {
                     (resource.data.authorId == request.auth.uid ||
                      hasPermissionForDiscussion(resource.data.discussionId, 'moderate_discussions'));
     }
+    
+    
+    // News collection rules
+    match /news/{newsId} {
+      // Allow anyone to read published articles/events OR
+      // allow authenticated admins to read any article/event
+      allow read: if resource.data.published == true || isAdmin();
+      
+      // Allow authenticated admins to create, update, or delete news articles
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Churches collection - super admins can read/write all, others can read only active
+    match /churches/{document} {
+      allow read: if isSuperAdmin() || 
+        resource.data.isActive == true ||
+        // Allow users to read churches they are members of
+        (request.auth != null && 
+         exists(/databases/$(database)/documents/churchUsers/$(document + '_' + request.auth.uid)));
+      allow write: if isSuperAdmin();
+    }
+    
+
+    // Church users collection - manage church memberships
+    match /churchUsers/{document} {
+      // Super admins can read/write all church users
+      allow read, write: if isSuperAdmin();
+      
+      // Users can read their own church memberships
+      allow read: if request.auth != null && 
+        resource.data.userId == request.auth.uid;
+      
+      // Users can add themselves as members to churches
+      allow create: if request.auth != null && 
+        request.auth.uid != null &&
+        request.resource.data.userId == request.auth.uid &&
+        request.resource.data.role == 'member' &&
+        request.resource.data.isActive == true &&
+        request.resource.data.createdBy == request.auth.uid &&
+        // Ensure the church exists and is active
+        exists(/databases/$(database)/documents/churches/$(request.resource.data.churchId)) &&
+        get(/databases/$(database)/documents/churches/$(request.resource.data.churchId)).data.isActive == true;
+      
+      // Users can update their own church membership (limited fields)
+      allow update: if request.auth != null && 
+        resource.data.userId == request.auth.uid &&
+        // Only allow updating specific fields by the user themselves
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['updatedAt', 'updatedBy']) &&
+        request.resource.data.updatedBy == request.auth.uid;
+    }
+    
     
     // Default deny all other collections
     match /{document=**} {

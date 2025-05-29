@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import Link from 'next/link';
+import { useTranslation } from '@/lib/i18n';
 
 interface Church {
   id: string;
@@ -32,6 +33,7 @@ interface Church {
 }
 
 export default function ChurchesPage() {
+  const { t } = useTranslation();
   const [churches, setChurches] = useState<Church[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -150,9 +152,9 @@ export default function ChurchesPage() {
       <div className="container py-5">
         <div className="text-center">
           <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
+            <span className="visually-hidden">{t('loading', { defaultValue: 'Loading...' })}</span>
           </div>
-          <p className="mt-2">Loading churches...</p>
+          <p className="mt-2">{t('loading_churches', { defaultValue: 'Loading churches...' })}</p>
         </div>
       </div>
     );
@@ -162,7 +164,7 @@ export default function ChurchesPage() {
     return (
       <div className="container py-5">
         <div className="alert alert-danger">
-          <h4>Error Loading Churches</h4>
+          <h4>{t('error_loading_churches', { defaultValue: 'Error Loading Churches' })}</h4>
           <p>{error}</p>
           <button 
             className="btn btn-primary" 
@@ -171,7 +173,7 @@ export default function ChurchesPage() {
               fetchChurches();
             }}
           >
-            Try Again
+            {t('try_again_btn', { defaultValue: 'Try Again' })}
           </button>
         </div>
       </div>
@@ -182,9 +184,9 @@ export default function ChurchesPage() {
     <div className="container py-5">
       {/* Header */}
       <div className="text-center mb-5">
-        <h1 className="display-4 mb-3">Find a Church</h1>
+        <h1 className="display-4 mb-3">{t('find_a_church_header', { defaultValue: 'Find a Church' })}</h1>
         <p className="lead text-muted">
-          Discover churches in your community and connect with local congregations
+          {t('discover_churches_description', { defaultValue: 'Discover churches in your community and connect with local congregations' })}
         </p>
       </div>
 
@@ -198,7 +200,7 @@ export default function ChurchesPage() {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by church name, city, pastor, or denomination..."
+              placeholder={t('search_church_placeholder', { defaultValue: 'Search by church name, city, pastor, or denomination...' })}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -210,7 +212,7 @@ export default function ChurchesPage() {
             value={selectedDenomination}
             onChange={(e) => setSelectedDenomination(e.target.value)}
           >
-            <option value="">All Denominations</option>
+            <option value="">{t('all_denominations', { defaultValue: 'All Denominations' })}</option>
             {denominations.map(denomination => (
               <option key={denomination} value={denomination}>
                 {denomination}
@@ -223,7 +225,11 @@ export default function ChurchesPage() {
       {/* Results Count */}
       <div className="mb-4">
         <p className="text-muted">
-          {filteredChurches.length} church{filteredChurches.length !== 1 ? 'es' : ''} found
+          {t('churches_found', { 
+            defaultValue: '{count} church{plural} found',
+            count: filteredChurches.length,
+            plural: filteredChurches.length !== 1 ? 'es' : ''
+          })}
         </p>
       </div>
 
@@ -231,13 +237,13 @@ export default function ChurchesPage() {
       {filteredChurches.length === 0 ? (
         <div className="text-center py-5">
           <i className="bi bi-building fs-1 text-muted"></i>
-          <h3 className="mt-3 text-muted">No churches found</h3>
+          <h3 className="mt-3 text-muted">{t('no_churches_found_header', { defaultValue: 'No churches found' })}</h3>
           <p className="text-muted">
             {churches.length === 0 
-              ? 'No churches are currently listed in our directory.' 
+              ? t('no_churches_listed', { defaultValue: 'No churches are currently listed in our directory.' })
               : searchTerm || selectedDenomination 
-                ? 'Try adjusting your search criteria or filters.' 
-                : 'No churches match your current filters.'
+                ? t('try_adjusting_criteria', { defaultValue: 'Try adjusting your search criteria or filters.' })
+                : t('no_churches_match_filters', { defaultValue: 'No churches match your current filters.' })
             }
           </p>
           {(searchTerm || selectedDenomination) && (
@@ -248,7 +254,7 @@ export default function ChurchesPage() {
                 setSelectedDenomination('');
               }}
             >
-              Clear Filters
+              {t('clear_filters_btn', { defaultValue: 'Clear Filters' })}
             </button>
           )}
         </div>
@@ -277,7 +283,7 @@ export default function ChurchesPage() {
                   {church.pastor && (
                     <p className="text-muted small mb-2">
                       <i className="bi bi-person me-1"></i>
-                      Pastor {church.pastor}
+                      {t('pastor_prefix', { defaultValue: 'Pastor' })} {church.pastor}
                     </p>
                   )}
 
@@ -294,7 +300,7 @@ export default function ChurchesPage() {
                     <div className="mb-3">
                       <p className="text-muted small mb-1">
                         <i className="bi bi-clock me-1"></i>
-                        <strong>Service Times:</strong>
+                        <strong>{t('service_times_label', { defaultValue: 'Service Times:' })}</strong>
                       </p>
                       {church.servicesTimes.map((service, index) => (
                         <p key={index} className="text-muted small mb-1">{service.day} - {service.time}</p>
@@ -391,13 +397,12 @@ export default function ChurchesPage() {
       {/* Call to Action */}
       {churches.length > 0 && (
         <div className="text-center mt-5 pt-5 border-top">
-          <h3>Don't see your church listed?</h3>
+          <h3>{t('dont_see_church', { defaultValue: "Don't see your church listed?" })}</h3>
           <p className="text-muted mb-4">
-            If you're a church leader and would like to have your church included in our directory, 
-            please contact us.
+            {t('church_directory_help', { defaultValue: 'If you\'re a church leader and would like to have your church included in our directory, please contact us.' })}
           </p>
           <a href="/get-connected/contact" className="btn btn-outline-primary">
-            Contact Us
+            {t('contact_us_btn', { defaultValue: 'Contact Us' })}
           </a>
         </div>
       )}
