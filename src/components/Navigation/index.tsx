@@ -385,15 +385,15 @@ const Navigation = () => {
                   {user ? (
                     <UserMenu />
                   ) : (
-                    <div className="d-flex gap-2">
+                    <div className="d-flex gap-2 me-2">
                       <button 
-                        className="btn btn-outline-primary btn-sm"
+                        className="btn btn-outline-primary btn-sm rounded-5"
                         onClick={() => handleAuthModal('login')}
                       >
                         {t('sign_in', { defaultValue: 'Sign In' })}
                       </button>
                       <button 
-                        className="btn btn-dark btn-sm"
+                        className="btn btn-dark btn-sm rounded-5"
                         onClick={() => handleAuthModal('signup')}
                       >
                         {t('sign_up', { defaultValue: 'Sign Up' })}
