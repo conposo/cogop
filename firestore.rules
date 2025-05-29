@@ -156,6 +156,17 @@ service cloud.firestore {
         request.resource.data.updatedBy == request.auth.uid;
     }
     
+    // Allow public write access to contacts collection
+    match /contacts/{contactId} {
+      allow create: if true;
+      // Use the existing isAdmin() helper function
+      allow read, update: if isAdmin();
+    }
+    
+    // Rate limiting collection
+    match /rateLimits/{identifier} {
+      allow read, write: if true;
+    }
     
     // Default deny all other collections
     match /{document=**} {

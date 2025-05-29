@@ -180,6 +180,10 @@ export default function AdminDashboard() {
                   <i className="bi bi-newspaper me-2"></i>
                   Manage News
                 </Link>
+                <Link href="/admin/contacts" className="btn btn-outline-primary">
+                  <i className="bi bi-envelope me-2"></i>
+                  Manage Contacts
+                </Link>
                 <Link href="/admin/users" className="btn btn-outline-secondary">
                   <i className="bi bi-people me-2"></i>
                   Manage Users

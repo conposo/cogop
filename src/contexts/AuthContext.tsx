@@ -12,10 +12,12 @@ import {
   sendPasswordResetEmail,
   UserCredential
 } from 'firebase/auth';
-import { auth, googleProvider } from '@/lib/firebase';
+import { auth, googleProvider, db } from '@/lib/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 interface AuthContextType {
   user: User | null;
+  isAdmin: boolean;
   loading: boolean;
   signInWithEmail: (email: string, password: string) => Promise<UserCredential>;
   signUpWithEmail: (email: string, password: string, displayName?: string) => Promise<UserCredential>;
@@ -24,27 +26,42 @@ interface AuthContextType {
   resetPassword: (email: string) => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType>({
+  user: null,
+  isAdmin: false,
+  loading: true,
+  signInWithEmail: async () => { throw new Error('Method not implemented'); },
+  signUpWithEmail: async () => { throw new Error('Method not implemented'); },
+  signInWithGoogle: async () => { throw new Error('Method not implemented'); },
+  logout: async () => { throw new Error('Method not implemented'); },
+  resetPassword: async () => { throw new Error('Method not implemented'); }
+});
 
 export function useAuth() {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+  return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
+      
+      if (user) {
+        // Check if user is admin
+        const adminDoc = await getDoc(doc(db, 'admins', user.uid));
+        setIsAdmin(adminDoc.exists());
+      } else {
+        setIsAdmin(false);
+      }
+      
       setLoading(false);
     });
 
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
   const signInWithEmail = async (email: string, password: string): Promise<UserCredential> => {
@@ -75,6 +92,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const value: AuthContextType = {
     user,
+    isAdmin,
     loading,
     signInWithEmail,
     signUpWithEmail,
