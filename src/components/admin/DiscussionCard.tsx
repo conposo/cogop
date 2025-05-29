@@ -5,6 +5,7 @@ import { Discussion } from '@/contexts/DiscussionsContext';
 import { useDiscussions } from '@/contexts/DiscussionsContext';
 import { useAuth } from '@/contexts/AuthContext';
 import DiscussionDetailModal from './DiscussionDetailModal';
+import DiscussionEditModal from './DiscussionEditModal';
 
 interface DiscussionCardProps {
   discussion: Discussion;
@@ -16,6 +17,7 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
   const { user } = useAuth();
   const { pinDiscussion, deleteDiscussion } = useDiscussions();
   const [showDetailModal, setShowDetailModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const formatRelativeTime = (date: Date) => {
@@ -145,7 +147,7 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
                     <li>
                       <button
                         className="dropdown-item"
-                        onClick={() => {/* TODO: Implement edit functionality */}}
+                        onClick={() => setShowEditModal(true)}
                       >
                         <i className="bi bi-pencil me-2"></i>
                         Edit Discussion
@@ -227,10 +229,10 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
                 {discussion.commentCount} comment{discussion.commentCount !== 1 ? 's' : ''}
               </span>
               
-              <span className="text-muted small">
+              {/* <span className="text-muted small">
                 <i className="bi bi-heart me-1"></i>
-                0 likes {/* TODO: Implement likes feature */}
-              </span>
+                0 likes TODO: Implement likes feature
+              </span> */}
             </div>
 
             <button
@@ -260,6 +262,16 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
           onClose={() => setShowDetailModal(false)}
           onUpdate={onUpdate}
           userRole={userRole}
+        />
+      )}
+
+      {/* Discussion Edit Modal */}
+      {showEditModal && (
+        <DiscussionEditModal
+          discussionId={discussion.id}
+          isOpen={showEditModal}
+          onClose={() => setShowEditModal(false)}
+          onUpdated={onUpdate}
         />
       )}
     </>

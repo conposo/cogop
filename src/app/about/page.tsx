@@ -1,19 +1,33 @@
-'use client'
+import type { Metadata } from 'next'
+import { generatePageMetadata, generateOrganizationStructuredData } from '@/lib/metadata'
+import { getPageContent } from '@/lib/content'
+import AboutPageClient from './AboutPageClient'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
-import PageLayout from '@/components/PageLayout'
-import { t } from '@/lib/i18n'
-
-export default function AboutUsPage() {
+// Generate metadata for the about page
+export function generateMetadata(): Metadata {
   const pageContent = getPageContent('about')
+  
+  return generatePageMetadata(pageContent, {
+    alternates: {
+      canonical: '/about',
+    },
+  })
+}
+
+// Server component that provides metadata and structured data
+export default function AboutPage() {
+  const pageContent = getPageContent('about')
+  
+  // Generate structured data for the organization
+  const structuredData = generateOrganizationStructuredData()
 
   return (
-    <PageLayout
-      title={pageContent.title}
-      description={pageContent.description}
-      backgroundImage={pageContent.backgroundImage}
-    >
-      <div dangerouslySetInnerHTML={{ __html: pageContent.content || `<p>${t('content_coming_soon', { defaultValue: 'Content coming soon...' })}</p>` }} />
-    </PageLayout>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <AboutPageClient pageContent={pageContent} />
+    </>
   )
 }

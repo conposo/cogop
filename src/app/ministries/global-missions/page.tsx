@@ -1,18 +1,33 @@
-'use client'
+import type { Metadata } from 'next'
+import { generateMinistryMetadata } from '@/lib/metadata'
+import { getPageContent } from '@/lib/content'
+import GlobalMissionsPageClient from './GlobalMissionsPageClient'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
-import PageLayout from '@/components/PageLayout'
+// Generate metadata for the global missions page
+export function generateMetadata(): Metadata {
+  const pageContent = getPageContent('ministries/global-missions')
+  
+  return generateMinistryMetadata(
+    pageContent.title,
+    pageContent.description,
+    {
+      alternates: {
+        canonical: '/ministries/global-missions',
+      },
+      keywords: [
+        ...pageContent.keywords || [],
+        'global evangelism',
+        'worldwide missions',
+        'church planting',
+        '135 countries'
+      ]
+    }
+  )
+}
 
+// Server component that provides metadata
 export default function GlobalMissionsPage() {
   const pageContent = getPageContent('ministries/global-missions')
 
-  return (
-    <PageLayout
-      title={pageContent.title}
-      description={pageContent.description}
-      backgroundImage={pageContent.backgroundImage}
-    >
-      <div dangerouslySetInnerHTML={{ __html: pageContent.content || '<p>Content coming soon...</p>' }} />
-    </PageLayout>
-  )
+  return <GlobalMissionsPageClient pageContent={pageContent} />
 }

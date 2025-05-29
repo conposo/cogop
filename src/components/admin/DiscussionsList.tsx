@@ -199,19 +199,12 @@ ${t('please_try', { defaultValue: 'Please try' })}:
   return (
     <div className="container-fluid">
       {/* Header */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2 className="mb-1">
-            <i className="bi bi-chat-dots me-2"></i>
-            {t('church_discussions_header', { defaultValue: 'Church Discussions' })}
-          </h2>
-          <p className="text-muted mb-0">{t('connect_with_community', { defaultValue: 'Connect with your church community' })}</p>
-        </div>
+      <div className="d-flex justify-content-end align-items-center mt-sm-n5 mb-4 d-flex">
         
         {canCreateDiscussion() && (
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-dark mt-n2"
             onClick={() => setShowCreateModal(true)}
           >
             <i className="bi bi-plus-circle me-2"></i>
@@ -221,7 +214,7 @@ ${t('please_try', { defaultValue: 'Please try' })}:
       </div>
 
       {/* Search and Filters */}
-      <div className="card mb-4">
+      <div className="card mb-4 bg-light">
         <div className="card-body">
           <div className="row align-items-end">
             <div className="col-md-6">
@@ -279,7 +272,7 @@ ${t('please_try', { defaultValue: 'Please try' })}:
 
       {/* Discussion Stats */}
       <div className="row mb-4">
-        <div className="col-md-3">
+        <div className="col-md-3 mb-3 mb-sm-0">
           <div className="card bg-primary text-white">
             <div className="card-body">
               <div className="d-flex align-items-center">
@@ -293,7 +286,7 @@ ${t('please_try', { defaultValue: 'Please try' })}:
           </div>
         </div>
         
-        <div className="col-md-3">
+        <div className="col-md-3 mb-3 mb-sm-0">
           <div className="card bg-success text-white">
             <div className="card-body">
               <div className="d-flex align-items-center">
@@ -307,7 +300,7 @@ ${t('please_try', { defaultValue: 'Please try' })}:
           </div>
         </div>
         
-        <div className="col-md-3">
+        <div className="col-md-3 mb-3 mb-sm-0">
           <div className="card bg-info text-white">
             <div className="card-body">
               <div className="d-flex align-items-center">

@@ -8,7 +8,7 @@ import { DiscussionsProvider } from '@/contexts/DiscussionsContext';
 import DiscussionsList from '@/components/admin/DiscussionsList';
 import SetupChurchMembership from '@/components/admin/SetupChurchMembership';
 import { useSuperAdmin } from '@/hooks/useSuperAdmin';
-import { t } from '@/lib/i18n';
+import { useTranslation } from '@/lib/i18n';
 
 export default function ChurchDiscussionsPage() {
   const params = useParams();
@@ -16,6 +16,7 @@ export default function ChurchDiscussionsPage() {
   const { user, loading: authLoading } = useAuth();
   const { getUserChurches } = useChurchUser();
   const { isSuperAdmin } = useSuperAdmin();
+  const { t } = useTranslation();
   
   const [hasAccess, setHasAccess] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -134,11 +135,11 @@ export default function ChurchDiscussionsPage() {
           <div className="col-12">
             <div className="d-flex align-items-center justify-content-between">
               <div>
-                <h1 className="h2 mb-1">
+                {/* <h1 className="h2 mb-1">
                   <i className="bi bi-chat-dots me-2"></i>
-                  {t('church_discussions_title', { defaultValue: '{churchName} Discussions', churchName })}
-                </h1>
-                <p className="text-muted mb-0">
+                  {t('church_discussions_title', { defaultValue: '{churchName} Discussions' }).replace('{churchName}', churchName)}
+                </h1> */}
+                <p className="small text-uppercase fw-bold opacity-25 text-muted mb-0">
                   {t('connect_engage_community', { defaultValue: 'Connect and engage with your church community' })}
                   <span className="badge bg-light text-dark ms-2">{userRole}</span>
                 </p>
@@ -148,7 +149,7 @@ export default function ChurchDiscussionsPage() {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="row mb-4">
+        {/* <div className="row mb-4">
           <div className="col-12">
             <ul className="nav nav-tabs">
               <li className="nav-item">
@@ -163,7 +164,7 @@ export default function ChurchDiscussionsPage() {
                   {t('all_discussions', { defaultValue: 'All Discussions' })}
                 </a>
               </li>
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <a className="nav-link" href={`/churches/${churchId}/events`}>
                   <i className="bi bi-calendar-event me-1"></i>
                   {t('events', { defaultValue: 'Events' })}
@@ -174,10 +175,10 @@ export default function ChurchDiscussionsPage() {
                   <i className="bi bi-people me-1"></i>
                   {t('members', { defaultValue: 'Members' })}
                 </a>
-              </li> */}
+              </li>
             </ul>
           </div>
-        </div>
+        </div> */}
 
         {/* Discussions Content */}
         <div className="row">

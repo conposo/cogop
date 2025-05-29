@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { useContent } from '@/contexts/ContentContext'
 import { useI18n } from '@/contexts/I18nContext'
 import { dummyArticles as fetchDummyArticles, dummyEvents, dummyPodcasts, dummyStatistics, Article, fetchEventsFromFirestore, Event, formatEventDateTime, fetchArticlesFromFirestore, MultilingualString } from '@/lib/dummyContent'
+import { generateOrganizationStructuredData } from '@/lib/metadata'
 
 // Helper function to get localized string or fallback
 const getLocalizedString = (field: MultilingualString | string | undefined, lang: string, fallbackLang: string = 'en'): string => {
@@ -23,6 +24,9 @@ export default function Home() {
   const { language } = useI18n()
   const [articles, setArticles] = useState<Article[]>([])
   const [events, setEvents] = useState<Event[]>([])
+
+  // Generate structured data for the homepage
+  const structuredData = generateOrganizationStructuredData()
 
   useEffect(() => {
     const loadArticles = async () => {
@@ -63,146 +67,55 @@ export default function Home() {
   // If you only want the first N, you can use articles.slice(0, N).map(...)
 
   return (
-    <div className="container-fluid">
-      {/* Hero Carousel Section */}
-      <section className="hero-carousel mx-n3">
-        <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel">
-          {/* Carousel Indicators */}
-          <div className="carousel-indicators">
-            {carousel.map((slide, index) => (
-              <button 
-                key={slide.id}
-                type="button" 
-                data-bs-target="#heroCarousel" 
-                data-bs-slide-to={index}
-                className={index === 0 ? 'active' : ''}
-                aria-current={index === 0 ? 'true' : 'false'}
-                aria-label={`Slide ${index + 1}`}
-              ></button>
-            ))}
-          </div>
-
-          {/* Carousel Inner */}
-          <div className="carousel-inner">
-            {carousel.map((slide, index) => (
-              <div key={slide.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                <div 
-                  className="carousel-slide d-flex align-items-center justify-content-center"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    minHeight: '70vh'
-                  }}
-                >
-                  <div className="container">
-                    <div className="row justify-content-center">
-                      <div className="col-lg-8 text-center text-white">
-                        <h1 className="display-4 fw-bold mb-4">{slide.title}</h1>
-                        <p className="lead mb-4">{slide.description}</p>
-                        {slide.buttonText && slide.buttonLink && (
-                          <Link href={slide.buttonLink} className="btn btn-light btn-lg px-4 py-2">
-                            {slide.buttonText}
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Carousel Controls */}
-          <button className="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
-        </div>
-      </section>
-
-      {/* Mission Statement */}
-      <section className="mission-section py-5">
-        <div className="container">
-          <h2 className="text-center mb-5">We invite you to join with us as we seek to fulfill our mission of reconciling the world to Christ through the Power of the Holy Spirit.</h2>
-        </div>
-      </section>
-
-      {/* Statistics */}
-      <section className="stats-section py-5 bg-light">
-        <div className="container">
-          <div className="row text-center">
-            {stats.map((stat, index) => (
-              <div key={index} className="col-md-3 mb-4">
-                <h3 className="display-5 fw-bold text-primary">{stat.value}</h3>
-                <p className="text-muted">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Articles Section (New Structure) */}
-      <section className="articles-section py-5">
-        <div className="container">
-          <h2 className="text-center mb-5">Articles & News</h2>
-          
-          {/* Mobile Carousel - 1 article per slide */}
-          <div id="mobileArticlesCarousel" className="carousel slide d-lg-none" data-bs-ride="carousel">
+    <>
+      {/* Add structured data for the homepage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      
+      <div className="container-fluid">
+        {/* Hero Carousel Section */}
+        <section className="hero-carousel mx-n3">
+          <div id="heroCarousel" className="carousel slide" data-bs-ride="carousel">
+            {/* Carousel Indicators */}
             <div className="carousel-indicators">
-              {articles.slice(0,3).map((_, index) => ( // Displaying first 3 articles in mobile carousel as well for consistency
+              {carousel.map((slide, index) => (
                 <button 
-                  key={index}
+                  key={slide.id}
                   type="button" 
-                  data-bs-target="#mobileArticlesCarousel" 
+                  data-bs-target="#heroCarousel" 
                   data-bs-slide-to={index}
                   className={index === 0 ? 'active' : ''}
                   aria-current={index === 0 ? 'true' : 'false'}
-                  aria-label={`Article ${index + 1}`}
+                  aria-label={`Slide ${index + 1}`}
                 ></button>
               ))}
             </div>
+
+            {/* Carousel Inner */}
             <div className="carousel-inner">
-              {articles.slice(0,3).map((article, index) => ( // Displaying first 3 articles
-                <div key={article.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
-                  <div className="row justify-content-center">
-                    <div className="col-12">
-                      <div className="card h-100 shadow">
-                        {article.imageUrl !== '' ? (
-                          <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
-                            <img 
-                              src={article.imageUrl} 
-                              alt={getLocalizedString(article.title, language)}
-                              className="card-img-top w-100 h-100"
-                              style={{ objectFit: 'cover' }}
-                            />
-                          </div>
-                        ) : (
-                          <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
-                            <img 
-                              src="/images/default-article-image.jpg" 
-                              alt={getLocalizedString(article.title, language)}
-                              className="card-img-top w-100 h-100"
-                              style={{ objectFit: 'cover' }}
-                            />
-                          </div>
-                        )}
-                        <div className="card-body p-4">
-                          <span className="badge bg-primary mb-3">{article.category}</span>
-                          <h3 className="card-title h5 mb-3">{getLocalizedString(article.title, language)}</h3>
-                          {getLocalizedString(article.summary, language) && (
-                            <p className="card-text text-muted mb-3">{getLocalizedString(article.summary, language)}</p>
+              {carousel.map((slide, index) => (
+                <div key={slide.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                  <div 
+                    className="carousel-slide d-flex align-items-center justify-content-center"
+                    style={{
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${slide.image})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      minHeight: '70vh'
+                    }}
+                  >
+                    <div className="container">
+                      <div className="row justify-content-center">
+                        <div className="col-lg-8 text-center text-white">
+                          <h1 className="display-4 fw-bold mb-4">{slide.title}</h1>
+                          <p className="lead mb-4">{slide.description}</p>
+                          {slide.buttonText && slide.buttonLink && (
+                            <Link href={slide.buttonLink} className="btn btn-light btn-lg px-4 py-2">
+                              {slide.buttonText}
+                            </Link>
                           )}
-                          {article.date && (
-                            <p className="text-muted small mb-3">
-                              <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
-                            </p>
-                          )}
-                          <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
                         </div>
                       </div>
                     </div>
@@ -210,195 +123,294 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#mobileArticlesCarousel" data-bs-slide="prev">
+
+            {/* Carousel Controls */}
+            <button className="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
               <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#mobileArticlesCarousel" data-bs-slide="next">
+            <button className="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
               <span className="carousel-control-next-icon" aria-hidden="true"></span>
               <span className="visually-hidden">Next</span>
             </button>
           </div>
+        </section>
 
-          {/* Desktop View - Static Grid Layout */}
-          <div className="d-none d-lg-block">
-            <div className="row">
-              {articles.slice(0, 3).map((article) => (
-                <div key={article.id} className="col-lg-4 mb-4">
-                  <div className="card h-100 shadow">
-                    {article.imageUrl !== '' ? (
-                      <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
-                        <img 
-                          src={article.imageUrl} 
-                          alt={getLocalizedString(article.title, language)}
-                          className="card-img-top w-100 h-100"
-                          style={{ objectFit: 'cover' }}
-                        />
-                      </div>
-                    ) : (
-                      <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
-                        <img 
-                          src="/images/default-article-image.jpg" 
-                          alt={getLocalizedString(article.title, language)}
-                          className="card-img-top w-100 h-100"
-                          style={{ objectFit: 'cover' }}
-                        />
-                      </div>
-                    )}
-                    <div className="card-body p-4">
-                      <span className="badge bg-primary mb-3">{article.category}</span>
-                      <h3 className="card-title h5 mb-3">{getLocalizedString(article.title, language)}</h3>
-                      {getLocalizedString(article.summary, language) && (
-                        <p className="card-text text-muted mb-3">{getLocalizedString(article.summary, language)}</p>
-                      )}
-                      {article.date && (
-                        <p className="text-muted small mb-3">
-                          <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
-                        </p>
-                      )}
-                      <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              
-              {/* Add placeholder cards if fewer than 3 articles */}
-              {articles.length < 3 && Array.from({ length: 3 - articles.length }).map((_, index) => (
-                <div key={`article-placeholder-${index}`} className="col-lg-4 mb-4">
-                  <div className="card h-100 shadow border-2 border-dashed">
-                    <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
-                      <i className="bi bi-newspaper fs-1 text-muted mb-3"></i>
-                      <h5 className="text-muted mb-2">More Articles Coming Soon</h5>
-                      <p className="text-muted small mb-3">Stay tuned for inspiring articles and church updates.</p>
-                      <Link href="/news" className="btn btn-outline-secondary btn-sm">
-                        View All Articles
-                      </Link>
-                    </div>
-                  </div>
+        {/* Mission Statement */}
+        <section className="mission-section py-5">
+          <div className="container">
+            <h2 className="text-center mb-5">We invite you to join with us as we seek to fulfill our mission of reconciling the world to Christ through the Power of the Holy Spirit.</h2>
+          </div>
+        </section>
+
+        {/* Statistics */}
+        <section className="stats-section py-5 bg-light">
+          <div className="container">
+            <div className="row text-center">
+              {stats.map((stat, index) => (
+                <div key={index} className="col-md-3 mb-4">
+                  <h3 className="display-5 fw-bold text-primary">{stat.value}</h3>
+                  <p className="text-muted">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          <div className="text-center mt-4">
-            <Link href="/news" className="btn btn-outline-primary">View all</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Podcasts */}
-      <section className="podcasts-section py-5 bg-light">
-        <div className="container">
-          <h2 className="text-center mb-5">Our Podcasts</h2>
-          <div className="row">
-            {podcasts.map((podcast, index) => (
-              <div key={index} className="col-lg-6 mb-4">
-                <div className="card h-100">
-                  <div className="card-body">
-                    <div className="mb-3">
-                      <h4 className="h6 text-primary">{podcast.series}</h4>
-                      <p className="text-muted small">{podcast.host}</p>
-                    </div>
-                    <h3 className="card-title h5">{podcast.title}</h3>
-                    <p className="card-text">{podcast.description}</p>
-                    <button className="btn btn-dark">Listen now</button>
-                  </div>
-                </div>
+        {/* Articles Section (New Structure) */}
+        <section className="articles-section py-5">
+          <div className="container">
+            <h2 className="text-center mb-5">Articles & News</h2>
+            
+            {/* Mobile Carousel - 1 article per slide */}
+            <div id="mobileArticlesCarousel" className="carousel slide d-lg-none" data-bs-ride="carousel">
+              <div className="carousel-indicators">
+                {articles.slice(0,3).map((_, index) => ( // Displaying first 3 articles in mobile carousel as well for consistency
+                  <button 
+                    key={index}
+                    type="button" 
+                    data-bs-target="#mobileArticlesCarousel" 
+                    data-bs-slide-to={index}
+                    className={index === 0 ? 'active' : ''}
+                    aria-current={index === 0 ? 'true' : 'false'}
+                    aria-label={`Article ${index + 1}`}
+                  ></button>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link href="/podcasts" className="btn btn-outline-primary">View all</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Events */}
-      <section className="events-section py-5">
-        <div className="container">
-          <h2 className="text-center mb-5">Upcoming events</h2>
-          {events.length > 0 ? (
-            <div className="row">
-              {events.map((event) => (
-                <div key={event.id} className="col-lg-4 mb-4">
-                  <div className="card h-100 shadow">
-                    {event.imageUrl && (
-                      <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
-                        <img 
-                          src={event.imageUrl} 
-                          alt={getLocalizedString(event.title, language)}
-                          className="card-img-top w-100 h-100"
-                          style={{ objectFit: 'cover' }}
-                        />
+              <div className="carousel-inner">
+                {articles.slice(0,3).map((article, index) => ( // Displaying first 3 articles
+                  <div key={article.id} className={`carousel-item ${index === 0 ? 'active' : ''}`}>
+                    <div className="row justify-content-center">
+                      <div className="col-12">
+                        <div className="card h-100 shadow">
+                          {article.imageUrl !== '' ? (
+                            <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                              <img 
+                                src={article.imageUrl} 
+                                alt={getLocalizedString(article.title, language)}
+                                className="card-img-top w-100 h-100"
+                                style={{ objectFit: 'cover' }}
+                              />
+                            </div>
+                          ) : (
+                            <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                              <img 
+                                src="/images/default-article-image.jpg" 
+                                alt={getLocalizedString(article.title, language)}
+                                className="card-img-top w-100 h-100"
+                                style={{ objectFit: 'cover' }}
+                              />
+                            </div>
+                          )}
+                          <div className="card-body p-4">
+                            <span className="badge bg-primary mb-3">{article.category}</span>
+                            <h3 className="card-title h5 mb-3">{getLocalizedString(article.title, language)}</h3>
+                            {getLocalizedString(article.summary, language) && (
+                              <p className="card-text text-muted mb-3">{getLocalizedString(article.summary, language)}</p>
+                            )}
+                            {article.date && (
+                              <p className="text-muted small mb-3">
+                                <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
+                              </p>
+                            )}
+                            <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
+                          </div>
+                        </div>
                       </div>
-                    )}
-                    <div className="card-body">
-                      <div className="d-flex justify-content-between align-items-start mb-2">
-                        <span className="badge bg-info text-dark">{event.category}</span>
-                        {event.featured && (
-                          <span className="badge bg-warning text-dark">Featured</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="carousel-control-prev" type="button" data-bs-target="#mobileArticlesCarousel" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Previous</span>
+              </button>
+              <button className="carousel-control-next" type="button" data-bs-target="#mobileArticlesCarousel" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
+              </button>
+            </div>
+
+            {/* Desktop View - Static Grid Layout */}
+            <div className="d-none d-lg-block">
+              <div className="row">
+                {articles.slice(0, 3).map((article) => (
+                  <div key={article.id} className="col-lg-4 mb-4">
+                    <div className="card h-100 shadow">
+                      {article.imageUrl !== '' ? (
+                        <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                          <img 
+                            src={article.imageUrl} 
+                            alt={getLocalizedString(article.title, language)}
+                            className="card-img-top w-100 h-100"
+                            style={{ objectFit: 'cover' }}
+                          />
+                        </div>
+                      ) : (
+                        <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                          <img 
+                            src="/images/default-article-image.jpg" 
+                            alt={getLocalizedString(article.title, language)}
+                            className="card-img-top w-100 h-100"
+                            style={{ objectFit: 'cover' }}
+                          />
+                        </div>
+                      )}
+                      <div className="card-body p-4">
+                        <span className="badge bg-primary mb-3">{article.category}</span>
+                        <h3 className="card-title h5 mb-3">{getLocalizedString(article.title, language)}</h3>
+                        {getLocalizedString(article.summary, language) && (
+                          <p className="card-text text-muted mb-3">{getLocalizedString(article.summary, language)}</p>
                         )}
+                        {article.date && (
+                          <p className="text-muted small mb-3">
+                            <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
+                          </p>
+                        )}
+                        <Link href={`/news/${article.slug}`} className="btn btn-dark">Read More</Link>
                       </div>
-                      <h3 className="card-title h5 mb-3">{getLocalizedString(event.title, language)}</h3>
-                      <p className="card-text text-muted mb-3">{getLocalizedString(event.excerpt, language)}</p>
-                      <div className="mb-3">
-                        <p className="text-muted small mb-1">
-                          <i className="bi bi-calendar me-2"></i>
-                          {formatEventDateTime(event)}
-                        </p>
-                        <p className="text-muted small mb-0">
-                          <i className="bi bi-geo-alt me-2"></i>
-                          {event.eventLocation}
-                        </p>
-                      </div>
-                      <Link href={`/events/${event.id}`} className="btn btn-outline-primary btn-sm">Event Details</Link>
                     </div>
                   </div>
-                </div>
-              ))}
-              
-              {/* Add placeholder cards if fewer than 3 events */}
-              {events.length < 3 && Array.from({ length: 3 - events.length }).map((_, index) => (
-                <div key={`placeholder-${index}`} className="col-lg-4 mb-4">
-                  <div className="card h-100 shadow border-2 border-dashed">
-                    <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
-                      <i className="bi bi-calendar-plus fs-1 text-muted mb-3"></i>
-                      <h5 className="text-muted mb-2">More Events Coming Soon</h5>
-                      <p className="text-muted small mb-3">Stay tuned for exciting upcoming events and gatherings.</p>
-                      <Link href="/get-connected/contact" className="btn btn-outline-secondary btn-sm">
-                        Get Notified
-                      </Link>
+                ))}
+                
+                {/* Add placeholder cards if fewer than 3 articles */}
+                {articles.length < 3 && Array.from({ length: 3 - articles.length }).map((_, index) => (
+                  <div key={`article-placeholder-${index}`} className="col-lg-4 mb-4">
+                    <div className="card h-100 shadow border-2 border-dashed">
+                      <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
+                        <i className="bi bi-newspaper fs-1 text-muted mb-3"></i>
+                        <h5 className="text-muted mb-2">More Articles Coming Soon</h5>
+                        <p className="text-muted small mb-3">Stay tuned for inspiring articles and church updates.</p>
+                        <Link href="/news" className="btn btn-outline-secondary btn-sm">
+                          View All Articles
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          ) : (
-            <div className="text-center py-5">
-              <i className="bi bi-calendar-x fs-1 text-muted mb-3"></i>
-              <h4 className="text-muted">No upcoming events</h4>
-              <p className="text-muted">Check back soon for new events!</p>
-            </div>
-          )}
-          <div className="text-center">
-            <Link href="/events" className="btn btn-outline-primary">Explore All Events</Link>
-          </div>
-        </div>
-      </section>
 
-      {/* Call to Action */}
-      <section 
-        className="cta-section py-5 text-white text-center rounded-5"
-        style={{
-          background: 'linear-gradient(135deg, #007bff, #0056b3)',
-          padding: '1.5rem'
-        }}
-      >
-        <div className="container">
-          <h2 className="mb-4">Have you ever wondered how to know God and experience the peace that comes from him?</h2>
-          <Link href="/resources/know-god" className="btn btn-light btn-lg">How to Know God</Link>
-        </div>
-      </section>
-    </div>
+            <div className="text-center mt-4">
+              <Link href="/news" className="btn btn-outline-primary">View all</Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Podcasts */}
+        <section className="podcasts-section py-5 bg-light">
+          <div className="container">
+            <h2 className="text-center mb-5">Our Podcasts</h2>
+            <div className="row">
+              {podcasts.map((podcast, index) => (
+                <div key={index} className="col-lg-6 mb-4">
+                  <div className="card h-100">
+                    <div className="card-body">
+                      <div className="mb-3">
+                        <h4 className="h6 text-primary">{podcast.series}</h4>
+                        <p className="text-muted small">{podcast.host}</p>
+                      </div>
+                      <h3 className="card-title h5">{podcast.title}</h3>
+                      <p className="card-text">{podcast.description}</p>
+                      <button className="btn btn-dark">Listen now</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="text-center">
+              <Link href="/podcasts" className="btn btn-outline-primary">View all</Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Events */}
+        <section className="events-section py-5">
+          <div className="container">
+            <h2 className="text-center mb-5">Upcoming events</h2>
+            {events.length > 0 ? (
+              <div className="row">
+                {events.map((event) => (
+                  <div key={event.id} className="col-lg-4 mb-4">
+                    <div className="card h-100 shadow">
+                      {event.imageUrl && (
+                        <div className="card-img-top-wrapper" style={{ height: '200px', overflow: 'hidden' }}>
+                          <img 
+                            src={event.imageUrl} 
+                            alt={getLocalizedString(event.title, language)}
+                            className="card-img-top w-100 h-100"
+                            style={{ objectFit: 'cover' }}
+                          />
+                        </div>
+                      )}
+                      <div className="card-body">
+                        <div className="d-flex justify-content-between align-items-start mb-2">
+                          <span className="badge bg-info text-dark">{event.category}</span>
+                          {event.featured && (
+                            <span className="badge bg-warning text-dark">Featured</span>
+                          )}
+                        </div>
+                        <h3 className="card-title h5 mb-3">{getLocalizedString(event.title, language)}</h3>
+                        <p className="card-text text-muted mb-3">{getLocalizedString(event.excerpt, language)}</p>
+                        <div className="mb-3">
+                          <p className="text-muted small mb-1">
+                            <i className="bi bi-calendar me-2"></i>
+                            {formatEventDateTime(event)}
+                          </p>
+                          <p className="text-muted small mb-0">
+                            <i className="bi bi-geo-alt me-2"></i>
+                            {event.eventLocation}
+                          </p>
+                        </div>
+                        <Link href={`/events/${event.id}`} className="btn btn-outline-primary btn-sm">Event Details</Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                
+                {/* Add placeholder cards if fewer than 3 events */}
+                {events.length < 3 && Array.from({ length: 3 - events.length }).map((_, index) => (
+                  <div key={`placeholder-${index}`} className="col-lg-4 mb-4">
+                    <div className="card h-100 shadow border-2 border-dashed">
+                      <div className="card-body d-flex flex-column justify-content-center align-items-center text-center py-5">
+                        <i className="bi bi-calendar-plus fs-1 text-muted mb-3"></i>
+                        <h5 className="text-muted mb-2">More Events Coming Soon</h5>
+                        <p className="text-muted small mb-3">Stay tuned for exciting upcoming events and gatherings.</p>
+                        <Link href="/get-connected/contact" className="btn btn-outline-secondary btn-sm">
+                          Get Notified
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-5">
+                <i className="bi bi-calendar-x fs-1 text-muted mb-3"></i>
+                <h4 className="text-muted">No upcoming events</h4>
+                <p className="text-muted">Check back soon for new events!</p>
+              </div>
+            )}
+            <div className="text-center">
+              <Link href="/events" className="btn btn-outline-primary">Explore All Events</Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section 
+          className="cta-section py-5 text-white text-center rounded-5"
+          style={{
+            background: 'linear-gradient(135deg, #007bff, #0056b3)',
+            padding: '1.5rem'
+          }}
+        >
+          <div className="container">
+            <h2 className="mb-4">Have you ever wondered how to know God and experience the peace that comes from him?</h2>
+            <Link href="/resources/know-god" className="btn btn-light btn-lg">How to Know God</Link>
+          </div>
+        </section>
+      </div>
+    </>
   )
 }
