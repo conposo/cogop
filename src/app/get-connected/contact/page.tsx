@@ -1,10 +1,11 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 
 export default function ContactUsPage() {
-  const pageContent = getPageContent('get-connected/contact')
+  const { pages } = useContent()
+  const pageContent = pages['get-connected/contact']
 
   return (
     <PageLayout

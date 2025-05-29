@@ -78,7 +78,7 @@ const Footer = () => {
         <div className="row">
           <div className="col-12">
             <div className="footer__bottom">
-              <p>&copy; 2024 Church of God of Prophecy. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} Church of God of Prophecy. All rights reserved.</p>
             </div>
           </div>
         </div>

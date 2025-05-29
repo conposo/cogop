@@ -1,10 +1,11 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 
 export default function HeritagePage() {
-  const pageContent = getPageContent('ministries/heritage')
+  const { pages } = useContent()
+  const pageContent = pages['ministries/heritage']
 
   return (
     <PageLayout

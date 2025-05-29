@@ -287,63 +287,38 @@ const getContentData = (): ContentContextType => ({
         introduction: t('faq_introduction', { defaultValue: 'We\'ve compiled answers to some of the most common questions about the Church of God of Prophecy. If you don\'t find what you\'re looking for, please contact us directly.' }),
         categories: [
           {
-            title: "General Questions",
+            title: t('faq_general_questions', { defaultValue: 'General Questions' }),
             questions: [
               {
                 id: "general-1",
-                question: "What is the Church of God of Prophecy?",
-                answer: "The Church of God of Prophecy is a global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people, and dedicated to reconciling the world to Christ through the power of the Holy Spirit. We have over 12,000 churches and missions in 135 countries worldwide.",
+                question: t('faq_what_is_cogop', { defaultValue: 'What is the Church of God of Prophecy?' }),
+                answer: t('faq_what_is_cogop_answer', { defaultValue: 'The Church of God of Prophecy is a global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people, and dedicated to reconciling the world to Christ through the power of the Holy Spirit. We have over 12,000 churches and missions in 135 countries worldwide.' }),
                 isExpanded: true
               },
               {
                 id: "general-2",
-                question: "When was the Church of God of Prophecy founded?",
-                answer: "The Church of God of Prophecy was founded in the early 20th century as part of the modern Pentecostal movement. We have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God's kingdom on earth."
+                question: t('faq_when_founded', { defaultValue: 'When was the Church of God of Prophecy founded?' }),
+                answer: t('faq_when_founded_answer', { defaultValue: 'The Church of God of Prophecy was founded in the early 20th century as part of the modern Pentecostal movement. We have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God\'s kingdom on earth.' })
               },
               {
                 id: "general-3",
-                question: "Where is your headquarters located?",
-                answer: "Our international headquarters is located in Cleveland, Tennessee, USA, at 3720 Keith Street NW. Our mailing address is PO Box 2910, Cleveland, TN 37320. You can reach us at (423) 559-5100."
+                question: t('faq_headquarters_location', { defaultValue: 'Where is your headquarters located?' }),
+                answer: t('faq_headquarters_answer', { defaultValue: 'Our international headquarters is located in Cleveland, Tennessee, USA, at 3720 Keith Street NW. Our mailing address is PO Box 2910, Cleveland, TN 37320. You can reach us at (423) 559-5100.' })
               }
             ]
           },
           {
-            title: "Beliefs and Doctrine",
-            questions: [
-              {
-                id: "beliefs-1",
-                question: "What do you believe about the Bible?",
-                answer: "We believe the Bible is the inspired, inerrant Word of God and our final authority for faith and practice. Scripture is God-breathed and profitable for teaching, reproof, correction, and instruction in righteousness."
-              },
-              {
-                id: "beliefs-2",
-                question: "Do you believe in the Trinity?",
-                answer: "Yes, we believe in one God eternally existing in three persons: Father, Son, and Holy Spirit. Each person of the Trinity is fully God, yet there is only one God."
-              },
-              {
-                id: "beliefs-3",
-                question: "What is your position on salvation?",
-                answer: "We believe salvation is by grace through faith in Jesus Christ, not by works. It is a free gift from God available to all who repent of their sins and accept Jesus as their personal Lord and Savior."
-              },
-              {
-                id: "beliefs-4",
-                question: "Do you believe in the baptism of the Holy Spirit?",
-                answer: "Yes, we believe in the baptism of the Holy Spirit as a distinct experience available to all believers. This empowerment enables Christians to live victorious lives and serve God effectively in ministry and witness."
-              }
-            ]
-          },
-          {
-            title: "Services and Worship",
+            title: t('faq_services_worship', { defaultValue: 'Services and Worship' }),
             questions: [
               {
                 id: "worship-1",
-                question: "What can I expect during a worship service?",
-                answer: "Our worship services are Spirit-led and include contemporary and traditional music, biblical preaching, prayer, and fellowship. You'll experience warm hospitality, passionate worship, and practical biblical teaching that applies to daily life."
+                question: t('faq_worship_service', { defaultValue: 'What can I expect during a worship service?' }),
+                answer: t('faq_worship_service_answer', { defaultValue: 'Our worship services are Spirit-led and include contemporary and traditional music, biblical preaching, prayer, and fellowship. You\'ll experience warm hospitality, passionate worship, and practical biblical teaching that applies to daily life.' })
               },
               {
                 id: "worship-2",
-                question: "What should I wear to church?",
-                answer: "Come as you are! We welcome people regardless of how they dress. Some prefer casual attire while others dress more formally. The most important thing is that you feel comfortable and can focus on worshiping God."
+                question: t('faq_dress_code', { defaultValue: 'What should I wear to church?' }),
+                answer: t('faq_dress_answer', { defaultValue: 'Come as you are! We welcome people regardless of how they dress. Some prefer casual attire while others dress more formally. The most important thing is that you feel comfortable and can focus on worshiping God.' })
               },
               {
                 id: "worship-3",
@@ -373,58 +348,58 @@ const getContentData = (): ContentContextType => ({
             ]
           },
           {
-            title: "Giving and Support",
+            title: t('faq_giving_support', { defaultValue: 'Giving and Support' }),
             questions: [
               {
                 id: "giving-1",
-                question: "Do I have to tithe or give money?",
-                answer: "Giving is voluntary and should come from a cheerful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions."
+                question: t('faq_tithe_required', { defaultValue: 'Do I have to tithe or give money?' }),
+                answer: t('faq_tithe_answer', { defaultValue: 'Giving is voluntary and should come from a cheerful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions.' })
               },
               {
                 id: "giving-2",
-                question: "How are donations used?",
-                answer: "Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God's kingdom worldwide."
+                question: t('faq_donations_used', { defaultValue: 'How are donations used?' }),
+                answer: t('faq_donations_answer', { defaultValue: 'Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God\'s kingdom worldwide.' })
               }
             ]
           },
           {
-            title: "Global Ministry",
+            title: t('faq_global_ministry', { defaultValue: 'Global Ministry' }),
             questions: [
               {
                 id: "global-1",
-                question: "How can I support global missions?",
-                answer: "You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities."
+                question: t('faq_support_missions', { defaultValue: 'How can I support global missions?' }),
+                answer: t('faq_support_missions_answer', { defaultValue: 'You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities.' })
               },
               {
                 id: "global-2",
-                question: "What is the International Assembly?",
-                answer: "The International Assembly is our global church gathering held every four years. Delegates from 135 countries come together for worship, fellowship, and church business. The next assembly will be in Orlando, Florida, July 15-19, 2026."
+                question: t('faq_international_assembly', { defaultValue: 'What is the International Assembly?' }),
+                answer: t('faq_international_assembly_answer', { defaultValue: 'The International Assembly is our global church gathering held every four years. Delegates from 135 countries come together for worship, fellowship, and church business. The next assembly will be in Orlando, Florida, July 15-19, 2026.' })
               }
             ]
           },
           {
-            title: "Contact and Next Steps",
+            title: t('faq_contact_next_steps', { defaultValue: 'Contact and Next Steps' }),
             questions: [
               {
                 id: "contact-1",
-                question: "How do I find a local church?",
-                answer: "Use our church locator to find a congregation near you. You can also call our headquarters at (423) 559-5100 or contact us online for assistance in finding a local church."
+                question: t('faq_find_local_church', { defaultValue: 'How do I find a local church?' }),
+                answer: t('faq_find_local_church_answer', { defaultValue: 'Use our church locator to find a congregation near you. You can also call our headquarters at (423) 559-5100 or contact us online for assistance in finding a local church.' })
               },
               {
                 id: "contact-2",
-                question: "Can I schedule a tour of your facilities?",
-                answer: "Yes! We'd love to show you around our facilities. You can schedule a tour of our headquarters in Cleveland, Tennessee, or visit Fields of the Wood, our biblical theme park in North Carolina."
+                question: t('faq_schedule_tour_question', { defaultValue: 'Can I schedule a tour of your facilities?' }),
+                answer: t('faq_schedule_tour_answer', { defaultValue: 'Yes! We\'d love to show you around our facilities. You can schedule a tour of our headquarters in Cleveland, Tennessee, or visit Fields of the Wood, our biblical theme park in North Carolina.' })
               },
               {
                 id: "contact-3",
-                question: "I have more questions. How can I get answers?",
-                answer: "We're here to help! You can contact us through our website, call us at (423) 559-5100, or email us at info@cogop.org. You can also reach out to a local Church of God of Prophecy pastor in your area."
+                question: t('faq_more_questions', { defaultValue: 'I have more questions. How can I get answers?' }),
+                answer: t('faq_more_questions_answer', { defaultValue: 'We\'re here to help! You can contact us through our website, call us at (423) 559-5100, or email us at info@cogop.org. You can also reach out to a local Church of God of Prophecy pastor in your area.' })
               }
             ]
           }
         ]
       },
-      content: `<p>FAQ content will be rendered using structured data above.</p>`
+      content: `<p>${t('faq_content_will_be_rendered', { defaultValue: 'FAQ content will be rendered using structured data above.' })}</p>`
     },
     'get-connected/employment': {
       title: t('employment_title', { defaultValue: 'Employment' }),

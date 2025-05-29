@@ -1,11 +1,12 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 import { t } from '@/lib/i18n'
 
 export default function ScheduleaTourPage() {
-  const pageContent = getPageContent('get-connected/schedule-tour')
+  const { pages } = useContent()
+  const pageContent = pages['get-connected/schedule-tour']
 
   return (
     <PageLayout

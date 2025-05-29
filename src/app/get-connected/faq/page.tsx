@@ -1,13 +1,14 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 import CallToAction from '@/components/CallToAction'
 import { t } from '@/lib/i18n'
 import Link from 'next/link'
 
 export default function FAQPage() {
-  const pageContent = getPageContent('get-connected/faq')
+  const { pages } = useContent()
+  const pageContent = pages['get-connected/faq']
 
   return (
     <PageLayout
@@ -22,7 +23,7 @@ export default function FAQPage() {
             <div className="col-12">
               <p className="lead">
                 {pageContent.faq.introduction}{' '}
-                <Link href="/get-connected/contact">contact us</Link> directly.
+                <Link href="/get-connected/contact">{t('contact_us', { defaultValue: 'contact us' })}</Link>.
               </p>
             </div>
           </div>

@@ -1,10 +1,11 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 
 export default function MediaLibraryPage() {
-  const pageContent = getPageContent('resources/media-library')
+  const { pages } = useContent()
+  const pageContent = pages['resources/media-library']
 
   return (
     <PageLayout

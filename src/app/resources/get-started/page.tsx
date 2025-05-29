@@ -1,10 +1,11 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 
 export default function GetStartedPage() {
-  const pageContent = getPageContent('resources/get-started')
+  const { pages } = useContent()
+  const pageContent = pages['resources/get-started']
 
   return (
     <PageLayout

@@ -1,12 +1,13 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 import { t } from '@/lib/i18n'
 import Link from 'next/link'
 
 export default function GetConnectedPage() {
-  const pageContent = getPageContent('get-connected')
+  const { pages } = useContent()
+  const pageContent = pages['get-connected']
 
   return (
     <PageLayout

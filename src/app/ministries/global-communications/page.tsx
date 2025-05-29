@@ -1,10 +1,11 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 
 export default function GlobalCommunicationsPage() {
-  const pageContent = getPageContent('ministries/global-communications')
+  const { pages } = useContent()
+  const pageContent = pages['ministries/global-communications']
 
   return (
     <PageLayout

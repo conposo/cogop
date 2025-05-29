@@ -1,10 +1,11 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 
 export default function WhiteWingMessengerPage() {
-  const pageContent = getPageContent('resources/white-wing-messenger')
+  const { pages } = useContent()
+  const pageContent = pages['resources/white-wing-messenger']
 
   return (
     <PageLayout
