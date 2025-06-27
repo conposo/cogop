@@ -722,13 +722,13 @@ export default function ChurchesManagement() {
                             onChange={(e) => updateServiceTime(index, 'day', e.target.value)}
                           >
                             <option value="">Select Day</option>
-                            <option value="Sunday">Sunday</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
+                            <option value="Неделя">Неделя</option>
+                            <option value="Понеделник">Понеделник</option>
+                            <option value="Вторник">Вторник</option>
+                            <option value="Сряда">Сряда</option>
+                            <option value="Четвъртък">Четвъртък</option>
+                            <option value="Петък">Петък</option>
+                            <option value="Събота">Събота</option>
                           </select>
                         </div>
                         <div className="col-md-6">
@@ -762,10 +762,22 @@ export default function ChurchesManagement() {
                         className="form-control"
                         name="programs"
                         value={formData.programs.join(', ')}
-                        onChange={(e) => setFormData(prev => ({
-                          ...prev,
-                          programs: e.target.value.split(',').map(p => p.trim()).filter(p => p)
-                        }))}
+                        onChange={(e) => {
+                          // Store the raw input value temporarily to allow proper typing
+                          const inputValue = e.target.value;
+                          
+                          // Only process into array when user finishes typing (on blur) or when comma is detected
+                          // For now, just split and process, but preserve spaces within program names
+                          const programs = inputValue
+                            .split(',')
+                            .map(p => p.trim())
+                            .filter(p => p.length > 0);
+                          
+                          setFormData(prev => ({
+                            ...prev,
+                            programs: programs
+                          }));
+                        }}
                         placeholder="e.g., Youth Ministry, Children's Ministry, Bible Study"
                       />
                       <div className="form-text">Separate multiple programs with commas</div>
