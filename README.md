@@ -11,6 +11,9 @@ A modern, responsive Next.js clone of the Church of God of Prophecy (cogop.org) 
 - **Global Presence**: Showcasing the church's worldwide ministry across 135 countries
 - **Multilingual Welcome**: Supporting multiple languages for global accessibility
 - **Interactive Components**: News, events, podcasts, and resource sections
+- **Admin Dashboard**: Church management, user administration, and content management
+- **Discussion System**: Church-specific discussion boards with member permissions
+- **Firebase Integration**: Real-time database, file storage, and authentication
 
 ## 🚀 Live Demo
 
@@ -22,7 +25,8 @@ The application runs on `localhost:3001` in development mode.
 - **Language**: TypeScript
 - **Styling**: SCSS with Bootstrap 5
 - **Icons**: Bootstrap Icons
-- **Content Management**: React Context API
+- **Backend**: Firebase (Firestore, Storage, Authentication)
+- **Content Management**: React Context API + Firebase
 - **Fonts**: Inter (Google Fonts)
 
 ## 📁 Project Structure
@@ -31,6 +35,8 @@ The application runs on `localhost:3001` in development mode.
 src/
 ├── app/                    # Next.js App Router pages
 │   ├── about/             # About section pages
+│   ├── admin/             # Admin dashboard and management
+│   ├── churches/          # Church-specific pages and discussions
 │   ├── get-connected/     # Connection and contact pages
 │   ├── ministries/        # Ministry pages
 │   ├── resources/         # Resource pages
@@ -38,23 +44,34 @@ src/
 │   ├── give/              # Giving page
 │   ├── events/            # Events page
 │   ├── news/              # News page
+│   ├── profile/           # User profile page
 │   └── find-a-church/     # Church locator page
 ├── components/            # Reusable components
+│   ├── admin/             # Admin-specific components
+│   ├── Auth/              # Authentication components
 │   ├── Navigation/        # Main navigation
 │   ├── Footer/           # Site footer
 │   └── PageLayout/       # Page layout wrapper
 ├── contexts/             # React contexts
+│   ├── AuthContext.tsx   # Authentication state
+│   ├── AdminContext.tsx  # Admin functionality
+│   ├── ChurchUserContext.tsx # Church membership
+│   ├── DiscussionsContext.tsx # Discussion system
 │   └── ContentContext.tsx # Content management
 ├── lib/                  # Utility libraries
-│   └── content.ts        # Server-side content data
+│   ├── firebase.ts       # Firebase configuration
+│   ├── content.ts        # Server-side content data
+│   └── rateLimiter.ts    # API rate limiting
 ├── styles/               # SCSS architecture
 │   ├── abstracts/        # Variables and mixins
 │   ├── base/             # Reset and typography
 │   ├── components/       # Component styles
 │   ├── layout/           # Layout-specific styles
 │   └── main.scss         # Main SCSS entry point
-└── scripts/              # Build scripts
-    └── generate-pages.js # Page generation script
+└── scripts/              # Build and import scripts
+    ├── generate-pages.js # Page generation script
+    ├── import-bulgarian-churches.js # Church data import
+    └── README-import.md  # Import documentation
 ```
 
 ## 🎨 SCSS Architecture
@@ -119,17 +136,28 @@ The project uses a hybrid content management approach:
    npm install
    ```
 
-3. **Install SCSS support**
+3. **Firebase Configuration**
    ```bash
-   npm install sass
+   # Copy the environment template
+   cp env.template .env.local
+   
+   # Edit .env.local with your Firebase project credentials
+   # Get these values from your Firebase Console
    ```
 
-4. **Run development server**
+4. **Configure Firebase Project**
+   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+   - Enable Firestore Database
+   - Enable Firebase Storage
+   - Enable Authentication (if using auth features)
+   - Deploy Firestore security rules: `npm run deploy:rules`
+
+5. **Run development server**
    ```bash
    npm run dev
    ```
 
-5. **Open in browser**
+6. **Open in browser**
    Navigate to `http://localhost:3001`
 
 ## 📦 Key Dependencies
@@ -141,7 +169,9 @@ The project uses a hybrid content management approach:
   "typescript": "5.x",
   "sass": "^1.x",
   "bootstrap": "^5.x",
-  "bootstrap-icons": "^1.x"
+  "bootstrap-icons": "^1.x",
+  "firebase": "^10.x",
+  "dotenv": "^16.x"
 }
 ```
 
@@ -169,6 +199,7 @@ The Church of God of Prophecy serves:
 - `npm run start`: Start production server
 - `npm run lint`: Run ESLint
 - `npm run import:churches`: Import Bulgarian churches to database
+- `npm run deploy:rules`: Deploy Firestore security rules
 - `node scripts/generate-pages.js`: Generate pages from templates
 - `./scripts/run-import.sh`: Run church import with environment variables
 
@@ -221,22 +252,47 @@ node scripts/import-bulgarian-churches.js
 ```
 
 ### Setup Requirements
-1. **Firebase Configuration**: Set environment variables in `.env.local`
-2. **Data Directory**: Ensure `COGOP-churches/` directory exists
-3. **Dependencies**: Run `npm install` to install required packages
+1. **Firebase Configuration**: Copy `env.template` to `.env.local` and configure with your Firebase project credentials
+2. **Firebase Services**: Enable Firestore Database and Firebase Storage in your Firebase console
+3. **Data Directory**: Ensure `COGOP-churches/` directory exists (for image uploads)
+4. **Dependencies**: Run `npm install` to install required packages
+5. **Security Rules**: Deploy Firestore rules with `npm run deploy:rules`
 
 For detailed instructions, see [`scripts/README-import.md`](scripts/README-import.md).
+
+## 🔥 Firebase Integration
+
+### Database Collections
+- **churches**: Church information and locations
+- **churchUsers**: Church membership and permissions
+- **discussions**: Church-specific discussion boards
+- **comments**: Discussion comments and replies
+- **news**: Articles and announcements
+- **contacts**: Contact form submissions
+- **admins**: Administrative user roles
+
+### Authentication & Permissions
+- **Role-based Access**: Super admins, church admins, and members
+- **Church-specific Permissions**: Discussion creation, moderation, and commenting
+- **Security Rules**: Comprehensive Firestore rules for data protection
+
+### Admin Features
+- **Church Management**: Add, edit, and manage church information
+- **User Administration**: Manage church memberships and permissions
+- **Discussion Moderation**: Create and moderate church discussions
+- **Content Management**: Manage news articles and announcements
+- **Contact Management**: View and respond to contact form submissions
 
 ## 🚦 Future Enhancements
 
 - [ ] Church locator with interactive maps
 - [ ] Multi-language content management
 - [ ] Event registration system
-- [ ] Member portal integration
 - [ ] Advanced search functionality
 - [ ] Newsletter subscription
 - [ ] Social media integration
 - [ ] Accessibility improvements
+- [ ] Mobile app development
 
 ## 🤝 Contributing
 
