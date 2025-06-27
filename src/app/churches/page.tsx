@@ -167,7 +167,7 @@ export default function ChurchesPage() {
           <h4>{t('error_loading_churches', { defaultValue: 'Error Loading Churches' })}</h4>
           <p>{error}</p>
           <button 
-            className="btn btn-primary" 
+            className="btn btn-primary text-white" 
             onClick={() => {
               setError(null);
               fetchChurches();
@@ -192,7 +192,7 @@ export default function ChurchesPage() {
 
       {/* Search and Filter */}
       <div className="row mb-4">
-        <div className="col-md-8 mb-3">
+        <div className="col-md-8 mb-3 mx-auto">
           <div className="input-group">
             <span className="input-group-text">
               <i className="bi bi-search"></i>
@@ -206,7 +206,7 @@ export default function ChurchesPage() {
             />
           </div>
         </div>
-        <div className="col-md-4 mb-3">
+        {/* <div className="col-md-4 mb-3">
           <select
             className="form-select"
             value={selectedDenomination}
@@ -219,11 +219,11 @@ export default function ChurchesPage() {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
       </div>
 
       {/* Results Count */}
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <p className="text-muted">
           {t('churches_found', { 
             defaultValue: '{count} church{plural} found',
@@ -231,7 +231,7 @@ export default function ChurchesPage() {
             plural: filteredChurches.length !== 1 ? 'es' : ''
           })}
         </p>
-      </div>
+      </div> */}
 
       {/* Churches Grid */}
       {filteredChurches.length === 0 ? (
@@ -312,7 +312,7 @@ export default function ChurchesPage() {
                     <div className="mb-3">
                       <p className="text-muted small mb-2">
                         <i className="bi bi-people me-1"></i>
-                        <strong>Programs:</strong>
+                        <strong>{t('programs_label', { defaultValue: 'Programs:' })}</strong>
                       </p>
                       <div className="d-flex flex-wrap gap-1">
                         {church.programs.slice(0, 3).map((program, index) => (
@@ -345,7 +345,7 @@ export default function ChurchesPage() {
                         className="btn btn-sm btn-outline-primary"
                       >
                         <i className="bi bi-telephone me-1"></i>
-                        Call
+                        {t('call_btn', { defaultValue: 'Call' })}
                       </a>
                     )}
                     {church.email && (
@@ -354,7 +354,7 @@ export default function ChurchesPage() {
                         className="btn btn-sm btn-outline-secondary"
                       >
                         <i className="bi bi-envelope me-1"></i>
-                        Email
+                        {t('email_btn', { defaultValue: 'Email' })}
                       </a>
                     )}
                     {church.website && (
@@ -365,7 +365,7 @@ export default function ChurchesPage() {
                         className="btn btn-sm btn-outline-info"
                       >
                         <i className="bi bi-globe me-1"></i>
-                        Website
+                        {t('website_btn', { defaultValue: 'Website' })}
                       </a>
                     )}
                   </div>
@@ -373,19 +373,19 @@ export default function ChurchesPage() {
                   <div className="d-flex justify-content-between align-items-center">
                     <Link 
                       href={`/churches/${church.id}`}
-                      className="btn btn-primary btn-sm"
+                      className="btn btn-primary text-white btn-sm"
                     >
-                      View Details
+                      {t('view_details_btn', { defaultValue: 'View Details' })}
                     </Link>
-                    <a 
-                      href={`https://maps.google.com/?q=${encodeURIComponent(`${church.address}, ${church.city}, ${church.state} ${church.zipCode}`)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-outline-success btn-sm"
-                    >
-                      <i className="bi bi-geo-alt me-1"></i>
-                      Directions
-                    </a>
+                                          <a 
+                        href={`https://maps.google.com/?q=${encodeURIComponent(`${church.address}, ${church.city}, ${church.state} ${church.zipCode}`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-outline-success btn-sm"
+                      >
+                        <i className="bi bi-geo-alt me-1"></i>
+                        {t('directions_btn', { defaultValue: 'Directions' })}
+                      </a>
                   </div>
                 </div>
               </div>

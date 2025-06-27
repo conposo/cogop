@@ -23,7 +23,7 @@ const CallToAction: React.FC<CallToActionProps> = () => {
       case 'outline':
         return 'btn btn-outline-primary'
       default:
-        return 'btn btn-primary'
+        return 'btn btn-primary text-white'
     }
   }
 

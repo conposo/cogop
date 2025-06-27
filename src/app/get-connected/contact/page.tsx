@@ -4,8 +4,10 @@ import { useState, FormEvent } from 'react'
 import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 import { submitContactForm, ContactFormData } from '@/lib/contactService'
+import { useTranslation } from '@/lib/i18n'
 
 export default function ContactUsPage() {
+  const { t } = useTranslation()
   const { pages } = useContent()
   const pageContent = pages['get-connected/contact']
 
@@ -31,12 +33,12 @@ export default function ContactUsPage() {
       setFormData({ name: '', email: '', message: '' })
       setSubmitStatus({
         type: 'success',
-        message: 'Thank you for your message. We will get back to you soon!'
+        message: t('contact_form_success_message')
       })
     } catch (error) {
       setSubmitStatus({
         type: 'error',
-        message: error instanceof Error ? error.message : 'There was an error sending your message. Please try again.'
+        message: error instanceof Error ? error.message : t('contact_form_error_message')
       })
     } finally {
       setIsSubmitting(false)
@@ -60,17 +62,17 @@ export default function ContactUsPage() {
     >
       <div className="row">
         <div className="col-md-6">
-          <h3>Physical Address</h3>
-          <p>ул. Аксаков 8<br />Русе, 7012<br />Phone: (359) 888-888-888</p>
+          <h3>{t('physical_address')}</h3>
+          <p>ул. Аксаков 8<br />Русе, 7012<br />{t('phone')}: (359) 888-888-888</p>
           
-          <h3>Mailing Address</h3>
+          <h3>{t('mailing_address')}</h3>
           <p>ул. Аксаков 8<br />Русе, 7012</p>
         </div>
         <div className="col-md-6">
-          <h3>Contact Form</h3>
+          <h3>{t('contact_form')}</h3>
           <form onSubmit={handleSubmit} className="needs-validation" noValidate>
             <div className="mb-3">
-              <label htmlFor="name" className="form-label">Name</label>
+              <label htmlFor="name" className="form-label">{t('name')}</label>
               <input
                 type="text"
                 className="form-control"
@@ -83,7 +85,7 @@ export default function ContactUsPage() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">Email</label>
+              <label htmlFor="email" className="form-label">{t('email')}</label>
               <input
                 type="email"
                 className="form-control"
@@ -96,7 +98,7 @@ export default function ContactUsPage() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="message" className="form-label">Message</label>
+              <label htmlFor="message" className="form-label">{t('message')}</label>
               <textarea
                 className="form-control"
                 id="message"
@@ -113,7 +115,7 @@ export default function ContactUsPage() {
               className="btn btn-dark"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? t('sending') : t('send_message')}
             </button>
           </form>
           

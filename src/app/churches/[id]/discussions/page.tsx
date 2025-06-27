@@ -77,7 +77,7 @@ export default function ChurchDiscussionsPage() {
           <i className="bi bi-person-x text-muted" style={{ fontSize: '4rem' }}></i>
           <h3 className="mt-3">{t('authentication_required', { defaultValue: 'Authentication Required' })}</h3>
           <p className="text-muted">{t('please_log_in_discussions', { defaultValue: 'Please log in to access church discussions.' })}</p>
-          <button className="btn btn-primary" onClick={() => window.location.href = '/login'}>
+          <button className="btn btn-primary text-white" onClick={() => window.location.href = '/login'}>
             {t('log_in', { defaultValue: 'Log In' })}
           </button>
         </div>

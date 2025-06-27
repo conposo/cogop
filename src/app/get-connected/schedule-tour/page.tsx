@@ -2,14 +2,15 @@
 
 import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
-import { t } from '@/lib/i18n'
+import { useTranslation } from '@/lib/i18n'
 
 export default function ScheduleaTourPage() {
+  const { t } = useTranslation()
   const { pages } = useContent()
   const pageContent = pages['get-connected/schedule-tour']
 
   if (!pageContent) {
-    return <div>Loading...</div>; // Or your preferred loading/fallback
+    return <div>{t('loading', { defaultValue: 'Loading...' })}</div>; // Or your preferred loading/fallback
   }
 
   return (

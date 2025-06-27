@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDiscussions, Discussion } from '@/contexts/DiscussionsContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useChurchUser } from '@/contexts/ChurchUserContext';
+import { useTranslation } from '@/lib/i18n';
 import Link from 'next/link';
 
 interface DiscussionsSummaryProps {
@@ -11,6 +12,7 @@ interface DiscussionsSummaryProps {
 }
 
 export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { getChurchDiscussions } = useDiscussions();
   const { getUserChurches } = useChurchUser();
@@ -90,10 +92,10 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
     
     if (diffInHours < 24) {
       const hours = Math.floor(diffInHours);
-      return hours === 0 ? 'Just now' : `${hours}h ago`;
+      return hours === 0 ? t('just_now') : `${hours}${t('h_ago')}`;
     } else if (diffInHours < 24 * 7) {
       const days = Math.floor(diffInHours / 24);
-      return `${days}d ago`;
+      return `${days}${t('d_ago')}`;
     } else {
       return date.toLocaleDateString();
     }
@@ -105,14 +107,14 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
         <div className="card-header">
           <h5 className="card-title mb-0">
             <i className="bi bi-chat-dots me-2"></i>
-            Community Discussions
+            {t('community_discussions')}
           </h5>
         </div>
         <div className="card-body text-center">
           <div className="spinner-border spinner-border-sm" role="status">
-            <span className="visually-hidden">Loading...</span>
+            <span className="visually-hidden">{t('loading')}</span>
           </div>
-          <p className="small text-muted mt-2 mb-0">Loading discussions...</p>
+          <p className="small text-muted mt-2 mb-0">{t('loading_discussions')}</p>
         </div>
       </div>
     );
@@ -124,16 +126,16 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
         <div className="card-header">
           <h5 className="card-title mb-0">
             <i className="bi bi-chat-dots me-2"></i>
-            Community Discussions
+            {t('community_discussions')}
           </h5>
         </div>
         <div className="card-body text-center">
           <i className="bi bi-lock text-muted mb-2" style={{ fontSize: '2rem' }}></i>
           <p className="text-muted mb-3">
-            Join this church to participate in community discussions
+            {t('join_church_participate_discussions')}
           </p>
           <small className="text-muted">
-            Contact a church administrator for access
+            {t('contact_church_admin_access')}
           </small>
         </div>
       </div>
@@ -145,25 +147,25 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
       <div className="card-header d-flex justify-content-between align-items-center">
         <h5 className="card-title mb-0">
           <i className="bi bi-chat-dots me-2"></i>
-          Community Discussions
+          {t('community_discussions')}
         </h5>
         <Link 
           href={`/churches/${churchId}/discussions`}
           className="btn btn-sm btn-outline-primary"
         >
-          View All
+          {t('view_all')}
         </Link>
       </div>
       <div className="card-body">
         {discussions.length === 0 ? (
           <div className="text-center">
             <i className="bi bi-chat-dots text-muted mb-2" style={{ fontSize: '2rem' }}></i>
-            <p className="text-muted mb-3">No discussions yet</p>
+            <p className="text-muted mb-3">{t('no_discussions_yet')}</p>
             <Link 
               href={`/churches/${churchId}/discussions`}
               className="btn btn-sm btn-primary"
             >
-              Start First Discussion
+              {t('start_first_discussion')}
             </Link>
           </div>
         ) : (
@@ -173,18 +175,18 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
               <div className="col-4">
                 <div className="border-end">
                   <h6 className="text-primary mb-0">{discussions.length}</h6>
-                  <small className="text-muted">Total</small>
+                  <small className="text-muted">{t('total')}</small>
                 </div>
               </div>
               <div className="col-4">
                 <div className="border-end">
                   <h6 className="text-success mb-0">{getRecentDiscussions().length}</h6>
-                  <small className="text-muted">This Week</small>
+                  <small className="text-muted">{t('this_week')}</small>
                 </div>
               </div>
               <div className="col-4">
                 <h6 className="text-info mb-0">{getTotalComments()}</h6>
-                <small className="text-muted">Comments</small>
+                <small className="text-muted">{t('comments')}</small>
               </div>
             </div>
 
@@ -193,7 +195,7 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
               <div className="mb-3">
                 <h6 className="text-warning mb-2">
                   <i className="bi bi-pin-angle me-1"></i>
-                  Pinned
+                  {t('pinned')}
                 </h6>
                 {getPinnedDiscussions().slice(0, 2).map((discussion) => (
                   <div key={discussion.id} className="small mb-2">
@@ -207,7 +209,7 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
                       }
                     </Link>
                     <div className="text-muted">
-                      {discussion.commentCount} comments • {formatRelativeTime(discussion.lastActivityAt)}
+                      {discussion.commentCount} {t('comments')} • {formatRelativeTime(discussion.lastActivityAt)}
                     </div>
                   </div>
                 ))}
@@ -218,7 +220,7 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
             <div className="mb-3">
               <h6 className="text-primary mb-2">
                 <i className="bi bi-clock me-1"></i>
-                Recent Activity
+                {t('recent_activity')}
               </h6>
               {discussions.slice(0, 3).map((discussion) => (
                 <div key={discussion.id} className="small mb-2">
@@ -232,7 +234,7 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
                     }
                   </Link>
                   <div className="text-muted">
-                    by {discussion.authorName} • {discussion.commentCount} comments
+                    {t('by')} {discussion.authorName} • {discussion.commentCount} {t('comments')}
                   </div>
                   {discussion.tags.length > 0 && (
                     <div className="mt-1">
@@ -252,7 +254,7 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
               <div className="mb-3">
                 <h6 className="text-info mb-2">
                   <i className="bi bi-fire me-1"></i>
-                  Most Active
+                  {t('most_active')}
                 </h6>
                 <div className="small">
                   <Link 
@@ -265,8 +267,8 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
                     }
                   </Link>
                   <div className="text-muted">
-                    {getMostActiveDiscussion()!.commentCount} comments • 
-                    by {getMostActiveDiscussion()!.authorName}
+                    {getMostActiveDiscussion()!.commentCount} {t('comments')} • 
+                    {t('by')} {getMostActiveDiscussion()!.authorName}
                   </div>
                 </div>
               </div>
@@ -276,14 +278,14 @@ export default function DiscussionsSummary({ churchId }: DiscussionsSummaryProps
             <div className="d-grid gap-2">
               <Link 
                 href={`/churches/${churchId}/discussions`}
-                className="btn btn-primary btn-sm"
+                className="btn btn-primary text-white btn-sm"
               >
                 <i className="bi bi-chat-dots me-2"></i>
-                Join Discussions
+                {t('join_discussions')}
               </Link>
               {['member', 'editor', 'manager', 'admin'].includes(userRole) && (
                 <small className="text-center text-muted">
-                  As a {userRole}, you can create and participate in discussions
+                  {t('as_a_role_you_can_create_participate', { role: userRole })}
                 </small>
               )}
             </div>

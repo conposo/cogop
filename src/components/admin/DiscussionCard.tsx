@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Discussion } from '@/contexts/DiscussionsContext';
 import { useDiscussions } from '@/contexts/DiscussionsContext';
 import { useAuth } from '@/contexts/AuthContext';
+import { useTranslation } from '@/lib/i18n';
 import DiscussionDetailModal from './DiscussionDetailModal';
 import DiscussionEditModal from './DiscussionEditModal';
 
@@ -14,6 +15,7 @@ interface DiscussionCardProps {
 }
 
 export default function DiscussionCard({ discussion, userRole, onUpdate }: DiscussionCardProps) {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const { pinDiscussion, deleteDiscussion } = useDiscussions();
   const [showDetailModal, setShowDetailModal] = useState(false);
@@ -26,13 +28,16 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
     
     if (diffInHours < 1) {
       const minutes = Math.floor(diffInHours * 60);
-      return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+      if (minutes === 0) {
+        return t('just_now', { defaultValue: 'Just now' });
+      }
+      return t('minutes_ago', { defaultValue: '{minutes} minute{plural} ago', minutes, plural: minutes !== 1 ? 's' : '' });
     } else if (diffInHours < 24) {
       const hours = Math.floor(diffInHours);
-      return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+      return t('hours_ago', { defaultValue: '{hours} hour{plural} ago', hours, plural: hours !== 1 ? 's' : '' });
     } else if (diffInHours < 24 * 7) {
       const days = Math.floor(diffInHours / 24);
-      return `${days} day${days !== 1 ? 's' : ''} ago`;
+      return t('days_ago', { defaultValue: '{days} day{plural} ago', days, plural: days !== 1 ? 's' : '' });
     } else {
       return date.toLocaleDateString();
     }
@@ -59,7 +64,7 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
       onUpdate();
     } catch (error) {
       console.error('Error pinning discussion:', error);
-      alert('Error updating discussion. Please try again.');
+      alert(t('error_updating_discussion', { defaultValue: 'Error updating discussion. Please try again.' }));
     } finally {
       setLoading(false);
     }
@@ -69,7 +74,7 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
     if (!canDelete() || loading) return;
 
     const confirmed = window.confirm(
-      'Are you sure you want to delete this discussion? This action cannot be undone.'
+      t('confirm_delete_discussion', { defaultValue: 'Are you sure you want to delete this discussion? This action cannot be undone.' })
     );
 
     if (!confirmed) return;
@@ -98,7 +103,7 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
           <div className="card-header bg-warning bg-opacity-10 py-2">
             <small className="text-warning fw-bold">
               <i className="bi bi-pin-angle me-1"></i>
-              Pinned Discussion
+              {t('pinned_discussion', { defaultValue: 'Pinned Discussion' })}
             </small>
           </div>
         )}
@@ -124,7 +129,7 @@ export default function DiscussionCard({ discussion, userRole, onUpdate }: Discu
                     onClick={() => setShowDetailModal(true)}
                   >
                     <i className="bi bi-eye me-2"></i>
-                    View Details
+                    {t('view_details', { defaultValue: 'View Details' })}
                   </button>
                 </li>
                 

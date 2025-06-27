@@ -2,9 +2,10 @@
 
 import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
-import { t } from '@/lib/i18n'
+import { useTranslation } from '@/lib/i18n'
 
 export default function EmploymentPage() {
+  const { t } = useTranslation()
   const { pages } = useContent()
   const pageContent = pages['get-connected/employment']
 

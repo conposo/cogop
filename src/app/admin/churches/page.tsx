@@ -455,7 +455,7 @@ export default function ChurchesManagement() {
             Import Churches
           </button>
           <button 
-            className="btn btn-primary"
+            className="btn btn-primary text-white"
             onClick={openAddModal}
           >
             <i className="bi bi-plus-circle me-2"></i>
@@ -834,7 +834,7 @@ export default function ChurchesManagement() {
                   </button>
                   <button
                     type="submit"
-                    className="btn btn-primary"
+                    className="btn btn-primary text-white"
                     disabled={submitting}
                   >
                     {submitting ? (
@@ -927,7 +927,7 @@ export default function ChurchesManagement() {
                 </button>
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-primary text-white"
                   onClick={handleImport}
                   disabled={importing || !importData.trim()}
                 >

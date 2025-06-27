@@ -235,7 +235,7 @@ export default function ChurchUsersManagement() {
             Back to Church
           </Link>
           <button
-            className="btn btn-primary"
+            className="btn btn-primary text-white"
             onClick={() => setShowAddForm(!showAddForm)}
           >
             <i className="bi bi-plus-circle me-2"></i>
@@ -344,7 +344,7 @@ export default function ChurchUsersManagement() {
                 </div>
               </div>
               <div className="d-flex gap-2">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary text-white">
                   <i className="bi bi-check-circle me-2"></i>
                   Add User
                 </button>
@@ -381,7 +381,7 @@ export default function ChurchUsersManagement() {
               <i className="bi bi-people display-4 text-muted"></i>
               <p className="text-muted mt-2">No users assigned to this church yet.</p>
               <button
-                className="btn btn-primary"
+                className="btn btn-primary text-white"
                 onClick={() => setShowAddForm(true)}
               >
                 Add First User

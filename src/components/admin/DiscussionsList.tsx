@@ -354,7 +354,7 @@ ${t('please_try', { defaultValue: 'Please try' })}:
               </p>
               {canCreateDiscussion() && !searchTerm && !selectedTag && (
                 <button
-                  className="btn btn-primary mt-2"
+                  className="btn btn-primary text-white mt-2"
                   onClick={() => setShowCreateModal(true)}
                 >
                   <i className="bi bi-plus-circle me-2"></i>

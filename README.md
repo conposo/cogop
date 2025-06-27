@@ -168,7 +168,9 @@ The Church of God of Prophecy serves:
 - `npm run build`: Build for production
 - `npm run start`: Start production server
 - `npm run lint`: Run ESLint
+- `npm run import:churches`: Import Bulgarian churches to database
 - `node scripts/generate-pages.js`: Generate pages from templates
+- `./scripts/run-import.sh`: Run church import with environment variables
 
 ## 📱 Responsive Breakpoints
 
@@ -195,6 +197,35 @@ $danger: #dc3545;
 $light: #f8f9fa;
 $dark: #343a40;
 ```
+
+## 🏢 Church Data Import
+
+The project includes a specialized script for importing Bulgarian Church of God of Prophecy data:
+
+### Features
+- 🇧🇬 **Bulgarian Churches**: Imports 10 Bulgarian churches with localized data
+- 📸 **Image Upload**: Automatically uploads church images to Firebase Storage
+- 🔥 **Firestore Integration**: Saves complete church records to the database
+- ✅ **Error Handling**: Comprehensive error reporting and logging
+
+### Usage
+```bash
+# Method 1: Using npm script
+npm run import:churches
+
+# Method 2: Using shell script (recommended)
+./scripts/run-import.sh
+
+# Method 3: Direct execution
+node scripts/import-bulgarian-churches.js
+```
+
+### Setup Requirements
+1. **Firebase Configuration**: Set environment variables in `.env.local`
+2. **Data Directory**: Ensure `COGOP-churches/` directory exists
+3. **Dependencies**: Run `npm install` to install required packages
+
+For detailed instructions, see [`scripts/README-import.md`](scripts/README-import.md).
 
 ## 🚦 Future Enhancements
 

@@ -526,7 +526,7 @@ export default function ProfilePage() {
                 My Churches
               </h3>
               <button
-                className="btn btn-primary btn-sm"
+                className="btn btn-primary text-white btn-sm"
                 onClick={() => setShowJoinChurch(!showJoinChurch)}
               >
                 <i className="bi bi-plus-circle me-2"></i>
@@ -587,7 +587,7 @@ export default function ProfilePage() {
                         </div>
                         <div className="d-flex gap-2">
                           <button
-                            className="btn btn-success btn-sm"
+                            className="btn btn-success btn-sm text-white"
                             onClick={handleJoinChurch}
                             disabled={!selectedChurchId || joiningChurch}
                           >
@@ -627,7 +627,7 @@ export default function ProfilePage() {
                   <i className="bi bi-building display-4 text-muted"></i>
                   <p className="text-muted mt-2">You haven't joined any churches yet.</p>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary text-white"
                     onClick={() => setShowJoinChurch(true)}
                   >
                     Join Your First Church

@@ -293,7 +293,7 @@ export default function DiscussionEditModal({
             </button>
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary text-white"
               onClick={handleSave}
               disabled={saving || loading || !formData.title.trim() || !formData.content.trim()}
             >
