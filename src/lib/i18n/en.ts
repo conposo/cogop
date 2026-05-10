@@ -181,6 +181,8 @@ export const enMessages = {
     // Ministries
     ministries_title: 'Ministries',
     ministries_description: 'Discover our various ministries serving communities worldwide.',
+    ministries_landing_intro:
+      'We invest in the next generation through dedicated children’s and youth ministries—biblical teaching, discipleship, and opportunities to serve in the local church and beyond.',
     
     admin_finance_title: 'Administration & Finance',
     admin_finance_description: 'Supporting ministry through sound financial stewardship and administration.',
@@ -270,6 +272,11 @@ export const enMessages = {
     // Resources
     resources_title: 'Resources',
     resources_description: 'Access educational materials, documents, and spiritual resources.',
+    resources_explore_heading: 'Browse our resources',
+    resources_landing_intro:
+      'Find reading and media for spiritual growth, and a clear path to begin—or renew—your relationship with God through Jesus Christ.',
+    resources_landing_library_teaser:
+      'Articles, curated reading, and study materials to support your walk with Christ.',
     
     get_started_title: 'Get Started',
     get_started_description: 'Begin your journey with the Church of God of Prophecy.',

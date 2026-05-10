@@ -288,7 +288,7 @@ export default function Home() {
                             <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
                           </p>
                         )}
-                        <Link href={`/news/${article.slug}`} className="btn btn-dark">{t('read_more')}</Link>
+                        {/* <Link href={`/news/${article.slug}`} className="btn btn-dark">{t('read_more')}</Link> */}
                       </div>
                     </div>
                   </div>
@@ -302,9 +302,9 @@ export default function Home() {
                         <i className="bi bi-newspaper fs-1 text-muted mb-3"></i>
                         <h5 className="text-muted mb-2">{t('more_articles_coming_soon')}</h5>
                         <p className="text-muted small mb-3">{t('stay_tuned_for_inspiring_articles_and_church_updates')}</p>
-                        <Link href="/news" className="btn btn-outline-secondary btn-sm">
+                        {/* <Link href="/news" className="btn btn-outline-secondary btn-sm">
                           {t('view_all')}
-                        </Link>
+                        </Link> */}
                       </div>
                     </div>
                   </div>
@@ -313,13 +313,13 @@ export default function Home() {
             </div>
 
             <div className="text-center mt-4">
-              <Link href="/news" className="btn btn-outline-primary">{t('view_all')}</Link>
+              {/* <Link href="/news" className="btn btn-outline-primary">{t('view_all')}</Link> */}
             </div>
           </div>
         </section>
 
         {/* Podcasts */}
-        <section className="podcasts-section mx-n3 py-5 bg-light">
+        {/* <section className="podcasts-section mx-n3 py-5 bg-light">
           <div className="container">
             <h2 className="text-center mb-5">{t('our_podcasts')}</h2>
             <div className="row">
@@ -343,7 +343,7 @@ export default function Home() {
               <Link href="/podcasts" className="btn btn-outline-primary">{t('view_all')}</Link>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Events */}
         <section className="events-section py-5">
@@ -413,7 +413,7 @@ export default function Home() {
               </div>
             )}
             <div className="text-center">
-              <Link href="/events" className="btn btn-outline-primary">{t('explore_all_events')}</Link>
+              {/* <Link href="/events" className="btn btn-outline-primary">{t('explore_all_events')}</Link> */}
             </div>
           </div>
         </section>

@@ -7,7 +7,7 @@ export const bgMessages = {
     // Navigation
     welcome: 'Добре дошли',
     home: 'Начало',
-    start_here: 'Начало',
+    start_here: 'Започни тук',
     get_connected: 'Свържете се с нас',
     calendar: 'Календар',
     contact: 'Контакт',
@@ -189,6 +189,8 @@ export const bgMessages = {
     // Ministries
     ministries_title: 'Служения',
     ministries_description: 'Открийте нашите различни служения, които служат на общности по целия свят.',
+    ministries_landing_intro:
+      'Инвестираме в следващото поколение чрез специализирани детски и младежки служения — библейско учение, ученичество и възможности да служат в местната църква и отвъд нея.',
     
     admin_finance_title: 'Администрация и финанси',
     admin_finance_description: 'Подкрепа на служението чрез здраво финансово управление и администрация.',
@@ -278,6 +280,11 @@ export const bgMessages = {
     // Resources
     resources_title: 'Ресурси',
     resources_description: 'Достъп до образователни материали, документи и духовни ресурси.',
+    resources_explore_heading: 'Разгледайте нашите ресурси',
+    resources_landing_intro:
+      'Открийте четива и медия за духовен растеж и ясен път да започнете — или подновите — връзката си с Бога чрез Исус Христос.',
+    resources_landing_library_teaser:
+      'Статии, подбрано четиво и учебни материали, които подкрепят ходенето ви с Христос.',
     
     get_started_title: 'Започнете',
     get_started_description: 'Започнете вашето пътуване с Църква на Бога на Пророчеството.',
@@ -907,7 +914,7 @@ export const bgMessages = {
     historical_information_coming_soon: 'Очаквайте скоро...',
 
     // About section navigation
-    about: 'За нас',
+    about: 'Кои сме ние',
     who_we_are: 'Кои сме ние',
     what_we_believe: 'В какво вярваме',
     our_leadership: 'Нашето ръководство',

@@ -95,7 +95,7 @@ const getContentData = (): ContentContextType => ({
 
   mainCTAs: [
     { label: t('start_here', { defaultValue: 'Get Connected' }), link: '/get-connected', icon: 'bi bi-house' },
-    { label: t('about', { defaultValue: 'About' }), link: '/about', icon: 'bi bi-envelope' },
+    { label: t('about', { defaultValue: 'About' }), link: '/about/who-we-are', icon: 'bi bi-envelope' },
     { label: t('ministries', { defaultValue: 'Ministries' }), link: '/ministries', icon: 'bi bi-person-plus' },
     { label: t('resources', { defaultValue: 'Resources' }), link: '/resources', icon: 'bi bi-geo-alt' },
   ],
@@ -419,35 +419,26 @@ const getContentData = (): ContentContextType => ({
       description: t('ministries_description', { defaultValue: 'Explore the various ministries and outreach programs of our church.' }),
       content: `
         <h2>${t('serving_god_through_ministry', { defaultValue: 'Serving God Through Ministry' })}</h2>
-        <p>${t('serving_god_ministry_desc', { defaultValue: 'The Church of God of Prophecy is committed to fulfilling the Great Commission through various ministries that serve our local communities and reach the world.' })}</p>
-        
-        <div class="row">
-          <div class="col-md-4 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title">${t('global_missions_title', { defaultValue: 'Global Missions' })}</h5>
-                <p class="card-text">${t('global_missions_desc', { defaultValue: 'Reaching 135 countries with the Gospel of Jesus Christ.' })}</p>
-                <a href="/ministries/global-missions" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
+        <p>${t('ministries_landing_intro', { defaultValue: 'We invest in the next generation through dedicated children’s and youth ministries—biblical teaching, discipleship, and opportunities to serve in the local church and beyond.' })}</p>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <section class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h3 class="h4 card-title">${t('childrens_title', { defaultValue: "Children's Ministry" })}</h3>
+                <p class="card-text mb-4">${t('childrens_description', { defaultValue: 'Nurturing faith in the hearts of our youngest members.' })}</p>
+                <a href="/ministries/childrens" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
               </div>
-            </div>
+            </section>
           </div>
-          <div class="col-md-4 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title">${t('youth_title', { defaultValue: 'Youth Ministry' })}</h5>
-                <p class="card-text">${t('empowering_next_generation', { defaultValue: 'Empowering the next generation of believers.' })}</p>
+          <div class="col-lg-6">
+            <section class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h3 class="h4 card-title">${t('youth_title', { defaultValue: 'Youth Ministry' })}</h3>
+                <p class="card-text mb-4">${t('youth_description', { defaultValue: 'Empowering young people to grow in faith and leadership.' })}</p>
                 <a href="/ministries/youth" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
               </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title">${t('spirit_life_seminary_title', { defaultValue: 'Seminary' })}</h5>
-                <p class="card-text">${t('training_leaders_ministry', { defaultValue: 'Training ministers for effective service.' })}</p>
-                <a href="/ministries/seminary" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
-              </div>
-            </div>
+            </section>
           </div>
         </div>
       `
@@ -1074,7 +1065,40 @@ const getContentData = (): ContentContextType => ({
     'resources': {
       title: t('resources_title', { defaultValue: 'Resources' }),
       description: t('resources_description', { defaultValue: 'Access educational materials, documents, and spiritual resources.' }),
-      content: `<p>${t('resources_overview_coming_soon', { defaultValue: 'Resources overview coming soon...' })}</p>`
+      content: `
+        <h2>${t('resources_explore_heading', { defaultValue: 'Browse our resources' })}</h2>
+        <p>${t('resources_landing_intro', { defaultValue: 'Find reading and media for spiritual growth, and a clear path to begin—or renew—your relationship with God through Jesus Christ.' })}</p>
+
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <section class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h3 class="h4 card-title">${t('library_title', { defaultValue: 'Library' })}</h3>
+                <p class="card-text mb-4">${t('resources_landing_library_teaser', { defaultValue: 'Articles, curated reading, and study materials to support your walk with Christ.' })}</p>
+                <a href="/resources/library" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
+              </div>
+            </section>
+          </div>
+          <div class="col-lg-4">
+            <section class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h3 class="h4 card-title">${t('media_title', { defaultValue: 'Media' })}</h3>
+                <p class="card-text mb-4">${t('media_description', { defaultValue: 'Access sermons, videos, and multimedia resources for spiritual growth and ministry.' })}</p>
+                <a href="/resources/media" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
+              </div>
+            </section>
+          </div>
+          <div class="col-lg-4">
+            <section class="card h-100 border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h3 class="h4 card-title">${t('how_to_know_god_title', { defaultValue: 'How to Know God' })}</h3>
+                <p class="card-text mb-4">${t('how_to_know_god_description', { defaultValue: 'Discover a personal relationship with Jesus Christ.' })}</p>
+                <a href="/resources/know-god" class="btn btn-dark">${t('learn_more', { defaultValue: 'Learn More' })}</a>
+              </div>
+            </section>
+          </div>
+        </div>
+      `
     },
     'resources/get-started': {
       title: 'Get Started',
