@@ -194,22 +194,23 @@ const Navigation = () => {
     {
       title: t('ministries', { defaultValue: 'Ministries' }),
       items: [
-        { title: t('admin_finance_title', { defaultValue: 'Administration & Finance' }), href: '/ministries/admin-finance' },
-        { title: t('global_missions_title', { defaultValue: 'Global Missions' }), href: '/ministries/global-missions' },
-        { title: t('harvest_partners_title', { defaultValue: 'Harvest Partners' }), href: '/ministries/harvest-partners' },
-        { title: t('helping_hands_title', { defaultValue: 'Helping Hands' }), href: '/ministries/helping-hands' },
-        { title: t('one_child_fund_title', { defaultValue: 'One Child Fund' }), href: '/ministries/one-child-fund' },
-        { title: t('heritage_title', { defaultValue: 'Heritage' }), href: '/ministries/heritage' },
+        // { title: t('admin_finance_title', { defaultValue: 'Administration & Finance' }), href: '/ministries/admin-finance' },
+        // { title: t('global_missions_title', { defaultValue: 'Global Missions' }), href: '/ministries/global-missions' },
+        // { title: t('harvest_partners_title', { defaultValue: 'Harvest Partners' }), href: '/ministries/harvest-partners' },
+        // { title: t('helping_hands_title', { defaultValue: 'Helping Hands' }), href: '/ministries/helping-hands' },
+        // { title: t('one_child_fund_title', { defaultValue: 'One Child Fund' }), href: '/ministries/one-child-fund' },
+        // { title: t('heritage_title', { defaultValue: 'Heritage' }), href: '/ministries/heritage' },
         // { title: t('fields_of_wood_title', { defaultValue: 'Fields of the Wood' }), href: '/ministries/fields-of-the-wood' },
-        { title: t('stewardship_title', { defaultValue: 'Stewardship' }), href: '/ministries/stewardship' },
-        { title: t('bookstore_title', { defaultValue: 'Bookstore' }), href: '/ministries/bookstore' },
+        // { title: t('stewardship_title', { defaultValue: 'Stewardship' }), href: '/ministries/stewardship' },
+        // { title: t('bookstore_title', { defaultValue: 'Bookstore' }), href: '/ministries/bookstore' },
+        { title: t('library_title', { defaultValue: 'Library' }), href: '/ministries/library' },
         // { title: t('global_communications_title', { defaultValue: 'Global Communications' }), href: '/ministries/global-communications' },
         // { title: t('white_wing_messenger_title', { defaultValue: 'White Wing Messenger' }), href: '/ministries/white-wing-messenger' },
-        { title: t('prayer_title', { defaultValue: 'Prayer' }), href: '/ministries/prayer' },
-        { title: t('international_assembly_title', { defaultValue: 'International Assembly' }), href: '/ministries/international-assembly' },
-        { title: t('leadership_development_title', { defaultValue: 'Leadership Development' }), href: '/ministries/leadership-development' },
+        // { title: t('prayer_title', { defaultValue: 'Prayer' }), href: '/ministries/prayer' },
+        // { title: t('international_assembly_title', { defaultValue: 'International Assembly' }), href: '/ministries/international-assembly' },
+        // { title: t('leadership_development_title', { defaultValue: 'Leadership Development' }), href: '/ministries/leadership-development' },
         // { title: t('accredited_ministries_title', { defaultValue: 'Accredited Ministries' }), href: '/ministries/accredited-ministries' },
-        { title: t('center_biblical_leadership_title', { defaultValue: 'Center for Biblical Leadership' }), href: '/ministries/center-biblical-leadership' },
+        // { title: t('center_biblical_leadership_title', { defaultValue: 'Center for Biblical Leadership' }), href: '/ministries/center-biblical-leadership' },
         // { title: t('spirit_life_seminary_title', { defaultValue: 'Spirit & Life Seminary' }), href: '/ministries/spirit-life-seminary' },
         { title: t('childrens_title', { defaultValue: "Children's" }), href: '/ministries/childrens' },
         { title: t('youth_title', { defaultValue: 'Youth' }), href: '/ministries/youth' },
@@ -228,27 +229,27 @@ const Navigation = () => {
     //     { title: t('europe_middle_east', { defaultValue: 'Europe & Middle East' }), href: '/where-we-serve/europe-middle-east' },
     //   ]
     // },
-    {
-      title: t('resources', { defaultValue: 'Resources' }),
-      items: [
-        { title: t('get_started_title', { defaultValue: 'Get Started' }), href: '/resources/get-started' },
-        { title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }), href: '/resources/know-god' },
-        // { title: t('membership', { defaultValue: 'Membership' }), href: '/resources/membership' },
-        { title: t('media_title', { defaultValue: 'Media' }), href: '/resources/media' },
-        { title: t('podcasts_title', { defaultValue: 'Podcasts' }), href: '/resources/podcasts' },
-        { title: t('youtube_title', { defaultValue: 'YouTube' }), href: '/resources/youtube' },
-        { title: t('library_title', { defaultValue: 'Library' }), href: '/resources/library' },
-        { title: t('assembly_documents_title', { defaultValue: 'Assembly Documents' }), href: '/resources/assembly-documents' },
-        { title: t('policies_guidelines_title', { defaultValue: 'Policies & Guidelines' }), href: '/resources/policies-guidelines' },
-        { title: t('public_statements_title', { defaultValue: 'Public Statements' }), href: '/resources/public-statements' },
-        { title: t('assembly_minutes_title', { defaultValue: 'Assembly Minutes' }), href: '/resources/assembly-minutes' },
-        { title: t('church_resources_title', { defaultValue: 'Church Resources' }), href: '/resources/church-resources' },
-        { title: t('church_locator_title', { defaultValue: 'Church Locator' }), href: '/churches' },
-        // { title: t('church_logos_title', { defaultValue: 'Church Logos' }), href: '/resources/church-logos' },
-        { title: t('treasurers_report_title', { defaultValue: "Treasurer's Report" }), href: '/resources/treasurers-report' },
-        { title: t('directory_title', { defaultValue: 'Directory' }), href: '/resources/directory' },
-      ]
-    },
+    // {
+    //   title: t('resources', { defaultValue: 'Resources' }),
+    //   items: [
+    //     { title: t('get_started_title', { defaultValue: 'Get Started' }), href: '/resources/get-started' },
+    //     { title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }), href: '/resources/know-god' },
+    //     { title: t('membership', { defaultValue: 'Membership' }), href: '/resources/membership' },
+    //     { title: t('media_title', { defaultValue: 'Media' }), href: '/resources/media' },
+    //     { title: t('podcasts_title', { defaultValue: 'Podcasts' }), href: '/resources/podcasts' },
+    //     { title: t('youtube_title', { defaultValue: 'YouTube' }), href: '/resources/youtube' },
+    //     { title: t('library_title', { defaultValue: 'Library' }), href: '/resources/library' },
+    //     { title: t('assembly_documents_title', { defaultValue: 'Assembly Documents' }), href: '/resources/assembly-documents' },
+    //     { title: t('policies_guidelines_title', { defaultValue: 'Policies & Guidelines' }), href: '/resources/policies-guidelines' },
+    //     { title: t('public_statements_title', { defaultValue: 'Public Statements' }), href: '/resources/public-statements' },
+    //     { title: t('assembly_minutes_title', { defaultValue: 'Assembly Minutes' }), href: '/resources/assembly-minutes' },
+    //     { title: t('church_resources_title', { defaultValue: 'Church Resources' }), href: '/resources/church-resources' },
+    //     { title: t('church_locator_title', { defaultValue: 'Church Locator' }), href: '/churches' },
+    //     { title: t('church_logos_title', { defaultValue: 'Church Logos' }), href: '/resources/church-logos' },
+    //     { title: t('treasurers_report_title', { defaultValue: "Treasurer's Report" }), href: '/resources/treasurers-report' },
+    //     { title: t('directory_title', { defaultValue: 'Directory' }), href: '/resources/directory' },
+    //   ]
+    // },
     {
       title: t('give', { defaultValue: 'Give' }),
       href: '/give'
@@ -386,7 +387,7 @@ const Navigation = () => {
               </button>
               
               {/* Authentication Section */}
-              {!loading && (
+              {false && !loading && (
                 <>
                   {user ? (
                     <UserMenu />

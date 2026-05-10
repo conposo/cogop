@@ -609,28 +609,8 @@ const getContentData = (): ContentContextType => ({
     },
     'ministries/youth': {
       title: t('youth_title', { defaultValue: 'Youth Ministry' }),
-      description: t('youth_description', { defaultValue: 'Empowering young people to grow in faith and leadership.' }),
-      content: `
-        <h2>${t('empowering_next_generation', { defaultValue: 'Empowering the Next Generation' })}</h2>
-        <p>${t('youth_ministry_desc', { defaultValue: 'Our youth ministry is dedicated to helping young people develop a strong relationship with Jesus Christ and discover their purpose in God\'s kingdom.' })}</p>
-        
-        <h3>${t('programs_activities', { defaultValue: 'Programs and Activities' })}</h3>
-        <ul>
-          <li>${t('icm_youth_conference', { defaultValue: 'ICM (International Convention of Ministry) Youth Conference' })}</li>
-          <li>${t('local_youth_groups', { defaultValue: 'Local youth groups and Bible studies' })}</li>
-          <li>${t('leadership_development_programs', { defaultValue: 'Leadership development programs' })}</li>
-          <li>${t('mission_trips', { defaultValue: 'Mission trips and service projects' })}</li>
-          <li>${t('sports_recreation', { defaultValue: 'Sports and recreation ministries' })}</li>
-        </ul>
-        
-        <h3>${t('icm_testify', { defaultValue: 'ICM: Testify' })}</h3>
-        <p>${t('icm_testify_desc_full', { defaultValue: 'Our annual international youth conference brings together young adults from around the world for worship, teaching, and fellowship.' })}</p>
-        
-        <blockquote class="blockquote">
-          <p>${t('timothy_quote', { defaultValue: '"Don\'t let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity."' })}</p>
-          <footer class="blockquote-footer">${t('timothy_reference', { defaultValue: '1 Timothy 4:12' })}</footer>
-        </blockquote>
-      `
+      description: t('content_coming_soon', { defaultValue: 'Content coming soon...' }),
+      content: `<p class="lead text-muted">${t('content_coming_soon', { defaultValue: 'Content coming soon...' })}</p>`,
     },
     'ministries/seminary': {
       title: 'Spirit and Life Seminary',
@@ -867,6 +847,11 @@ const getContentData = (): ContentContextType => ({
         <p>Browse our catalog online or visit our physical location for personalized service and recommendations.</p>
       `
     },
+    'ministries/library': {
+      title: t('library_title', { defaultValue: 'Library' }),
+      description: t('content_coming_soon', { defaultValue: 'Content coming soon...' }),
+      content: `<p class="lead text-muted">${t('content_coming_soon', { defaultValue: 'Content coming soon...' })}</p>`,
+    },
     'ministries/global-communications': {
       title: 'Global Communications',
       description: 'Connecting our worldwide church through media and communications.',
@@ -1030,31 +1015,9 @@ const getContentData = (): ContentContextType => ({
       `
     },
     'ministries/childrens': {
-      title: 'Children\'s Ministry',
-      description: 'Nurturing faith in the hearts of our youngest members.',
-      content: `
-        <h2>Building Faith from an Early Age</h2>
-        <p>Our children's ministry is designed to help children develop a love for God, learn biblical truths, and grow in their relationship with Jesus Christ.</p>
-        
-        <h3>Age-Appropriate Programs</h3>
-        <ul>
-          <li>Sunday School classes for all age groups</li>
-          <li>Children's church during worship services</li>
-          <li>Vacation Bible School</li>
-          <li>Kids' camps and retreats</li>
-          <li>Family ministry events</li>
-        </ul>
-        
-        <h3>Teaching Approach</h3>
-        <p>We use creative, interactive methods to help children:</p>
-        <ul>
-          <li>Learn Bible stories and principles</li>
-          <li>Develop prayer habits</li>
-          <li>Understand God's love</li>
-          <li>Build Christian friendships</li>
-          <li>Serve others in their community</li>
-        </ul>
-      `
+      title: t('childrens_title', { defaultValue: "Children's Ministry" }),
+      description: t('content_coming_soon', { defaultValue: 'Content coming soon...' }),
+      content: `<p class="lead text-muted">${t('content_coming_soon', { defaultValue: 'Content coming soon...' })}</p>`,
     },
 
     // Where We Serve Section

@@ -120,6 +120,11 @@ export const getServerContentData = (): ContentData => ({
       description: 'Christian books, resources, and materials for spiritual growth.',
       keywords: ['bookstore', 'christian books', 'resources', 'spiritual growth'],
     },
+    'ministries/library': {
+      title: 'Library',
+      description: 'Digital library of books, articles, and educational materials for ministry.',
+      keywords: ['library', 'digital library', 'books', 'theological resources', 'ministry'],
+    },
     'ministries/global-communications': {
       title: 'Global Communications',
       description: 'Connecting our worldwide church through media and communications.',

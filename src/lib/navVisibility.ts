@@ -8,6 +8,8 @@ export const HIDDEN_NAV_ROUTES: ReadonlySet<string> = new Set([
   '/about/membership',
   '/resources/membership',
   '/membership',
+  '/give',
+  '/get-connected/calendar',
 ])
 
 /** True if `href` points to a route hidden from navigation. */
