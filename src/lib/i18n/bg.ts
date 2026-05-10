@@ -1,907 +1,7 @@
-import { I18n } from 'i18n-js';
-import { useI18n } from '@/contexts/I18nContext';
-
-const i18n = new I18n();
-
-// Custom hook for translations that triggers re-renders when language changes
-export function useTranslation() {
-  const { language } = useI18n();
-  
-  return {
-    t: (key: string, options?: any) => {
-      // Force the current locale to match the context
-      i18n.locale = language;
-      return i18n.t(key, options);
-    },
-    language
-  };
-}
-
-i18n.translations = {
-  en: {
-    // Navigation
-    welcome: 'Welcome',
-    home: 'Home',
-    start_here: 'Start Here',
-    get_connected: 'Get Connected',
-    calendar: 'Calendar',
-    contact: 'Contact',
-    faq: 'FAQ',
-    employment: 'Employment',
-    schedule_tour: 'Schedule a Tour',
-    ministries: 'Ministries',
-    resources: 'Resources',
-    give: 'Give',
-    where_we_serve: 'Where We Serve',
-    presiding_bishop: 'Presiding Bishop',
-    africa: 'Africa',
-    asia_australia_oceania: 'Asia, Australia & Oceania',
-    caribbean_atlantic: 'Caribbean & Atlantic',
-    central_america: 'Central America',
-    north_america: 'North America',
-    south_america: 'South America',
-    europe_middle_east: 'Europe & Middle East',
-    
-    // Statistics
-    countries: 'Countries',
-    churches_and_missions: 'Churches and Missions',
-    members_around_world: 'Members Around the World',
-    languages: 'Languages',
-    
-    // Hero/Carousel
-    hero_title_1: 'We are the Church of God of Prophecy',
-    hero_desc_1: 'This 24-page booklet is a guide for anyone interested in understanding who we are, what we believe, and how we live out our mission together.',
-    hero_btn_1: 'Order Now',
-    hero_title_2: 'Community of Faith',
-    hero_desc_2: 'Join us as we serve Christ in 135 countries with over 12,000 churches and missions worldwide.',
-    hero_btn_2: 'Learn More',
-    hero_title_3: 'Spirit-Led Ministry',
-    hero_desc_3: 'Discover how we are fulfilling the Great Commission through the power of the Holy Spirit.',
-    hero_btn_3: 'Our Mission',
-
-    // Front Page
-    articles_and_news: 'Articles & News',
-    more_articles_coming_soon: 'More Articles Coming Soon',
-    stay_tuned_for_inspiring_articles_and_church_updates: 'Stay tuned for inspiring articles and church updates.',
-    read_more: 'Read More',
-    view_all: 'View All',
-    our_podcasts: 'Our Podcasts',
-    listen_now: 'Listen Now',
-    upcoming_events: 'Upcoming Events',
-    featured: 'Featured',
-    event_details: 'Event Details',
-    more_events_coming_soon: 'More Events Coming Soon',
-    stay_tuned_for_exciting_upcoming_events_and_gatherings: 'Stay tuned for exciting upcoming events and gatherings.',
-    get_notified: 'Get Notified',
-    no_upcoming_events: 'No Upcoming Events',
-    check_back_soon_for_new_events: 'Check back soon for new events!',
-    explore_all_events: 'Explore All Events',
-    have_you_ever_wondered_how_to_know_god_and_experience_the_peace_that_comes_from_him: 'Have you ever wondered how to know God and experience the peace that comes from him?',
-    how_to_know_god: 'How to Know God',
-    
-    // Buttons & UI
-    sign_in: 'Sign In',
-    sign_up: 'Sign Up',
-    learn_more: 'Learn More',
-    view_calendar: 'View Calendar',
-    contact_us: 'Contact Us',
-    back_to_news: 'Back to All News',
-    content_coming_soon: 'Content coming soon...',
-    
-    // Page Titles & Descriptions
-    get_connected_title: 'Get Connected',
-    get_connected_description: 'Connect with the Church of God of Prophecy community and discover ways to get involved.',
-    
-    about_title: 'About',
-    about_description: 'Learn about our identity, beliefs, and mission as a church movement.',
-    
-    who_we_are_title: 'Who We Are',
-    who_we_are_description: 'Discover our identity as a Christ-centered, Spirit-led movement.',
-    
-    what_we_believe_title: 'What We Believe',
-    what_we_believe_description: 'Explore our core beliefs, doctrine, and theological foundations.',
-    
-    our_leadership_title: 'Our Leadership',
-    our_leadership_description: 'Meet the leaders who guide and serve our church community.',
-    
-    our_history_title: 'Our History',
-    our_history_description: 'Journey through the rich history of the Church of God of Prophecy.',
-    
-    membership_title: 'Membership',
-    membership_description: 'Learn about becoming a member of our church family.',
-    
-    // Ministries
-    ministries_title: 'Ministries',
-    ministries_description: 'Discover our various ministries serving communities worldwide.',
-    
-    admin_finance_title: 'Administration & Finance',
-    admin_finance_description: 'Supporting ministry through sound financial stewardship and administration.',
-    
-    global_missions_title: 'Missions',
-    global_missions_description: 'Discover our worldwide mission work and evangelism efforts across 135 countries.',
-    
-    harvest_partners_title: 'Harvest Partners',
-    harvest_partners_description: 'Supporting missionaries and ministry partners around the world.',
-    
-    helping_hands_title: 'Helping Hands',
-    helping_hands_description: 'Disaster relief and humanitarian assistance ministry.',
-    
-    one_child_fund_title: 'One Child Fund',
-    one_child_fund_description: 'Supporting children and families in need around the world.',
-    
-    heritage_title: 'Heritage',
-    heritage_description: 'Preserving and sharing the history of the Church of God of Prophecy.',
-    
-    fields_of_wood_title: 'Fields of the Wood',
-    fields_of_wood_description: 'A biblical theme park and retreat center in Murphy, North Carolina.',
-    
-    stewardship_title: 'Stewardship',
-    stewardship_description: 'Teaching biblical principles of stewardship and financial responsibility.',
-    
-    bookstore_title: 'Bookstore',
-    bookstore_description: 'Christian books, resources, and materials for spiritual growth.',
-    
-    global_communications_title: 'Communications',
-    global_communications_description: 'Connecting our worldwide church through media and communications.',
-    
-    white_wing_messenger_title: 'White Wing Messenger',
-    white_wing_messenger_description: 'Our official church publication sharing news, inspiration, and teaching.',
-    
-    prayer_title: 'Prayer',
-    prayer_description: 'Connecting believers worldwide through the power of prayer.',
-    
-    international_assembly_title: 'International Assembly',
-    international_assembly_description: 'Our church gathering held every four years.',
-    
-    leadership_development_title: 'Leadership Development',
-    leadership_development_description: 'Training and equipping leaders for effective ministry worldwide.',
-    
-    accredited_ministries_title: 'Accredited Ministries',
-    accredited_ministries_description: 'Officially recognized ministries and institutions.',
-    
-    center_biblical_leadership_title: 'Center for Biblical Leadership',
-    center_biblical_leadership_description: 'Developing leaders through biblical principles and practical training.',
-    
-    spirit_life_seminary_title: 'Spirit & Life Seminary',
-    spirit_life_seminary_description: 'Training ministers for effective service in the 21st century.',
-    
-    childrens_title: "Children's Ministry",
-    childrens_description: 'Nurturing faith in the hearts of our youngest members.',
-    
-    youth_title: 'Youth Ministry',
-    youth_description: 'Empowering young people to grow in faith and leadership.',
-    
-    // Where We Serve
-    where_we_serve_title: 'Where We Serve',
-    where_we_serve_description: 'Explore our presence and ministry impact.',
-    
-    presiding_bishop_title: 'Presiding Bishop',
-    presiding_bishop_description: 'Leadership and oversight of our church movement.',
-    
-    africa_title: 'Africa',
-    africa_description: 'Ministry and church growth across the African continent.',
-    
-    asia_australia_oceania_title: 'Asia, Australia & Oceania',
-    asia_australia_oceania_description: 'Spreading the Gospel across Asia, Australia, and the Pacific islands.',
-    
-    caribbean_atlantic_title: 'Caribbean & Atlantic',
-    caribbean_atlantic_description: 'Island ministries throughout the Caribbean and Atlantic regions.',
-    
-    central_america_title: 'Central America',
-    central_america_description: 'Church growth and ministry throughout Central America.',
-    
-    north_america_title: 'North America',
-    north_america_description: 'Ministry throughout the United States, Canada, and Mexico.',
-    
-    south_america_title: 'South America',
-    south_america_description: 'Dynamic church growth across South American nations.',
-    
-    europe_middle_east_title: 'Europe & Middle East',
-    europe_middle_east_description: 'Ministry in challenging and diverse cultural contexts.',
-    
-    // Resources
-    resources_title: 'Resources',
-    resources_description: 'Access educational materials, documents, and spiritual resources.',
-    
-    get_started_title: 'Get Started',
-    get_started_description: 'Begin your journey with the Church of God of Prophecy.',
-    
-    how_to_know_god_title: 'How to Know God',
-    how_to_know_god_description: 'Discover a personal relationship with Jesus Christ.',
-    god_loves_you: 'God Loves You',
-    god_created_you_in_his_image_and_desires_a_personal_relationship_with_you: 'God created you in His image and desires a personal relationship with you.',
-    for_god_so_loved_the_world_that_he_gave_his_one_and_only_son_that_whoever_believes_in_him_shall_not_perish_but_have_eternal_life: 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.',
-    john_3_16: 'John 3:16',
-    we_are_separated_from_god: 'We Are Separated from God',
-    sin_has_created_a_barrier_between_us_and_god_we_all_fall_short_of_gods_perfect_standard_and_this_separation_affects_every_aspect_of_our_lives: 'Sin has created a barrier between us and God. We all fall short of God\'s perfect standard, and this separation affects every aspect of our lives.',
-    for_all_have_sinned_and_fall_short_of_the_glory_of_god: 'For all have sinned and fall short of the glory of God.',
-    romans_3_23: 'Romans 3:23',
-    jesus_is_the_answer: 'Jesus Is the Answer',
-    jesus_christ_bridged_the_gap_between_god_and_humanity_through_his_death_on_the_cross_he_paid_the_price_for_our_sins_so_we_could_have_a_relationship_with_god: 'Jesus Christ bridged the gap between God and humanity through His death on the cross. He paid the price for our sins so we could have a relationship with God.',
-    but_god_demonstrates_his_own_love_for_us_in_this_while_we_were_still_sinners_christ_died_for_us: 'But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.',
-    romans_5_8: 'Romans 5:8',
-    you_must_respond: 'You Must Respond',
-    knowing_about_gods_love_is_not_enough_you_must_personally_receive_jesus_christ_as_your_lord_and_savior_by_faith: 'Knowing about God\'s love is not enough. You must personally receive Jesus Christ as your Lord and Savior by faith.',
-    if_you_declare_with_your_mouth_jesus_is_lord_and_believe_in_your_heart_that_god_raised_him_from_the_dead_you_will_be_saved: 'If you declare with your mouth, "Jesus is Lord," and believe in your heart that God raised him from the dead, you will be saved.',
-    romans_10_9: 'Romans 10:9',
-    ready_to_take_the_next_step: 'Ready to Take the Next Step?',
-    if_you_would_like_to_know_more_about_having_a_personal_relationship_with_jesus_christ_we_are_here_to_help: 'If you would like to know more about having a personal relationship with Jesus Christ, we are here to help.',
-    
-    media_title: 'Media',
-    media_description: 'Videos, audio, and multimedia resources for spiritual growth.',
-    
-    podcasts_title: 'Podcasts',
-    podcasts_description: 'Listen to inspiring messages and teachings from our leaders.',
-    
-    youtube_title: 'YouTube',
-    youtube_description: 'Watch our latest videos and live streams.',
-    
-    library_title: 'Library',
-    library_description: 'Access our digital library of books, articles, and educational materials.',
-    digital_library: 'Digital Library',
-    digital_library_desc: 'Our online library provides access to theological books, historical documents, and educational resources.',
-    collection_includes: 'Collection Includes',
-    theological_biblical_reference: 'Theological and biblical reference works',
-    church_history_heritage: 'Church history and heritage materials',
-    ministry_training_resources: 'Ministry training resources',
-    devotional_inspirational: 'Devotional and inspirational books',
-    academic_papers_research: 'Academic papers and research',
-    access: 'Access',
-    library_access_desc: 'Library resources are available to members and ministry leaders. Contact us for access information.',
-    
-    assembly_documents_title: 'Assembly Documents',
-    assembly_documents_description: 'Official documents and proceedings from our International Assembly.',
-    
-    policies_guidelines_title: 'Policies & Guidelines',
-    policies_guidelines_description: 'Official church policies and ministry guidelines.',
-    
-    public_statements_title: 'Public Statements',
-    public_statements_description: 'Official statements on important issues and current events.',
-    
-    assembly_minutes_title: 'Assembly Minutes',
-    assembly_minutes_description: 'Minutes and records from assembly meetings.',
-    
-    church_resources_title: 'Church Resources',
-    church_resources_description: 'Tools and materials for local church ministry.',
-    
-    church_locator_title: 'Church Locator',
-    church_locator_description: 'Find a Church of God of Prophecy congregation near you.',
-    
-    church_logos_title: 'Church Logos',
-    church_logos_description: 'Official logos and branding materials for church use.',
-    
-    treasurers_report_title: "Treasurer's Report",
-    treasurers_report_description: 'Financial reports and transparency information.',
-    
-    directory_title: 'Directory',
-    directory_description: 'Contact information for church leaders and offices worldwide.',
-    
-    // Give
-    give_title: 'Give',
-    give_description: 'Support the ministry through your generous giving.',
-    
-    // Error pages
-    '404_title': '404 - Page Not Found',
-    '404_description': 'The page you are looking for does not exist.',
-    '404_content': '<p>This page could not be found.</p>',
-    
-    // Common content headings
-    statement_of_faith: 'Statement of Faith',
-    the_trinity: 'The Trinity',
-    jesus_christ: 'Jesus Christ',
-    salvation: 'Salvation',
-    holy_spirit: 'The Holy Spirit',
-    the_church: 'The Church',
-    scripture: 'Scripture',
-    our_mission: 'Our Mission',
-    get_involved: 'Get Involved',
-    contact_info: 'Contact Information',
-    
-    // Footer
-    social_media: 'Social Media',
-    quick_links: 'Quick Links',
-    contact_information: 'Contact Information',
-    
-    // Search
-    search: 'Search',
-    search_placeholder: 'Search pages, articles, podcasts, and events...',
-    search_shortcut: 'Search (Ctrl+K)',
-    start_typing_to_search: 'Start typing to search...',
-    search_help_text: 'Search through pages, articles, podcasts, events, and more',
-    searching: 'Searching...',
-    no_results_found: 'No results found',
-    no_results_help: 'Try different keywords or check your spelling',
-    search_navigation_help: 'Use arrow keys to navigate, Enter to select, Esc to close',
-    search_tips: 'Search Tips:',
-    search_tip_1: 'Use specific keywords',
-    search_tip_2: 'Try different terms',
-    search_tip_3: 'Search by category',
-    search_categories: 'Search Categories:',
-    pages: 'Pages',
-    articles: 'Articles',
-    podcasts: 'Podcasts',
-    events: 'Events',
-    search_suggestions: 'Try searching for: "ministry", "events", "contact", "about"',
-    search_results_count: 'Found {count} result{plural} for "{term}"',
-    best_match: 'Best Match',
-    
-    // Result types
-    page: 'Page',
-    article: 'Article',
-    podcast: 'Podcast',
-    event: 'Event',
-    
-    // Loading states
-    loading: 'Loading...',
-    checking_permissions: 'Checking permissions...',
-    
-    // FAQ Questions and Answers
-    faq_general_questions: 'General Questions',
-    faq_what_is_cogop: 'What is the Church of God of Prophecy?',
-    faq_what_is_cogop_answer: 'The Church of God of Prophecy is a global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people, and dedicated to reconciling the world to Christ through the power of the Holy Spirit. We have over 12,000 churches and missions in 135 countries worldwide.',
-    faq_when_founded: 'When was the Church of God of Prophecy founded?',
-    faq_when_founded_answer: 'The Church of God of Prophecy was founded in the early 20th century as part of the modern Pentecostal movement. We have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God\'s kingdom on earth.',
-    faq_headquarters_location: 'Where is your headquarters located?',
-    faq_headquarters_answer: 'Our international headquarters is located in Cleveland, Tennessee, USA, at 3720 Keith Street NW. Our mailing address is PO Box 2910, Cleveland, TN 37320. You can reach us at (423) 559-5100.',
-    
-    faq_bible_belief: 'What do you believe about the Bible?',
-    faq_bible_answer: 'We believe the Bible is the inspired, inerrant Word of God and our final authority for faith and practice. Scripture is God-breathed and profitable for teaching, reproof, correction, and instruction in righteousness.',
-    faq_trinity_belief: 'Do you believe in the Trinity?',
-    faq_trinity_answer: 'Yes, we believe in one God eternally existing in three persons: Father, Son, and Holy Spirit. Each person of the Trinity is fully God, yet there is only one God.',
-    faq_salvation_position: 'What is your position on salvation?',
-    faq_salvation_answer: 'We believe salvation is by grace through faith in Jesus Christ, not by works. It is a free gift from God available to all who repent of their sins and accept Jesus as their personal Lord and Savior.',
-    faq_holy_spirit_baptism: 'Do you believe in the baptism of the Holy Spirit?',
-    faq_holy_spirit_answer: 'Yes, we believe in the baptism of the Holy Spirit as a distinct experience available to all believers. This empowerment enables Christians to live victorious lives and serve God effectively in ministry and witness.',
-    
-    faq_services_worship: 'Services and Worship',
-    faq_worship_service: 'What can I expect during a worship service?',
-    faq_dress_code: 'What should I wear to church?',
-    faq_dress_answer: 'Come as you are! We welcome people regardless of how they dress. Some prefer casual attire while others dress more formally. The most important thing is that you feel comfortable and can focus on worshiping God.',
-    faq_children_programs: 'Do you have programs for children and youth?',
-    faq_children_answer: 'Yes! We have age-appropriate programs including Sunday School, children\'s church, youth groups, Vacation Bible School, camps, and special events. Our goal is to help young people develop a strong relationship with Jesus Christ.',
-    
-    faq_membership_involvement: 'Membership and Getting Involved',
-    faq_become_member: 'How do I become a member?',
-    faq_member_answer: 'Membership is open to all who have accepted Jesus Christ as their personal Savior. The steps include: accepting Christ, being baptized by immersion, committing to spiritual growth through Bible study and fellowship, and using your gifts to serve others.',
-    faq_baptism_required: 'Do I need to be baptized to attend church?',
-    faq_baptism_answer: 'No, you don\'t need to be baptized to attend church. Everyone is welcome to join us for worship and fellowship. Baptism is required for membership and represents your public declaration of faith in Jesus Christ.',
-    faq_get_involved_ministry: 'How can I get involved in ministry?',
-    faq_ministry_answer: 'There are many ways to get involved! You can serve in worship teams, children\'s ministry, youth programs, missions, community outreach, administrative roles, and more. Contact your local church leadership to discover opportunities that match your gifts and interests.',
-    
-    faq_giving_support: 'Giving & Support',
-    faq_tithe_required: 'Do I have to tithe or give money?',
-    faq_tithe_answer: 'Giving is voluntary and should come from a joyful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions.',
-    faq_donations_used: 'How are donations used?',
-    faq_donations_answer: 'Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God\'s kingdom worldwide.',
-    
-    faq_global_ministry: 'Ministry',
-    faq_support_missions: 'How can I support missions?',
-    faq_support_missions_answer: 'You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities.',
-    faq_international_assembly: 'What is the International Assembly?',
-    faq_international_assembly_answer: 'The International Assembly is our church gathering held every four years. It brings together delegates from around the world for worship, fellowship, business sessions, and to set direction for our worldwide ministry.',
-    
-    faq_contact_next_steps: 'Contact and Next Steps',
-    faq_find_local_church: 'How do I find a local church?',
-    faq_find_local_church_answer: 'Use our church locator to find a congregation near you. You can also call our headquarters at (423) 559-5100 or contact us online for assistance in finding a local church.',
-    faq_schedule_tour_question: 'Can I schedule a tour of your facilities?',
-    faq_schedule_tour_answer: 'Yes! We\'d love to show you around our facilities. You can schedule a tour of our headquarters in Cleveland, Tennessee, or visit Fields of the Wood, our biblical theme park in North Carolina.',
-    faq_more_questions: 'I have more questions. How can I get answers?',
-    faq_more_questions_answer: 'We\'re here to help! You can contact us through our website, call us at (423) 559-5100, or email us at info@cogop.org. You can also reach out to a local Church of God of Prophecy pastor in your area.',
-    
-    // FAQ footer section
-    still_have_questions: 'Still Have Questions?',
-    still_have_questions_text: 'We\'re here to help! Don\'t hesitate to reach out with any questions about our church, beliefs, or how to get involved.',
-    find_a_church: 'Find a Church',
-    
-    // FAQ content
-    faq_lead_text: "We've compiled answers to some of the most common questions about the Church of God of Prophecy. If you don't find what you're looking for, please",
-    faq_contact_link: 'contact us',
-    faq_contact_link_end: 'directly.',
-    
-    // FAQ introduction
-    faq_introduction: 'We\'ve compiled answers to some of the most common questions about the Church of God of Prophecy. If you don\'t find what you\'re looking for, please contact us directly.',
-    
-    // FAQ callToAction button texts
-    faq_contact_us: 'Contact Us',
-    faq_find_church: 'Find a Church',
-    faq_schedule_tour: 'Schedule a Tour',
-    
-    // FAQ callToAction section
-    faq_still_have_questions: 'Still Have Questions?',
-    faq_here_to_help: 'We\'re here to help! Don\'t hesitate to reach out with any questions about our church, beliefs, or how to get involved.',
-    
-    // Article Categories
-    spirit_life_seminary: 'Spirit and Life Seminary',
-    digital_evangelism: 'Digital Evangelism',
-    featured_article: 'Featured Article',
-    global_missions: 'Missions',
-    youth_ministry: 'Youth Ministry',
-    
-    // Event Categories
-    youth_conference: 'Youth Conference',
-    stewardship: 'Stewardship',
-    global_assembly: 'Assembly',
-    
-    // Contact Information
-    physical_address: 'Physical Address',
-    mailing_address: 'Mailing Address',
-    contact_form: 'Contact Form',
-    name: 'Name',
-    email: 'Email',
-    message: 'Message',
-    send_message: 'Send Message',
-    phone: 'Phone',
-    
-    // Common UI Elements
-    view_opportunities: 'View Opportunities',
-    stay_updated: 'Stay updated with upcoming events, services, and important dates',
-    reach_out: 'Reach out with questions, prayer requests, or to learn more',
-    explore_career: 'Explore career opportunities within our organization',
-    visit_facilities: 'Visit our facilities and learn about our community',
-    mission_statement: 'We invite you to join with us as we seek to fulfill our mission of reconciling the world to God through the Power of the Holy Spirit by the deeds of Jesus Christ.',
-    
-    // Form Labels
-    full_name: 'Full Name',
-    display_name: 'Display Name',
-    password: 'Password',
-    confirm_password: 'Confirm Password',
-    
-    // Buttons
-    submit: 'Submit',
-    cancel: 'Cancel',
-    save: 'Save',
-    edit: 'Edit',
-    delete: 'Delete',
-    close: 'Close',
-    
-    // Navigation Labels
-    toggle_navigation: 'Toggle navigation',
-    select_language: 'Select language',
-    english: 'English',
-    bulgarian: 'Български',
-
-    // Article titles and content
-    seminary_commencement_title: 'Spirit and Life Seminary Celebrates Fourth Commencement Ceremony',
-    seminary_commencement_excerpt: 'Celebrating the achievements of our newest ministry graduates.',
-    digital_communities_title: 'Sharing and Growing in Online Communities',
-    digital_communities_excerpt: 'How our digital ministry is reaching new audiences.',
-    digital_gospel_title: 'Therefore, Login and Upload the Gospel into All the World',
-    digital_gospel_excerpt: 'Exploring the intersection of technology and ministry.',
-    sharing_gospel_title: 'Sharing the Gospel Across the World',
-    sharing_gospel_excerpt: 'Learn about our mission work across 135 countries.',
-    icm_youth_title: 'ICM Youth Conference: Empowering the Next Generation',
-    icm_youth_excerpt: 'Young people from around the world gather for spiritual growth.',
-
-    // Podcast series and content
-    sound_doctrine_series: 'Sound Doctrine',
-    sound_doctrine_title: "Time? New Testament O'Clock (1981)",
-    sound_doctrine_desc: 'Step back to the 2000 International Assembly as Bishop Tedroy Powell opens the gathering with a stirring message rooted in Matthew 5:3.',
-    white_wing_podcast_series: 'White Wing Messenger Podcast',
-    white_wing_podcast_title: 'The Call: To Send and Support',
-    white_wing_podcast_desc: "Join podcast host Managing Editor Marsha Robinson as we end the month of April with a roundtable discussion of this month's White Wing Messenger.",
-
-    // Event details
-    icm_testify_title: 'ICM: Testify',
-    icm_testify_desc: 'Join young adults from around the world for a transformative conference experience.',
-    stewardshift_title: 'StewardShift Conference',
-    stewardshift_desc: 'Learn about biblical stewardship and financial responsibility.',
-    international_assembly_desc: 'Our church gathering bringing together believers from 135 countries.',
-    north_carolina_asheville: 'North Carolina, near Asheville',
-    ridgecrest_center: 'Ridgecrest Conference Center',
-    peerless_church: 'Peerless Church',
-    rosen_shingle_creek: 'Rosen Shingle Creek',
-
-    // Page content
-    global_movement_heading: 'A Movement',
-    global_movement_text: 'The Church of God of Prophecy is a vibrant, Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.',
-    our_identity_heading: 'Our Identity',
-    our_identity_intro: 'We are:',
-    christ_centered: 'Christ-centered in our worship and witness',
-    spirit_led: 'Spirit-led in our ministry and mission',
-    scripture_based: 'Scripture-based in our beliefs and practices',
-    global_reach: 'In our reach and impact',
-    unified_diversity: 'Unified in our diversity',
-    our_story_heading: 'Our Story',
-    our_story_text: 'Founded in the early 20th century, we have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God\'s kingdom on earth.',
-
-    // Additional content translations
-    calendar_title: 'Calendar',
-    calendar_description: 'Stay updated with upcoming events, services, and important dates in our church calendar.',
-    calendar_content_coming_soon: 'Calendar content coming soon...',
-    contact_us_title: 'Contact Us',
-    contact_us_description: 'Reach out to us with your questions, prayer requests, or to learn more about our church.',
-    faq_title: 'Frequently Asked Questions',
-    faq_description: 'Find answers to common questions about our church, beliefs, and services.',
-    employment_title: 'Employment',
-    employment_description: 'Explore career opportunities within our organization.',
-    schedule_tour_title: 'Schedule a Tour',
-    schedule_tour_description: 'Visit our facilities and learn about our community.',
-
-    // Page content sections
-    our_ministries: 'Our Ministries',
-    serving_god_through_ministry: 'Serving God Through Ministry',
-    serving_god_ministry_desc: 'The Church of God of Prophecy is committed to fulfilling the Great Commission through various ministries that serve our local communities and reach the world.',
-    reaching_world_for_christ: 'Reaching the World for Christ',
-    global_missions_desc: 'Our global missions ministry spans 135 countries and territories, working to fulfill the Great Commission by making disciples of all nations.',
-    our_mission_text: 'To present the Gospel of Jesus Christ to every person in every nation, establishing churches and training leaders to continue the work of evangelism and discipleship.',
-    key_focus_areas: 'Key Focus Areas',
-    church_planting: 'Church planting in unreached areas',
-    training_leadership: 'Training indigenous leadership',
-    bible_translation: 'Bible translation and distribution',
-    medical_missions: 'Medical missions and humanitarian aid',
-    educational_ministries: 'Educational ministries',
-    pray: 'Pray',
-    pray_desc: 'Join our prayer network for missionaries and ministry partners around the world.',
-    give_desc: 'Support missionaries and mission projects through financial contributions.',
-
-    // Youth Ministry content
-    empowering_next_generation: 'Empowering the Next Generation',
-    youth_ministry_desc: 'Our youth ministry is dedicated to helping young people develop a strong relationship with Jesus Christ and discover their purpose in God\'s kingdom.',
-    programs_activities: 'Programs and Activities',
-    icm_youth_conference: 'ICM (International Convention of Ministry) Youth Conference',
-    local_youth_groups: 'Local youth groups and Bible studies',
-    leadership_development_programs: 'Leadership development programs',
-    mission_trips: 'Mission trips and service projects',
-    sports_recreation: 'Sports and recreation ministries',
-    icm_testify: 'ICM: Testify',
-    icm_testify_desc_full: 'Our annual international youth conference brings together young adults from around the world for worship, teaching, and fellowship.',
-    timothy_quote: '"Don\'t let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity."',
-    timothy_reference: '1 Timothy 4:12',
-
-    // Seminary content
-    training_leaders_ministry: 'Training Leaders for Ministry',
-    seminary_desc: 'Spirit and Life Seminary exists to provide quality theological education and practical ministry training for current and future leaders in the Church of God of Prophecy.',
-    our_programs: 'Our Programs',
-    bachelor_arts_ministry: 'Bachelor of Arts in Ministry',
-    master_divinity: 'Master of Divinity',
-    master_christian_leadership: 'Master of Arts in Christian Leadership',
-    certificate_programs: 'Certificate programs in various ministry specializations',
-    continuing_education: 'Continuing education for ministers',
-    seminary_mission: 'To provide excellent academic and practical training that equips men and women for effective ministry in the global Church of God of Prophecy.',
-    seminary_accreditation: 'Spirit and Life Seminary is committed to maintaining the highest academic standards while staying true to our Pentecostal heritage and biblical foundation.',
-
-    // Children's Ministry content
-    building_faith_early: 'Building Faith from an Early Age',
-    children_ministry_desc: 'Our children\'s ministry is designed to help children develop a love for God, learn biblical truths, and grow in their relationship with Jesus Christ.',
-    age_appropriate_programs: 'Age-Appropriate Programs',
-    sunday_school_classes: 'Sunday School classes for all age groups',
-    childrens_church: 'Children\'s church during worship services',
-    vacation_bible_school: 'Vacation Bible School',
-    kids_camps: 'Kids\' camps and retreats',
-    family_ministry_events: 'Family ministry events',
-    teaching_approach: 'Teaching Approach',
-    teaching_approach_desc: 'We use creative, interactive methods to help children:',
-    learn_bible_stories: 'Learn Bible stories and principles',
-    develop_prayer_habits: 'Develop prayer habits',
-    understand_gods_love: 'Understand God\'s love',
-    build_christian_friendships: 'Build Christian friendships',
-    serve_community: 'Serve others in their community',
-
-    // One Child Fund content
-    changing_lives_one_child: 'Changing Lives One Child at a Time',
-    one_child_fund_desc: 'The One Child Fund is a ministry of compassion that provides educational opportunities, basic necessities, and spiritual nurturing for children in developing countries.',
-    how_it_works: 'How It Works',
-    monthly_sponsorship_provides: 'Through monthly sponsorship, supporters provide:',
-    educational_expenses: 'Educational expenses including tuition, books, and supplies',
-    nutritious_meals: 'Nutritious meals and healthcare',
-    clothing_necessities: 'Clothing and other basic necessities',
-    spiritual_guidance: 'Spiritual guidance and biblical instruction',
-    hope_future: 'Hope for a brighter future',
-    make_difference: 'Make a Difference',
-    sponsor_child_desc: 'For just $30 per month, you can sponsor a child and help break the cycle of poverty through education and Christian love.',
-    sponsor_child: 'Sponsor a Child',
-    sponsor_child_btn_desc: 'Begin your sponsorship journey today and change a child\'s life forever.',
-    start_sponsoring: 'Start Sponsoring',
-    learn_more_btn_desc: 'Discover more about our global children\'s ministry initiatives.',
-    global_impact: 'Global Impact',
-    global_impact_desc: 'The One Child Fund operates in multiple countries, partnering with local Church of God of Prophecy congregations to identify and support children who need educational assistance.',
-
-    // About section content
-    global_movement_desc: 'The Church of God of Prophecy is a vibrant, Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.',
-    our_vision: 'Our Vision',
-    our_vision_text: 'To be a Spirit-led community of believers committed to reaching every person in every nation with the Gospel of Jesus Christ.',
-    our_values: 'Our Values',
-    biblical_authority: 'Biblical Authority',
-    biblical_authority_desc: 'We believe the Bible is the inspired Word of God',
-    global_unity: 'Unity',
-    global_unity_desc: 'We are one church with many expressions',
-    spirit_led_living: 'Spirit-Led Living',
-    spirit_led_living_desc: 'We depend on the Holy Spirit for guidance',
-    holistic_ministry: 'Holistic Ministry',
-    holistic_ministry_desc: 'We minister to the whole person',
-    cultural_sensitivity: 'Cultural Sensitivity',
-    cultural_sensitivity_desc: 'We respect and embrace diversity',
-
-    // Who We Are content
-    global_movement: 'A Movement',
-    our_identity: 'Our Identity',
-    we_are: 'We are:',
-    our_story: 'Our Story',
-
-    // What We Believe content
-    we_believe_in: 'We believe in:',
-    trinity_desc: 'One God eternally existing in three persons: Father, Son, and Holy Spirit.',
-    jesus_desc: 'The deity of Jesus Christ, His virgin birth, sinless life, atoning death, bodily resurrection, and glorious return.',
-    salvation_desc: 'Salvation by grace through faith in Jesus Christ, not by works.',
-    holy_spirit_desc: 'The baptism of the Holy Spirit as a distinct experience available to all believers.',
-    church_desc: 'The church as the body of Christ, called to unity and holiness.',
-    scripture_desc: 'The Bible as the inspired, inerrant Word of God and our final authority for faith and practice.',
-
-    // Membership content
-    becoming_member: 'Becoming a Member',
-    membership_desc: 'Membership in the Church of God of Prophecy is open to all who have accepted Jesus Christ as their personal Savior and desire to follow Him in baptism and Christian living.',
-    steps_to_membership: 'Steps to Membership',
-    accept_christ: 'Accept Christ',
-    accept_christ_desc: 'Make a personal decision to follow Jesus',
-    be_baptized: 'Be Baptized',
-    be_baptized_desc: 'Follow Christ in water baptism',
-    commit_growth: 'Commit to Growth',
-    commit_growth_desc: 'Engage in Bible study and fellowship',
-    serve_others: 'Serve Others',
-    serve_others_desc: 'Use your gifts to serve God and others',
-    member_benefits: 'Member Benefits',
-    voting_privileges: 'Voting privileges in church matters',
-    access_resources: 'Access to member resources and materials',
-    leadership_opportunities: 'Opportunities for leadership and service',
-    global_connection: 'Connection with our church family',
-
-    // Give section content
-    why_we_give: 'Why We Give',
-    giving_desc: 'Giving is an act of worship and a way to participate in God\'s work around the world. Your generous gifts help support local ministries, global missions, and community outreach.',
-    ways_to_give: 'Ways to Give',
-    online_giving: 'Online Giving',
-    online_giving_desc: 'Secure online donations',
-    give_online: 'Give Online',
-    mail_check: 'Mail a Check',
-    mail_check_desc: 'Send to our mailing address',
-    get_address: 'Get Address',
-    text_to_give: 'Text to Give',
-    text_to_give_desc: 'Give via text message',
-
-    // Find a Church content
-    find_congregation: 'Find a Congregation Near You',
-    find_church_desc: 'With over 12,000 churches and missions in 135 countries, there\'s likely a Church of God of Prophecy congregation near you.',
-    search_by_location: 'Search by Location',
-    enter_location: 'Enter City, State, or Country',
-    location_placeholder: 'e.g., Cleveland, TN or United States',
-    search_churches: 'Search Churches',
-    need_help_finding: 'Need help finding a church or have questions?',
-    what_to_expect: 'What to Expect',
-    what_to_expect_desc: 'At Church of God of Prophecy congregations, you\'ll find:',
-    spirit_led_worship: 'Spirit-led worship and biblical teaching',
-    warm_fellowship: 'Warm, welcoming fellowship',
-    spiritual_growth_opportunities: 'Opportunities for spiritual growth',
-    community_outreach: 'Community outreach and missions',
-    programs_all_ages: 'Programs for all ages',
-    diverse_multicultural_community: 'Diverse, multicultural community',
-
-    // Find a Church page translations
-    find_a_church_title: 'Find a Church',
-    find_a_church_description: 'Locate a Church of God of Prophecy congregation near you.',
-    filter_by_programs: 'Filter by Programs',
-    clear_filters: 'Clear Filters',
-    need_help: 'Need Help?',
-    cant_find_church: 'Can\'t find a church near you? Contact us for assistance.',
-    found_churches: 'Found {count} Churches',
-    for_search_term: 'for "{term}"',
-    showing_results_worldwide: 'Showing results worldwide',
-    searching_for_churches: 'Searching for churches...',
-    no_churches_found: 'No Churches Found',
-    no_churches_message: 'We couldn\'t find any churches matching your search criteria. Try adjusting your search terms or contact us for assistance.',
-    get_directions: 'Get Directions',
-    visit_website: 'Visit Website',
-    call_church: 'Call Church',
-    pastor: 'Pastor',
-    service_times: 'Service Times',
-    programs_ministries: 'Programs & Ministries',
-    our_global_network: 'Our Global Network',
-    global_network_description: 'The Church of God of Prophecy has over 12,000 churches and missions in 135 countries worldwide. If you don\'t see a church near you, we may still have a congregation in your area.',
-    churches_missions: 'Churches & Missions',
-    members: 'Members',
-    years_of_ministry: 'Years of Ministry',
-    what_to_expect_at_churches: 'What to Expect at Our Churches',
-    spirit_led_worship_teaching: 'Spirit-led worship and biblical teaching',
-    warm_welcoming_fellowship: 'Warm, welcoming fellowship',
-    opportunities_spiritual_growth: 'Opportunities for spiritual growth',
-    community_outreach_missions: 'Community outreach and missions',
-    programs_for_all_ages: 'Programs for all ages',
-
-    // Event page translations
-    event_not_found: 'Event Not Found',
-    event_not_found_message: 'The event you are looking for does not exist or may have been moved.',
-    back_to_events: 'Back to Events',
-    loading_event: 'Loading event...',
-    featured_event: 'Featured Event',
-    date_time: 'Date & Time',
-    location: 'Location',
-    posted_by: 'Posted by',
-    about_this_event: 'About This Event',
-    location_details: 'Location Details',
-    ready_to_join_us: 'Ready to Join Us?',
-    join_opportunity_message: 'Don\'t miss this opportunity to be part of something special.',
-    get_more_info: 'Get More Info',
-    back_to_all_events: 'Back to All Events',
-    default_article_image: 'Default Article Image',
-
-    // Events page translations
-    upcoming_events: 'Upcoming Events',
-    events_description: 'Join us for these special gatherings and conferences throughout the year.',
-    loading_events: 'Loading events...',
-    no_upcoming_events: 'No upcoming events',
-    check_back_soon: 'Check back soon for new events!',
-    dont_miss_opportunities: 'Don\'t miss out on these opportunities!',
-    view_full_calendar: 'View Full Calendar',
-
-    // Settings page translations
-    account_settings: 'Account Settings',
-    email_verification: 'Email Verification',
-    verified: 'Verified',
-    not_verified: 'Not verified',
-    send_verification: 'Send Verification',
-    sending: 'Sending...',
-    change_password: 'Change Password',
-    current_password: 'Current Password',
-    new_password: 'New Password',
-    confirm_new_password: 'Confirm New Password',
-    update_password: 'Update Password',
-    updating: 'Updating...',
-    account_information: 'Account Information',
-    account_type: 'Account Type',
-    google_account: 'Google Account',
-    email_account: 'Email Account',
-    member_since: 'Member Since',
-    last_sign_in: 'Last Sign In',
-    unknown: 'Unknown',
-    google_password_notice: 'You\'re signed in with Google. Password changes must be done through your Google account.',
-    new_passwords_do_not_match: 'New passwords do not match',
-    password_must_be_6_chars: 'Password must be at least 6 characters long',
-    password_updated_successfully: 'Password updated successfully!',
-    current_password_incorrect: 'Current password is incorrect',
-    password_too_weak: 'Password is too weak',
-    failed_to_update_password: 'Failed to update password',
-    verification_email_sent: 'Verification email sent! Check your inbox.',
-    failed_to_send_verification: 'Failed to send verification email',
-
-    // Calendar specific translations
-    event_calendar: 'Event Calendar',
-    view_all_upcoming_events: 'View all upcoming events and activities',
-    loading_calendar: 'Loading calendar...',
-    more: 'more',
-    today: 'Today',
-    previous_month: 'Previous month',
-    next_month: 'Next month',
-    calendar_view: 'Calendar view',
-    list_view: 'List view',
-    no_events_scheduled: 'No events scheduled',
-    
-    // Profile page translations
-    profile: 'Profile',
-    update_profile: 'Update Profile',
-    profile_updated: 'Profile updated successfully',
-    saving: 'Saving...',
-
-    // Contact form translations
-    email_label: 'Email',
-    message_label: 'Message',
-
-    // Common fallback content
-    employment_opportunities_coming_soon: 'Coming soon...',
-    tour_scheduling_coming_soon: 'Coming soon...',
-    global_presence_overview_coming_soon: 'Coming soon...',
-    resources_overview_coming_soon: 'Coming soon...',
-    leadership_information_coming_soon: 'Coming soon...',
-    historical_information_coming_soon: 'Coming soon...',
-
-    // About section navigation
-    about: 'About',
-    who_we_are: 'Who We Are',
-    what_we_believe: 'What We Believe',
-    our_leadership: 'Our Leadership',
-    our_history: 'Our History',
-    membership: 'Membership',
-
-    // Church Discussions Page
-    loading_discussions: 'Loading discussions...',
-    authentication_required: 'Authentication Required',
-    please_log_in_discussions: 'Please log in to access church discussions.',
-    log_in: 'Log In',
-    access_denied: 'Access Denied',
-    no_access_discussions: "You don't have access to this church's discussions. Please contact a church administrator to request access.",
-    go_back: 'Go Back',
-    super_admin_tools: 'Super Admin Tools',
-    super_admin_tools_description: 'The following development tools are only visible to super administrators.',
-    churches: 'Churches',
-    discussions: 'Discussions',
-    church_discussions_title: '{churchName} Discussions',
-    connect_engage_community: 'Connect and engage with your church community',
-    church_home: 'Church Home',
-    all_discussions: 'All Discussions',
-    how_to_use_discussions: 'How to Use Discussions',
-    create: 'Create',
-    create_discussions_description: 'Start new discussions on topics that matter to your church community.',
-    engage: 'Engage',
-    engage_discussions_description: 'Comment and reply to discussions to build meaningful connections.',
-    organize: 'Organize',
-    organize_discussions_description: 'Use tags to categorize discussions and make them easy to find.',
-    discover: 'Discover',
-    discover_discussions_description: 'Search and filter discussions to find conversations you\'re interested in.',
-
-    // DiscussionsList Component
-    church_discussions_header: 'Church Discussions',
-    connect_with_community: 'Connect with your church community',
-    new_discussion: 'New Discussion',
-    search_discussions: 'Search Discussions',
-    search_discussions_placeholder: 'Search by title, content, or tags...',
-    filter_by_tag: 'Filter by Tag',
-    all_tags: 'All Tags',
-    clear_filters: 'Clear Filters',
-    total_discussions: 'Total Discussions',
-    pinned: 'Pinned',
-    total_comments: 'Total Comments',
-    unique_tags: 'Unique Tags',
-    no_discussions_found: 'No Discussions Found',
-    try_adjusting_search: 'Try adjusting your search or filter criteria.',
-    first_discussion_message: 'Be the first to start a discussion in your church community!',
-    start_first_discussion: 'Start First Discussion',
-
-    // Error messages and time formatting
-    unable_to_load_discussions_for_this_church: 'Unable to load discussions for this church',
-    this_usually_means: 'This usually means',
-    youre_not_a_member_of_this_church_yet: "You're not a member of this church yet",
-    your_account_needs_proper_permissions: 'Your account needs proper permissions',
-    there_might_be_a_setup_issue: 'There might be a setup issue',
-    to_fix_this: 'To fix this',
-    contact_a_church_administrator_to_add_you_as_a_member: 'Contact a church administrator to add you as a member',
-    or_use_the_setup_church_membership_tool_below_for_testing: 'Or use the "Setup Church Membership" tool below (for testing)',
-    make_sure_youre_logged_in_with_the_correct_account: "Make sure you're logged in with the correct account",
-    technical_details: 'Technical details',
-    database_setup_incomplete: 'Database setup incomplete',
-    the_required_database_indexes_havent_been_created_yet: "The required database indexes haven't been created yet.",
-    this_is_a_technical_issue_that_needs_to_be_resolved_by_a_developer: 'This is a technical issue that needs to be resolved by a developer.',
-    please_contact_technical_support: 'Please contact technical support.',
-    error_loading_discussions: 'Error loading discussions:',
-    unknown_error: 'Unknown error',
-    please_try: 'Please try',
-    refresh_the_page: 'Refreshing the page',
-    logging_out_and_back_in: 'Logging out and back in',
-    contacting_support_if_the_issue_persists: 'Contacting support if the issue persists',
-    minute: 'minute',
-    hour: 'hour',
-    day: 'day',
-    s: 's',
-    ago: 'ago',
-    church_discussions: 'Church Discussions',
-    connect_with_your_church_community: 'Connect with your church community',
-    search_by_title_content_or_tags: 'Search by title, content, or tags...',
-
-    // Churches Page
-    find_a_church_header: 'Find a Church',
-    discover_churches_description: 'Discover churches in your community and connect with local congregations',
-    search_church_placeholder: 'Search by church name, city, pastor, or denomination...',
-    all_denominations: 'All Denominations',
-    churches_found: '{count} church{plural} found',
-    no_churches_found_header: 'No churches found',
-    no_churches_listed: 'No churches are currently listed in our directory.',
-    try_adjusting_criteria: 'Try adjusting your search criteria or filters.',
-    no_churches_match_filters: 'No churches match your current filters.',
-    clear_filters_btn: 'Clear Filters',
-    pastor_prefix: 'Pastor',
-    service_times_label: 'Service Times:',
-    programs_label: 'Programs:',
-    more_programs: '+{count} more',
-    call_btn: 'Call',
-    email_btn: 'Email',
-    website_btn: 'Website',
-    view_details_btn: 'View Details',
-    directions_btn: 'Directions',
-    dont_see_church: "Don't see your church listed?",
-    church_directory_help: 'If you\'re a church leader and would like to have your church included in our directory, please contact us.',
-    contact_us_btn: 'Contact Us',
-    loading_churches: 'Loading churches...',
-    error_loading_churches: 'Error Loading Churches',
-    try_again_btn: 'Try Again',
-  },
-  bg: {
+/**
+ * Bulgarian UI strings (generated split from former i18n.ts).
+ */
+export const bgMessages = {
     // Navigation
     welcome: 'Добре дошли',
     home: 'Начало',
@@ -934,7 +34,8 @@ i18n.translations = {
     // Hero/Carousel
     hero_title_1: 'Ние сме Църква на Бога на Пророчеството',
     hero_desc_1: 'Тази 24-странична брошура е ръководство за всеки, който иска да разбере кои сме, в какво вярваме и как изпълняваме нашата мисия заедно.',
-    hero_btn_1: 'Поръчай сега',
+    hero_btn_1: 'Вижте повече',
+    booklet_download_pdf: 'Изтегли PDF',
     hero_title_2: 'Общност на вярата',
     hero_desc_2: 'Присъединете се към нас, докато служим на Христос в 135 държави с над 12 000 църкви и мисии по света.',
     hero_btn_2: 'Научете повече',
@@ -983,12 +84,70 @@ i18n.translations = {
     
     what_we_believe_title: 'В какво вярваме',
     what_we_believe_description: 'Изследвайте нашите основни вярвания, доктрина и теологически основи.',
-    
+    what_we_believe_detailed_html: `
+        <p>НИЕ ВЯРВАМЕ в Святата Троица – един Бог, вечно съществуващ в Три Лица – Отец, Син и Святият Дух.</p>
+        <p>Ние вярваме в един Бог, Отец, Създател на небето и на земята и на всички видими и невидими неща.</p>
+        <p>Ние вярваме в един Господ, Исус Христос, единствен и единороден Син на вечния Отец. Всяко нещо е създадено чрез Него и за Него. Той е наистина Бог и наистина човек. Заченат от силата на Святия Дух и роден от девицата Мария. Той пострада, умря, бе погребан и на третия ден възкръсна от мъртвите. Възнесе се от дясната страна на Отец и ще се върне, за да съди живите и мъртвите. Неговото царство няма да има край.</p>
+        <p>Ние вярваме в Святия Дух, Господ и даващ живот, Който изначално произхожда от Отец. Той е Учител, Утешител, Помощник, Дарител на духовните дарби. Чрез Него спасителното и освещаващо дело на Исус Христос се прилага в живота на вярващите. Той е овластяващото присъствие на Бог в живота на всеки християнин и в живота на Църквата. Отец е изпратил Своя Син, за да кръщава със Святия Дух. Говоренето на езици и проявяването на плодовете на Духа са новозаветни белези на изпълването със Святия Дух.</p>
+        <p>Ние вярваме, че спасението е по благодат чрез вяра в жертвената смърт на Исус Христос на кръста и че Той е умрял вместо нас. Греховете на вярващия са простени чрез проливането на Неговата кръв. Вярваме, че изцелението на ума, тялото, душата и духа са на разположение за вярващия чрез кръвта на Исус Христос и силата на Святия Дух. Ние вярваме в едно кръщение в името на Отец, на Сина и на Святия Дух.</p>
+        <p>Ние вярваме, че благодатта на Бог донася прошка и помирение на онези, които се покаят, а също и трансформация в святост, правейки ги способни да живеят Христов живот. Освещаването е както категорично дело на благодатта, така и непрекъснат процес на промяна у вярващия чрез кръвта на Исус, чрез Словото на Бог и чрез овластяващата сила на Святия Дух.</p>
+        <p>Ние вярваме в една свята, вселенска Църква, съставена от всичките истински вярващи в Исус Христос, предоставяща общение и призив за служение на мъже и жени от всякакви народи, националности, култури и езици. Ние вярваме в духовното и в крайна сметка, във видимото единство на Църквата.</p>
+        <p>Ние вярваме, че Библията – както Стария, така и Новия завет – е вдъхновеното Слово на Бог. Библията е Божието откровение за Самия Него и за волята Му за човечеството, достатъчна за наставление в спасение и ежедневен християнски живот. Библията е християнският правилник за вяра и практика.</p>
+        <p>Ние вярваме, че Бог, в крайна сметка, ще помири всички неща на небето и земята в Христос. Затова очакваме ново небе и нова земя, където ще царува правда.</p>
+      `,
+
     our_leadership_title: 'Нашето ръководство',
     our_leadership_description: 'Запознайте се с лидерите, които ръководят и служат на нашата църковна общност.',
+    leadership_organization_html: `
+        <h2>Организационната структура</h2>
+        <p>Организационната структура на Божия църква на пророчеството съществува и функционира на три взаимозависими нива: международно, национално/регионално/щатско и местно.</p>
+        <p>Международното ниво на църковната организация функционира на световно равнище и осигурява глобална мрежа за подкрепа и взаимодействие за църковните служения във всички 50 щати на САЩ и в повече от 130 държави.</p>
+        <p>Националното/регионалното/щатското ниво осигурява по-фокусирано ръководство и подкрепа директно в контекста на страните и щатите, където Църквата служи. Местното ниво е сърцето на Църквата. На това ниво се формират грижовни общности в хиляди градове и селища по целия свят, където мисията на Църквата се изпълнява ежедневно. Тези местни групи от вярващи формират рамката, в която Църквата изпълнява основната си мисия да помири света с Христос чрез силата на Святия Дух.</p>
+        <p>На всички нива на организация в Църквата се полагат усилия за динамичен и гъвкав живот, за да се избегне стагнацията. Във все по-сложни и постоянно променящи се общества, ние сме наясно, че способността да останем актуални за нуждите на хората зависи от това доколко реагираме адекватно на обществените промени, без да правим компромиси с истината. Ние признаваме, че нашият Бог е динамичен, а не статичен; Той е Бог, Който се движи и действа в делата на човечеството. Ние сме решени да бъдем подвижен и пилигримски народ, който се движи, когато Той се движи, и спира, когато Той спира. По този начин организационните структури, описани по-долу, в момента служат на нашата мисия, но подлежат на преразглеждане и ревизия според указанията на Святия Дух.</p>
+
+        <h2>Международно ниво</h2>
+        <p>Международното събрание, което е отворено за всички членове, е най-висшият орган за вземане на решения в Божия църква на пророчеството. Понастоящем то се свиква на всеки две години. Председателстващият епископ, след съветване с главните презвитери на Църквата, установява и модерира програмата на събранието.</p>
+        <p>По време на дискусиите по доктринални и делови въпроси всеки презвитер има равен глас. Доктриналните решения се вземат „единодушно”, а деловите решения – с „преобладаващо мнозинство”. Асамблеята също така предоставя време за вдъхновяващо поклонение, проповядване, поучение и общение.</p>
+        <p>По време на събранието председателстващият епископ представя визията си за посоката, в която според него Бог води Църквата.</p>
+        <p>На международно ниво на организацията председателстващият епископ се избира с единодушно решение на Международния събор за мандат от шест години. Заедно с главните презвитери, които се избират от Международния презвитерски съвет, той има широк спектър от духовни и административни ръководни отговорности. Председателстващият епископ и главните презвитери правят окончателния избор на всички международни лидери, включително националните/регионалните/щатските епископи, лидерите на международните служения и постоянните комитети на Събора. Освен това те постоянно търсят Бога за духовно ръководство и излагат видението за световните служения на Църквата.</p>
+        <p>Международният презвитерски съвет се състои от всички национални/регионални/щатски епископи и епископите, които работят в международните служения.</p>
+        <p>Лицензирането и дисциплината на служителите са в ръцете на Международния презвитерски съвет.</p>
+        <p>Принципът на лидерство от Новия завет беше приет през 1994 г. от Международната асамблея. Множественото лидерство се разпростира по целия свят чрез седем главни презвитери, които служат в различни географски райони на света. Според даровете, дадени им от Бога, те се избират от Международния презвитерски съвет, за да дават насоки на световната Божия църква на пророчеството в изпълнението на нейната мисия. Те работят директно с председателстващия епископ, за да осигурят споделено лидерство в изпълнението на функциите на това служение на глобално ниво.</p>
+        <p>Международните офиси на Божия църква на пророчеството се стремят да насърчават вдъхновяващо лидерство и да предоставят съществена подкрепа, която значително увеличава евангелското свидетелство на Църквата и насърчава нейната мисия. Председателстващият епископ избира изпълнителни директори на служенията на международните офиси, след съветване с главните презвитери. Водачите на служенията се избират от съответния главен епископ и работят заедно, за да изпълнят световната мисия на служението, дадена от Божия Църква.</p>
+
+        <h2>Национално/регионално/щатско ниво</h2>
+        <p>Националните/регионалните/щатските епископи се избират от съответния главен презвитер и всеки от тях функционира като председателстващ епископ на своята територия.</p>
+        <p>Отговорността на всеки национален/регионален/щатски епископ е да избере, подготви и назначи административен персонал, както и пастор за всяка местна църква в неговата област. Националният/регионалният/щатският епископ планира и модерира периодични събрания в и за своята конкретна територия. Срещите са отворени за всички членове и се състоят от време за хваление и поклонение, общение и работа. Те също така предоставят възможност на епископа да даде насоки за многото програми за проповядване, които се провеждат в неговата област.</p>
+
+        <h2>Местно ниво</h2>
+        <p>Великата мисия, дадена от Христос на Църквата, се изпълнява най-пряко чрез различните местни служения. Местната църква е мястото, където хората се обръщат към Христос, кръщават се, приобщават се към църковно общение и се обучават в победоносен християнски живот. Пасторът, след съветване с местната църква, се назначава от съответния епископ на областта и служи като духовен и административен лидер. Докато се моли и търси Божието ръководство за пастируването на стадото и споделянето на Евангелието с местната общност, той избира и подготвя многобройни светски лидери, които да споделят тези усилия.</p>
+        <p>Обикновено местната църква предлага определени служения за духовното развитие на деца, младежи, жени и мъже. Божия църква на пророчеството признава уникалните нужди на своите членове и спешността да ги развие до пълна зрялост в Христос.</p>
+        <p>Всяка местна църква трябва да провежда на всеки три месеца конференция, с цел да предостави информация на членовете и да вземат духовни и бизнес решения. Конференцията може също да упражнява църковна дисциплина по въпроси, свързани с непокорни членове; това обаче трябва винаги да се прави с една цел – възстановяване и помирение на падналия брат или сестра.</p>
+        <p>Всички пълнолетни членове в местната църква имат равен глас по въпросите, представени пред местната конференция.</p>
+      `,
     
     our_history_title: 'Нашата история',
     our_history_description: 'Пътувайте през богатата история на Църква на Бога на Пророчеството.',
+    our_history_html: `
+        <p>От самото си начало движението Божия църква на пророчеството се състои от хора с дълбока жажда за Бога. Тя ги тласка отвъд обичайните християнски взаимоотношения и в съюз с вярващи, посветени на ученията на цялата Библия.</p>
+        <p>През август 1886 г. Ричард Спърлинг (1810–1891), ръкоположен баптистки свещеник, и най-малкият му син, Р. Г. Спърлинг, реагираха срещу преобладаващия кредоизъм сред много баптисти от онова време. „Движението Ландмарк” е проникнало в баптистките общини в южните щати на САЩ с представа за Църквата, която Спърлингови отхвърлят. Вследствие на това Ричард Спърлинг и седем други съмишленици напускат баптистките мисионерски църкви Холи Спрингс и Плезант Хил в окръг Монро, Тенеси, и окръг Чероки, Северна Каролина, и организират това, което смятат за истинско възстановяване на Апостолската църква.</p>
+        <p>Те я наричат „Християнски съюз”. Групата взема решение да се освободи „от всички (човешки) вероизповедания и традиции... да приеме Новия завет, или „закона на Христос”, като „единственото правило на вяра и практика, давайки си взаимно равни права и привилегии да четат и тълкуват сами, както им диктува съвестта”, и да „се събират заедно като Божия църква, за да извършват дейността си...” През септември същата година Спърлинг ръкополага сина си, Ричард Грийн, за пастор със съгласието на събранието. През 1891 г. по-възрастният Спърлинг почива, оставяйки по-младия сам да продължи видението на баща си за Християнския съюз.</p>
+        <p>Ричард Грийн Спърлинг (1857–1935) успява да създаде още поне две християнски съюзни общности, въпреки че първоначалната в Барни Крик в окръг Монро престава да функционира. Някои от учредителите на първоначалната общност помагат за създаването на двете следващи и по този начин първоначалната организация е продължена.</p>
+        <p>През 1895 г. части от западната Северна и Южна Каролина, северната Джорджия и югоизточната Тенеси са разтърсени от радикалното крило на Движението за святост. Бенджамин Хардинг Ървин идва на юг от Средния Запад и оказва голямо влияние върху региона със своето „покръстено с огън” послание. Църквите на Спърлинг са завлечени в това движение, като по този начин се отдалечават от типичните характеристики на баптистите и се приближават към догмите на Движението за святост. Самият Р. Г. Спърлинг прие светостта, но се опитва да смекчи фанатизма, който е характерна черта на движението на Ървин. Тези, които преживяват „огненото кръщение”, често биват трудни за управление и по този начин Спърлинг се бори да запази контрол над своите последователи.</p>
+        <p>През лятото на 1896 г. в окръг Чероки, Северна Каролина, на около 20 километра от църквите на Спърлинг в окръзите Монро и Полк в Тенеси, избухва съживление, повлияно от Ървин. По време на тези събрания, проведени в училището „Шиър“, около 130 души са кръстени със Святия Дух и проговарят на непознати езици. Основните лидери на това съживление бяха Уилям Мартин, методист; Джоузеф М. Типтън; Милтън Макнаб и Били Хамби, всички баптисти. Всеки от тези мъже се познава със Спърлинг и е повлиян от него.</p>
+        <p>У. Ф. Брайънт, баптистки проповедник, се включва в движението за святост по време на това съживление в окръг Чероки. В крайна сметка, става лидер на групата в района на Кемп Крик, Северна Каролина. Големи гонения последват групата на Брайънт в следващите години. Баптистките църкви в района изключват всички, които „поддържат съвременното поучение за освещението”, като го определят като „опасна ерес”. Преследването, понякога насилствено, продължава, като противниците на светостта се възползват от слабо организираната общност на Брайънт. Натискът отвън, съчетан с вътрешна липса на ред и дисциплина, почти разрушават групата на Брайънт. До 1902 г. малката общност е сведена до не повече от 20 души.</p>
+        <p>Всъщност, ако не е мъдрият съвет и влиянието на Р. Г. Спърлинг, Брайънт и неговата група вярващи може би щяха да изчезнат в историята. Но на 15 май 1902 г. Спърлинг убеждава Брайънт да я реорганизира, за да може работата да продължи. В резултат на това се ражда Църквата на светостта в Кемп Крик. Спърлинг е избран от общността за пастор, а Брайънт - ръкоположен за дякон. По този начин видението на Спърлинг за възстановяването на Божията църква е увековечено.</p>
+        <p>На следващата година динамичен и весел нов лидер е привлечен от Църквата на светостта в Кемп Крик. Името му е А. Дж. Томлинсън. Томлинсън (1865–1943), квакер, е преживял спасение в личния си живот и е дошъл в Апалачите през 1899 г. като мисионер под егидата на Американското библейско дружество. Томлинсън се сприятелява със Спърлинг, Брайънт и Църквата на светостта в Кемп Крик. Старейшина Спърлинг прави силно впечатление на Томлинсън, когато му обяснява своето видение за Църквата.</p>
+        <p>На 13 юни 1903 г., след период на мъчителни терзания и лично откровение от Бога, Томлинсън се присъединява към групата. Спърлинг му дава обет за вярност и му подава „дясната ръка на братството”, която Томлинсън приема с разбирането, че това е истинската библейска Църква на Бога. Това събитие е свещено за Томлинсън до края на живота му. След години на религиозно скитане, той най-накрая намира своето място, където да работи за Бога.</p>
+        <p>Лидерският потенциал на Томлинсън е лесно разпознат от Спърлинг и останалите и той веднага е избран за пастор на общността в Кемп Крик. Бившият квакер сега вече е движен от чувство за мисия, както никога преди. Под неговото динамично ръководство Църквата бързо основава няколко църковни общества в Северна Каролина, Тенеси и Джорджия и през следващите 20 години членовете нарастват до над 20 000 души, концентрирани главно в южната част на Америка.</p>
+        <p>До 1906 г. вече се появява нуждата да се провежда ежегодно събрание, за да се насърчи по-тясното обединение и общение между църквите. Първото се провежда на 26 и 27 януари в дома на Дж. К. Мърфи в окръг Чероки, Северна Каролина. По време на следващото събиране през 1907 г. името Божия църква беше официално прието. На събранието през 1909 г. А. Дж. Томлинсън е избран за главен старейшина на цялата Божия църква, длъжност, която той заема до смъртта си.</p>
+        <p>А. Дж. Томлинсън, подобно на много други в Кемп Крик, клони към петдесятничеството още преди началото на ХХ век. Въпреки това, едва след изливането на Святия Дух в библейското училище „Бетел” на Чарлз Ф. Паръм в Топика, Канзас, през 1901 г. и великото съживление на улица „Азуза” в Лос Анджелис, ръководено от У. Дж. Сеймур, започнало през 1906 г., Божия църква напълно приема петдесятническото движение.</p>
+        <p>На 12 януари 1908 г. Г. Б. Кешъл, „апостолът на Петдесетница в Юга”, който е бил на улица „Азуза”, проповядва в местната църква в Кливланд, Тенеси, по покана на А. Дж. Томлинсън. След проповедта на Кешъл, Томлинсън пада на пода и получава кръщението на Святия Дух. Той заявява, че е говорил на поне 10 различни езика, докато е бил в изстъпление, и вижда във видение световна жътва за Църквата чрез мисионерска дейност. Оттогава Църквата остава в класическата петдесятническа традиция.</p>
+        <p>Феноменалният ранен растеж на Църквата е прекъснат през 1923 г., когато тя се раздели по няколко въпроса, натрупани в продължение на последните години. Те варират от темата за финансите до формата на управление, която Църквата трябва да приеме, за да служи на постоянно нарастващата си общност. След разделението и двете фракции се разрастват и продължават да изграждат Божието царство, но мъката от това събитие остава да тежи и в двете групи. През последните години се търси духовно помирение, като двете движения си сътрудничат и обединяват често инициативите си в служението.</p>
+        <p>Групата, водена от А. Дж. Томлинсън, след разпадането през 1923 г., постепенно придобива нова сила. През 30-те години на XX век Църквата преживява период на огромно възраждане и отбелязва значителен растеж. Мисионерската дейност процъфтява, тъй като служението на Църквата започва да се разпространява и в други страни.</p>
+        <p>През годините след това Църквата продължи да расте, търсейки в Писанието библейската истина и разбиране, а също и ръководството на Святия Дух за своята посока. От скромното си начало в планините на Апалачия, Църквата сега се е разширила в повече от 130 страни по света с близо един милион членове.</p>
+        <p>Последните глави от историята на Църквата все още не са написани. Горещото ни желание е да изпълним нашата Божия роля, като отнесем евангелското послание на Исус Христос до изгубения свят и да бъдем посредници на помирението, чрез което нашият небесен Отец един ден ще отговори на молитвата на Исус всички ние да бъдем едно в Него.</p>
+      `,
     
     membership_title: 'Членство',
     membership_description: 'Научете как да станете член на нашето глобално църковно семейство.',
@@ -1109,6 +268,38 @@ i18n.translations = {
     romans_10_9: 'Римляни 10:9',
     ready_to_take_the_next_step: 'Готови ли сте да направите следващия стъпки?',
     if_you_would_like_to_know_more_about_having_a_personal_relationship_with_jesus_christ_we_are_here_to_help: 'Ако желаете да научите повече за личната връзка с Исус Христос, ние сме тук, за да ви помогнем.',
+
+    know_god_intro_p1: 'Замисляли ли сте се някога как да познаете Бога и да изпитате мира, който идва от Него? Това е вълнуващо, променящо живота пътуване, което може да започне още днес. Докато четете, започнете да отваряте сърцето си за Него.',
+    know_god_intro_p2: 'Бог иска да има лична връзка с вас, защото Той ви обича.',
+    know_god_intro_p3: 'Бог Сам е направил пътя, по който да Го познаете. Когато Го опознаете, можете наистина да изпитате Неговия мир и изобилен живот.',
+    know_god_romans_5_1_quote: 'Имаме мир с Бога чрез нашия Господ Исус Христос.',
+    know_god_romans_5_1_ref: 'Римляни 5:1',
+    know_god_john_10_10_quote: 'Аз (Исус) дойдох, за да имат живот и да го имат в изобилие.',
+    know_god_john_10_10_ref: 'Йоан 10:10',
+    know_god_lead_in_powerful_verse: 'И друг силен стих от Писанието ни казва:',
+    know_god_john_3_16_extended_quote: 'Защото Бог толкова възлюби света, че даде Своя единороден Син (Исус), за да не погине никой, който вярва в Него, но да има вечен живот.',
+    know_god_problem_sin_heading: 'Проблемът – грехът',
+    know_god_problem_sin_body: 'Има огромна пропаст, която ни отделя всички от Бога и един от друг. Тя се нарича грях. Той е наследствено състояние. Всички човешки същества грешат – логиката ви подсказва, че е така. Светът е пълен с последиците от греха и ние чувстваме раздялата, която той причинява. Възстановяването на връзката с Бога не става автоматично. Вие сте отделени от Него чрез греха.',
+    know_god_answer_cross_heading: 'Отговорът – кръстът',
+    know_god_answer_cross_p1: 'Божията любов преодолява разстоянието между Бога и вас.',
+    know_god_answer_cross_p2: 'Когато Исус Христос умря на кръста и възкръсна от гроба, това беше, за да плати наказанието за вашите грехове.',
+    know_god_1_peter_2_24_quote: 'Той лично понесе тежестта на нашите грехове в собственото Си тяло, когато умря на кръста.',
+    know_god_1_peter_2_24_ref: '1 Петрово 2:24',
+    know_god_what_must_i_do_heading: 'Какво трябва да направя, за да преодолея разстоянието?',
+    know_god_bridge_body: 'Благата вест е, че Бог вече е направил всичко необходимо, за да Го познаем. Той ви призовава да пресечете този мост и да влезете в Неговото семейство! Той имаше план много преди да сътвори света и този план беше изпълнен чрез живота, смъртта и възкресението на Исус. Христос е мостът! Разделението между вас и Бог се поправя, когато Го приемете. Той лично ви кани да направите това. Библията казва: „А на всички, които Го приеха, Той даде право да станат Божии деца, на онези, които вярват в Неговото име” (Йоан 1:12). И има още една добра новина! Бог може да ви помогне да поправите и други взаимоотношения. Той е велик строител на мостове!',
+    know_god_starting_point_heading: 'Отправната точка',
+    know_god_step_1: 'Признайте, че се нуждаете от прошка. Бъдете достатъчно честни да кажете: „Съгрешил съм и се нуждая от Божията прошка.”',
+    know_god_step_2: 'Покайте се за греховете си. Това означава да се обърнете и да тръгнете в друга посока. В Божията посока.',
+    know_god_step_3: 'Повярвайте и изповядайте, че Исус Христос е Господ и че Бог Го е възкресил.',
+    know_god_step_4: 'Предайте контрола над живота си на Исус. Така Той става ваш „Господ“. Можете да го направите с искрена молитва.',
+    know_god_rev_3_20_quote: 'Ето, стоя пред вратата и чукам. Ако някой чуе гласа Ми и отвори вратата, ще вляза.',
+    know_god_rev_3_20_ref: 'Откровение 3:20',
+    know_god_romans_10_13_quote: 'Всеки, който призове името на Господа, ще бъде спасен.',
+    know_god_romans_10_13_ref: 'Римляни 10:13',
+    know_god_sample_prayer_intro: 'Ето една примерна молитва. Първо я прочетете и след това я изречете на глас от сърце. Не забравяйте, че не молитвата ви спасява от греховете ви, а вярата ви в Исус.',
+    know_god_sample_prayer_body: 'Скъпи Господи Исусе, знам, че съм грешник. Имам нужда от прошка. Вярвам, че Ти умря за моите грехове. Искам да се отвърна от греховете си. Каня Те, точно сега, да влезеш в сърцето ми и да ме направиш нов човек. Искам да Ти се доверя и да Те следвам като мой Господ и Спасител. В името на Исус, амин.',
+    know_god_closing_contact: 'Ако сте се помолили с тази молитва, пишете ни. Искаме да празнуваме с вас и да ви помогнем да растете като вярващ в Исус!',
+    know_god_contact_church_here: 'Можете да се свържете с църквата тук',
     
     media_title: 'Медия',
     media_description: 'Видеа, аудио и мултимедийни ресурси за духовен растеж.',
@@ -1207,8 +398,6 @@ i18n.translations = {
     search_suggestions: 'Опитайте да търсите: "служение", "събития", "контакт", "за нас"',
     search_results_count: 'Намерени {count} резултат{plural} за "{term}"',
     best_match: 'Най-добро съвпадение',
-    featured: 'Препоръчано',
-    faq: 'Често задавани въпроси',
     
     // Result types
     page: 'Страница',
@@ -1609,10 +798,8 @@ i18n.translations = {
     default_article_image: 'Изображение по подразбиране',
 
     // Events page translations
-    upcoming_events: 'Предстоящи събития',
     events_description: 'Присъединете се към нас за тези специални събрания и конференции през цялата година.',
     loading_events: 'Зареждане на събития...',
-    no_upcoming_events: 'Няма предстоящи събития',
     check_back_soon: 'Проверете отново скоро за нови събития!',
     dont_miss_opportunities: 'Не пропускайте тези възможности!',
     view_full_calendar: 'Преглед на пълен календар',
@@ -1719,7 +906,6 @@ i18n.translations = {
     search_discussions_placeholder: 'Търсете по заглавие, съдържание или тагове...',
     filter_by_tag: 'Филтрирай по таг',
     all_tags: 'Всички тагове',
-    clear_filters: 'Изчисти филтрите',
     total_discussions: 'Общо дискусии',
     pinned: 'Закачени',
     total_comments: 'Общо коментари',
@@ -1762,9 +948,10 @@ i18n.translations = {
     // Churches Page
     find_a_church_header: 'Намери църква',
     discover_churches_description: 'Открийте църкви в вашия район и свържете се с местните църкви',
-    search_church_placeholder: 'Търсете по име на църква, град, пастор или denominatie...',
+    search_church_placeholder: 'Търсете по име на църква, град, пастор или деноминация...',
     all_denominations: 'Всички деноминации',
-    churches_found: '{count} църква{plural} намерени',
+    churches_found_one: 'Намерена е 1 църква',
+    churches_found_many: 'Намерени са {count} църкви',
     no_churches_found_header: 'Няма намерени църкви',
     no_churches_listed: 'В момента няма църкви, включени в нашият указател.',
     try_adjusting_criteria: 'Опитайте да промените критериите за търсене или филтриране.',
@@ -1785,15 +972,4 @@ i18n.translations = {
     loading_churches: 'Зареждане на църкви...',
     error_loading_churches: 'Грешка при зареждане на църкви',
     try_again_btn: 'Опитайте отново',
-  },
-};
-
-i18n.locale = 'bg'; // Default locale is now Bulgarian
-
-export function setLocale(locale: string) {
-  i18n.locale = locale;
-}
-
-export function t(key: string, options?: any) {
-  return i18n.t(key, options);
-} 
+  } as const;
