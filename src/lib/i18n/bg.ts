@@ -666,23 +666,6 @@ export const bgMessages = {
     seminary_mission: 'Да предоставим отлично академично и практическо обучение, което подготвя мъже и жени за ефективно служение в глобалната Църква на Бога на Пророчеството.',
     seminary_accreditation: 'Семинария Дух и живот е ангажирана с поддържането на най-високите академични стандарти, оставайки вярна на нашето петдесятническо наследство и библейска основа.',
 
-    // Children's Ministry content
-    building_faith_early: 'Изграждане на вяра от ранна възраст',
-    children_ministry_desc: 'Нашето детско служение е проектирано да помогне на децата да развият любов към Бога, да научат библейски истини и да растат в своята връзка с Исус Христос.',
-    age_appropriate_programs: 'Подходящи за възрастта програми',
-    sunday_school_classes: 'Sunday School classes for all age groups',
-    childrens_church: 'Children\'s church during worship services',
-    vacation_bible_school: 'Vacation Bible School',
-    kids_camps: 'Kids\' camps and retreats',
-    family_ministry_events: 'Family ministry events',
-    teaching_approach: 'Teaching Approach',
-    teaching_approach_desc: 'We use creative, interactive methods to help children:',
-    learn_bible_stories: 'Learn Bible stories and principles',
-    develop_prayer_habits: 'Develop prayer habits',
-    understand_gods_love: 'Understand God\'s love',
-    build_christian_friendships: 'Build Christian friendships',
-    serve_community: 'Serve others in their community',
-
     // One Child Fund content
     changing_lives_one_child: 'Променяне на животи едно дете наведнъж',
     one_child_fund_desc: 'Фондът за едно дете е служение на състрадание, което предоставя образователни възможности, основни нужди и духовно възпитание за деца в развиващите се страни.',

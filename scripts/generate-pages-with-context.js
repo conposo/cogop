@@ -41,7 +41,6 @@ const pages = [
   { path: 'ministries/childrens', title: 'Children\'s Ministry' },
   { path: 'ministries/youth', title: 'Youth Ministry' },
   { path: 'ministries/seminary', title: 'Seminary' },
-  { path: 'ministries/children', title: 'Children\'s Ministry' },
   { path: 'ministries/womens', title: 'Women\'s Ministry' },
   { path: 'ministries/mens', title: 'Men\'s Ministry' },
   { path: 'ministries/music', title: 'Music Ministry' },

@@ -46,7 +46,7 @@ const Footer = () => {
               <li><Link href="/about/who-we-are">{t('who_we_are', { defaultValue: 'Who We Are' })}</Link></li>
               <li><Link href="/about/what-we-believe">{t('what_we_believe', { defaultValue: 'What We Believe' })}</Link></li>
               <li><Link href="/about/leadership">{t('our_leadership', { defaultValue: 'Our Leadership' })}</Link></li>
-              <li><Link href="/about/our-history">{t('our_history', { defaultValue: 'Our History' })}</Link></li>
+              <li><Link href="/about/history">{t('our_history', { defaultValue: 'Our History' })}</Link></li>
             </ul>
           </div>
           <div className="col-lg-2 mb-4">
@@ -55,16 +55,15 @@ const Footer = () => {
               <li><Link href="/get-connected/calendar">{t('calendar', { defaultValue: 'Calendar' })}</Link></li>
               <li><Link href="/get-connected/contact">{t('contact', { defaultValue: 'Contact' })}</Link></li>
               <li><Link href="/get-connected/faq">{t('faq', { defaultValue: 'FAQ' })}</Link></li>
-              <li><Link href="/get-connected/employment">{t('employment', { defaultValue: 'Employment' })}</Link></li>
+              {/* <li><Link href="/get-connected/employment">{t('employment', { defaultValue: 'Employment' })}</Link></li> */}
             </ul>
           </div>
           <div className="col-lg-2 mb-4">
             <h5 className="small text-uppercase opacity-50">{t('ministries', { defaultValue: 'Ministries' })}</h5>
             <ul className="footer__links">
-              <li><Link href="/ministries/global-missions">{t('global_missions', { defaultValue: 'Global Missions' })}</Link></li>
               <li><Link href="/ministries/youth">{t('youth_ministry', { defaultValue: 'Youth Ministry' })}</Link></li>
-              <li><Link href="/ministries/children">{t('childrens_title', { defaultValue: "Children's Ministry" })}</Link></li>
-              <li><Link href="/where-we-serve">{t('where_we_serve', { defaultValue: 'Where We Serve' })}</Link></li>
+              <li><Link href="/ministries/childrens">{t('childrens_title', { defaultValue: "Children's Ministry" })}</Link></li>
+              {/* <li><Link href="/where-we-serve">{t('where_we_serve', { defaultValue: 'Where We Serve' })}</Link></li> */}
             </ul>
           </div>
           <div className="col-lg-2">
@@ -72,8 +71,6 @@ const Footer = () => {
             <ul className="footer__links">
               <li><Link href="/resources/library">{t('library_title', { defaultValue: 'Library' })}</Link></li>
               <li><Link href="/resources/media">{t('media_title', { defaultValue: 'Media' })}</Link></li>
-              <li><Link href="/resources/podcasts">{t('podcasts_title', { defaultValue: 'Podcasts' })}</Link></li>
-              <li><Link href="/give">{t('give', { defaultValue: 'Give' })}</Link></li>
             </ul>
           </div>
         </div>

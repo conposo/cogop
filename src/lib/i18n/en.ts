@@ -658,23 +658,6 @@ export const enMessages = {
     seminary_mission: 'To provide excellent academic and practical training that equips men and women for effective ministry in the global Church of God of Prophecy.',
     seminary_accreditation: 'Spirit and Life Seminary is committed to maintaining the highest academic standards while staying true to our Pentecostal heritage and biblical foundation.',
 
-    // Children's Ministry content
-    building_faith_early: 'Building Faith from an Early Age',
-    children_ministry_desc: 'Our children\'s ministry is designed to help children develop a love for God, learn biblical truths, and grow in their relationship with Jesus Christ.',
-    age_appropriate_programs: 'Age-Appropriate Programs',
-    sunday_school_classes: 'Sunday School classes for all age groups',
-    childrens_church: 'Children\'s church during worship services',
-    vacation_bible_school: 'Vacation Bible School',
-    kids_camps: 'Kids\' camps and retreats',
-    family_ministry_events: 'Family ministry events',
-    teaching_approach: 'Teaching Approach',
-    teaching_approach_desc: 'We use creative, interactive methods to help children:',
-    learn_bible_stories: 'Learn Bible stories and principles',
-    develop_prayer_habits: 'Develop prayer habits',
-    understand_gods_love: 'Understand God\'s love',
-    build_christian_friendships: 'Build Christian friendships',
-    serve_community: 'Serve others in their community',
-
     // One Child Fund content
     changing_lives_one_child: 'Changing Lives One Child at a Time',
     one_child_fund_desc: 'The One Child Fund is a ministry of compassion that provides educational opportunities, basic necessities, and spiritual nurturing for children in developing countries.',

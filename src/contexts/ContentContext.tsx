@@ -641,33 +641,6 @@ const getContentData = (): ContentContextType => ({
         <p>Spirit and Life Seminary is committed to maintaining the highest academic standards while staying true to our Pentecostal heritage and biblical foundation.</p>
       `
     },
-    'ministries/children': {
-      title: 'Children\'s Ministry',
-      description: 'Nurturing faith in the hearts of our youngest members.',
-      content: `
-        <h2>Building Faith from an Early Age</h2>
-        <p>Our children's ministry is designed to help children develop a love for God, learn biblical truths, and grow in their relationship with Jesus Christ.</p>
-        
-        <h3>Age-Appropriate Programs</h3>
-        <ul>
-          <li>Sunday School classes for all age groups</li>
-          <li>Children's church during worship services</li>
-          <li>Vacation Bible School</li>
-          <li>Kids' camps and retreats</li>
-          <li>Family ministry events</li>
-        </ul>
-        
-        <h3>Teaching Approach</h3>
-        <p>We use creative, interactive methods to help children:</p>
-        <ul>
-          <li>Learn Bible stories and principles</li>
-          <li>Develop prayer habits</li>
-          <li>Understand God's love</li>
-          <li>Build Christian friendships</li>
-          <li>Serve others in their community</li>
-        </ul>
-      `
-    },
     'ministries/one-child-fund': {
       title: 'One Child Fund',
       description: 'Providing education and care for children in need around the world.',
