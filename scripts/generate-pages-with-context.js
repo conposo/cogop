@@ -29,7 +29,6 @@ const pages = [
   { path: 'ministries/fields-of-the-wood', title: 'Fields of the Wood' },
   { path: 'ministries/stewardship', title: 'Stewardship' },
   { path: 'ministries/bookstore', title: 'Bookstore' },
-  { path: 'ministries/library', title: 'Library' },
   { path: 'ministries/global-communications', title: 'Global Communications' },
   { path: 'ministries/white-wing-messenger', title: 'White Wing Messenger' },
   { path: 'ministries/prayer', title: 'Prayer' },

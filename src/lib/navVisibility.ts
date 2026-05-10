@@ -22,7 +22,12 @@ export function isHiddenNavRoute(href: string): boolean {
   return false
 }
 
-/** Filter helper for any array of `{ href }`-shaped nav items. */
-export function visibleNavItems<T extends { href: string }>(items: readonly T[]): T[] {
-  return items.filter((item) => !isHiddenNavRoute(item.href))
+/** Filter helper for nav items; keeps `{ divider: true }` rows, drops hidden `href` links. */
+export function visibleNavItems<T extends { href?: string; divider?: boolean }>(items: readonly T[]): T[] {
+  return items.filter((item) => {
+    if (item.divider) return true
+    const href = item.href
+    if (!href) return false
+    return !isHiddenNavRoute(href)
+  })
 }

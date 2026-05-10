@@ -1,3 +1,5 @@
+import { FAQ_BOOKLET_HTML_BG } from './faqBookletContent'
+
 /**
  * Bulgarian UI strings (generated split from former i18n.ts).
  */
@@ -334,7 +336,31 @@ export const bgMessages = {
     know_god_contact_church_here: 'Можете да се свържете с църквата тук',
     
     media_title: 'Медия',
-    media_description: 'Видеа, аудио и мултимедийни ресурси за духовен растеж.',
+    media_description: 'Достъп до проповеди, видеа и мултимедийни ресурси за духовен растеж и служение.',
+    media_page_heading: 'Мултимедийни ресурси',
+    media_page_intro: 'Достъп до библиотека от проповеди, видеа и мултимедийно съдържание за духовния ви растеж и нуждите на служението.',
+    media_featured_videos_heading: 'Препоръчани видеа',
+    media_featured_videos_lead: 'Гледайте тук или отворете в YouTube в нов раздел.',
+    media_video_iframe_title_1: 'Препоръчано видео 1',
+    media_video_iframe_title_2: 'Препоръчано видео 2',
+    media_youtube_brand: 'YouTube',
+    media_open_video: 'Отвори',
+    media_channel_kicker: 'YouTube канал',
+    media_channel_heading: 'Още в YouTube',
+    media_channel_intro: 'Абонирайте се за <strong>@obc-ruse</strong> за нови видеа, богослужения и поуки.',
+    media_open_channel_button: 'Към канала',
+    media_available_heading: 'Налично съдържание',
+    media_list_weekly_sermons: 'Седмични записи на проповеди',
+    media_list_event_videos: 'Видеа от конференции и специални събития',
+    media_list_teaching_series: 'Учителски серии и библейски студии',
+    media_list_worship_music: 'Музика за поклонение и записи',
+    media_list_promo_videos: 'Промоционални и информационни видеа',
+    media_streaming_heading: 'Начини за гледане',
+    media_streaming_intro: 'Съдържанието е достъпно през уебсайта, мобилни приложения и социални мрежи за удобен достъп отвсякъде.',
+    media_booklet_kicker: 'Църковна брошура',
+    media_booklet_heading: 'Ние сме Църква на Бога на Пророчеството',
+    media_booklet_intro: 'Нашата 24-странична брошура представя кои сме, в какво вярваме и как изпълняваме мисията си заедно—разгледайте я онлайн или изтеглете PDF.',
+    media_booklet_button: 'Към брошурата',
     
     podcasts_title: 'Подкастове',
     podcasts_description: 'Слушайте вдъхновяващи послания и учения от нашите лидери.',
@@ -343,17 +369,7 @@ export const bgMessages = {
     youtube_description: 'Гледайте нашите най-нови видеа и живи предавания.',
     
     library_title: 'Библиотека',
-    library_description: 'Достъп до нашата цифрова библиотека с книги, статии и образователни материали.',
-    digital_library: 'Цифрова библиотека',
-    digital_library_desc: 'Нашата онлайн библиотека предоставя достъп до теологични книги, исторически документи и образователни ресурси.',
-    collection_includes: 'Колекцията включва',
-    theological_biblical_reference: 'Теологични и библейски справочни трудове',
-    church_history_heritage: 'Материали по църковна история и наследство',
-    ministry_training_resources: 'Ресурси за обучение в служението',
-    devotional_inspirational: 'Молитвени и вдъхновяващи книги',
-    academic_papers_research: 'Академични статии и изследвания',
-    access: 'Достъп',
-    library_access_desc: 'Библиотечните ресурси са достъпни за членове и лидери в служението. Свържете се с нас за информация за достъп.',
+    library_description: 'Очаквайте скоро.',
     
     assembly_documents_title: 'Документи от събранието',
     assembly_documents_description: 'Официални документи и протоколи от нашето Международно събрание.',
@@ -617,7 +633,8 @@ export const bgMessages = {
     contact_us_title: 'Свържете се с нас',
     contact_us_description: 'Свържете се с нас с вашите въпроси, молитвени искания или за да научите повече за нашата църква.',
     faq_title: 'Често задавани въпроси',
-    faq_description: 'Намерете отговори на често задавани въпроси за нашата църква, вярвания и служби.',
+    faq_description: 'Отговори на често задавани въпроси за Божия църква на пророчеството — от въведението към брошурата.',
+    faq_booklet_html: FAQ_BOOKLET_HTML_BG,
     employment_title: 'Работа',
     employment_description: 'Изследвайте кариерни възможности в нашата организация.',
     schedule_tour_title: 'Запишете се за обиколка',

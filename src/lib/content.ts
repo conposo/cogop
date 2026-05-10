@@ -120,11 +120,6 @@ export const getServerContentData = (): ContentData => ({
       description: 'Christian books, resources, and materials for spiritual growth.',
       keywords: ['bookstore', 'christian books', 'resources', 'spiritual growth'],
     },
-    'ministries/library': {
-      title: 'Library',
-      description: 'Digital library of books, articles, and educational materials for ministry.',
-      keywords: ['library', 'digital library', 'books', 'theological resources', 'ministry'],
-    },
     'ministries/global-communications': {
       title: 'Global Communications',
       description: 'Connecting our worldwide church through media and communications.',
@@ -246,7 +241,7 @@ export const getServerContentData = (): ContentData => ({
     },
     'resources/media': {
       title: 'Media',
-      description: 'Videos, audio, and multimedia resources for spiritual growth.',
+      description: 'Access sermons, videos, and multimedia resources for spiritual growth and ministry.',
       keywords: ['media', 'videos', 'audio', 'multimedia', 'spiritual growth'],
     },
     'resources/podcasts': {
@@ -261,8 +256,8 @@ export const getServerContentData = (): ContentData => ({
     },
     'resources/library': {
       title: 'Library',
-      description: 'Access our digital library of books, articles, and educational materials.',
-      keywords: ['library', 'digital library', 'books', 'articles', 'educational materials'],
+      description: 'Coming soon.',
+      keywords: ['library', 'coming soon'],
     },
     'resources/assembly-documents': {
       title: 'Assembly Documents',

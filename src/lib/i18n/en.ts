@@ -1,3 +1,5 @@
+import { FAQ_BOOKLET_HTML_EN } from './faqBookletContent'
+
 /**
  * English UI strings (generated split from former i18n.ts).
  */
@@ -326,7 +328,31 @@ export const enMessages = {
     know_god_contact_church_here: 'Contact the church here',
     
     media_title: 'Media',
-    media_description: 'Videos, audio, and multimedia resources for spiritual growth.',
+    media_description: 'Access sermons, videos, and multimedia resources for spiritual growth and ministry.',
+    media_page_heading: 'Multimedia Resources',
+    media_page_intro: 'Access our library of sermons, videos, and multimedia content to support your spiritual growth and ministry needs.',
+    media_featured_videos_heading: 'Featured videos',
+    media_featured_videos_lead: 'Watch here or open on YouTube in a new tab.',
+    media_video_iframe_title_1: 'Featured video 1',
+    media_video_iframe_title_2: 'Featured video 2',
+    media_youtube_brand: 'YouTube',
+    media_open_video: 'Open',
+    media_channel_kicker: 'YouTube channel',
+    media_channel_heading: 'More on YouTube',
+    media_channel_intro: 'Subscribe to <strong>@obc-ruse</strong> for new videos, services, and teaching.',
+    media_open_channel_button: 'Open channel',
+    media_available_heading: 'Available Content',
+    media_list_weekly_sermons: 'Weekly sermon recordings',
+    media_list_event_videos: 'Conference and special event videos',
+    media_list_teaching_series: 'Teaching series and Bible studies',
+    media_list_worship_music: 'Worship music and recordings',
+    media_list_promo_videos: 'Promotional and informational videos',
+    media_streaming_heading: 'Streaming Options',
+    media_streaming_intro: 'Content is available through our website, mobile apps, and social media platforms for convenient access anywhere.',
+    media_booklet_kicker: 'Church brochure',
+    media_booklet_heading: 'We are the Church of God of Prophecy',
+    media_booklet_intro: 'Our 24-page booklet introduces who we are, what we believe, and how we serve together—browse it on the site or download the PDF.',
+    media_booklet_button: 'View booklet',
     
     podcasts_title: 'Podcasts',
     podcasts_description: 'Listen to inspiring messages and teachings from our leaders.',
@@ -335,17 +361,7 @@ export const enMessages = {
     youtube_description: 'Watch our latest videos and live streams.',
     
     library_title: 'Library',
-    library_description: 'Access our digital library of books, articles, and educational materials.',
-    digital_library: 'Digital Library',
-    digital_library_desc: 'Our online library provides access to theological books, historical documents, and educational resources.',
-    collection_includes: 'Collection Includes',
-    theological_biblical_reference: 'Theological and biblical reference works',
-    church_history_heritage: 'Church history and heritage materials',
-    ministry_training_resources: 'Ministry training resources',
-    devotional_inspirational: 'Devotional and inspirational books',
-    academic_papers_research: 'Academic papers and research',
-    access: 'Access',
-    library_access_desc: 'Library resources are available to members and ministry leaders. Contact us for access information.',
+    library_description: 'Coming soon.',
     
     assembly_documents_title: 'Assembly Documents',
     assembly_documents_description: 'Official documents and proceedings from our International Assembly.',
@@ -609,7 +625,8 @@ export const enMessages = {
     contact_us_title: 'Contact Us',
     contact_us_description: 'Reach out to us with your questions, prayer requests, or to learn more about our church.',
     faq_title: 'Frequently Asked Questions',
-    faq_description: 'Find answers to common questions about our church, beliefs, and services.',
+    faq_description: 'Answers to frequently asked questions about the Church of God of Prophecy—from our introductory booklet.',
+    faq_booklet_html: FAQ_BOOKLET_HTML_EN,
     employment_title: 'Employment',
     employment_description: 'Explore career opportunities within our organization.',
     schedule_tour_title: 'Schedule a Tour',

@@ -52,7 +52,7 @@ const Footer = () => {
           <div className="col-lg-2 mb-4">
             <h5 className="small text-uppercase opacity-50">{t('get_connected', { defaultValue: 'Get Connected' })}</h5>
             <ul className="footer__links">
-              <li><Link href="/get-connected/calendar">{t('calendar', { defaultValue: 'Calendar' })}</Link></li>
+              {/* <li><Link href="/get-connected/calendar">{t('calendar', { defaultValue: 'Calendar' })}</Link></li> */}
               <li><Link href="/get-connected/contact">{t('contact', { defaultValue: 'Contact' })}</Link></li>
               <li><Link href="/get-connected/faq">{t('faq', { defaultValue: 'FAQ' })}</Link></li>
               {/* <li><Link href="/get-connected/employment">{t('employment', { defaultValue: 'Employment' })}</Link></li> */}

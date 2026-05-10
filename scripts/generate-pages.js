@@ -26,7 +26,6 @@ const pages = {
     'fields-of-the-wood': 'Fields of the Wood',
     stewardship: 'Stewardship',
     bookstore: 'Bookstore',
-    library: 'Library',
     'global-communications': 'Global Communications',
     'white-wing-messenger': 'White Wing Messenger',
     prayer: 'Prayer',

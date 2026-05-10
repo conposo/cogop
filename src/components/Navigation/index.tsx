@@ -203,7 +203,6 @@ const Navigation = () => {
         // { title: t('fields_of_wood_title', { defaultValue: 'Fields of the Wood' }), href: '/ministries/fields-of-the-wood' },
         // { title: t('stewardship_title', { defaultValue: 'Stewardship' }), href: '/ministries/stewardship' },
         // { title: t('bookstore_title', { defaultValue: 'Bookstore' }), href: '/ministries/bookstore' },
-        { title: t('library_title', { defaultValue: 'Library' }), href: '/ministries/library' },
         // { title: t('global_communications_title', { defaultValue: 'Global Communications' }), href: '/ministries/global-communications' },
         // { title: t('white_wing_messenger_title', { defaultValue: 'White Wing Messenger' }), href: '/ministries/white-wing-messenger' },
         // { title: t('prayer_title', { defaultValue: 'Prayer' }), href: '/ministries/prayer' },
@@ -229,27 +228,29 @@ const Navigation = () => {
     //     { title: t('europe_middle_east', { defaultValue: 'Europe & Middle East' }), href: '/where-we-serve/europe-middle-east' },
     //   ]
     // },
-    // {
-    //   title: t('resources', { defaultValue: 'Resources' }),
-    //   items: [
-    //     { title: t('get_started_title', { defaultValue: 'Get Started' }), href: '/resources/get-started' },
-    //     { title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }), href: '/resources/know-god' },
-    //     { title: t('membership', { defaultValue: 'Membership' }), href: '/resources/membership' },
-    //     { title: t('media_title', { defaultValue: 'Media' }), href: '/resources/media' },
-    //     { title: t('podcasts_title', { defaultValue: 'Podcasts' }), href: '/resources/podcasts' },
-    //     { title: t('youtube_title', { defaultValue: 'YouTube' }), href: '/resources/youtube' },
-    //     { title: t('library_title', { defaultValue: 'Library' }), href: '/resources/library' },
-    //     { title: t('assembly_documents_title', { defaultValue: 'Assembly Documents' }), href: '/resources/assembly-documents' },
-    //     { title: t('policies_guidelines_title', { defaultValue: 'Policies & Guidelines' }), href: '/resources/policies-guidelines' },
-    //     { title: t('public_statements_title', { defaultValue: 'Public Statements' }), href: '/resources/public-statements' },
-    //     { title: t('assembly_minutes_title', { defaultValue: 'Assembly Minutes' }), href: '/resources/assembly-minutes' },
-    //     { title: t('church_resources_title', { defaultValue: 'Church Resources' }), href: '/resources/church-resources' },
-    //     { title: t('church_locator_title', { defaultValue: 'Church Locator' }), href: '/churches' },
-    //     { title: t('church_logos_title', { defaultValue: 'Church Logos' }), href: '/resources/church-logos' },
-    //     { title: t('treasurers_report_title', { defaultValue: "Treasurer's Report" }), href: '/resources/treasurers-report' },
-    //     { title: t('directory_title', { defaultValue: 'Directory' }), href: '/resources/directory' },
-    //   ]
-    // },
+    {
+      title: t('resources', { defaultValue: 'Resources' }),
+      items: [
+        { title: t('library_title', { defaultValue: 'Library' }), href: '/resources/library' },
+        { title: t('media_title', { defaultValue: 'Media' }), href: '/resources/media' },
+        // { title: t('youtube_title', { defaultValue: 'YouTube' }), href: '/resources/youtube' },
+        { divider: true },
+        { title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }), href: '/resources/know-god' },
+
+        // { title: t('get_started_title', { defaultValue: 'Get Started' }), href: '/resources/get-started' },
+        // { title: t('membership', { defaultValue: 'Membership' }), href: '/resources/membership' },
+        // { title: t('podcasts_title', { defaultValue: 'Podcasts' }), href: '/resources/podcasts' },
+        // { title: t('assembly_documents_title', { defaultValue: 'Assembly Documents' }), href: '/resources/assembly-documents' },
+        // { title: t('policies_guidelines_title', { defaultValue: 'Policies & Guidelines' }), href: '/resources/policies-guidelines' },
+        // { title: t('public_statements_title', { defaultValue: 'Public Statements' }), href: '/resources/public-statements' },
+        // { title: t('assembly_minutes_title', { defaultValue: 'Assembly Minutes' }), href: '/resources/assembly-minutes' },
+        // { title: t('church_resources_title', { defaultValue: 'Church Resources' }), href: '/resources/church-resources' },
+        // { title: t('church_locator_title', { defaultValue: 'Church Locator' }), href: '/churches' },
+        // { title: t('church_logos_title', { defaultValue: 'Church Logos' }), href: '/resources/church-logos' },
+        // { title: t('treasurers_report_title', { defaultValue: "Treasurer's Report" }), href: '/resources/treasurers-report' },
+        // { title: t('directory_title', { defaultValue: 'Directory' }), href: '/resources/directory' },
+      ]
+    },
     {
       title: t('give', { defaultValue: 'Give' }),
       href: '/give'
@@ -330,17 +331,23 @@ const Navigation = () => {
                       </a>
                       {item.items && (
                         <ul className="dropdown-menu">
-                          {item.items.map((subItem, subIndex) => (
-                            <li key={subIndex}>
-                              <Link 
-                                href={subItem.href}
-                                className="dropdown-item"
-                                onClick={handleMenuItemClick}
-                              >
-                                {subItem.title}
-                              </Link>
-                            </li>
-                          ))}
+                          {item.items.map((subItem, subIndex) =>
+                            'divider' in subItem && subItem.divider ? (
+                              <li key={`divider-${subIndex}`} role="separator">
+                                <hr className="dropdown-divider" />
+                              </li>
+                            ) : (
+                              <li key={subIndex}>
+                                <Link
+                                  href={(subItem as { href: string }).href}
+                                  className="dropdown-item"
+                                  onClick={handleMenuItemClick}
+                                >
+                                  {(subItem as { title: string }).title}
+                                </Link>
+                              </li>
+                            ),
+                          )}
                         </ul>
                       )}
                     </>

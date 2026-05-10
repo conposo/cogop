@@ -272,123 +272,7 @@ const getContentData = (): ContentContextType => ({
     'get-connected/faq': {
       title: t('faq_title', { defaultValue: 'Frequently Asked Questions' }),
       description: t('faq_description', { defaultValue: 'Find answers to common questions about our church, beliefs, and services.' }),
-      faq: {
-        introduction: t('faq_introduction', { defaultValue: 'We\'ve compiled answers to some of the most common questions about the Church of God of Prophecy. If you don\'t find what you\'re looking for, please contact us directly.' }),
-        categories: [
-          {
-            title: t('faq_general_questions', { defaultValue: 'General Questions' }),
-            questions: [
-              {
-                id: "general-1",
-                question: t('faq_what_is_cogop', { defaultValue: 'What is the Church of God of Prophecy?' }),
-                answer: t('faq_what_is_cogop_answer', { defaultValue: 'The Church of God of Prophecy is a global, Christ-centered movement rooted in Scripture, steadfast in faith, passionate about people, and dedicated to reconciling the world to Christ through the power of the Holy Spirit. We have over 12,000 churches and missions in 135 countries worldwide.' }),
-                isExpanded: true
-              },
-              {
-                id: "general-2",
-                question: t('faq_when_founded', { defaultValue: 'When was the Church of God of Prophecy founded?' }),
-                answer: t('faq_when_founded_answer', { defaultValue: 'The Church of God of Prophecy was founded in the early 20th century as part of the modern Pentecostal movement. We have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God\'s kingdom on earth.' })
-              },
-              {
-                id: "general-3",
-                question: t('faq_headquarters_location', { defaultValue: 'Where is your headquarters located?' }),
-                answer: t('faq_headquarters_answer', { defaultValue: 'Our international headquarters is located in Cleveland, Tennessee, USA, at 3720 Keith Street NW. Our mailing address is PO Box 2910, Cleveland, TN 37320. You can reach us at (423) 559-5100.' })
-              }
-            ]
-          },
-          {
-            title: t('faq_services_worship', { defaultValue: 'Services and Worship' }),
-            questions: [
-              {
-                id: "worship-1",
-                question: t('faq_worship_service', { defaultValue: 'What can I expect during a worship service?' }),
-                answer: t('faq_worship_service_answer', { defaultValue: 'Our worship services are Spirit-led and include contemporary and traditional music, biblical preaching, prayer, and fellowship. You\'ll experience warm hospitality, passionate worship, and practical biblical teaching that applies to daily life.' })
-              },
-              {
-                id: "worship-2",
-                question: t('faq_dress_code', { defaultValue: 'What should I wear to church?' }),
-                answer: t('faq_dress_answer', { defaultValue: 'Come as you are! We welcome people regardless of how they dress. Some prefer casual attire while others dress more formally. The most important thing is that you feel comfortable and can focus on worshiping God.' })
-              },
-              {
-                id: "worship-3",
-                question: t('faq_children_programs', { defaultValue: 'Do you have programs for children and youth?' }),
-                answer: t('faq_children_answer', { defaultValue: 'Yes! We have age-appropriate programs including Sunday School, children\'s church, youth groups, Vacation Bible School, camps, and special events. Our goal is to help young people develop a strong relationship with Jesus Christ.' })
-              }
-            ]
-          },
-          {
-            title: t('faq_membership_involvement', { defaultValue: 'Membership and Getting Involved' }),
-            questions: [
-              {
-                id: "membership-1",
-                question: t('faq_become_member', { defaultValue: 'How do I become a member?' }),
-                answer: t('faq_member_answer', { defaultValue: 'Membership is open to all who have accepted Jesus Christ as their personal Savior. The steps include: accepting Christ, being baptized by immersion, committing to spiritual growth through Bible study and fellowship, and using your gifts to serve others.' })
-              },
-              {
-                id: "membership-2",
-                question: t('faq_baptism_required', { defaultValue: 'Do I need to be baptized to attend church?' }),
-                answer: t('faq_baptism_answer', { defaultValue: 'No, you don\'t need to be baptized to attend church. Everyone is welcome to join us for worship and fellowship. Baptism is required for membership and represents your public declaration of faith in Jesus Christ.' })
-              },
-              {
-                id: "membership-3",
-                question: t('faq_get_involved_ministry', { defaultValue: 'How can I get involved in ministry?' }),
-                answer: t('faq_ministry_answer', { defaultValue: 'There are many ways to get involved! You can serve in worship teams, children\'s ministry, youth programs, missions, community outreach, administrative roles, and more. Contact your local church leadership to discover opportunities that match your gifts and interests.' })
-              }
-            ]
-          },
-          {
-            title: t('faq_giving_support', { defaultValue: 'Giving and Support' }),
-            questions: [
-              {
-                id: "giving-1",
-                question: t('faq_tithe_required', { defaultValue: 'Do I have to tithe or give money?' }),
-                answer: t('faq_tithe_answer', { defaultValue: 'Giving is voluntary and should come from a cheerful heart. We teach biblical stewardship and believe tithing (giving 10% of income) is a biblical principle, but we never pressure anyone to give. Your relationship with God is not based on your financial contributions.' })
-              },
-              {
-                id: "giving-2",
-                question: t('faq_donations_used', { defaultValue: 'How are donations used?' }),
-                answer: t('faq_donations_answer', { defaultValue: 'Donations support local church ministries, global missions, humanitarian aid, educational programs, and administrative costs. We practice financial transparency and provide annual reports showing how funds are used to advance God\'s kingdom worldwide.' })
-              }
-            ]
-          },
-          {
-            title: t('faq_global_ministry', { defaultValue: 'Global Ministry' }),
-            questions: [
-              {
-                id: "global-1",
-                question: t('faq_support_missions', { defaultValue: 'How can I support global missions?' }),
-                answer: t('faq_support_missions_answer', { defaultValue: 'You can support missions through prayer, financial giving, participating in mission trips, sponsoring a child through our One Child Fund, or becoming a Harvest Partner to support missionaries. Contact us to learn about specific opportunities.' })
-              },
-              {
-                id: "global-2",
-                question: t('faq_international_assembly', { defaultValue: 'What is the International Assembly?' }),
-                answer: t('faq_international_assembly_answer', { defaultValue: 'The International Assembly is our global church gathering held every four years. Delegates from 135 countries come together for worship, fellowship, and church business. The next assembly will be in Orlando, Florida, July 15-19, 2026.' })
-              }
-            ]
-          },
-          {
-            title: t('faq_contact_next_steps', { defaultValue: 'Contact and Next Steps' }),
-            questions: [
-              {
-                id: "contact-1",
-                question: t('faq_find_local_church', { defaultValue: 'How do I find a local church?' }),
-                answer: t('faq_find_local_church_answer', { defaultValue: 'Use our church locator to find a congregation near you. You can also call our headquarters at (423) 559-5100 or contact us online for assistance in finding a local church.' })
-              },
-              {
-                id: "contact-2",
-                question: t('faq_schedule_tour_question', { defaultValue: 'Can I schedule a tour of your facilities?' }),
-                answer: t('faq_schedule_tour_answer', { defaultValue: 'Yes! We\'d love to show you around our facilities. You can schedule a tour of our headquarters in Cleveland, Tennessee, or visit Fields of the Wood, our biblical theme park in North Carolina.' })
-              },
-              {
-                id: "contact-3",
-                question: t('faq_more_questions', { defaultValue: 'I have more questions. How can I get answers?' }),
-                answer: t('faq_more_questions_answer', { defaultValue: 'We\'re here to help! You can contact us through our website, call us at (423) 559-5100, or email us at info@cogop.org. You can also reach out to a local Church of God of Prophecy pastor in your area.' })
-              }
-            ]
-          }
-        ]
-      },
-      content: `<p>${t('faq_content_will_be_rendered', { defaultValue: 'FAQ content will be rendered using structured data above.' })}</p>`
+      content: t('faq_booklet_html', { defaultValue: '<p>Content coming soon.</p>' }),
     },
     'get-connected/employment': {
       title: t('employment_title', { defaultValue: 'Employment' }),
@@ -813,11 +697,6 @@ const getContentData = (): ContentContextType => ({
         <h3>Online Ordering</h3>
         <p>Browse our catalog online or visit our physical location for personalized service and recommendations.</p>
       `
-    },
-    'ministries/library': {
-      title: t('library_title', { defaultValue: 'Library' }),
-      description: t('content_coming_soon', { defaultValue: 'Content coming soon...' }),
-      content: `<p class="lead text-muted">${t('content_coming_soon', { defaultValue: 'Content coming soon...' })}</p>`,
     },
     'ministries/global-communications': {
       title: 'Global Communications',
@@ -1287,23 +1166,86 @@ const getContentData = (): ContentContextType => ({
         </div>`
     },
     'resources/media': {
-      title: 'Media',
-      description: 'Access sermons, videos, and multimedia resources.',
+      title: t('media_title', { defaultValue: 'Media' }),
+      description: t('media_description', { defaultValue: 'Access sermons, videos, and multimedia resources for spiritual growth and ministry.' }),
       content: `
-        <h2>Multimedia Resources</h2>
-        <p>Access our library of sermons, videos, and multimedia content to support your spiritual growth and ministry needs.</p>
+        <h2>${t('media_page_heading', { defaultValue: 'Multimedia Resources' })}</h2>
+        <p>${t('media_page_intro', { defaultValue: 'Access our library of sermons, videos, and multimedia content to support your spiritual growth and ministry needs.' })}</p>
+
+        <h3 class="mt-5 mb-3">${t('media_featured_videos_heading', { defaultValue: 'Featured videos' })}</h3>
+        <p class="text-body-secondary mb-4">${t('media_featured_videos_lead', { defaultValue: 'Watch here or open on YouTube in a new tab.' })}</p>
+        <div class="row g-4 mb-5 align-items-stretch">
+          <div class="col-12 col-lg-6">
+            <div class="card border-0 shadow h-100 overflow-hidden rounded-4">
+              <div class="ratio ratio-16x9 bg-dark">
+                <iframe
+                  src="https://www.youtube.com/embed/rQA7V-uvWaQ"
+                  title="${t('media_video_iframe_title_1', { defaultValue: 'Featured video 1' })}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="card-body d-flex align-items-center justify-content-between gap-2 py-3 px-3 px-md-4">
+                <span class="small text-body-secondary mb-0"><i class="bi bi-youtube text-danger me-1" aria-hidden="true"></i>${t('media_youtube_brand', { defaultValue: 'YouTube' })}</span>
+                <a href="https://www.youtube.com/watch?v=rQA7V-uvWaQ" class="btn btn-sm btn-dark rounded-pill px-3" target="_blank" rel="noopener noreferrer">${t('media_open_video', { defaultValue: 'Open' })} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card border-0 shadow h-100 overflow-hidden rounded-4">
+              <div class="ratio ratio-16x9 bg-dark">
+                <iframe
+                  src="https://www.youtube.com/embed/ys6oW7to2JU"
+                  title="${t('media_video_iframe_title_2', { defaultValue: 'Featured video 2' })}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="card-body d-flex align-items-center justify-content-between gap-2 py-3 px-3 px-md-4">
+                <span class="small text-body-secondary mb-0"><i class="bi bi-youtube text-danger me-1" aria-hidden="true"></i>${t('media_youtube_brand', { defaultValue: 'YouTube' })}</span>
+                <a href="https://www.youtube.com/watch?v=ys6oW7to2JU" class="btn btn-sm btn-dark rounded-pill px-3" target="_blank" rel="noopener noreferrer">${t('media_open_video', { defaultValue: 'Open' })} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border-0 bg-body-tertiary rounded-4 shadow-sm mb-5 mx-auto" style="max-width: 42rem;">
+          <div class="card-body py-4 px-4 text-center">
+            <p class="text-uppercase small text-body-secondary mb-2">${t('media_channel_kicker', { defaultValue: 'YouTube channel' })}</p>
+            <h3 class="h5 mb-3">${t('media_channel_heading', { defaultValue: 'More on YouTube' })}</h3>
+            <p class="text-body-secondary small mb-4 mb-md-3">${t('media_channel_intro', { defaultValue: 'Subscribe to <strong>@obc-ruse</strong> for new videos, services, and teaching.' })}</p>
+            <a href="https://www.youtube.com/@obc-ruse" class="btn btn-danger rounded-pill px-4" target="_blank" rel="noopener noreferrer">
+              <i class="bi bi-youtube me-2" aria-hidden="true"></i>${t('media_open_channel_button', { defaultValue: 'Open channel' })}
+            </a>
+          </div>
+        </div>
         
-        <h3>Available Content</h3>
+        <h3>${t('media_available_heading', { defaultValue: 'Available Content' })}</h3>
         <ul>
-          <li>Weekly sermon recordings</li>
-          <li>Conference and special event videos</li>
-          <li>Teaching series and Bible studies</li>
-          <li>Worship music and recordings</li>
-          <li>Promotional and informational videos</li>
+          <li>${t('media_list_weekly_sermons', { defaultValue: 'Weekly sermon recordings' })}</li>
+          <li>${t('media_list_event_videos', { defaultValue: 'Conference and special event videos' })}</li>
+          <li>${t('media_list_teaching_series', { defaultValue: 'Teaching series and Bible studies' })}</li>
+          <li>${t('media_list_worship_music', { defaultValue: 'Worship music and recordings' })}</li>
+          <li>${t('media_list_promo_videos', { defaultValue: 'Promotional and informational videos' })}</li>
         </ul>
         
-        <h3>Streaming Options</h3>
-        <p>Content is available through our website, mobile apps, and social media platforms for convenient access anywhere.</p>
+        <h3>${t('media_streaming_heading', { defaultValue: 'Streaming Options' })}</h3>
+        <p>${t('media_streaming_intro', { defaultValue: 'Content is available through our website, mobile apps, and social media platforms for convenient access anywhere.' })}</p>
+
+        <div class="card border-0 bg-body-tertiary rounded-4 shadow-sm mt-5 mb-0 mx-auto" style="max-width: 42rem;">
+          <div class="card-body py-4 px-4 text-center">
+            <p class="text-uppercase small text-body-secondary mb-2">${t('media_booklet_kicker', { defaultValue: 'Church brochure' })}</p>
+            <h3 class="h5 mb-3">${t('media_booklet_heading', { defaultValue: 'We are the Church of God of Prophecy' })}</h3>
+            <p class="text-body-secondary small mb-4 mb-md-3">${t('media_booklet_intro', { defaultValue: 'Our 24-page booklet introduces who we are, what we believe, and how we serve together—browse it on the site or download the PDF.' })}</p>
+            <a href="/booklet" class="btn btn-dark rounded-pill px-4">
+              <i class="bi bi-journal-bookmark me-2" aria-hidden="true"></i>${t('media_booklet_button', { defaultValue: 'View booklet' })}
+            </a>
+          </div>
+        </div>
       `
     },
     'resources/podcasts': {
@@ -1347,23 +1289,8 @@ const getContentData = (): ContentContextType => ({
     },
     'resources/library': {
       title: t('library_title', { defaultValue: 'Library' }),
-      description: t('library_description', { defaultValue: 'Access our digital library of books, articles, and educational materials.' }),
-      content: `
-        <h2>${t('digital_library', { defaultValue: 'Digital Library' })}</h2>
-        <p>${t('digital_library_desc', { defaultValue: 'Our online library provides access to theological books, historical documents, and educational resources.' })}</p>
-        
-        <h3>${t('collection_includes', { defaultValue: 'Collection Includes' })}</h3>
-        <ul>
-          <li>${t('theological_biblical_reference', { defaultValue: 'Theological and biblical reference works' })}</li>
-          <li>${t('church_history_heritage', { defaultValue: 'Church history and heritage materials' })}</li>
-          <li>${t('ministry_training_resources', { defaultValue: 'Ministry training resources' })}</li>
-          <li>${t('devotional_inspirational', { defaultValue: 'Devotional and inspirational books' })}</li>
-          <li>${t('academic_papers_research', { defaultValue: 'Academic papers and research' })}</li>
-        </ul>
-        
-        <h3>${t('access', { defaultValue: 'Access' })}</h3>
-        <p>${t('library_access_desc', { defaultValue: 'Library resources are available to members and ministry leaders. Contact us for access information.' })}</p>
-      `
+      description: t('library_description', { defaultValue: 'Coming soon.' }),
+      content: `<p class="lead text-muted text-center my-5 py-md-4">${t('content_coming_soon', { defaultValue: 'Content coming soon...' })}</p>`,
     },
     'resources/assembly-documents': {
       title: 'Assembly Documents',
