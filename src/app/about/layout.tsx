@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { t } from '@/lib/i18n'
+import { visibleNavItems } from '@/lib/navVisibility'
 
 export default function AboutLayout({
   children,
@@ -11,13 +12,13 @@ export default function AboutLayout({
 }) {
   const pathname = usePathname()
 
-  const links = [
+  const links = visibleNavItems([
     { href: '/about/who-we-are', label: t('who_we_are') },
     { href: '/about/what-we-believe', label: t('what_we_believe') },
     { href: '/about/leadership', label: t('our_leadership') },
     { href: '/about/history', label: t('our_history') },
     { href: '/about/membership', label: t('membership') },
-  ]
+  ])
 
   return (
     <div className="container-fluid">

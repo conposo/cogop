@@ -8,6 +8,7 @@ import AuthModal from '@/components/Auth/AuthModal'
 import UserMenu from '@/components/Auth/UserMenu'
 import SearchModal from '@/components/SearchModal'
 import { setLocale, t } from '@/lib/i18n'
+import { isHiddenNavRoute, visibleNavItems } from '@/lib/navVisibility'
 import { useI18n } from '@/contexts/I18nContext'
 
 const Navigation = () => {
@@ -169,7 +170,7 @@ const Navigation = () => {
     // This effect will trigger when language changes, causing the component to re-render
   }, [language]);
 
-  const mainMenu = [
+  const rawMainMenu = [
     {
       title: t('get_connected', { defaultValue: 'Get Connected' }),
       items: [
@@ -253,6 +254,11 @@ const Navigation = () => {
       href: '/give'
     }
   ]
+
+  // Apply hidden-route policy once for the whole nav tree.
+  const mainMenu = rawMainMenu
+    .filter((item) => !item.href || !isHiddenNavRoute(item.href))
+    .map((item) => (item.items ? { ...item, items: visibleNavItems(item.items) } : item))
 
   const toggleDropdown = (index: number) => {
     setActiveDropdown(activeDropdown === index ? null : index)
