@@ -10,6 +10,7 @@ import { AdminProvider } from "@/contexts/AdminContext";
 import { ChurchUserProvider } from "@/contexts/ChurchUserContext";
 import { I18nProvider } from "@/contexts/I18nContext";
 import ScrollToTop from "@/components/ScrollToTop";
+import DocumentLang from "@/components/DocumentLang";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -104,9 +105,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="bg" suppressHydrationWarning>
       <body className={inter.className}>
         <I18nProvider>
+          <DocumentLang />
           <ContentProvider>
             <AuthProvider>
               <AdminProvider>
