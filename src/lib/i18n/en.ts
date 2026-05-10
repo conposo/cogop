@@ -837,6 +837,16 @@ export const enMessages = {
     calendar_view: 'Calendar view',
     list_view: 'List view',
     no_events_scheduled: 'No events scheduled',
+    no_events_found: 'No events found',
+    all_events: 'All Events',
+    details: 'Details',
+    sun: 'Sun',
+    mon: 'Mon',
+    tue: 'Tue',
+    wed: 'Wed',
+    thu: 'Thu',
+    fri: 'Fri',
+    sat: 'Sat',
     
     // Profile page translations
     profile: 'Profile',

@@ -845,6 +845,16 @@ export const bgMessages = {
     calendar_view: 'Изглед календар',
     list_view: 'Изглед списък',
     no_events_scheduled: 'Няма планирани събития',
+    no_events_found: 'Няма намерени събития',
+    all_events: 'Всички събития',
+    details: 'Детайли',
+    sun: 'Нед',
+    mon: 'Пон',
+    tue: 'Вт',
+    wed: 'Ср',
+    thu: 'Четв',
+    fri: 'Пет',
+    sat: 'Съб',
     
     // Profile page translations
     profile: 'Профил',
