@@ -234,7 +234,7 @@ export default function Home() {
                                 <i className="bi bi-calendar me-2"></i>{new Date(article.date).toLocaleDateString()}
                               </p>
                             )}
-                            <Link href={`/news/${article.slug}`} className="btn btn-dark">{t('read_more')}</Link>
+                            {/* <Link href={`/news/${article.slug}`} className="btn btn-dark">{t('read_more')}</Link> */}
                           </div>
                         </div>
                       </div>
