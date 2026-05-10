@@ -437,7 +437,12 @@ const getContentData = (): ContentContextType => ({
     'about/who-we-are': {
       title: t('who_we_are_title', { defaultValue: 'Who We Are' }),
       description: t('who_we_are_description', { defaultValue: 'Discover our identity as a Christ-centered, Spirit-led global movement.' }),
-      content: `
+      content: (() => {
+        const detailed = t('who_we_are_html');
+        if (detailed && /\S/.test(detailed)) {
+          return detailed;
+        }
+        return `
         <h2>${t('global_movement', { defaultValue: 'A Global Movement' })}</h2>
         <p>${t('global_movement_text', { defaultValue: 'The Church of God of Prophecy is a vibrant, global Christian movement with presence in 135 countries and territories. We are united by our common faith in Jesus Christ and our commitment to biblical truth.' })}</p>
         
@@ -453,7 +458,8 @@ const getContentData = (): ContentContextType => ({
         
         <h2>${t('our_story', { defaultValue: 'Our Story' })}</h2>
         <p>${t('our_story_text', { defaultValue: 'Founded in the early 20th century, we have grown from humble beginnings to become a worldwide fellowship of believers committed to advancing God\'s kingdom on earth.' })}</p>
-      `
+      `;
+      })(),
     },
     'about/what-we-believe': {
       title: t('what_we_believe_title', { defaultValue: 'What We Believe' }),

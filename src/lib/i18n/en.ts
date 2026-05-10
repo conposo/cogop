@@ -81,6 +81,38 @@ export const enMessages = {
     
     who_we_are_title: 'Who We Are',
     who_we_are_description: 'Discover our identity as a Christ-centered, Spirit-led movement.',
+    who_we_are_html: `
+        <h2>Introduction</h2>
+        <p>The Church of God of Prophecy is a dynamic Christian movement, rooted in Scripture, steadfast in faith, and passionate about people. It is a worldwide community of believers, united in worship and working hand in hand to share God’s love and message of hope with the brokenhearted.</p>
+        <p>The reach of the Church of God of Prophecy extends far. Every 24 hours around the world an estimated 300 people are saved, nearly 100 are baptized in water, and more than 14,000 ministers are actively proclaiming the Gospel. Each day at least one new church opens its doors to touch its local community through the work of this movement.</p>
+        <p>The Church is ethnically and culturally diverse, with 90% of its members living outside North America. The Church currently serves in 133 countries, with more than 1,400 people becoming members each month. An estimated 14,000 men and women are presently licensed to minister and preach the Gospel.</p>
+        <p>The Church of God of Prophecy invites you to join us as we seek to fulfill God’s mission of reconciling the world to Christ through the power of the Holy Spirit.</p>
+
+        <h2>Our Vision</h2>
+        <p>Reconciling the world to Christ through the power of the Holy Spirit.</p>
+
+        <h2>Our Mission</h2>
+        <p>The Church of God of Prophecy is Christ-exalting, holiness, Spirit-filled, all-nations disciple-making, church-planting movement with a strong longing for Christian union.</p>
+
+        <h2>Our Core Values</h2>
+        <p>Our mission flows directly from our core values and reaffirms them. The core values of the Church of God of Prophecy are:</p>
+        <ul>
+          <li>Prayer</li>
+          <li>The Harvest</li>
+          <li>Leadership Development</li>
+          <li>Biblical Stewardship</li>
+          <li>Service</li>
+        </ul>
+
+        <h2>Mission Elements</h2>
+        <p><strong>Christ Exalted</strong> — in everything we do, may Jesus Christ be seen. He is the Head of the Body and therefore must be exalted in everything. We affirm our desire that Christ be seen more perfectly through this spiritual family.</p>
+        <p><strong>Holy People</strong> — this church was part of the holiness movement before it became Pentecostal. We were born out of the revivalist Holiness Movement in North America. The call to holiness is deeply rooted and part of our destiny. We renew our commitment to God’s grace and cleansing through His blood so that we may be like Him.</p>
+        <p><strong>Spirit-Filled</strong> — God’s prophetic promise that “in the last days He will pour out His Spirit on all the earth” has been and continues to be central to the DNA of this global family — the Church of God of Prophecy. We declare our complete dependence on the Holy Spirit, who is given to lead and empower the Church.</p>
+        <p><strong>All Nations</strong> — by God’s design this international ministry has from the very beginning held to the ideal that the Church of God will consist of every “tribe, tongue, and nation.” As far as our limited ability has allowed, we have tried to shape this Church along those lines, even before multiculturalism was acceptable. We celebrate the diversity at every level of leadership in this international organization and commit ourselves to continuing this rich heritage.</p>
+        <p><strong>Disciple-Making</strong> — for more than a century of ministry this family network has been devoted to the biblical call of making disciples in keeping with the Great Commission. We understand that the strength of disciple-making will determine our strength in evangelism.</p>
+        <p><strong>Church-Planting Movement</strong> — healthy churches that plant new churches contribute significantly to the spread of the Gospel throughout the world. This ministry has reflected this ideal consistently in practice throughout its existence. Our goal is to redouble our efforts to invest in church planting in every place where we have the opportunity.</p>
+        <p><strong>Christian Union</strong> — our forefathers believed there could be a unity greater than the religious denominations of the day, which God would use to glorify His name on the earth. We intend to cooperate with all who exalt the name of Christ and His great Gospel.</p>
+      `,
     
     what_we_believe_title: 'What We Believe',
     what_we_believe_description: 'Explore our core beliefs, doctrine, and theological foundations.',
