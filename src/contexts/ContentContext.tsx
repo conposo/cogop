@@ -110,18 +110,6 @@ const getContentData = (): ContentContextType => ({
         variant: "dark",
         icon: "bi bi-envelope"
       },
-      {
-        text: t('faq_find_church', { defaultValue: 'Find a Church' }),
-        link: "/find-a-church",
-        variant: "outline",
-        icon: "bi bi-geo-alt"
-      },
-      {
-        text: t('faq_schedule_tour', { defaultValue: 'Schedule a Tour' }),
-        link: "/get-connected/schedule-tour",
-        variant: "outline",
-        icon: "bi bi-calendar-plus"
-      }
     ]
     },
 

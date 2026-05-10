@@ -36,7 +36,7 @@ const CallToAction: React.FC<CallToActionProps> = () => {
             <p className="card-text">{callToActions.description}</p>
             <div className="row">
               {callToActions.buttons.map((button, index) => (
-                <div key={index} className="col-md-4 mb-2">
+                <div key={index} className="col-md-4 mb-2 mx-auto">
                   <Link href={button.link} className={`${getButtonClass(button.variant)} w-100 rounded-5`}>
                     {button.icon && <i className={`${button.icon} me-2`}></i>}
                     {button.text}
