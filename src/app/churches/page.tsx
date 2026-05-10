@@ -225,11 +225,12 @@ export default function ChurchesPage() {
       {/* Results Count */}
       <div className="mb-4">
         <p className="text-muted">
-          {t('churches_found', { 
-            defaultValue: '{count} church{plural} found',
-            count: filteredChurches.length,
-            plural: filteredChurches.length !== 1 ? 'es' : ''
-          })}
+          {filteredChurches.length === 1
+            ? t('churches_found_one', { defaultValue: '1 church found' })
+            : t('churches_found_many', {
+                count: filteredChurches.length,
+                defaultValue: '{count} churches found',
+              })}
         </p>
       </div>
 
