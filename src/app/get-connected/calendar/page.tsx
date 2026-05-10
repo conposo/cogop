@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { fetchEventsFromFirestore, Event, formatEventDateTime, MultilingualString } from '@/lib/dummyContent'
 import PageLayout from '@/components/PageLayout'
 import Link from 'next/link'
-import { t } from '@/lib/i18n'
+import { useTranslation } from '@/lib/i18n'
 import { useI18n } from '@/contexts/I18nContext'
 
 // Helper function to get localized string or fallback
@@ -19,6 +19,7 @@ const getLocalizedString = (field: MultilingualString | string | undefined, lang
 };
 
 export default function CalendarPage() {
+  const { t } = useTranslation()
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -305,23 +306,23 @@ export default function CalendarPage() {
                 className={`btn ${viewMode === 'calendar' ? 'active' : 'btn-outline-primary'}`}
                 onClick={() => setViewMode('calendar')}
               >
-                <i className="bi bi-calendar3 me-2"></i>Calendar View
+                <i className="bi bi-calendar3 me-2"></i>{t('calendar_view')}
               </button>
               <button
                 type="button"
                 className={`btn ${viewMode === 'list' ? 'active' : 'btn-outline-primary'}`}
                 onClick={() => setViewMode('list')}
               >
-                <i className="bi bi-list-ul me-2"></i>List View
+                <i className="bi bi-list-ul me-2"></i>{t('list_view')}
               </button>
             </div>
             
             <div className="d-flex gap-2">
               <Link href="/events" className="btn btn-outline-primary">
-                <i className="bi bi-arrow-left me-2"></i>All Events
+                <i className="bi bi-arrow-left me-2"></i>{t('all_events')}
               </Link>
               <button className="btn btn-dark" onClick={goToToday}>
-                <i className="bi bi-calendar-check me-2"></i>Today
+                <i className="bi bi-calendar-check me-2"></i>{t('today')}
               </button>
             </div>
           </div>
@@ -358,8 +359,8 @@ export default function CalendarPage() {
               </div>
               
               <div className="calendar-grid">
-                {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                  <div key={day} className="calendar-day-header">
+                {[t('sun'), t('mon'), t('tue'), t('wed'), t('thu'), t('fri'), t('sat')].map((day, index) => (
+                  <div key={index} className="calendar-day-header">
                     {day}
                   </div>
                 ))}
@@ -373,7 +374,7 @@ export default function CalendarPage() {
               <div className="p-3 border-bottom">
                 <h5 className="mb-0">
                   <i className="bi bi-clock me-2 text-primary"></i>
-                  Upcoming Events
+                  {t('upcoming_events')}
                 </h5>
               </div>
               <div className="p-3">
@@ -388,7 +389,7 @@ export default function CalendarPage() {
                           {event.category}
                         </span>
                         {event.featured && (
-                          <span className="badge bg-warning text-dark">Featured</span>
+                          <span className="badge bg-warning text-dark">{t('featured')}</span>
                         )}
                       </div>
                       <h6 className="mb-2">{getLocalizedString(event.title, language)}</h6>
@@ -404,14 +405,14 @@ export default function CalendarPage() {
                         href={`/events/${event.id}`} 
                         className="btn btn-sm btn-outline-primary"
                       >
-                        Details
+                        {t('details')}
                       </Link>
                     </div>
                   ))
                 ) : (
                   <p className="text-muted text-center py-3">
                     <i className="bi bi-calendar-x fs-4 d-block mb-2"></i>
-                    No upcoming events
+                    {t('no_upcoming_events')}
                   </p>
                 )}
               </div>
@@ -445,7 +446,7 @@ export default function CalendarPage() {
                             {event.category}
                           </span>
                           {event.featured && (
-                            <span className="badge bg-warning text-dark">Featured</span>
+                            <span className="badge bg-warning text-dark">{t('featured')}</span>
                           )}
                         </div>
                         <h5 className="card-title">{getLocalizedString(event.title, language)}</h5>
@@ -464,7 +465,7 @@ export default function CalendarPage() {
                           )}
                         </div>
                         <Link href={`/events/${event.id}`} className="btn btn-dark">
-                          Learn More
+                          {t('learn_more')}
                         </Link>
                       </div>
                     </div>
@@ -474,8 +475,8 @@ export default function CalendarPage() {
             ) : (
               <div className="text-center py-5">
                 <i className="bi bi-calendar-x fs-1 text-muted mb-3"></i>
-                <h4 className="text-muted">No events found</h4>
-                <p className="text-muted">Check back soon for new events!</p>
+                <h4 className="text-muted">{t('no_events_found')}</h4>
+                <p className="text-muted">{t('check_back_soon_for_new_events')}</p>
               </div>
             )}
           </div>

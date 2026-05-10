@@ -3,10 +3,11 @@
 import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 import CallToAction from '@/components/CallToAction'
-import { t } from '@/lib/i18n'
+import { useTranslation } from '@/lib/i18n'
 import Link from 'next/link'
 
 export default function FAQPage() {
+  const { t } = useTranslation()
   const { pages } = useContent()
   const pageContent = pages['get-connected/faq']
 

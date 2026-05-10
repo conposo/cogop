@@ -243,7 +243,7 @@ const Navigation = () => {
         { title: t('public_statements_title', { defaultValue: 'Public Statements' }), href: '/resources/public-statements' },
         { title: t('assembly_minutes_title', { defaultValue: 'Assembly Minutes' }), href: '/resources/assembly-minutes' },
         { title: t('church_resources_title', { defaultValue: 'Church Resources' }), href: '/resources/church-resources' },
-        { title: t('church_locator_title', { defaultValue: 'Church Locator' }), href: '/find-a-church' },
+        { title: t('church_locator_title', { defaultValue: 'Church Locator' }), href: '/churches' },
         // { title: t('church_logos_title', { defaultValue: 'Church Logos' }), href: '/resources/church-logos' },
         { title: t('treasurers_report_title', { defaultValue: "Treasurer's Report" }), href: '/resources/treasurers-report' },
         { title: t('directory_title', { defaultValue: 'Directory' }), href: '/resources/directory' },

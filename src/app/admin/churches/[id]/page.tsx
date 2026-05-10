@@ -132,7 +132,7 @@ export default function ChurchDetails() {
       <div className="alert alert-danger">
         <h4>Error</h4>
         <p>{error || 'Church not found'}</p>
-        <Link href="/admin/churches" className="btn btn-primary">
+        <Link href="/admin/churches" className="btn btn-primary text-white">
           Back to Churches
         </Link>
       </div>
@@ -162,7 +162,7 @@ export default function ChurchDetails() {
             Back to Churches
           </Link>
           <button 
-            className="btn btn-primary"
+            className="btn btn-primary text-white"
             onClick={() => router.push(`/admin/churches?edit=${church.id}`)}
           >
             <i className="bi bi-pencil me-2"></i>
@@ -389,7 +389,7 @@ export default function ChurchDetails() {
             <div className="card-body">
               <div className="d-grid gap-2">
                 <button 
-                  className="btn btn-primary"
+                  className="btn btn-primary text-white"
                   onClick={() => router.push(`/admin/churches?edit=${church.id}`)}
                 >
                   <i className="bi bi-pencil me-2"></i>

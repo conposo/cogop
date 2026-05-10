@@ -325,7 +325,7 @@ export default function CreateDiscussionModal({
             </button>
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary text-white"
               onClick={handleSave}
               disabled={saving || !formData.title.trim() || !formData.content.trim()}
             >

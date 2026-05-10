@@ -249,7 +249,7 @@ export default function DiscussionDetailModal({
                         ></textarea>
                       </div>
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-primary text-white"
                         onClick={handleAddComment}
                         disabled={submitting || !newComment.trim()}
                       >

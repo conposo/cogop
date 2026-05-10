@@ -399,7 +399,7 @@ export const staticDummyEvents: Event[] = [
 ];
 
 // Function to fetch events from Firestore
-export const fetchEventsFromFirestore = async (currentLang?: string): Promise<Event[]> => {
+export const fetchEventsFromFirestore = async (currentLang?: string, showPastEvents: boolean = false): Promise<Event[]> => {
   try {
     const isAdmin = await checkIsAdmin();
     
@@ -466,14 +466,14 @@ export const fetchEventsFromFirestore = async (currentLang?: string): Promise<Ev
         } as Event;
       })
       .filter(event => {
-        // For non-admin users, also filter out past events
-        if (!isAdmin) {
+        // Filter out past events unless showPastEvents is true
+        if (!showPastEvents) {
           const eventDateObj = new Date(event.eventDate);
           const today = new Date();
           today.setHours(0, 0, 0, 0);
           return eventDateObj >= today;
         }
-        return true; // Admins can see all events including past ones
+        return true; // Show all events when showPastEvents is true
       });
     
     return eventsData;

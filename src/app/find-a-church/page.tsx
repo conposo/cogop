@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/lib/firebase'
 import { getPageContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
-import { t } from '@/lib/i18n'
+import { useTranslation } from '@/lib/i18n'
 import Link from 'next/link'
 
 interface Church {
@@ -35,6 +35,7 @@ interface Church {
 }
 
 export default function FindaChurchPage() {
+  const { t } = useTranslation()
   const pageContent = getPageContent('find-a-church')
   const [churches, setChurches] = useState<Church[]>([])
   const [filteredChurches, setFilteredChurches] = useState<Church[]>([])
@@ -44,7 +45,7 @@ export default function FindaChurchPage() {
   const [error, setError] = useState<string | null>(null)
 
   // Helper function to migrate old servicesTimes structure to new format
-  const migrateServicesTimes = (servicesTimes: any): { day: string; time: string }[] => {
+  const migrateServicesTimes = (servicesTimes: unknown): { day: string; time: string }[] => {
     if (Array.isArray(servicesTimes)) {
       return servicesTimes;
     }
@@ -291,16 +292,16 @@ export default function FindaChurchPage() {
             {/* Error State */}
             {error && (
               <div className="alert alert-danger">
-                <h4>Error Loading Churches</h4>
+                <h4>{t('error_loading_churches', { defaultValue: 'Error Loading Churches' })}</h4>
                 <p>{error}</p>
                 <button 
-                  className="btn btn-primary" 
+                  className="btn btn-primary text-white" 
                   onClick={() => {
                     setError(null);
                     fetchChurches();
                   }}
                 >
-                  Try Again
+                  {t('try_again', { defaultValue: 'Try Again' })}
                 </button>
               </div>
             )}
@@ -341,10 +342,15 @@ export default function FindaChurchPage() {
                       <div className="card-body">
                         <div className="row">
                           <div className="col-md-8">
-                            <h5 className="card-title text-primary">
-                              <i className="bi bi-house-heart me-2"></i>
-                              {church.name}
-                            </h5>
+                            <a
+                                href={`/churches/${church.id}`}
+                                className="text-decoration-none"
+                              >
+                              <h5 className="card-title text-primary">
+                                <i className="bi bi-house-heart me-2"></i>
+                                {church.name}
+                              </h5>
+                            </a>
                             
                             {church.denomination && (
                               <p className="text-muted small mb-2">
@@ -433,7 +439,7 @@ export default function FindaChurchPage() {
                                 <i className="bi bi-map me-1"></i>
                                 {t('get_directions', { defaultValue: 'Get Directions' })}
                               </a>
-                              {church.website && (
+                              {false && church.website && (
                                 <a
                                   href={church.website}
                                   target="_blank"
@@ -455,10 +461,10 @@ export default function FindaChurchPage() {
                               )}
                               <a
                                 href={`/churches/${church.id}`}
-                                className="btn btn-primary btn-sm"
+                                className="btn btn-primary text-white btn-sm"
                               >
                                 <i className="bi bi-eye me-1"></i>
-                                View Details
+                                {t('view_details', { defaultValue: 'View Details' })}
                               </a>
                             </div>
                           </div>

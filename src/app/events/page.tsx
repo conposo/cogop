@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useI18n } from '@/contexts/I18nContext'
@@ -25,7 +26,7 @@ export default function Events() {
   useEffect(() => {
     const loadEvents = async () => {
       setLoading(true)
-      const fetchedEvents = await fetchEventsFromFirestore(language)
+      const fetchedEvents = await fetchEventsFromFirestore(language, false) // false means don't show past events
       setEvents(fetchedEvents)
       setLoading(false)
     }
