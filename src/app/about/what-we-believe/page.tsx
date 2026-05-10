@@ -1,10 +1,11 @@
 'use client'
 
-import { useContent, getPageContent } from '@/contexts/ContentContext'
+import { useContent } from '@/contexts/ContentContext'
 import PageLayout from '@/components/PageLayout'
 
 export default function WhatWeBelievePage() {
-  const pageContent = getPageContent('about/what-we-believe')
+  const { pages } = useContent()
+  const pageContent = pages['about/what-we-believe']
 
   return (
     <PageLayout

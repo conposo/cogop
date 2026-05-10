@@ -458,8 +458,14 @@ const getContentData = (): ContentContextType => ({
     'about/what-we-believe': {
       title: t('what_we_believe_title', { defaultValue: 'What We Believe' }),
       description: t('what_we_believe_description', { defaultValue: 'Explore our core beliefs, doctrine, and theological foundations.' }),
-      content: `
-        <h2>${t('statement_of_faith', { defaultValue: 'Statement of Faith' })}</h2>
+      content: (() => {
+        const detailed = t('what_we_believe_detailed_html');
+        const heading = `<h2>${t('statement_of_faith', { defaultValue: 'Statement of Faith' })}</h2>`;
+        if (detailed && /\S/.test(detailed)) {
+          return `${heading}${detailed}`;
+        }
+        return `
+        ${heading}
         <p>${t('we_believe_in', { defaultValue: 'We believe in:' })}</p>
         
         <h3>${t('the_trinity', { defaultValue: 'The Trinity' })}</h3>
@@ -479,17 +485,30 @@ const getContentData = (): ContentContextType => ({
         
         <h3>${t('scripture', { defaultValue: 'Scripture' })}</h3>
         <p>${t('scripture_desc', { defaultValue: 'The Bible as the inspired, inerrant Word of God and our final authority for faith and practice.' })}</p>
-      `
+      `;
+      })(),
     },
     'about/leadership': {
       title: t('our_leadership_title', { defaultValue: 'Our Leadership' }),
       description: t('our_leadership_description', { defaultValue: 'Meet the leaders who guide and serve our global church community.' }),
-      content: `<p>${t('leadership_information_coming_soon', { defaultValue: 'Leadership information coming soon...' })}</p>`
+      content: (() => {
+        const body = t('leadership_organization_html');
+        if (body && /\S/.test(body)) {
+          return body;
+        }
+        return `<p>${t('leadership_information_coming_soon', { defaultValue: 'Leadership information coming soon...' })}</p>`;
+      })(),
     },
     'about/history': {
       title: t('our_history_title', { defaultValue: 'Our History' }),
       description: t('our_history_description', { defaultValue: 'Journey through the rich history of the Church of God of Prophecy.' }),
-      content: `<p>${t('historical_information_coming_soon', { defaultValue: 'Historical information coming soon...' })}</p>`
+      content: (() => {
+        const body = t('our_history_html');
+        if (body && /\S/.test(body)) {
+          return body;
+        }
+        return `<p>${t('historical_information_coming_soon', { defaultValue: 'Historical information coming soon...' })}</p>`;
+      })(),
     },
     'about/membership': {
       title: t('membership_title', { defaultValue: 'Membership' }),
@@ -1270,46 +1289,71 @@ const getContentData = (): ContentContextType => ({
     'resources/know-god': {
       title: t('how_to_know_god_title', { defaultValue: 'How to Know God' }),
       description: t('how_to_know_god_description', { defaultValue: 'Discover a personal relationship with Jesus Christ and experience the peace that comes from knowing God.' }),
-      content: `<div className="mb-5">
-          <h2 className="h3 mb-3">${t('god_loves_you', { defaultValue: 'God Loves You' })}</h2>
-          <p>${t('god_created_you_in_his_image_and_desires_a_personal_relationship_with_you', { defaultValue: 'God created you in His image and desires a personal relationship with you. He loves you unconditionally and has a wonderful plan for your life.' })}</p>
-          <blockquote className="blockquote">
-            <p>"${t('for_god_so_loved_the_world_that_he_gave_his_one_and_only_son_that_whoever_believes_in_him_shall_not_perish_but_have_eternal_life', { defaultValue: 'For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.' })}"</p>
-            <footer className="blockquote-footer">${t('john_3_16', { defaultValue: 'John 3:16' })}</footer>
+      content: `<div class="mb-5">
+          <p class="lead">${t('know_god_intro_p1', { defaultValue: '' })}</p>
+          <p>${t('know_god_intro_p2', { defaultValue: '' })}</p>
+          <p>${t('know_god_intro_p3', { defaultValue: '' })}</p>
+          <blockquote class="blockquote">
+            <p>“${t('know_god_romans_5_1_quote', { defaultValue: '' })}”</p>
+            <footer class="blockquote-footer">${t('know_god_romans_5_1_ref', { defaultValue: '' })}</footer>
+          </blockquote>
+          <blockquote class="blockquote">
+            <p>“${t('know_god_john_10_10_quote', { defaultValue: '' })}”</p>
+            <footer class="blockquote-footer">${t('know_god_john_10_10_ref', { defaultValue: '' })}</footer>
+          </blockquote>
+          <p>${t('know_god_lead_in_powerful_verse', { defaultValue: '' })}</p>
+          <blockquote class="blockquote">
+            <p>“${t('know_god_john_3_16_extended_quote', { defaultValue: '' })}”</p>
+            <footer class="blockquote-footer">${t('john_3_16', { defaultValue: 'John 3:16' })}</footer>
           </blockquote>
         </div>
 
-        <div className="mb-5">
-          <h2 className="h3 mb-3">${t('we_are_separated_from_god', { defaultValue: 'We Are Separated from God' })}</h2>
-          <p>${t('sin_has_created_a_barrier_between_us_and_god_we_all_fall_short_of_gods_perfect_standard_and_this_separation_affects_every_aspect_of_our_lives', { defaultValue: 'Sin has created a barrier between us and God. We all fall short of God\'s perfect standard, and this separation affects every aspect of our lives.' })}</p>
-          <blockquote className="blockquote">
-            <p>"${t('for_all_have_sinned_and_fall_short_of_the_glory_of_god', { defaultValue: 'For all have sinned and fall short of the glory of God.' })}"</p>
-            <footer className="blockquote-footer">${t('romans_3_23', { defaultValue: 'Romans 3:23' })}</footer>
+        <div class="mb-5">
+          <h2 class="h3 mb-3">${t('know_god_problem_sin_heading', { defaultValue: '' })}</h2>
+          <p>${t('know_god_problem_sin_body', { defaultValue: '' })}</p>
+          <blockquote class="blockquote">
+            <p>“${t('for_all_have_sinned_and_fall_short_of_the_glory_of_god', { defaultValue: 'For all have sinned and fall short of the glory of God.' })}”</p>
+            <footer class="blockquote-footer">${t('romans_3_23', { defaultValue: 'Romans 3:23' })}</footer>
           </blockquote>
         </div>
 
-        <div className="mb-5">
-          <h2 className="h3 mb-3">${t('jesus_is_the_answer', { defaultValue: 'Jesus Is the Answer' })}</h2>
-          <p>${t('jesus_christ_bridged_the_gap_between_god_and_humanity_through_his_death_on_the_cross_he_paid_the_price_for_our_sins_so_we_could_have_a_relationship_with_god', { defaultValue: 'Jesus Christ bridged the gap between God and humanity through His death on the cross. He paid the price for our sins so we could have a relationship with God.' })}</p>
-          <blockquote className="blockquote">
-            <p>"${t('but_god_demonstrates_his_own_love_for_us_in_this_while_we_were_still_sinners_christ_died_for_us', { defaultValue: 'But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.' })}"</p>
-            <footer className="blockquote-footer">${t('romans_5_8', { defaultValue: 'Romans 5:8' })}</footer>
+        <div class="mb-5">
+          <h2 class="h3 mb-3">${t('know_god_answer_cross_heading', { defaultValue: '' })}</h2>
+          <p>${t('know_god_answer_cross_p1', { defaultValue: '' })}</p>
+          <p>${t('know_god_answer_cross_p2', { defaultValue: '' })}</p>
+          <blockquote class="blockquote">
+            <p>“${t('know_god_1_peter_2_24_quote', { defaultValue: '' })}”</p>
+            <footer class="blockquote-footer">${t('know_god_1_peter_2_24_ref', { defaultValue: '' })}</footer>
           </blockquote>
         </div>
 
-        <div className="mb-5">
-          <h2 className="h3 mb-3">${t('you_must_respond', { defaultValue: 'You Must Respond' })}</h2>
-          <p>${t('knowing_about_gods_love_is_not_enough_you_must_personally_receive_jesus_christ_as_your_lord_and_savior_by_faith', { defaultValue: 'Knowing about God\'s love is not enough. You must personally receive Jesus Christ as your Lord and Savior by faith.' })}</p>
-          <blockquote className="blockquote">
-            <p>"${t('if_you_declare_with_your_mouth_jesus_is_lord_and_believe_in_your_heart_that_god_raised_him_from_the_dead_you_will_be_saved', { defaultValue: 'If you declare with your mouth, "Jesus is Lord," and believe in your heart that God raised him from the dead, you will be saved.' })}"</p>
-            <footer className="blockquote-footer">${t('romans_10_9', { defaultValue: 'Romans 10:9' })}</footer>
-          </blockquote>
+        <div class="mb-5">
+          <h2 class="h3 mb-3">${t('know_god_what_must_i_do_heading', { defaultValue: '' })}</h2>
+          <p>${t('know_god_bridge_body', { defaultValue: '' })}</p>
         </div>
 
-        <div className="text-center bg-light p-4 rounded">
-          <h2 className="h4 mb-3">${t('ready_to_take_the_next_step', { defaultValue: 'Ready to Take the Next Step?' })}</h2>
-          <p className="mb-4">${t('if_you_would_like_to_know_more_about_having_a_personal_relationship_with_jesus_christ_we_are_here_to_help', { defaultValue: 'If you would like to know more about having a personal relationship with Jesus Christ, we are here to help.' })}</p>
-          <Link href="/get-connected/contact" className="btn btn-dark me-3">${t('contact_us', { defaultValue: 'Contact Us' })}</Link>
+        <div class="mb-5">
+          <h2 class="h3 mb-3">${t('know_god_starting_point_heading', { defaultValue: '' })}</h2>
+          <ol class="mb-4">
+            <li class="mb-3">${t('know_god_step_1', { defaultValue: '' })}</li>
+            <li class="mb-3">${t('know_god_step_2', { defaultValue: '' })}</li>
+            <li class="mb-3">${t('know_god_step_3', { defaultValue: '' })}</li>
+            <li class="mb-3">${t('know_god_step_4', { defaultValue: '' })}</li>
+          </ol>
+          <blockquote class="blockquote">
+            <p>“${t('know_god_rev_3_20_quote', { defaultValue: '' })}”</p>
+            <footer class="blockquote-footer">${t('know_god_rev_3_20_ref', { defaultValue: '' })}</footer>
+          </blockquote>
+          <blockquote class="blockquote">
+            <p>“${t('know_god_romans_10_13_quote', { defaultValue: '' })}”</p>
+            <footer class="blockquote-footer">${t('know_god_romans_10_13_ref', { defaultValue: '' })}</footer>
+          </blockquote>
+          <p class="mt-4">${t('know_god_sample_prayer_intro', { defaultValue: '' })}</p>
+          <div class="border rounded p-4 bg-light mb-4">
+            <p class="mb-0" style="white-space: pre-wrap;">${t('know_god_sample_prayer_body', { defaultValue: '' })}</p>
+          </div>
+          <p class="mb-2">${t('know_god_closing_contact', { defaultValue: '' })}</p>
+          <p class="text-center mb-0"><a href="/get-connected/contact" class="btn btn-dark">${t('know_god_contact_church_here', { defaultValue: 'Contact the church here' })}</a></p>
         </div>`
     },
     'resources/media': {
