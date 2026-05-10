@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "add-to-calendar-button-react": "^2.9.0",
@@ -14,19 +14,18 @@
     "bootstrap-icons": "^1.13.1",
     "firebase": "^11.8.1",
     "i18n-js": "^4.5.1",
-    "next": "^15.3.2",
+    "next": "^16.2.4",
     "nodemailer": "^7.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sass": "^1.89.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.1.8",
+    "eslint-config-next": "^16.2.4",
     "typescript": "^5"
   }
 }
